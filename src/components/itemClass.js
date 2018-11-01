@@ -1,4 +1,4 @@
-export const item = {
+export const itemClass = {
   classes: {
     applied: ['o-item'],
     imageSwap: 'o-item__imageSwap',

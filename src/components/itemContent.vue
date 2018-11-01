@@ -24,6 +24,7 @@
 
 import itemImage from './itemImage.vue'
 
+
 import { editBus } from '../main'
 
 export default {
