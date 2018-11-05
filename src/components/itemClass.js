@@ -1,4 +1,5 @@
 export const itemClass = {
+  edit: false,
   classes: {
     applied: ['o-item'],
     imageSwap: 'o-item__imageSwap',
