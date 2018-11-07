@@ -7,7 +7,15 @@ export const itemClass = {
     imageRotation: 'o-item__imageRotation',
     card: 'o-item--card',
     fullWidth: 'o-item--100vw',
-    tintHover: 'o-item--tintHover'
+    tintHover: 'o-item--tintHover',
+    available: [  
+      { class: ['o-item__imageSwap', "Image swaps on hover", true] },
+      { class: ['o-item__headerSwap', 'Header content swaps on hover', true] },
+      { class: ['o-item__imageRotation', 'For multiple image rotation', true] },
+      { class: ['o-item--card', 'Card layout', true] },
+      { class: ['o-item--100vw', 'Makes item 100% width of window', true] },
+      { class: ['o-item--tintHover', 'Adds a tint on hover of item', true] }
+    ]
   },
   image: {
     link: false,

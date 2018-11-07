@@ -5,7 +5,9 @@
         <span class="o-hdr o-hdr--sm u-mt0">Welcome to</span> <span class="o-hdr o-hdr--hg u-mt-sm">Jack Wills Template Builder</span>
       </h1>
     </section>    
-    <!-- Edit Panel Component -->
+    <!-- Edit Panel Component 
+        - Pass through items and editPanel as props
+    -->
     <editPanel :items="items" :editPanel="editPanel" />
     <div id="page-wrapper">
       <section class="c-item-container o-container">
@@ -48,7 +50,6 @@ export default {
   data() {
     return {
       items: [],
-      // editPanel: false,
       editPanel: {
         state: false,
         itemIndex: 0

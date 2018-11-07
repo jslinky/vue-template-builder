@@ -3,12 +3,7 @@
     <div :class="itemInfo.classes.applied">
       <itemImage :imgUrl="itemInfo.image.url" :content="itemInfo.content" /> 
     </div>
-    <a @click="editItem(itemIndex)" class="o-link c-btn-itemEdit">Edit</a>    
-    <div v-if="itemInfo.edit">      
-      <div>
-        <a class="o-btn" v-for="(value, key, index) in itemInfo.classes" v-if="omitApplied(value)" @click="addClass(value, index)">{{ key }}</a>
-      </div>
-    </div>    
+    <a @click="editItem(itemIndex)" class="o-link c-btn-itemEdit">Edit</a>     
     </div> 
 </template>
 
@@ -39,21 +34,7 @@ export default {
         this.itemInfo.edit = true;
         editBus.$emit('editPanelState', true, index);
       }
-    },
-    omitApplied(value) {
-      if(!Array.isArray(value)) {
-        return value        
-      }      
-    },
-    addClass(value, i) {
-      let classesApplied = this.itemInfo.classes.applied; 
-      if(!classesApplied.includes(value)) {
-        classesApplied.push(value);
-      } else {
-        let index = classesApplied.indexOf(value);
-        classesApplied.splice(index);        
-      }      
-    }    
+    }
   },
   created() {
     editBus.$on('editHeaderContent', (i) => {
