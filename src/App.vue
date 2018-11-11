@@ -12,7 +12,7 @@
     <div id="page-wrapper">
       <section class="c-item-container o-container">
         <!-- Item component - set to loop through items array -->
-        <item v-for="(item, index) in items" :itemInfo="item" :itemIndex="index" />      
+          <item v-for="(item, index) in items" :itemInfo="item" :itemIndex="index" />      
       </section>
     </div>
     <div class="main-nav">
@@ -42,9 +42,24 @@ export default {
   },
   methods: {
     newItem() {
-      let clone = JSON.parse(JSON.stringify(itemClass));
-      this.items.push(clone);
-    }  
+      let clone = JSON.parse(JSON.stringify(itemClass));      
+      let itemsLength = this.items.push(clone);      
+      itemsLength;
+      // Extend global itemClass class arrays to new item object available classes
+      this.extendItemClasses((itemsLength - 1));
+    },
+    extendItemClasses(i) {
+      // Layout width classes - new array from map on global itemClass
+      let classesWidth = itemClass.classes.width.map(ob => ob),
+      // New array from itemClass object containing available classes
+      classesAvailable = itemClass.classes.available.map(ob => ob);
+      // New combined array from above
+      let classesWidthCombined = classesWidth.forEach((item) => { classesAvailable.push(item); });
+      // Init 
+      classesWidthCombined;
+      // Assign new array to freshly created item object
+      this.items[i].classes.available = classesAvailable;
+    }
   },
   // Data within a child component should run a function that returns an object
   data() {
@@ -62,8 +77,14 @@ export default {
       this.editPanel.itemIndex = itemIndex;
     })
     editBus.$on('addItemHeading', () => {
-      let clone = JSON.parse(JSON.stringify(itemClass.content.heading[0]));
+      let clone = JSON.parse(JSON.stringify(itemClass.content.heading[0]));      
       this.items[this.editPanel.itemIndex].content.heading.push(clone);      
+    })
+    editBus.$on('changeItemOrder', (from, to) => {
+      console.log("fired");
+      let arr = this.items;
+      arr.splice(to, 0, arr.splice(from, 1)[0])
+      return arr;      
     })
   }  
 }
@@ -73,6 +94,11 @@ export default {
 
 
 <style lang="less">
+
+:root {
+  --itemSpanAcross: 3;
+  --itemOrder: 0;
+}
 
 #app {
   min-height:100vh;
@@ -86,6 +112,14 @@ export default {
   transition:transform 200ms ease-out;
 }
 
+#app.edit .c-itemTemplate-container > .o-item {
+  opacity:.125;
+}
+
+#app.edit .c-itemTemplate-container.toEdit > .o-item {
+  opacity:1;
+}
+
 .c-editPanel {
   position: fixed;
   width:300px;
@@ -96,6 +130,7 @@ export default {
   z-index:1;
   transform:translate(-100%, 0);
   transition:all 200ms ease-out;
+  overflow-y:auto; 
 }
 
 #app.edit .c-editPanel {
@@ -136,8 +171,13 @@ export default {
 
 .c-item-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);  
-  grid-gap: 1.5rem 1.5rem;  
+  grid-template-columns: repeat(12, 1fr);  
+  grid-gap: 1px 1px;  
+  background:#ccc;  
+}
+
+.edit .c-item-container {
+  margin-left:0;
 }
 
 .c-welcome {
@@ -160,6 +200,12 @@ export default {
 
 .o-item__image {
   width:100%;
+}
+
+select.minimal {
+  background-color:transparent;
+  padding-left:0;
+  border:0;
 }
 
 </style>

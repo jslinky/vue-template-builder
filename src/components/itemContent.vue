@@ -1,5 +1,5 @@
 <template>
-  <div class="o-item__content">
+  <div class="o-item__content" :class="content.classes.applied">
     <!-- <img :src="imgUrl" /> -->
     <template v-for="(item, index) in content.heading">        
         <h1 v-if="item.el == 'h1'" @dblclick="editHeaderContent(index)" :class="content.heading[index].classes.applied">{{item.text}}</h1>

@@ -1,13 +1,11 @@
 export const itemClass = {
   edit: false,
+  spanAcross: 3,
+  // types: [
+  //   overlay: []
+  // ],
   classes: {
     applied: ['o-item'],
-    imageSwap: 'o-item__imageSwap',
-    headerSwap: 'o-item__headerSwap',
-    imageRotation: 'o-item__imageRotation',
-    card: 'o-item--card',
-    fullWidth: 'o-item--100vw',
-    tintHover: 'o-item--tintHover',
     available: [  
       { class: ['o-item__imageSwap', "Image swaps on hover", true] },
       { class: ['o-item__headerSwap', 'Header content swaps on hover', true] },
@@ -15,7 +13,27 @@ export const itemClass = {
       { class: ['o-item--card', 'Card layout', true] },
       { class: ['o-item--100vw', 'Makes item 100% width of window', true] },
       { class: ['o-item--tintHover', 'Adds a tint on hover of item', true] }
-    ]
+    ],
+    alignment: [
+      { class: ['middle aligned', "Align middle", true] },
+      { class: ['center aligned', "Center", true] },
+      { class: ['left aligned', "Left aligned", true] },
+      { class: ['right aligned', "Right aligned", true] }
+    ],
+    width: [
+      { class: ['one wide', "One column width", true] },
+      { class: ['two wide', "Two column width", true] },
+      { class: ['three wide', "Three column width", true] },
+      { class: ['four wide', "Four column width", true] },
+      { class: ['five wide', "Five column width", true] },
+      { class: ['six wide', "Six column width", true] },
+      { class: ['seven wide', "Seven column width", true] },
+      { class: ['eight wide', "Eight column width", true] },
+      { class: ['nine wide', "Nine column width", true] },
+      { class: ['ten wide', "Ten column width", true] },
+      { class: ['eleven wide', "Eleven column width", true] },
+      { class: ['twelve wide', "Twelve column width", true] }      
+    ]    
   },
   image: {
     link: false,
@@ -33,7 +51,7 @@ export const itemClass = {
         link: false,
         linkUrl: '',
         classes: {
-          applied: ['o-hdr', 'o-hdr--sm', 'o-item__content', 'o-item__hdr']
+          applied: ['o-hdr', 'o-hdr--sm', 'o-item__hdr']
         },
         edit: false
       },
@@ -43,7 +61,7 @@ export const itemClass = {
         link: false,
         linkUrl: '',
         classes: {
-          applied: ['o-hdr', 'o-hdr--lg', 'o-item__content', 'o-item__hdr']
+          applied: ['o-hdr', 'o-hdr--lg', 'o-item__hdr']
         },
         edit: false
       }          
@@ -71,7 +89,11 @@ export const itemClass = {
       }
     },
     classes: {
-
+      applied: ['o-item__content'],
+      available: [  
+        { class: ['o-item__content--overlay', "Content overlays image", true] },
+        { class: ['o-item__content--overlay', "Content overlays image", true] }        
+      ]
     }          
   }                 
 }

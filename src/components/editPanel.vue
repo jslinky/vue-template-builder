@@ -2,32 +2,63 @@
 
     <section class="c-editPanel" v-if="items.length > 0">
       <h2 class="o-hdr o-hdr--sm center aligned">Edit Panel</h2>
+
+      <!-- Item -->
       <fieldset>
-        <label>Item preset types</label>
-        <select>
-          <option>Select a type</option>
-        </select>
-        <a class="c-btn-tag o-btn o-btn--plain o-btn--sm active" v-for="(CssClass, index) in items[editPanel.itemIndex].classes.applied" @click="applyClass(CssClass, 'remove')">{{ CssClass }}</a>      
-        <hr>
-        <a class="c-btn-tag o-btn o-btn--plain o-btn--sm" 
-           v-for="(item, index) in items[editPanel.itemIndex].classes.available"
-           v-if="item.class[2] == true"   
-           @click="applyClass(index, 'apply')">
-           {{ item.class | abbrClass }}
-        </a>         
+        <h3 class="c-editPanel__heading o-hdr o-hdr--t u-mt0" @click="editPanelItem = !editPanelItem" :class="{active: editPanelItem}">Item</h3>        
+        <div>
+          <label>Item preset types</label>
+          <select>
+            <option>Select a type</option>
+          </select>
+
+          <label>Span across</label>
+          <!-- <select v-model="items[editPanel.itemIndex].spanAcross"> -->
+          <select v-model="itemSpan">
+            <option selected="selected">3</option>
+            <option v-for="(item, index) in 9">{{index + 4}}</option>
+          </select> 
+
+          <a class="c-btn-tag o-btn o-btn--plain o-btn--sm active" v-for="(CssClass, index) in items[editPanel.itemIndex].classes.applied" @click="applyClass(index, items[editPanel.itemIndex].classes, 'remove')">{{ CssClass }}</a>      
+          <hr>
+          <a class="c-btn-tag o-btn o-btn--plain o-btn--sm" 
+            v-for="(item, index) in items[editPanel.itemIndex].classes.available"
+            v-if="item.class[2] == true && !item.class[0].includes('wide')"   
+            @click="applyClass(index, items[editPanel.itemIndex].classes, 'apply')">
+            {{ item.class | abbrClass }}
+          </a>   
+          <label>Width (optional)</label>
+          <select v-model="itemWidthSelected">
+            <option selected>{{ itemWidthSelected }}</option>
+            <option v-for="(item, index) in items[editPanel.itemIndex].classes.available" v-if="item.class[2] == true && item.class[0].includes('wide')">{{ item.class[0] }}</option>
+          </select> 
+        </div>             
       </fieldset>
+
+      <!-- Item Image -->
       <fieldset> 
-        <h3 class="c-editPanel__heading o-hdr o-hdr--t u-mt0" @click="toggle('editPanelItemImage')" :class="{active: editPanelItemImage}">Item Image</h3>
+        <h3 class="c-editPanel__heading o-hdr o-hdr--t u-mt0" @click="editPanelItemImage = !editPanelItemImage" :class="{active: editPanelItemImage}">Item Image</h3>
         <div>       
           <label>Image path</label>
             <input type="text" :value="items[editPanel.itemIndex].image.url" @input="items[editPanel.itemIndex].image.url = $event.target.value" placeholder="Binded value goes here" />
           <label>Link path</label>
           <input type="text" placeholder="Binded value goes here" />        
         </div>
-      </fieldset>    
+      </fieldset>
+
+      <!-- Item content -->    
       <fieldset> 
-        <h3 class="c-editPanel__heading o-hdr o-hdr--t u-mt0" @click="toggle('editPanelItemContent')" :class="{active: editPanelItemContent}">Item Content</h3>
-        <div>
+        <h3 class="c-editPanel__heading o-hdr o-hdr--t u-mt0" @click="editPanelItemContent = !editPanelItemContent" :class="{active: editPanelItemContent}">Item Content</h3>
+        <!-- Accordion content -->
+        <div v-if="editPanelItemContent">
+          <a class="c-btn-tag o-btn o-btn--plain o-btn--sm active" v-for="(CssClass, index) in items[editPanel.itemIndex].content.classes.applied" @click="applyClass(index, items[editPanel.itemIndex].content.classes, 'remove')">{{ CssClass }}</a>      
+          <hr>
+          <a class="c-btn-tag o-btn o-btn--plain o-btn--sm" 
+            v-for="(item, index) in items[editPanel.itemIndex].content.classes.available"
+            v-if="item.class[2] == true && !item.class[0].includes('wide')"   
+            @click="applyClass(index, items[editPanel.itemIndex].content.classes, 'apply')">
+            {{ item.class | abbrClass }}
+          </a>           
           <!-- try using computed property for this v-for -->
           <div class="c-editPanel__contentHeadings" v-for="(heading, index) in items[editPanel.itemIndex].content.heading" v-if="!heading.text == ''">       
             <label>Heading {{index + 1}}</label>
@@ -41,18 +72,33 @@
           <label>Copy</label>
           <input type="textarea" v-model="items[editPanel.itemIndex].content.subCopy" class="o-form__inputText" placeholder="Binded value goes here" />                  
         </div>
-      </fieldset>        
+      </fieldset>   
+
+      <!-- Item Buttons -->         
       <fieldset>        
-        <h3 class="c-editPanel__heading o-hdr o-hdr--t u-mt0" @click="toggle('editPanelItemContent')" :class="{active: editPanelItemContent}">Item Buttons</h3>
-        <div>
+        <h3 class="c-editPanel__heading o-hdr o-hdr--t u-mt0" @click="editPanelItemButtons = !editPanelItemButtons" :class="{active: editPanelItemButtons}">Item Buttons</h3>
+        <div>          
           <div v-for="(button, index) in items[editPanel.itemIndex].content.buttons.button">
-            <label>Button {{index + 1}} - text</label>
-            <input type="text" v-model="items[editPanel.itemIndex].content.buttons.button[index].text" placeholder="Binded value goes here" />            
-            <label>Button {{index + 1}} - url</label>
-            <input type="text" v-model="items[editPanel.itemIndex].content.buttons.button[index].url" placeholder="Binded value goes here" />                        
+            <h3 class="o-hdr o-hdr--t u-mt-t">Button {{index + 1}}</h3>                     
+            <select v-model="buttonEdit" class="minimal">
+              <option selected>Select property to edit</option>
+              <option v-for="(value, key, index) in items[editPanel.itemIndex].content.buttons.button[editPanel.itemIndex]">{{ key }}</option>
+            </select>  
+            <div v-if="buttonEdit == 'text'">             
+              <input type="text" v-model="items[editPanel.itemIndex].content.buttons.button[index].text" placeholder="Binded value goes here" />            
+            </div>
+            <div v-if="buttonEdit == 'linkUrl'">             
+              <input type="text" v-model="items[editPanel.itemIndex].content.buttons.button[index].url" placeholder="Binded value goes here" />                        
+            </div>
           </div>
         </div>
       </fieldset>        
+
+      <!-- save / close footer -->
+      <!-- <footer class="o-buttons">
+        <button class="o-btn o-btn--basic o-btn--sm">Cancel</button>
+        <button class="o-btn o-btn--primary o-btn--sm">Save</button>
+      </footer>       -->
     </section>
 
   </template>
@@ -60,6 +106,7 @@
 <script>
 
 import { editBus } from '../main'
+import { itemOverlay } from './item-types/overlay'
 
 export default {
   // Name of this component
@@ -72,9 +119,27 @@ export default {
     abbrClass(value) {
       if(value[0].startsWith("o-item") && value[2]) {        
         return value[0].replace("o-item", '');
-      } 
+      } else {
+        return null;
+      }
     }
   },
+  watch: { 
+    itemWidthSelected: function(newVal, oldVal) { // watch it
+      console.log('Prop changed: ', newVal, ' | was: ', oldVal);
+      let appliedClasses = this.items[this.editPanel.itemIndex].classes.applied;
+      appliedClasses.forEach((element, i) => {
+        if(element.includes("wide")) {
+          appliedClasses.splice(i, 1);
+        }
+      });
+      appliedClasses.push(newVal);
+    },
+    itemSpan: function(newVal, oldVal) {
+      console.log('Prop changed: ', newVal, ' | was: ', oldVal);
+      this.items[this.editPanel.itemIndex].spanAcross = newVal;      
+    }
+  },  
   methods: {
     // Pass through string of data key to toggle
     toggle(dataRef) {      
@@ -83,6 +148,9 @@ export default {
       } else if(this[dataRef] == true) {
         this[dataRef] = false;
       }      
+    },
+    toggleSections(section) {
+      this.editPanelSections.active(section.toString());      
     },
     // obj = object to set new key value, key = string of key to modify it's value, arr = array in which obj is held
     removeContent(obj, key, arr) {      
@@ -101,31 +169,79 @@ export default {
         return value        
       }      
     },
-    applyClass(i, toggle) {
-      // item being edited
-      let itemEditing = this.items[this.editPanel.itemIndex],
-      // array of classes being applied
-      classesApplied = itemEditing.classes.applied,
-      // ref to object (class name prop) in 'available' classes array          
-      classToApply = itemEditing.classes.available[i].class[0];
+    applyClass(i, ref, toggle) {
+      let classesRef = ref,
+      classesApplied = classesRef.applied,
+      classesAvailable = classesRef.available[i],
+      classToApply = classesAvailable.class[0];
 
       if(toggle == 'apply') {
         // Push to applied classes array if not already present      
-        if(!classesApplied.includes(itemEditing.classes.available[i])) {
+        if(!classesApplied.includes(classesAvailable)) {
           classesApplied.push(classToApply);
           // Set last item in array to false - filter will not return in displayed list
-          itemEditing.classes.available[i].class[2] = false;
+          classesAvailable.class[2] = false;
+          if(classToApply == 'o-item--100vw') {            
+            this.items[this.editPanel.itemIndex].spanAcross = 12
+          }          
         }
       } else if(toggle == 'remove') {
-        // TODO
-        console.log(i);
-      }
+        // class to remove        
+        let classToRemove = classesApplied[i];
+        // remove class from applied array
+        classesApplied.splice(i, 1);
+        if(classToRemove == 'o-item--100vw') {
+          this.items[this.editPanel.itemIndex].spanAcross = this.itemSpan;
+        }
+        // loop over available classes and check for class to remove, then set to true
+        classesRef.available.forEach((element) => {
+          if(element.class[0].includes(classToRemove)) {
+            element.class[2] = true;
+          }
+        });   
+      }      
     }    
   },
+  mounted() {
+    editBus.$on('editPanelState', (state, itemIndex) => {
+      this.editPanel.state = state;
+      this.editPanel.itemIndex = itemIndex;      
+    })
+    editBus.$on('addItemHeading', () => {
+      let clone = JSON.parse(JSON.stringify(itemClass.content.heading[0]));      
+      this.items[this.editPanel.itemIndex].content.heading.push(clone);      
+    })
+  },   
   data() {
     return {
+      editPanelSections: {
+        item: true,
+        content: false,
+        image: false,
+        buttons: false,
+        active(sectionToOpen) {          
+          let instance = this;
+          for(let section in instance) {
+            // console.log(section);
+            // console.log(instance[sectionToOpen]);
+            if(section == sectionToOpen) {
+              console.log("match is" + section);
+              instance[sectionToOpen] = true;
+            } else {
+              instance[sectionToOpen] = false;
+            }
+          }          
+        }  
+      },
+      editPanelItem: true,
       editPanelItemContent: false,
-      editPanelItemImage: false     
+      editPanelItemImage: false,
+      editPanelItemButtons: false,
+      itemWidthSelected: 'Select a width',
+      itemSpan: function() {
+        return this.items[this.editPanel.itemIndex].spanAcross
+      },
+      buttonEdit:'Select property to edit'
     }
   }  
 }  
@@ -146,6 +262,14 @@ export default {
 
 .c-btn-tag:empty {
   display: none;
+}
+
+footer {
+  position: fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  padding:1rem;
 }
 
 </style>
