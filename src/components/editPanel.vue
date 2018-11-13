@@ -5,7 +5,7 @@
 
       <!-- Item -->
       <fieldset>
-        <h3 class="c-editPanel__heading o-hdr o-hdr--t u-mt0" @click="editPanelItem = !editPanelItem" :class="{active: editPanelItem}">Item</h3>        
+        <h3 class="c-editPanel__heading o-hdr o-hdr--t u-mt0" @click="toggleSections('item')" :class="{active: editPanelSections.item}">Item</h3>                
         <div>
           <label>Item preset types</label>
           <select>
@@ -37,7 +37,7 @@
 
       <!-- Item Image -->
       <fieldset> 
-        <h3 class="c-editPanel__heading o-hdr o-hdr--t u-mt0" @click="editPanelItemImage = !editPanelItemImage" :class="{active: editPanelItemImage}">Item Image</h3>
+        <h3 class="c-editPanel__heading o-hdr o-hdr--t u-mt0" @click="toggleSections('image')" :class="{active: editPanelSections.image}">Item Image</h3>
         <div>       
           <label>Image path</label>
             <input type="text" :value="items[editPanel.itemIndex].image.url" @input="items[editPanel.itemIndex].image.url = $event.target.value" placeholder="Binded value goes here" />
@@ -48,9 +48,9 @@
 
       <!-- Item content -->    
       <fieldset> 
-        <h3 class="c-editPanel__heading o-hdr o-hdr--t u-mt0" @click="editPanelItemContent = !editPanelItemContent" :class="{active: editPanelItemContent}">Item Content</h3>
+        <h3 class="c-editPanel__heading o-hdr o-hdr--t u-mt0" @click="toggleSections('content')" :class="{active: editPanelSections.content}">Item Content</h3>
         <!-- Accordion content -->
-        <div v-if="editPanelItemContent">
+        <div>
           <a class="c-btn-tag o-btn o-btn--plain o-btn--sm active" v-for="(CssClass, index) in items[editPanel.itemIndex].content.classes.applied" @click="applyClass(index, items[editPanel.itemIndex].content.classes, 'remove')">{{ CssClass }}</a>      
           <hr>
           <a class="c-btn-tag o-btn o-btn--plain o-btn--sm" 
@@ -76,13 +76,13 @@
 
       <!-- Item Buttons -->         
       <fieldset>        
-        <h3 class="c-editPanel__heading o-hdr o-hdr--t u-mt0" @click="editPanelItemButtons = !editPanelItemButtons" :class="{active: editPanelItemButtons}">Item Buttons</h3>
+        <h3 class="c-editPanel__heading o-hdr o-hdr--t u-mt0" @click="toggleSections('buttons')" :class="{active: editPanelSections.buttons}">Item Buttons</h3>
         <div>          
           <div v-for="(button, index) in items[editPanel.itemIndex].content.buttons.button">
             <h3 class="o-hdr o-hdr--t u-mt-t">Button {{index + 1}}</h3>                     
             <select v-model="buttonEdit" class="minimal">
               <option selected>Select property to edit</option>
-              <option v-for="(value, key, index) in items[editPanel.itemIndex].content.buttons.button[editPanel.itemIndex]">{{ key }}</option>
+              <option v-for="(value, key, index) in items[editPanel.itemIndex].content.buttons.button[editPanel.itemIndex]" :key="index">{{ key }}</option>
             </select>  
             <div v-if="buttonEdit == 'text'">             
               <input type="text" v-model="items[editPanel.itemIndex].content.buttons.button[index].text" placeholder="Binded value goes here" />            
@@ -149,8 +149,20 @@ export default {
         this[dataRef] = false;
       }      
     },
-    toggleSections(section) {
-      this.editPanelSections.active(section.toString());      
+    toggleSections(sectionToOpen) {
+      let obj = this.editPanelSections;      
+      for(let section in obj) {
+        // if sectionToTop (string of key) is equal to key in object & it's value is false, set to true
+        if(sectionToOpen == section && obj[section] == false) {
+          this.$set(obj, section, true);
+        // if sectionToTop (string of key) is equal to key in object & it's value is true, set to false          
+        } else if(sectionToOpen == section && obj[section] == true) {
+          this.$set(obj, section, false);
+        // else set to false
+        } else {
+          this.$set(obj, section, false);
+        }                
+      }
     },
     // obj = object to set new key value, key = string of key to modify it's value, arr = array in which obj is held
     removeContent(obj, key, arr) {      
@@ -218,25 +230,8 @@ export default {
         item: true,
         content: false,
         image: false,
-        buttons: false,
-        active(sectionToOpen) {          
-          let instance = this;
-          for(let section in instance) {
-            // console.log(section);
-            // console.log(instance[sectionToOpen]);
-            if(section == sectionToOpen) {
-              console.log("match is" + section);
-              instance[sectionToOpen] = true;
-            } else {
-              instance[sectionToOpen] = false;
-            }
-          }          
-        }  
+        buttons: false  
       },
-      editPanelItem: true,
-      editPanelItemContent: false,
-      editPanelItemImage: false,
-      editPanelItemButtons: false,
       itemWidthSelected: 'Select a width',
       itemSpan: function() {
         return this.items[this.editPanel.itemIndex].spanAcross
