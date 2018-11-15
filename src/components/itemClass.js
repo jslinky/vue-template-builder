@@ -40,7 +40,10 @@ export const itemClass = {
     linkUrl: '',
     url: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw0c9b5508/2018/WK38/01_MEGADROP/MD_Gifting.jpg',
     classes: {
-      fullWidth: 'o-item__image--100vw'
+      fullWidth: 'o-item__image--100vw',
+      available: [
+        { class: ['o-item__image--100vw', "Image 100vw", true] }
+      ]
     }          
   },
   content: {
@@ -53,7 +56,11 @@ export const itemClass = {
         classes: {
           applied: ['o-hdr', 'o-hdr--sm', 'o-item__hdr']
         },
-        edit: false
+        edit: false,
+        artwork: {
+          default: false,
+          assetUrl: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw619cb11c/2018/WK42/01_HOMEPAGE/30_lock_up_ff.svg'
+        }
       },
       {
         el: 'h3',
@@ -63,7 +70,11 @@ export const itemClass = {
         classes: {
           applied: ['o-hdr', 'o-hdr--lg', 'o-item__hdr']
         },
-        edit: false
+        edit: false,
+        artwork: {
+          default: false,
+          assetUrl: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw619cb11c/2018/WK42/01_HOMEPAGE/30_lock_up_ff.svg'
+        }
       }          
     ],
     subCopy: `This is some sub copy`,
@@ -85,11 +96,15 @@ export const itemClass = {
         }            
       ],
       classes: {
-        applied: ['o-buttons']
+        applied: ['o-buttons'],
+        available: [
+          { class: ['o-buttons--stacked', "Stack at mobile", true] },
+          { class: ['o-buttons--stacked-md', "Stack at tablet", true] }                  
+        ]
       }
     },
     classes: {
-      applied: ['o-item__content'],
+      applied: [],
       available: [  
         { class: ['o-item__content--overlay', "Content overlays image", true] },
         { class: ['o-item__content--overlay', "Content overlays image", true] }        

@@ -45,20 +45,58 @@ export default {
       let clone = JSON.parse(JSON.stringify(itemClass));      
       let itemsLength = this.items.push(clone);      
       itemsLength;
-      // Extend global itemClass class arrays to new item object available classes
-      this.extendItemClasses((itemsLength - 1));
+      // As a argument for extendItemClasses pass an array of objects with two key properties... 
+      // 1) a reference to this.items and the key to update
+      // 2) an array containing the names of the classes to be extended (from their definition in root of itemClass)
+      this.extendItemClasses([ 
+        {
+          ref: this.items[itemsLength - 1],
+          classesToCopy: ['width', 'alignment']
+        }, 
+        {
+          ref: this.items[itemsLength - 1].image,
+          classesToCopy: ['width']          
+        },
+        {
+          ref: this.items[itemsLength - 1].content,
+          classesToCopy: ['width', 'alignment']          
+        },          
+        {
+          ref: this.items[itemsLength - 1].content.buttons,
+          classesToCopy: ['width']          
+        }                        
+      ]);
     },
-    extendItemClasses(i) {
-      // Layout width classes - new array from map on global itemClass
+    extendItemClasses(target) {      
+      // Class types 
+      // Create two copies of class types to be extended
       let classesWidth = itemClass.classes.width.map(ob => ob),
-      // New array from itemClass object containing available classes
-      classesAvailable = itemClass.classes.available.map(ob => ob);
-      // New combined array from above
-      let classesWidthCombined = classesWidth.forEach((item) => { classesAvailable.push(item); });
-      // Init 
-      classesWidthCombined;
-      // Assign new array to freshly created item object
-      this.items[i].classes.available = classesAvailable;
+      classesAlignment = itemClass.classes.alignment.map(ob => ob);
+
+      // Function takes 2 args
+      // 1) The class type to iterate over and push and push to..
+      // 2) finish this off
+      function pushToClassesAvailable(classType, classesAvailable) {
+        classType.forEach((item) => { classesAvailable.push(item); })
+      }      
+
+      for(let j=0; j < target.length; j++) {
+        // val is each entry of classesToCopy array
+        let classesAvailable = target[j].ref.classes.available.map(ob => ob); 
+  
+        target[j].classesToCopy.forEach((val) => {
+          
+          if(val.includes('alignment')) {
+            pushToClassesAvailable(classesAlignment, classesAvailable);           
+          } 
+          else if(val.includes('width')) {
+            pushToClassesAvailable(classesWidth, classesAvailable);  
+          }  
+        })
+        // Assign new array to freshly created item object    
+        target[j].ref.classes.available = classesAvailable;
+      }
+
     }
   },
   // Data within a child component should run a function that returns an object
@@ -131,6 +169,12 @@ export default {
   transform:translate(-100%, 0);
   transition:all 200ms ease-out;
   overflow-y:auto; 
+}
+
+.c-editPanel > div {
+  overflow-y:auto; 
+  height:100vh;
+  padding-bottom:4rem;
 }
 
 #app.edit .c-editPanel {

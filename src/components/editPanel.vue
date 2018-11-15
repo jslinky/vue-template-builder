@@ -1,11 +1,17 @@
 <template>
 
     <section class="c-editPanel" v-if="items.length > 0">
+      <div>
       <h2 class="o-hdr o-hdr--sm center aligned">Edit Panel</h2>
 
       <!-- Item -->
       <fieldset>
-        <h3 class="c-editPanel__heading o-hdr o-hdr--t u-mt0" @click="toggleSections('item')" :class="{active: editPanelSections.item}">Item</h3>                
+        <h3 
+          class="c-editPanel__heading o-hdr o-hdr--t u-mt0" 
+          @click="toggleSections('item')" 
+          :class="{active: editPanelSections.item}">
+          Item
+        </h3>                
         <div>
           <label>Item preset types</label>
           <select>
@@ -19,28 +25,51 @@
             <option v-for="(item, index) in 9">{{index + 4}}</option>
           </select> 
 
-          <a class="c-btn-tag o-btn o-btn--plain o-btn--sm active" v-for="(CssClass, index) in items[editPanel.itemIndex].classes.applied" @click="applyClass(index, items[editPanel.itemIndex].classes, 'remove')">{{ CssClass }}</a>      
+          <a 
+            class="c-btn-tag o-btn o-btn--plain o-btn--sm active" 
+            v-for="(CssClass, index) in items[editPanel.itemIndex].classes.applied" 
+            @click="applyClass(index, items[editPanel.itemIndex].classes, 'remove')">
+            {{ CssClass }}
+          </a>
+
           <hr>
+
           <a class="c-btn-tag o-btn o-btn--plain o-btn--sm" 
             v-for="(item, index) in items[editPanel.itemIndex].classes.available"
             v-if="item.class[2] == true && !item.class[0].includes('wide')"   
             @click="applyClass(index, items[editPanel.itemIndex].classes, 'apply')">
             {{ item.class | abbrClass }}
           </a>   
+
           <label>Width (optional)</label>
           <select v-model="itemWidthSelected">
             <option selected>{{ itemWidthSelected }}</option>
-            <option v-for="(item, index) in items[editPanel.itemIndex].classes.available" v-if="item.class[2] == true && item.class[0].includes('wide')">{{ item.class[0] }}</option>
+            <option 
+              v-for="(item, index) in items[editPanel.itemIndex].classes.available" 
+              v-if="item.class[2] == true && item.class[0].includes('wide')">
+              {{ item.class[0] }}
+            </option>
           </select> 
         </div>             
       </fieldset>
 
       <!-- Item Image -->
       <fieldset> 
-        <h3 class="c-editPanel__heading o-hdr o-hdr--t u-mt0" @click="toggleSections('image')" :class="{active: editPanelSections.image}">Item Image</h3>
+        <h3 
+          class="c-editPanel__heading o-hdr o-hdr--t u-mt0" 
+          @click="toggleSections('image')" 
+          :class="{active: editPanelSections.image}">
+          Item Image
+        </h3>
+        
         <div>       
           <label>Image path</label>
-            <input type="text" :value="items[editPanel.itemIndex].image.url" @input="items[editPanel.itemIndex].image.url = $event.target.value" placeholder="Binded value goes here" />
+            <input 
+              type="text" 
+              :value="items[editPanel.itemIndex].image.url" 
+              @input="items[editPanel.itemIndex].image.url = $event.target.value" 
+              placeholder="Binded value goes here" />
+
           <label>Link path</label>
           <input type="text" placeholder="Binded value goes here" />        
         </div>
@@ -48,11 +77,23 @@
 
       <!-- Item content -->    
       <fieldset> 
-        <h3 class="c-editPanel__heading o-hdr o-hdr--t u-mt0" @click="toggleSections('content')" :class="{active: editPanelSections.content}">Item Content</h3>
+        <h3 
+          class="c-editPanel__heading o-hdr o-hdr--t u-mt0" 
+          @click="toggleSections('content')" 
+          :class="{active: editPanelSections.content}">
+          Item Content
+        </h3>
         <!-- Accordion content -->
         <div>
-          <a class="c-btn-tag o-btn o-btn--plain o-btn--sm active" v-for="(CssClass, index) in items[editPanel.itemIndex].content.classes.applied" @click="applyClass(index, items[editPanel.itemIndex].content.classes, 'remove')">{{ CssClass }}</a>      
+          <a 
+            class="c-btn-tag o-btn o-btn--plain o-btn--sm active" 
+            v-for="(CssClass, index) in items[editPanel.itemIndex].content.classes.applied" 
+            @click="applyClass(index, items[editPanel.itemIndex].content.classes, 'remove')">
+            {{ CssClass }}
+          </a>      
+          
           <hr>
+
           <a class="c-btn-tag o-btn o-btn--plain o-btn--sm" 
             v-for="(item, index) in items[editPanel.itemIndex].content.classes.available"
             v-if="item.class[2] == true && !item.class[0].includes('wide')"   
@@ -60,45 +101,92 @@
             {{ item.class | abbrClass }}
           </a>           
           <!-- try using computed property for this v-for -->
-          <div class="c-editPanel__contentHeadings" v-for="(heading, index) in items[editPanel.itemIndex].content.heading" v-if="!heading.text == ''">       
+          <div 
+            class="c-editPanel__contentHeadings" 
+            v-for="(heading, index) in items[editPanel.itemIndex].content.heading" 
+            v-if="!heading.text == ''">       
             <label>Heading {{index + 1}}</label>
-            <button class="c-btn-remove o-btn" @click="removeContent(heading, 'text', items[editPanel.itemIndex].content.heading)">Remove</button>            
-            <input type="text" v-model="items[editPanel.itemIndex].content.heading[index].text" placeholder="Binded value goes here" />            
+            <input 
+              type="checkbox"  
+              :id="index"               
+              :value="true"
+              @click="items[editPanel.itemIndex].content.heading[index].artwork.default = !items[editPanel.itemIndex].content.heading[index].artwork.default"
+              >
+            <label :for="index">Make artwork</label>            
+            <input 
+              type="text" 
+              v-if="items[editPanel.itemIndex].content.heading[index].artwork.default"
+              v-model="items[editPanel.itemIndex].content.heading[index].artwork.assetUrl" 
+              placeholder="Binded value goes here" />               
+            <button 
+              class="c-btn-remove o-btn" 
+              @click="removeContent(heading, 'text', items[editPanel.itemIndex].content.heading)">
+              Remove
+            </button>            
+            <input 
+              type="text" 
+              v-model="items[editPanel.itemIndex].content.heading[index].text" 
+              placeholder="Binded value goes here" />            
+
           </div>
           
-          <button v-if="items[editPanel.itemIndex].content.heading.length <= 3" @click="addContent('heading')" class="o-btn o-btn--basic o-btn--sm">Add heading</button>
+          <button 
+            v-if="items[editPanel.itemIndex].content.heading.length <= 3" 
+            @click="addContent('heading')" 
+            class="o-btn o-btn--basic o-btn--sm">
+            Add heading
+          </button>
           <p v-else>{{items[editPanel.itemIndex].content.heading.length}}</p>
           
           <label>Copy</label>
-          <input type="textarea" v-model="items[editPanel.itemIndex].content.subCopy" class="o-form__inputText" placeholder="Binded value goes here" />                  
+          <input 
+            type="textarea" 
+            v-model="items[editPanel.itemIndex].content.subCopy" 
+            class="o-form__inputText" 
+            placeholder="Binded value goes here" />                  
         </div>
       </fieldset>   
 
       <!-- Item Buttons -->         
       <fieldset>        
-        <h3 class="c-editPanel__heading o-hdr o-hdr--t u-mt0" @click="toggleSections('buttons')" :class="{active: editPanelSections.buttons}">Item Buttons</h3>
+        <h3 
+          class="c-editPanel__heading o-hdr o-hdr--t u-mt0" 
+          @click="toggleSections('buttons')" 
+          :class="{active: editPanelSections.buttons}">
+          Item Buttons
+        </h3>
         <div>          
           <div v-for="(button, index) in items[editPanel.itemIndex].content.buttons.button">
             <h3 class="o-hdr o-hdr--t u-mt-t">Button {{index + 1}}</h3>                     
             <select v-model="buttonEdit" class="minimal">
               <option selected>Select property to edit</option>
-              <option v-for="(value, key, index) in items[editPanel.itemIndex].content.buttons.button[editPanel.itemIndex]" :key="index">{{ key }}</option>
+              <option 
+                v-for="(value, key, index) in items[editPanel.itemIndex].content.buttons.button[editPanel.itemIndex]" 
+                :key="index">
+                {{ key }}
+              </option>
             </select>  
             <div v-if="buttonEdit == 'text'">             
-              <input type="text" v-model="items[editPanel.itemIndex].content.buttons.button[index].text" placeholder="Binded value goes here" />            
+              <input 
+                type="text" 
+                v-model="items[editPanel.itemIndex].content.buttons.button[index].text" 
+                placeholder="Binded value goes here" />            
             </div>
             <div v-if="buttonEdit == 'linkUrl'">             
-              <input type="text" v-model="items[editPanel.itemIndex].content.buttons.button[index].url" placeholder="Binded value goes here" />                        
+              <input 
+                type="text" 
+                v-model="items[editPanel.itemIndex].content.buttons.button[index].url" 
+                placeholder="Binded value goes here" />                        
             </div>
           </div>
         </div>
       </fieldset>        
-
+      </div>
       <!-- save / close footer -->
-      <!-- <footer class="o-buttons">
-        <button class="o-btn o-btn--basic o-btn--sm">Cancel</button>
-        <button class="o-btn o-btn--primary o-btn--sm">Save</button>
-      </footer>       -->
+      <footer class="o-buttons">
+        <custom-button button basic small>Cancel</custom-button>
+        <custom-button button primary small>Save</custom-button>
+      </footer>      
     </section>
 
   </template>
@@ -107,6 +195,7 @@
 
 import { editBus } from '../main'
 import { itemOverlay } from './item-types/overlay'
+import CustomButton from './button.vue'
 
 export default {
   // Name of this component
@@ -114,6 +203,9 @@ export default {
   props: {
     items: Array,
     editPanel: Object
+  },
+  components: {
+    CustomButton
   },
   filters: {
     abbrClass(value) {
@@ -264,7 +356,8 @@ footer {
   bottom:0;
   left:0;
   width:100%;
-  padding:1rem;
+  padding:1rem 1rem 0;
+  background:#ccc;
 }
 
 </style>
