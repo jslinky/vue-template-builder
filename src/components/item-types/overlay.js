@@ -1,9 +1,11 @@
-export const itemOverlay = {
-  content: {
-    classes: {
-      applied: ['o-item__content', 'o-item__content--overlay']
-    }          
-  }                 
-}
-
+export const itemOverlay = [
+  {
+    ref: 'content.classes',
+    classes: ['o-item__content--overlay']                 
+  },
+  {
+    ref: 'content.classes',
+    classes: ['o-item__content--overlay']                 
+  }   
+]
 

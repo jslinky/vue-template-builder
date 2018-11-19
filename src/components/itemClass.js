@@ -1,9 +1,7 @@
 export const itemClass = {
   edit: false,
   spanAcross: 3,
-  // types: [
-  //   overlay: []
-  // ],
+  types: [],
   classes: {
     applied: ['o-item'],
     available: [  

@@ -25,22 +25,6 @@
             <option v-for="(item, index) in 9">{{index + 4}}</option>
           </select> 
 
-          <a 
-            class="c-btn-tag o-btn o-btn--plain o-btn--sm active" 
-            v-for="(CssClass, index) in items[editPanel.itemIndex].classes.applied" 
-            @click="applyClass(index, items[editPanel.itemIndex].classes, 'remove')">
-            {{ CssClass }}
-          </a>
-
-          <hr>
-
-          <a class="c-btn-tag o-btn o-btn--plain o-btn--sm" 
-            v-for="(item, index) in items[editPanel.itemIndex].classes.available"
-            v-if="item.class[2] == true && !item.class[0].includes('wide')"   
-            @click="applyClass(index, items[editPanel.itemIndex].classes, 'apply')">
-            {{ item.class | abbrClass }}
-          </a>   
-
           <label>Width (optional)</label>
           <select v-model="itemWidthSelected">
             <option selected>{{ itemWidthSelected }}</option>
@@ -49,7 +33,41 @@
               v-if="item.class[2] == true && item.class[0].includes('wide')">
               {{ item.class[0] }}
             </option>
-          </select> 
+          </select>           
+
+          <p>Applied Classes</p>
+          <a 
+            class="c-btn-tag o-btn o-btn--plain o-btn--sm active" 
+            v-for="(CssClass, index) in items[editPanel.itemIndex].classes.applied" 
+            v-if="CssClass !== 'o-item'"
+            @click="applyClass(index, items[editPanel.itemIndex].classes, 'remove')">
+            {{ CssClass }}
+          </a>
+          <p v-else-if="items[editPanel.itemIndex].classes.applied.length == 1">
+            No classes applied
+          </p>
+
+          <hr>
+
+          <p>Modifyer Classes</p>
+          <a class="c-btn-tag o-btn o-btn--plain o-btn--sm" 
+            v-for="(item, index) in items[editPanel.itemIndex].classes.available"
+            v-if="item.class[2] == true && !item.class[0].includes('wide') && !item.class[0].includes('aligned')"   
+            @click="applyClass(index, items[editPanel.itemIndex].classes, 'apply')">
+            {{ item.class | abbrClass }}
+          </a> 
+
+          <hr>
+
+          <p>Alignment</p>
+          <a class="c-btn-tag o-btn o-btn--plain o-btn--sm" 
+            v-for="(item, index) in items[editPanel.itemIndex].classes.available"
+            v-if="item.class[2] == true && item.class[0].includes('aligned')"   
+            @click="applyClass(index, items[editPanel.itemIndex].classes, 'apply')">
+            {{ item.class | abbrClass }}
+          </a>                       
+
+
         </div>             
       </fieldset>
 
@@ -87,7 +105,7 @@
         <div>
           <a 
             class="c-btn-tag o-btn o-btn--plain o-btn--sm active" 
-            v-for="(CssClass, index) in items[editPanel.itemIndex].content.classes.applied" 
+            v-for="(CssClass, index) in items[editPanel.itemIndex].content.classes.applied"             
             @click="applyClass(index, items[editPanel.itemIndex].content.classes, 'remove')">
             {{ CssClass }}
           </a>      
@@ -195,6 +213,7 @@
 
 import { editBus } from '../main'
 import { itemOverlay } from './item-types/overlay'
+import { itemClass } from './itemClass'
 import CustomButton from './button.vue'
 
 export default {
@@ -209,7 +228,7 @@ export default {
   },
   filters: {
     abbrClass(value) {
-      if(value[0].startsWith("o-item") && value[2]) {        
+      if(value[2]) {        
         return value[0].replace("o-item", '');
       } else {
         return null;
@@ -233,6 +252,36 @@ export default {
     }
   },  
   methods: {
+    applyType(itemType, itemToMutate) {
+      // Test code for types
+
+      // Getting reference to position in object - will need to be a loop
+
+      function getPosition(itemTypeAlias) {
+        let ref = itemTypeAlias.ref.split("."),
+            itemClassAlias = itemClass,
+            classesToApply = itemTypeAlias.classes;
+
+        ref.forEach((value) => {
+          itemClassAlias = itemClass[value]
+        })
+
+        return {
+          itemClassAlias,
+          applied: itemClassAlias.applied,
+          classesToApply
+        } 
+      }
+   
+
+      itemType.alias.forEach((entry) => {
+        // console.log(getPosition(entry));
+        let obj = getPosition(entry)
+        console.log(obj)
+      });
+
+
+    },
     // Pass through string of data key to toggle
     toggle(dataRef) {      
       if(this[dataRef] == false) {
@@ -313,11 +362,27 @@ export default {
     })
     editBus.$on('addItemHeading', () => {
       let clone = JSON.parse(JSON.stringify(itemClass.content.heading[0]));      
-      this.items[this.editPanel.itemIndex].content.heading.push(clone);      
+      this.items[this.editPanel.itemIndex].content.heading.push(clone);
     })
+    
+    this.applyType(this.types.overlay);
+    
+    
   },   
   data() {
     return {
+      types: {
+        overlay: {
+          default: false,
+          alias: itemOverlay
+          // alias: function() {
+          //   itemOverlay.forEach((items) => {
+          //     return items
+          //   });
+          // } 
+        }         
+      },
+      // Panel Sections
       editPanelSections: {
         item: true,
         content: false,
