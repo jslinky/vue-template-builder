@@ -3,7 +3,7 @@
     <section class="c-editPanel" v-if="items.length > 0">
       <div>
       <h2 class="o-hdr o-hdr--sm center aligned">Edit Panel</h2>
-      <a href="#" @click="applyType(types.overlay, items[editPanel.itemIndex])">Apply overlay</a>
+      <a href="#" @click="applyType(types.card, items[editPanel.itemIndex])">Apply overlay</a>
       <!-- Item -->
       <fieldset>
         <h3 
@@ -213,6 +213,7 @@
 
 import { editBus } from '../main'
 import { itemOverlay } from './item-types/overlay'
+import { itemCard } from './item-types/card'
 import { itemClass } from './itemClass'
 import CustomButton from './button.vue'
 
@@ -256,6 +257,9 @@ export default {
     // Arg 1: itemType is ref. to the 'types' object in data
     // Arg 2: itemToMutate is ref to current 'item' being edited
     applyType(itemType, itemToMutate) {
+
+      // TODO - set applied classes to false in available
+      // TODO - reset to original settings on change 
 
       // Start here
       // For each object in 'itemType' array - apply getPosition function
@@ -383,7 +387,11 @@ export default {
         overlay: {
           default: false,
           alias: itemOverlay
-        }         
+        },
+        card: {
+          default: false,
+          alias: itemCard
+        }                 
       },
       // Panel Sections
       editPanelSections: {
