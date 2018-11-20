@@ -3,7 +3,7 @@
     <section class="c-editPanel" v-if="items.length > 0">
       <div>
       <h2 class="o-hdr o-hdr--sm center aligned">Edit Panel</h2>
-
+      <a href="#" @click="applyType(types.overlay, items[editPanel.itemIndex])">Apply overlay</a>
       <!-- Item -->
       <fieldset>
         <h3 
@@ -252,34 +252,46 @@ export default {
     }
   },  
   methods: {
+    // Apply type of item method
+    // Arg 1: itemType is ref. to the 'types' object in data
+    // Arg 2: itemToMutate is ref to current 'item' being edited
     applyType(itemType, itemToMutate) {
-      // Test code for types
 
-      // Getting reference to position in object - will need to be a loop
+      // Start here
+      // For each object in 'itemType' array - apply getPosition function
+      // Iterate over the 'classesToApply' and push them to the applied classes of 'itemToMutate' 
+      itemType.alias.forEach((entry) => {
+        let obj = getPosition(entry, itemToMutate)
+        for(let i=0; i < obj.classesToApply.length; i++) {
+          obj.applied.push(obj.classesToApply[i])          
+        }
+      });
 
-      function getPosition(itemTypeAlias) {
+      // Function gets each object in 'itemType' array
+      // Each object contains a ref to nested position && classes to be applied
+      // Arg 1: 'itemType' Object as defined in 'types.[type].ref' in data
+      // Arg 2: 'itemToMutate' is ref to current 'item' being edited
+      function getPosition(itemTypeAlias, itemToMutate) {
+        // Reference Path to position in obj
         let ref = itemTypeAlias.ref.split("."),
-            itemClassAlias = itemClass,
+            // Set itemType to object being edited
+            itemClassAlias = itemToMutate,
+            // Associated class to be applied
             classesToApply = itemTypeAlias.classes;
 
-        ref.forEach((value) => {
-          itemClassAlias = itemClass[value]
-        })
+        // For each entry in split path build up path in 'itemClassAlias'
+        ref.forEach((value) => itemClassAlias = itemClassAlias[value])
 
+        // Return an object with entries for
+        // 1. 'item' being applied too (current editied item)
+        // 2. Classes currently applied to this reference 
+        // 3. Classes to apply for this 'itemType'
         return {
           itemClassAlias,
           applied: itemClassAlias.applied,
           classesToApply
         } 
       }
-   
-
-      itemType.alias.forEach((entry) => {
-        // console.log(getPosition(entry));
-        let obj = getPosition(entry)
-        console.log(obj)
-      });
-
 
     },
     // Pass through string of data key to toggle
@@ -363,11 +375,7 @@ export default {
     editBus.$on('addItemHeading', () => {
       let clone = JSON.parse(JSON.stringify(itemClass.content.heading[0]));      
       this.items[this.editPanel.itemIndex].content.heading.push(clone);
-    })
-    
-    this.applyType(this.types.overlay);
-    
-    
+    })  
   },   
   data() {
     return {
@@ -375,11 +383,6 @@ export default {
         overlay: {
           default: false,
           alias: itemOverlay
-          // alias: function() {
-          //   itemOverlay.forEach((items) => {
-          //     return items
-          //   });
-          // } 
         }         
       },
       // Panel Sections
