@@ -258,7 +258,6 @@ export default {
     // Arg 2: itemToMutate is ref to current 'item' being edited
     applyType(itemType, itemToMutate) {
 
-      // TODO - set applied classes to false in available
       // TODO - reset to original settings on change 
 
       // Start here
@@ -267,9 +266,19 @@ export default {
       itemType.alias.forEach((entry) => {
         let obj = getPosition(entry, itemToMutate)
         for(let i=0; i < obj.classesToApply.length; i++) {
-          obj.applied.push(obj.classesToApply[i])          
+          obj.applied.push(obj.classesToApply[i])   
+          setClassToFalse(obj, obj.classesToApply[i])       
         }
       });
+
+      // Sets class boolean to false 
+      function setClassToFalse(itemAliasObj, classToApply) {        
+        itemAliasObj.classesAvailable.forEach((entry) => {
+          if(entry.class[0].includes(classToApply)) {
+            entry.class[2] = false;
+          }          
+        })
+      }
 
       // Function gets each object in 'itemType' array
       // Each object contains a ref to nested position && classes to be applied
@@ -281,10 +290,12 @@ export default {
             // Set itemType to object being edited
             itemClassAlias = itemToMutate,
             // Associated class to be applied
-            classesToApply = itemTypeAlias.classes;
+            classesToApply = itemTypeAlias.classes            
 
         // For each entry in split path build up path in 'itemClassAlias'
         ref.forEach((value) => itemClassAlias = itemClassAlias[value])
+
+        let classesAvailable = itemClassAlias.available
 
         // Return an object with entries for
         // 1. 'item' being applied too (current editied item)
@@ -293,7 +304,8 @@ export default {
         return {
           itemClassAlias,
           applied: itemClassAlias.applied,
-          classesToApply
+          classesToApply,
+          classesAvailable
         } 
       }
 
