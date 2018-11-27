@@ -1,7 +1,7 @@
 <template>
   <transition>
   <div class="c-itemTemplate-container" :style="spanAcross" :class="{ toEdit: itemInfo.edit }"> <!-- wrapping div -->
-    <div :class="classesApplied">
+    <div class="o-item" :class="classesApplied" :id="itemInfo.id">
       <itemImage :imgUrl="itemInfo.image.url" :content="itemInfo.content" /> 
     </div>
     <a @click="editItem(itemIndex)" class="o-link c-btn-itemEdit">Edit</a>     

@@ -1,9 +1,8 @@
 export const itemClass = {
   edit: false,
   spanAcross: 3,
-  types: [],
   classes: {
-    applied: ['o-item'],
+    applied: [],
     available: [  
       { class: ['o-item__imageSwap', "Image swaps on hover", true] },
       { class: ['o-item__headerSwap', 'Header content swaps on hover', true] },

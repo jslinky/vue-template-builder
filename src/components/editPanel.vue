@@ -3,7 +3,8 @@
     <section class="c-editPanel" v-if="items.length > 0">
       <div>
       <h2 class="o-hdr o-hdr--sm center aligned">Edit Panel</h2>
-      <a href="#" @click="applyType(types.card, items[editPanel.itemIndex])">Apply overlay</a>
+      <button @click="applyType(types.card, items[editPanel.itemIndex])">Apply card</button>
+      <button @click="applyType(types.overlay, items[editPanel.itemIndex])">Apply overlay</button>
       <!-- Item -->
       <fieldset>
         <h3 
@@ -258,27 +259,56 @@ export default {
     // Arg 2: itemToMutate is ref to current 'item' being edited
     applyType(itemType, itemToMutate) {
 
-      // TODO - reset to original settings on change 
-
+      let objRef = []
       // Start here
       // For each object in 'itemType' array - apply getPosition function
       // Iterate over the 'classesToApply' and push them to the applied classes of 'itemToMutate' 
       itemType.alias.forEach((entry) => {
         let obj = getPosition(entry, itemToMutate)
+
+        objRef.push(obj)
+        
+        // Reset applied classes. Only preventing repeat application of same type (Need to set 'classes available' booleon)
+        // TO DO - don't remove default classes - default classes moved out of applied array - other nodes haven't      
+
+        for(let i=0; i < obj.applied.length; i++) {
+          if(obj.applied.indexOf(obj.classesToApply[i])) {
+            obj.applied.splice(obj.classesToApply[i])
+          }
+        }        
+
         for(let i=0; i < obj.classesToApply.length; i++) {
-          obj.applied.push(obj.classesToApply[i])   
-          setClassToFalse(obj, obj.classesToApply[i])       
+          obj.applied.push(obj.classesToApply[i])      
+          setClassTo(false, obj, obj.classesToApply[i])       
         }
       });
 
+
+      if(!this.types.current.state) {
+        this.types.current.alias.push(objRef);
+      } else if(this.types.current.state) {
+        for(let value of this.types.current.alias) {
+          console.log(value)
+          for(let entry of value) {
+            console.log(entry.applied)
+          }
+        }
+      }      
+
+      this.types.current.state = true
+
+
       // Sets class boolean to false 
-      function setClassToFalse(itemAliasObj, classToApply) {        
+      function setClassTo(bool, itemAliasObj, classToApply) {        
         itemAliasObj.classesAvailable.forEach((entry) => {
-          if(entry.class[0].includes(classToApply)) {
+          if(!bool && entry.class[0].includes(classToApply)) {
             entry.class[2] = false;
-          }          
+          } else if(bool && entry.class[0].includes(classToApply)) {
+            entry.class[2] = true;
+          }
         })
-      }
+      }   
+
 
       // Function gets each object in 'itemType' array
       // Each object contains a ref to nested position && classes to be applied
@@ -296,7 +326,7 @@ export default {
         ref.forEach((value) => itemClassAlias = itemClassAlias[value])
 
         let classesAvailable = itemClassAlias.available
-
+        
         // Return an object with entries for
         // 1. 'item' being applied too (current editied item)
         // 2. Classes currently applied to this reference 
@@ -396,6 +426,10 @@ export default {
   data() {
     return {
       types: {
+        current: {
+          state: false,
+          alias: []
+        },
         overlay: {
           default: false,
           alias: itemOverlay

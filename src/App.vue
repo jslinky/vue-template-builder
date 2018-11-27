@@ -42,7 +42,8 @@ export default {
   },
   methods: {
     newItem() {
-      let clone = JSON.parse(JSON.stringify(itemClass));      
+      let clone = JSON.parse(JSON.stringify(itemClass));
+      clone.id = 'item-' + this.items.length;
       let itemsLength = this.items.push(clone);      
       itemsLength;
       // As a argument for extendItemClasses pass an array of objects with two key properties... 
@@ -218,6 +219,7 @@ export default {
   grid-template-columns: repeat(12, 1fr);  
   grid-gap: 1px 1px;  
   background:#ccc;  
+  background-image:radial-gradient(farthest-side at 0 0,rgba(255,26,198,.3),rgba(255,26,198,0)),radial-gradient(farthest-side at 100% 0,rgba(60,221,221,.4),rgba(60,221,221,0)),radial-gradient(farthest-side at 50% 0,rgba(255,26,198,.1),rgba(255,26,198,0));
 }
 
 .edit .c-item-container {
