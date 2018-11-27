@@ -258,45 +258,57 @@ export default {
     // Arg 1: itemType is ref. to the 'types' object in data
     // Arg 2: itemToMutate is ref to current 'item' being edited
     applyType(itemType, itemToMutate) {
-
+      // this object is a reference that gets pushehd to this.types.current - handles reset of classes
       let objRef = []
-      // Start here
+      // Start here - apply new item type
+      getObjRef(itemType, applyClasses)
+
+      // If first time init push object type, else reset and apply
+      if(!this.types.current.state) {
+        this.types.current.alias.push(objRef);
+      } else if(this.types.current.state) {
+        for(let value of this.types.current.alias) {
+          for(let entry of value) {          
+            // create copy of applied classes  
+            let appliedCopy = entry.itemClassAlias.applied.map(appliedClass => appliedClass)
+            // reset / clear array of applied classes
+            entry.itemClassAlias.applied = []
+            for(let applied in appliedCopy) {
+              setClassTo(true, entry, applied)
+            }            
+            // apply new item type
+            getObjRef(itemType, applyClasses)
+          }
+        }
+      }      
+
+      // Set to true after init
+      this.types.current.state = true
+
+
       // For each object in 'itemType' array - apply getPosition function
       // Iterate over the 'classesToApply' and push them to the applied classes of 'itemToMutate' 
-      itemType.alias.forEach((entry) => {
-        let obj = getPosition(entry, itemToMutate)
+      function getObjRef(itemType, cb) {  
+        itemType.alias.forEach((entry) => {
+          let obj = getPosition(entry, itemToMutate)
+          cb(obj)
+          objRef.push(obj)        
+        });
+      }
 
-        objRef.push(obj)
-        
+      function applyClasses(obj) {
         // Reset applied classes. Only preventing repeat application of same type (Need to set 'classes available' booleon)
         // TO DO - don't remove default classes - default classes moved out of applied array - other nodes haven't      
-
         for(let i=0; i < obj.applied.length; i++) {
           if(obj.applied.indexOf(obj.classesToApply[i])) {
             obj.applied.splice(obj.classesToApply[i])
           }
         }        
-
         for(let i=0; i < obj.classesToApply.length; i++) {
           obj.applied.push(obj.classesToApply[i])      
           setClassTo(false, obj, obj.classesToApply[i])       
         }
-      });
-
-
-      if(!this.types.current.state) {
-        this.types.current.alias.push(objRef);
-      } else if(this.types.current.state) {
-        for(let value of this.types.current.alias) {
-          console.log(value)
-          for(let entry of value) {
-            console.log(entry.applied)
-          }
-        }
       }      
-
-      this.types.current.state = true
-
 
       // Sets class boolean to false 
       function setClassTo(bool, itemAliasObj, classToApply) {        
