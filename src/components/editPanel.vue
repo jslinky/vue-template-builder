@@ -5,6 +5,8 @@
       <h2 class="o-hdr o-hdr--sm center aligned">Edit Panel</h2>
       <button @click="applyType(types.card, items[editPanel.itemIndex])">Apply card</button>
       <button @click="applyType(types.overlay, items[editPanel.itemIndex])">Apply overlay</button>
+      <button @click="applyType(types.imageSwap, items[editPanel.itemIndex])">Apply image swap</button>
+      <button @click="applyType(types.headerSwap, items[editPanel.itemIndex])">Apply header swap</button>
       <!-- Item -->
       <fieldset>
         <h3 
@@ -14,16 +16,20 @@
           Item
         </h3>                
         <div>
-          <label>Item preset types</label>
-          <select>
-            <option>Select a type</option>
-          </select>
+          <label>{{itemType}}</label>
+          <select v-model="itemType">
+            <option selected>Please select a type</option>
+            <option 
+              v-for="(item, key, index) in types"              >
+              {{ key | getItemTypeDescriptions }}
+            </option>
+          </select>  
 
           <label>Span across</label>
           <!-- <select v-model="items[editPanel.itemIndex].spanAcross"> -->
-          <select v-model="itemSpan">
-            <option selected="selected">3</option>
-            <option v-for="(item, index) in 9">{{index + 4}}</option>
+          <select v-model="itemSpan">            
+            <option selected>Select column span</option>
+            <option v-for="(item, index) in 9">{{index + 3}}</option>
           </select> 
 
           <label>Width (optional)</label>
@@ -213,8 +219,7 @@
 <script>
 
 import { editBus } from '../main'
-import { itemOverlay } from './item-types/overlay'
-import { itemCard } from './item-types/card'
+import { itemOverlay, itemCard, itemImageSwap, itemHeaderSwap } from './item-types/all'
 import { itemClass } from './itemClass'
 import CustomButton from './button.vue'
 
@@ -235,8 +240,15 @@ export default {
       } else {
         return null;
       }
-    }
-  },
+    },
+    getItemTypeDescriptions(item) {
+      if(!item.includes('current')) {
+        // let split = item.charAt(0).toUpperCase() + item.slice(1);
+        // return `item${split}`
+        return item
+      }
+    }    
+  },  
   watch: { 
     itemWidthSelected: function(newVal, oldVal) { // watch it
       console.log('Prop changed: ', newVal, ' | was: ', oldVal);
@@ -251,6 +263,10 @@ export default {
     itemSpan: function(newVal, oldVal) {
       console.log('Prop changed: ', newVal, ' | was: ', oldVal);
       this.items[this.editPanel.itemIndex].spanAcross = newVal;      
+    },
+    itemType: function(newVal, oldVal) {
+      console.log(newVal)
+      this.applyType(this.types[newVal], this.items[this.editPanel.itemIndex])
     }
   },  
   methods: {
@@ -434,22 +450,43 @@ export default {
       let clone = JSON.parse(JSON.stringify(itemClass.content.heading[0]));      
       this.items[this.editPanel.itemIndex].content.heading.push(clone);
     })  
+
+    // for (const [key, value] of Object.entries(this.types)) {
+    //   if(!key.includes('current')) {
+    //     let split = key.charAt(0).toUpperCase() + key.slice(1);
+    //     console.log(`item${split}`)
+    //   }
+    // }   
+
   },   
   data() {
     return {
       types: {
         current: {
           state: false,
-          alias: []
+          alias: [],
+          descrip: 'Please select an item type'
         },
         overlay: {
           default: false,
-          alias: itemOverlay
+          alias: itemOverlay,
+          descrip: 'Overlayed content'
         },
         card: {
           default: false,
-          alias: itemCard
-        }                 
+          alias: itemCard,
+          descrip: 'Card layout'
+        },
+        imageSwap: {
+          default:true,
+          alias: itemImageSwap,
+          descrip: 'Image Swap on hover'
+        },
+        headerSwap: {
+          default:true,
+          alias: itemHeaderSwap,
+          descrip: 'Header Swap on hover'
+        }                
       },
       // Panel Sections
       editPanelSections: {
@@ -462,6 +499,7 @@ export default {
       itemSpan: function() {
         return this.items[this.editPanel.itemIndex].spanAcross
       },
+      itemType: 'Select a type',
       buttonEdit:'Select property to edit'
     }
   }  
