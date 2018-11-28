@@ -22,6 +22,10 @@ itemImageSwap = [
 ],
 itemOverlay = [
   {
+    ref: 'classes',
+    classes: []                 
+  },  
+  {
     ref: 'content.classes',
     classes: ['o-item__content--overlay']                 
   }   

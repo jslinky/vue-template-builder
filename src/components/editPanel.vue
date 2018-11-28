@@ -3,10 +3,10 @@
     <section class="c-editPanel" v-if="items.length > 0">
       <div>
       <h2 class="o-hdr o-hdr--sm center aligned">Edit Panel</h2>
-      <button @click="applyType(types.card, items[editPanel.itemIndex])">Apply card</button>
+      <!-- <button @click="applyType(types.card, items[editPanel.itemIndex])">Apply card</button>
       <button @click="applyType(types.overlay, items[editPanel.itemIndex])">Apply overlay</button>
       <button @click="applyType(types.imageSwap, items[editPanel.itemIndex])">Apply image swap</button>
-      <button @click="applyType(types.headerSwap, items[editPanel.itemIndex])">Apply header swap</button>
+      <button @click="applyType(types.headerSwap, items[editPanel.itemIndex])">Apply header swap</button> -->
       <!-- Item -->
       <fieldset>
         <h3 
@@ -85,19 +85,8 @@
           @click="toggleSections('image')" 
           :class="{active: editPanelSections.image}">
           Item Image
-        </h3>
-        
-        <div>       
-          <label>Image path</label>
-            <input 
-              type="text" 
-              :value="items[editPanel.itemIndex].image.url" 
-              @input="items[editPanel.itemIndex].image.url = $event.target.value" 
-              placeholder="Binded value goes here" />
-
-          <label>Link path</label>
-          <input type="text" placeholder="Binded value goes here" />        
-        </div>
+        </h3>       
+         <editImg :img="items[editPanel.itemIndex].image"></editImg>
       </fieldset>
 
       <!-- Item content -->    
@@ -222,6 +211,7 @@ import { editBus } from '../main'
 import { itemOverlay, itemCard, itemImageSwap, itemHeaderSwap } from './item-types/all'
 import { itemClass } from './itemClass'
 import CustomButton from './button.vue'
+import editImg from './editImg.vue'
 
 export default {
   // Name of this component
@@ -231,7 +221,8 @@ export default {
     editPanel: Object
   },
   components: {
-    CustomButton
+    CustomButton,
+    editImg
   },
   filters: {
     abbrClass(value) {
@@ -500,7 +491,8 @@ export default {
         return this.items[this.editPanel.itemIndex].spanAcross
       },
       itemType: 'Select a type',
-      buttonEdit:'Select property to edit'
+      buttonEdit:'Select property to edit',
+      responsiveImage: false
     }
   }  
 }  

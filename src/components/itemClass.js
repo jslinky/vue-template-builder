@@ -33,9 +33,50 @@ export const itemClass = {
     ]    
   },
   image: {
+    responsive: {
+      status:false,
+      sizes: {
+        mobile: {
+          status: true,
+          label: 'Mobile',
+          url: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw12b627f5/2018/WK39/03_GIFT_GUIDE/3.jpg'
+        },    
+        largeMobile: {
+          status: true,
+          label: 'Large Mobile',
+          url: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw423d13df/2018/WK39/03_GIFT_GUIDE/4.jpg'
+        },
+        tablet: {
+          status: true,
+          label: 'Tablet',
+          url: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw5f63672b/2018/WK39/03_GIFT_GUIDE/5.jpg'
+        },        
+        computer: {
+          status: true,
+          label: 'Computer',
+          url: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw8458cadd/2018/WK39/03_GIFT_GUIDE/6.jpg'
+        }
+      }
+    },
     link: false,
     linkUrl: '',
     url: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw0c9b5508/2018/WK38/01_MEGADROP/MD_Gifting.jpg',
+    mobile: {
+      status: false,
+      url: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw12b627f5/2018/WK39/03_GIFT_GUIDE/3.jpg'
+    },
+    largeMobile: {
+      status: false,
+      url: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw423d13df/2018/WK39/03_GIFT_GUIDE/4.jpg'
+    },
+    tablet: {
+      status: false,
+      url: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw5f63672b/2018/WK39/03_GIFT_GUIDE/5.jpg'
+    },        
+    computer: {
+      status: false,
+      url: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw8458cadd/2018/WK39/03_GIFT_GUIDE/6.jpg'
+    },        
     classes: {
       fullWidth: 'o-item__image--100vw',
       available: [
