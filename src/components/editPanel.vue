@@ -211,6 +211,7 @@ import { editBus } from '../main'
 import { itemOverlay, itemCard, itemImageSwap, itemHeaderSwap } from './item-types/all'
 import { itemClass } from './itemClass'
 import CustomButton from './button.vue'
+import CustomHeading from './heading.vue'
 import editImg from './editImg.vue'
 
 export default {
@@ -222,6 +223,7 @@ export default {
   },
   components: {
     CustomButton,
+    CustomHeading,
     editImg
   },
   filters: {
