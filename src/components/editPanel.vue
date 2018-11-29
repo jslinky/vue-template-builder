@@ -2,11 +2,7 @@
 
     <section class="c-editPanel" v-if="items.length > 0">
       <div>
-      <h2 class="o-hdr o-hdr--sm center aligned">Edit Panel</h2>
-      <!-- <button @click="applyType(types.card, items[editPanel.itemIndex])">Apply card</button>
-      <button @click="applyType(types.overlay, items[editPanel.itemIndex])">Apply overlay</button>
-      <button @click="applyType(types.imageSwap, items[editPanel.itemIndex])">Apply image swap</button>
-      <button @click="applyType(types.headerSwap, items[editPanel.itemIndex])">Apply header swap</button> -->
+      <custom-heading sm center :el="'h2'">Edit Panel</custom-heading>
       <!-- Item -->
       <fieldset>
         <h3 
@@ -117,40 +113,40 @@
           <!-- try using computed property for this v-for -->
           <div 
             class="c-editPanel__contentHeadings" 
-            v-for="(heading, index) in items[editPanel.itemIndex].content.heading" 
+            v-for="(heading, index) in items[editPanel.itemIndex].content.heading.headings" 
             v-if="!heading.text == ''">       
             <label>Heading {{index + 1}}</label>
             <input 
               type="checkbox"  
               :id="index"               
               :value="true"
-              @click="items[editPanel.itemIndex].content.heading[index].artwork.default = !items[editPanel.itemIndex].content.heading[index].artwork.default"
+              @click="items[editPanel.itemIndex].content.heading.headings[index].artwork.default = !items[editPanel.itemIndex].content.heading.headings[index].artwork.default"
               >
             <label :for="index">Make artwork</label>            
             <input 
               type="text" 
-              v-if="items[editPanel.itemIndex].content.heading[index].artwork.default"
-              v-model="items[editPanel.itemIndex].content.heading[index].artwork.assetUrl" 
+              v-if="items[editPanel.itemIndex].content.heading.headings[index].artwork.default"
+              v-model="items[editPanel.itemIndex].content.heading.headings[index].artwork.assetUrl" 
               placeholder="Binded value goes here" />               
             <button 
               class="c-btn-remove o-btn" 
-              @click="removeContent(heading, 'text', items[editPanel.itemIndex].content.heading)">
+              @click="removeContent(heading, 'text', items[editPanel.itemIndex].content.heading.headings)">
               Remove
             </button>            
             <input 
               type="text" 
-              v-model="items[editPanel.itemIndex].content.heading[index].text" 
+              v-model="items[editPanel.itemIndex].content.heading.headings[index].text" 
               placeholder="Binded value goes here" />            
 
           </div>
           
           <button 
-            v-if="items[editPanel.itemIndex].content.heading.length <= 3" 
+            v-if="items[editPanel.itemIndex].content.heading.headings.length <= 3" 
             @click="addContent('heading')" 
             class="o-btn o-btn--basic o-btn--sm">
             Add heading
           </button>
-          <p v-else>{{items[editPanel.itemIndex].content.heading.length}}</p>
+          <p v-else>{{items[editPanel.itemIndex].content.heading.headings.length}}</p>
           
           <label>Copy</label>
           <input 
@@ -441,16 +437,9 @@ export default {
       this.editPanel.itemIndex = itemIndex;      
     })
     editBus.$on('addItemHeading', () => {
-      let clone = JSON.parse(JSON.stringify(itemClass.content.heading[0]));      
-      this.items[this.editPanel.itemIndex].content.heading.push(clone);
+      let clone = JSON.parse(JSON.stringify(itemClass.content.heading.headings[0]));      
+      this.items[this.editPanel.itemIndex].content.heading.headings.push(clone);
     })  
-
-    // for (const [key, value] of Object.entries(this.types)) {
-    //   if(!key.includes('current')) {
-    //     let split = key.charAt(0).toUpperCase() + key.slice(1);
-    //     console.log(`item${split}`)
-    //   }
-    // }   
 
   },   
   data() {

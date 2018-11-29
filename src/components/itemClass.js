@@ -85,36 +85,79 @@ export const itemClass = {
     }          
   },
   content: {
-    heading: [
-      {
-        el: 'h2',
-        text: 'This is a heading',
-        link: false,
-        linkUrl: '',
-        classes: {
-          applied: ['o-hdr', 'o-hdr--sm', 'o-item__hdr']          
-        },
-        edit: false,
-        artwork: {
-          default: false,
-          assetUrl: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw619cb11c/2018/WK42/01_HOMEPAGE/30_lock_up_ff.svg'
-        }
+    heading: {
+      types: {
+        t: ['t'],
+        sm: ['sm'],
+        smSec: ['sm', 'secFont'],
+        md: ['md'],
+        lg: ['lg'],
+        bg: ['bg'],
+        msv: ['msv']
       },
-      {
-        el: 'h3',
-        text: 'This is a heading',
-        link: false,
-        linkUrl: '',
-        classes: {
-          applied: ['o-hdr', 'o-hdr--lg', 'o-item__hdr']
+      headings: [
+        {
+          el: 'h2',
+          text: 'Heading',
+          link: false,
+          linkUrl: '',
+          type: 'sm',
+          classes: {
+            applied: ['o-hdr', 'o-hdr--sm', 'o-item__hdr']          
+          },
+          edit: false,
+          artwork: {
+            default: false,
+            assetUrl: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw619cb11c/2018/WK42/01_HOMEPAGE/30_lock_up_ff.svg'
+          }
         },
-        edit: false,
-        artwork: {
-          default: false,
-          assetUrl: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw619cb11c/2018/WK42/01_HOMEPAGE/30_lock_up_ff.svg'
-        }
-      }          
-    ],
+        {
+          el: 'h3',
+          text: 'Heading',
+          link: false,
+          linkUrl: '',
+          type: 'lg',
+          classes: {
+            applied: ['o-hdr', 'o-hdr--lg', 'o-item__hdr']
+          },
+          edit: false,
+          artwork: {
+            default: false,
+            assetUrl: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw619cb11c/2018/WK42/01_HOMEPAGE/30_lock_up_ff.svg'
+          }
+        }         
+      ]
+    },
+    // heading: [
+    //   {
+    //     el: 'h2',
+    //     text: 'This is a heading',
+    //     link: false,
+    //     linkUrl: '',
+    //     classes: {
+    //       applied: ['o-hdr', 'o-hdr--sm', 'o-item__hdr']          
+    //     },
+    //     edit: false,
+    //     artwork: {
+    //       default: false,
+    //       assetUrl: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw619cb11c/2018/WK42/01_HOMEPAGE/30_lock_up_ff.svg'
+    //     }
+    //   },
+    //   {
+    //     el: 'h3',
+    //     text: 'This is a heading',
+    //     link: false,
+    //     linkUrl: '',
+    //     classes: {
+    //       applied: ['o-hdr', 'o-hdr--lg', 'o-item__hdr']
+    //     },
+    //     edit: false,
+    //     artwork: {
+    //       default: false,
+    //       assetUrl: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw619cb11c/2018/WK42/01_HOMEPAGE/30_lock_up_ff.svg'
+    //     }
+    //   }          
+    // ],
     subCopy: `This is some sub copy`,
     buttons: {
       button: [

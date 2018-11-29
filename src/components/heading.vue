@@ -45,7 +45,8 @@ export default {
         'o-hdr--lg': this.lg,
         'o-hdr--bg': this.bg, 
         'o-hdr--hg': this.hg, 
-        'o-hdr--msv': this.msv         
+        'o-hdr--msv': this.msv,
+        'center aligned': this.center        
       }
     }
   },
@@ -109,42 +110,11 @@ export default {
     msv: {
       type: Boolean,
       default: false      
+    },
+    center: {
+      type: Boolean,
+      default: false
     }                  
-  },
-  mounted() {
-    // console.log(this.classArray)
-    // let check = this.classArray === undefined
-
-    // if(!check) {
-    //   console.log('Class prop > 0')
-
-    //   let test = checkIfValidProp(this.$props, this.classArray)
-
-    //   function checkIfValidProp(props, classArr) {
-    //     let arr = []
-    //     for(let [key, value] of Object.entries(props)) {
-    //       if(classArr.includes(key)) {
-    //         // return key
-    //         arr.push(key)
-    //       }           
-    //     }
-    //     return arr      
-    //   }
-
-    //   console.log(test)
-
-    //   for(let [key, value] of Object.entries(this.classNames)) {
-    //     if(key.indexOf('sm') !== -1) {
-    //       console.log(key)
-    //       // return key
-    //     }
-    //   }      
-    // } else {
-    //   console.log('Class prop not passed')
-    // }
-
-
-    
   }
 }
 </script>

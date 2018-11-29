@@ -1,15 +1,9 @@
 <template>
   <div class="o-item__content" :class="content.classes.applied">
     <!-- <img :src="imgUrl" /> -->
-    <template v-for="(item, index) in content.heading">        
-        <!-- <custom-heading item :el="item.el" v-if="!item.artwork.default">{{item.text}}</custom-heading> -->
-        <custom-heading item :classArray="['sm', 'secFont']" :el="item.el" v-if="!item.artwork.default" @dblclick="editHeaderContent(index)">{{item.text}}</custom-heading>
-        <!-- <h1 v-if="item.el == 'h1' && !item.artwork.default" @dblclick="editHeaderContent(index)" :class="item.classes.applied">{{item.text}}</h1>
-        <h2 v-else-if="item.el == 'h2' && !item.artwork.default" @dblclick="editHeaderContent(index)" :class="item.classes.applied">{{item.text}}</h2>
-        <h3 v-else-if="item.el == 'h3' && !item.artwork.default" @dblclick="editHeaderContent(index)" :class="item.classes.applied">{{item.text}}</h3>
-        <h4 v-else-if="item.el == 'h4' && !item.artwork.default" @dblclick="editHeaderContent(index)" :class="item.classes.applied">{{item.text}}</h4>
-        <h5 v-else-if="item.el == 'h5' && !item.artwork.default" @dblclick="editHeaderContent(index)" :class="item.classes.applied">{{item.text}}</h5>
-        <h6 v-else-if="item.el == 'h6' && !item.artwork.default" @dblclick="editHeaderContent(index)" :class="item.classes.applied">{{item.text}}</h6> -->
+    <template v-for="(item, index) in content.heading.headings">        
+        <custom-heading item :classArray="content.heading.types[item.type]" :el="item.el" v-if="!item.artwork.default" @dblclick="editHeaderContent(index)">{{item.text}}</custom-heading>
+        <!-- <h6 v-else-if="item.el == 'h6' && !item.artwork.default" @dblclick="editHeaderContent(index)" :class="item.classes.applied">{{item.text}}</h6> -->
         <div v-else-if="item.artwork.default" class="o-item__artwork">
           <object type="image/svg+xml" :data="item.artwork.assetUrl">{{item.text}}</object>
         </div>
