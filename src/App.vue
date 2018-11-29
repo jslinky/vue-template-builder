@@ -115,10 +115,6 @@ export default {
       this.editPanel.state = state;
       this.editPanel.itemIndex = itemIndex;
     })
-    editBus.$on('addItemHeading', () => {
-      let clone = JSON.parse(JSON.stringify(itemClass.content.heading[0]));      
-      this.items[this.editPanel.itemIndex].content.heading.push(clone);      
-    })
     editBus.$on('changeItemOrder', (from, to) => {
       console.log("fired");
       let arr = this.items;

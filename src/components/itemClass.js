@@ -92,7 +92,7 @@ export const itemClass = {
         link: false,
         linkUrl: '',
         classes: {
-          applied: ['o-hdr', 'o-hdr--sm', 'o-item__hdr']
+          applied: ['o-hdr', 'o-hdr--sm', 'o-item__hdr']          
         },
         edit: false,
         artwork: {

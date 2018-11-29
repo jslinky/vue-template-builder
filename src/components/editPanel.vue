@@ -391,6 +391,7 @@ export default {
     // pass through 'string' type to clone itemClass and push to relevent place in items array
     addContent(type) {
       if(type == 'heading') {
+        console.log(type)
         editBus.$emit('addItemHeading');
       }
     },
