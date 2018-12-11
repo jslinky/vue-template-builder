@@ -30,6 +30,7 @@ import { itemClass } from './components/itemClass'
 import item from './components/item.vue'
 import editPanel from './components/editPanel.vue'
 
+
 export default {
   // Name of this component
   name: 'app',
@@ -171,7 +172,7 @@ export default {
 .c-editPanel > div {
   overflow-y:auto; 
   height:100vh;
-  padding-bottom:4rem;
+  padding-top:4rem;
 }
 
 #app.edit .c-editPanel {

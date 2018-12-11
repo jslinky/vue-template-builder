@@ -87,13 +87,13 @@ export const itemClass = {
   content: {
     heading: {
       types: {
-        t: ['t'],
-        sm: ['sm'],
-        smSec: ['sm', 'secFont'],
-        md: ['md'],
-        lg: ['lg'],
-        bg: ['bg'],
-        msv: ['msv']
+        't': ['t'],
+        'sm': ['sm'],
+        'smSec': ['sm', 'secFont'],
+        'md': ['md'],
+        'lg': ['lg'],
+        'bg': ['big'],
+        'msv': ['msv']
       },
       headings: [
         {
@@ -128,36 +128,6 @@ export const itemClass = {
         }         
       ]
     },
-    // heading: [
-    //   {
-    //     el: 'h2',
-    //     text: 'This is a heading',
-    //     link: false,
-    //     linkUrl: '',
-    //     classes: {
-    //       applied: ['o-hdr', 'o-hdr--sm', 'o-item__hdr']          
-    //     },
-    //     edit: false,
-    //     artwork: {
-    //       default: false,
-    //       assetUrl: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw619cb11c/2018/WK42/01_HOMEPAGE/30_lock_up_ff.svg'
-    //     }
-    //   },
-    //   {
-    //     el: 'h3',
-    //     text: 'This is a heading',
-    //     link: false,
-    //     linkUrl: '',
-    //     classes: {
-    //       applied: ['o-hdr', 'o-hdr--lg', 'o-item__hdr']
-    //     },
-    //     edit: false,
-    //     artwork: {
-    //       default: false,
-    //       assetUrl: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw619cb11c/2018/WK42/01_HOMEPAGE/30_lock_up_ff.svg'
-    //     }
-    //   }          
-    // ],
     subCopy: `This is some sub copy`,
     buttons: {
       button: [
@@ -180,7 +150,11 @@ export const itemClass = {
         applied: ['o-buttons'],
         available: [
           { class: ['o-buttons--stacked', "Stack at mobile", true] },
-          { class: ['o-buttons--stacked-md', "Stack at tablet", true] }                  
+          { class: ['o-buttons--stacked-md', "Stack at tablet", true] },
+          { class: ['two column grid-layout', "2 column buttons", true] },                                      
+          { class: ['three column grid-layout', "3 column buttons", true] },
+          { class: ['four column grid-layout', "4 column buttons", true] },
+          { class: ['o-buttons--grouped', "Grouped buttons", true] }                                                                            
         ]
       }
     },

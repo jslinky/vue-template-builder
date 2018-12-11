@@ -122,7 +122,17 @@
               :value="true"
               @click="items[editPanel.itemIndex].content.heading.headings[index].artwork.default = !items[editPanel.itemIndex].content.heading.headings[index].artwork.default"
               >
-            <label :for="index">Make artwork</label>            
+            <label :for="index">Make artwork</label>    
+
+            <select v-model="heading.type">
+              <option selected>Please select a type</option>
+              <option 
+                v-for="(item, key, index) in items[editPanel.itemIndex].content.heading.types"  
+                :key="key">
+                {{ key }}
+              </option>
+            </select>              
+
             <input 
               type="text" 
               v-if="items[editPanel.itemIndex].content.heading.headings[index].artwork.default"
@@ -165,7 +175,46 @@
           :class="{active: editPanelSections.buttons}">
           Item Buttons
         </h3>
-        <div>          
+        <div>
+
+          <a 
+            class="c-btn-tag o-btn o-btn--plain o-btn--sm active" 
+            v-for="(CssClass, index) in items[editPanel.itemIndex].content.buttons.classes.applied"             
+            @click="applyClass(index, items[editPanel.itemIndex].content.buttons.classes, 'remove')">
+            {{ CssClass }}
+          </a>      
+          
+          <hr>
+
+          <a class="c-btn-tag o-btn o-btn--plain o-btn--sm" 
+            v-for="(item, index) in items[editPanel.itemIndex].content.buttons.classes.available"
+            v-if="item.class[2] == true && !item.class[0].includes('wide') && !item.class[0].includes('column')"   
+            @click="applyClass(index, items[editPanel.itemIndex].content.buttons.classes, 'apply')">
+            {{ item.class | abbrClass }}
+          </a> 
+
+
+          <label>Width (optional)</label>
+          <select v-model="buttonsWidthSelected">
+            <option selected>{{ buttonsWidthSelected }}</option>
+            <option 
+              v-for="(item, index) in items[editPanel.itemIndex].content.buttons.classes.available" 
+              v-if="item.class[2] == true && item.class[0].includes('wide')">
+              {{ item.class[0] }}
+            </option>
+          </select>   
+
+          <label>Columns (optional)</label>
+          <select v-model="buttonsColumnsSelected">
+            <option selected>{{ buttonsColumnsSelected }}</option>
+            <option 
+              v-for="(item, index) in items[editPanel.itemIndex].content.buttons.classes.available" 
+              v-if="item.class[2] == true && item.class[0].includes('column')">
+              {{ item.class[0] }}
+            </option>
+          </select>                      
+
+
           <div v-for="(button, index) in items[editPanel.itemIndex].content.buttons.button">
             <h3 class="o-hdr o-hdr--t u-mt-t">Button {{index + 1}}</h3>                     
             <select v-model="buttonEdit" class="minimal">
@@ -194,8 +243,9 @@
       </div>
       <!-- save / close footer -->
       <footer class="o-buttons">
-        <custom-button button basic small>Cancel</custom-button>
-        <custom-button button primary small>Save</custom-button>
+        <div @click="closePanel(editPanel.itemIndex)">
+          <custom-button button plain small>Close</custom-button>
+        </div>
       </footer>      
     </section>
 
@@ -241,14 +291,14 @@ export default {
   watch: { 
     itemWidthSelected: function(newVal, oldVal) { // watch it
       console.log('Prop changed: ', newVal, ' | was: ', oldVal);
-      let appliedClasses = this.items[this.editPanel.itemIndex].classes.applied;
-      appliedClasses.forEach((element, i) => {
-        if(element.includes("wide")) {
-          appliedClasses.splice(i, 1);
-        }
-      });
-      appliedClasses.push(newVal);
+      this.applyWidth(this.items[this.editPanel.itemIndex].classes.applied, newVal)
     },
+    buttonsWidthSelected: function(newVal, oldVal) { // watch it
+      this.applyWidth(this.items[this.editPanel.itemIndex].content.buttons.classes.applied, newVal)
+    },    
+    buttonsColumnsSelected: function(newVal, oldVal) { // watch it
+      this.applyWidth(this.items[this.editPanel.itemIndex].content.buttons.classes.applied, newVal)
+    },        
     itemSpan: function(newVal, oldVal) {
       console.log('Prop changed: ', newVal, ' | was: ', oldVal);
       this.items[this.editPanel.itemIndex].spanAcross = newVal;      
@@ -259,6 +309,17 @@ export default {
     }
   },  
   methods: {
+    applyWidth(appliedClasses, newVal) {
+      appliedClasses.forEach((element, i) => {
+        // if(element.includes("wide")) {
+          appliedClasses.splice(i, 1);
+        // }
+      });
+      appliedClasses.push(newVal);
+    },
+    closePanel(index) {
+      editBus.$emit('editPanelState', false, index);    
+    },    
     // Apply type of item method
     // Arg 1: itemType is ref. to the 'types' object in data
     // Arg 2: itemToMutate is ref to current 'item' being edited
@@ -479,12 +540,15 @@ export default {
         buttons: false  
       },
       itemWidthSelected: 'Select a width',
+      buttonsWidthSelected: 'Select a width',
+      buttonsColumnsSelected: 'Select no of columns',
       itemSpan: function() {
         return this.items[this.editPanel.itemIndex].spanAcross
       },
       itemType: 'Select a type',
       buttonEdit:'Select property to edit',
-      responsiveImage: false
+      responsiveImage: false,
+      headingType: 'Please select a type'
     }
   }  
 }  
@@ -509,7 +573,7 @@ export default {
 
 footer {
   position: fixed;
-  bottom:0;
+  top:0;
   left:0;
   width:100%;
   padding:1rem 1rem 0;

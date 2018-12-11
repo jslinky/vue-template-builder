@@ -1,7 +1,7 @@
 <template>
   <div class="o-item__content" :class="content.classes.applied">
     <!-- <img :src="imgUrl" /> -->
-    <template v-for="(item, index) in content.heading.headings">        
+    <template v-for="(item, index, key) in content.heading.headings">        
         <custom-heading item :classArray="content.heading.types[item.type]" :el="item.el" v-if="!item.artwork.default" @dblclick="editHeaderContent(index)">{{item.text}}</custom-heading>
         <!-- <h6 v-else-if="item.el == 'h6' && !item.artwork.default" @dblclick="editHeaderContent(index)" :class="item.classes.applied">{{item.text}}</h6> -->
         <div v-else-if="item.artwork.default" class="o-item__artwork">
@@ -13,7 +13,7 @@
     </template>
     <p v-html="content.subCopy">      
     </p>
-    <div :class="content.buttons.classes.applied">
+    <div class="o-buttons" :class="content.buttons.classes.applied">
       <a v-for="(button, index) in content.buttons.button" :class="button.classes.applied" :href="button.linkUrl">{{button.text}}</a>
     </div>    
   </div>

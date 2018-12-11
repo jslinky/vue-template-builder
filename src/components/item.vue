@@ -109,7 +109,7 @@ export default {
   pointer-events: none;
 }
 
-#app.edit .c-itemTemplate-container:not(.toEdit) .c-btn-itemEdit {
+#app.edit .c-itemTemplate-container .c-btn-itemEdit {
   display: none;
 }
 
@@ -123,10 +123,15 @@ export default {
   color: #fff;
   position: absolute;
   top: calc(33% - 12.5px);  
+  display: none;
 }
 
 #app.edit .c-btn-order {
   display: none;
+}
+
+#app:not(.edit) .c-itemTemplate-container:hover .c-btn-order {
+  display: block;
 }
 
 .c-itemTemplate-container > .c-btn-order.left {

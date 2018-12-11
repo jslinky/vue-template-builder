@@ -1,37 +1,40 @@
 <template>
   <h1 v-if="el == 'h1'"
     class="o-hdr" 
-    :class="classNames | testFilter(this.classArray, this.classNames)">
+    :class="classNames | ifClassPropsFilter(this.classArray, this.classNames)">
     <slot>Heading</slot>
   </h1> 
   <h2 v-else-if="el == 'h2'"
     class="o-hdr" 
-    :class="classNames | testFilter(this.classArray, this.classNames)">
+    :class="classNames | ifClassPropsFilter(this.classArray, this.classNames)">
     <slot>Heading</slot>
   </h2> 
   <h3 v-else-if="el == 'h3'"
     class="o-hdr" 
-    :class="classNames | testFilter(this.classArray, this.classNames)">
+    :class="classNames | ifClassPropsFilter(this.classArray, this.classNames)">
     <slot>Heading</slot>
   </h3>  
   <h4 v-else-if="el == 'h4'"
     class="o-hdr" 
-    :class="classNames | testFilter(this.classArray, this.classNames)">
+    :class="classNames | ifClassPropsFilter(this.classArray, this.classNames)">
     <slot>Heading</slot>
   </h4> 
   <h5 v-else-if="el == 'h5'"
     class="o-hdr" 
-    :class="classNames | testFilter(this.classArray, this.classNames)">
+    :class="classNames | ifClassPropsFilter(this.classArray, this.classNames)">
     <slot>Heading</slot>
   </h5>   
   <h6 v-else-if="el == 'h6'"
     class="o-hdr" 
-    :class="classNames | testFilter(this.classArray, this.classNames)">
+    :class="classNames | ifClassPropsFilter(this.classArray, this.classNames)">
     <slot>Heading</slot>
   </h6>          
 </template>
 
 <script>
+
+import { classPropsFilter } from '../mixins/classPropsFilter'
+
 export default {
   name: 'CustomHeading',
   data() {
@@ -43,32 +46,18 @@ export default {
         'o-hdr--sm': this.sm, 
         'o-hdr--md': this.md, 
         'o-hdr--lg': this.lg,
-        'o-hdr--bg': this.bg, 
+        'o-hdr--big': this.bg, 
         'o-hdr--hg': this.hg, 
         'o-hdr--msv': this.msv,
         'center aligned': this.center        
       }
     }
   },
-  filters: {
-    testFilter(item, classArr, classNames) {
-
-      let check = classArr === undefined
-
-      if(!check) {          
-        for(let i=0; i < classArr.length; i++) {
-          for(let [key, value] of Object.entries(item)) {
-            if(key.indexOf(classArr[i]) !== -1) {
-              classNames[key] = true
-            }
-          }      
-        }
-        return item
-      } else {
-        return item
-      }
-    },
-  },
+  watch: {
+    classArray: function(newVal, oldVal) {
+      console.log('Prop changed: ', newVal, ' | was: ', oldVal);      
+    },    
+  },  
   props: {
     el: {
       type: String,
@@ -97,7 +86,7 @@ export default {
     },
     lg: {
       type: Boolean,
-      default: true      
+      default: false      
     },
     bg: {
       type: Boolean,
@@ -115,7 +104,8 @@ export default {
       type: Boolean,
       default: false
     }                  
-  }
+  },
+  mixins: [classPropsFilter]
 }
 </script>
 

@@ -5,7 +5,8 @@
       'o-btn--basic': basic, 
       'o-btn--primary': primary, 
       'inverted': inverted, 
-      'o-btn--sm': small
+      'o-btn--sm': small,
+      'o-btn--plain': plain
       }">
     <slot>Button</slot>
   </button> 
@@ -16,13 +17,15 @@
       'o-btn--basic': basic, 
       'o-btn--primary': primary, 
       'inverted': inverted, 
-      'o-btn--sm': small
+      'o-btn--sm': small,
+      'o-btn--plain': plain
     }">
     <slot>Button</slot>
-  </a>  
+  </a>    
 </template>
 
 <script>
+
 export default {
   name: 'Button',
   props: {
@@ -41,6 +44,10 @@ export default {
     primary: {
       type: Boolean,
       default: false      
+    },
+    plain: {
+      type:Boolean,
+      default:false
     },
     inverted: {
       type: Boolean,
