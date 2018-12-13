@@ -3,6 +3,10 @@
     <section class="c-welcome" v-if="items.length == 0">
       <h1 class="u-flex u-justify-center u-flex-column u-items-center">
         <span class="o-hdr o-hdr--sm u-mt0">Welcome to</span> <span class="o-hdr o-hdr--hg u-mt-sm">Jack Wills Template Builder</span>
+        <div @click="showJoke()" class="u-mt-lg"><custom-button button basic>Just show me a joke</custom-button></div>
+        <transition name="joke">
+          <p class="u-mt-md">{{joke}}</p>
+        </transition>
       </h1>
     </section>    
     <!-- Edit Panel Component 
@@ -27,6 +31,7 @@
 // import HelloWorld from './components/HelloWorld.vue'
 import { editBus } from './main'
 import { itemClass } from './components/itemClass'
+import CustomButton from './components/button.vue'
 import item from './components/item.vue'
 import editPanel from './components/editPanel.vue'
 
@@ -39,9 +44,19 @@ export default {
   },
   components: {
     item,
-    editPanel
+    editPanel,
+    CustomButton
   },
   methods: {
+    async showJoke() {
+      let config = {
+        headers: {
+          'Accept': 'application/json'
+        }
+      }
+      const joke = await this.$http.get('https://icanhazdadjoke.com', config);
+      this.joke = joke.data.joke      
+    },
     newItem() {
       let clone = JSON.parse(JSON.stringify(itemClass));
       clone.id = 'item-' + this.items.length;
@@ -108,7 +123,8 @@ export default {
       editPanel: {
         state: false,
         itemIndex: 0
-      }
+      },
+      joke: ''
     }
   },
   mounted() {
@@ -127,7 +143,6 @@ export default {
 
 
 </script>
-
 
 <style lang="less">
 
@@ -250,5 +265,28 @@ select.minimal {
   padding-left:0;
   border:0;
 }
+
+.joke-enter-to {
+  animation: pulse 500ms;
+}
+
+.joke-leave-active {
+  animation: pulse 500ms reverse;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
 
 </style>
