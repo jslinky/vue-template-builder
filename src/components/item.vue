@@ -74,7 +74,7 @@ export default {
         this.itemInfo.content.heading[i].edit = false;
       } 
     })
-  }  
+  }    
 }
 </script>
 

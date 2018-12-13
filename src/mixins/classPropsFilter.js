@@ -1,9 +1,4 @@
 export const classPropsFilter = {
-  // methods: {
-  //   pressMe() {
-  //     alert('Hello')
-  //   }
-  // },
   filters: {
     ifClassPropsFilter(item, classArr) {
       // check to see if classArray prop is being passed

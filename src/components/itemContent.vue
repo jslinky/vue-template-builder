@@ -14,7 +14,8 @@
     <p v-html="content.subCopy">      
     </p>
     <div class="o-buttons" :class="content.buttons.classes.applied">
-      <a v-for="(button, index) in content.buttons.button" :class="button.classes.applied" :href="button.linkUrl">{{button.text}}</a>
+      <custom-button v-for="(button, index) in content.buttons.button" :class="button.classes.applied" :href="button.linkUrl">{{button.text}}</custom-button>
+      <!-- <a v-for="(button, index) in content.buttons.button" :class="button.classes.applied" :href="button.linkUrl">{{button.text}}</a> -->
     </div>    
   </div>
 </template>

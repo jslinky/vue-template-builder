@@ -147,7 +147,7 @@ export const itemClass = {
         }            
       ],
       classes: {
-        applied: ['o-buttons'],
+        applied: [],
         available: [
           { class: ['o-buttons--stacked', "Stack at mobile", true] },
           { class: ['o-buttons--stacked-md', "Stack at tablet", true] },
