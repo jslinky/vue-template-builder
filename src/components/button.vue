@@ -6,6 +6,7 @@
       'o-btn--primary': primary, 
       'inverted': inverted, 
       'o-btn--sm': small,
+      'o-btn--lg': large,
       'o-btn--plain': plain
       }">
     <slot>Button</slot>
@@ -18,6 +19,7 @@
       'o-btn--primary': primary, 
       'inverted': inverted, 
       'o-btn--sm': small,
+      'o-btn--lg': large,
       'o-btn--plain': plain
     }">
     <slot>Button</slot>
@@ -56,7 +58,11 @@ export default {
     small: {
       type: Boolean,
       default: false      
-    }     
+    },
+    large: {
+      type: Boolean,
+      default: false      
+    }         
   }
 }
 </script>
