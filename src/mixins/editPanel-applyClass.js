@@ -1,5 +1,21 @@
 export const editPanelMixins = {
-  methods: {
+  filters: {
+    abbrClass(value) {
+      if(value[2]) {        
+        return value[0].replace("o-item", '');
+      } else {
+        return null;
+      }
+    },
+    getItemTypeDescriptions(item) {
+      if(!item.includes('current')) {
+        // let split = item.charAt(0).toUpperCase() + item.slice(1);
+        // return `item${split}`
+        return item
+      }
+    }    
+  },  
+  methods: {    
     // obj = object to set new key value, key = string of key to modify it's value, arr = array in which obj is held
     removeContent(obj, key, arr) {      
       let arrLength = arr.length - 1;
