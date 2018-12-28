@@ -1,28 +1,26 @@
 <template>             
   <div>
 
-    <a 
-      class="c-btn-tag o-btn o-btn--plain o-btn--sm active" 
-      v-for="(CssClass, index) in buttonsClassesApplied"             
-      @click="applyClass(index, buttonsClasses, 'remove')">
-      {{ CssClass }}
-    </a>      
+    <custom-button button plain small
+    class="c-btn-tag"
+    v-for="(CssClass, index) in buttonsClassesApplied"             
+    @click.native="applyClass(index, buttonsClasses, 'remove')">
+    {{ CssClass }}    
+    </custom-button>
     
     <hr>
 
-    <a class="c-btn-tag o-btn o-btn--plain o-btn--sm" 
-      v-for="(item, index) in cssClassLinksToApply"    
-      @click="applyClass(item.index, buttonsClasses, 'apply')">
-      {{ item.class | abbrClass }}
-    </a>     
-
-    <!-- <custom-button button plain small 
+    <custom-button button plain small 
       class="c-btn-tag"
       v-for="(item, index) in cssClassLinksToApply"  
-      @click="applyClass(item.index, buttonsClasses, 'apply')"  
+      @click.native="applyClass(item.index, buttonsClasses, 'apply')"  
       >
       {{ item.class | abbrClass }}
-    </custom-button> -->
+    </custom-button>
+
+    <hr>
+
+    <custom-button button basic small @click.native="addButton()">Add a button</custom-button>    
 
 
     <label>Width (optional)</label>
@@ -39,7 +37,8 @@
     </select>                      
 
     <div v-for="(button, index) in buttonsButton">
-      <h3 class="o-hdr o-hdr--t u-mt-t">Button {{index + 1}}</h3>                     
+      <h3 class="o-hdr o-hdr--t u-mt-t">Button {{index + 1}}</h3>              
+      <custom-button button plain small @click.native="removeButton(index)">remove</custom-button>       
       <select v-model="buttonEdit" class="minimal">
         <option selected>Select property to edit</option>
         <option 
@@ -66,6 +65,7 @@
 
 <script>
 
+import { editBus } from '../main'
 import { editPanelMixins } from '../mixins/editPanel-applyClass'
 import CustomButton from './button.vue'
 
@@ -88,6 +88,7 @@ export default {
       buttonsClassesAvailable: this.items[this.editPanel.itemIndex].content.buttons.classes.available,
       buttonsClassesApplied: this.items[this.editPanel.itemIndex].content.buttons.classes.applied,
       buttonsButton: this.items[this.editPanel.itemIndex].content.buttons.button,
+      buttonRef: '',
       classLinksToApply: []     
     }
   },
@@ -116,25 +117,25 @@ export default {
     buttonsColumnsSelected: function(newVal, oldVal) { // watch it
       this.applyWidth(this.items[this.editPanel.itemIndex].content.buttons.classes.applied, newVal)
       // Add buttons if explicit column type selected
-      const buttonArr = this.items[this.editPanel.itemIndex].content.buttons.button,
-            buttonRef = JSON.parse(JSON.stringify(buttonArr[0]))
-      if(newVal.includes('three') && buttonArr.length < 3) {
-        buttonArr.push(buttonRef)
-      }
-      if(newVal.includes('four') && buttonArr.length < 4) {
-        while(buttonArr.length < 4) {
-          buttonArr.push(buttonRef)
-        }
-      }       
-      
+      if(newVal.includes('three') && this.buttonsButton.length < 3) { this.addButton(); }
+      if(newVal.includes('four') && this.buttonsButton.length < 4) {
+        while(this.buttonsButton.length < 4) { this.addButton(); }
+      }             
     }    
   },  
   methods: {
-    addContent(type) {
-      if(type == 'heading') {        
-        editBus.$emit('addItemHeading');
-      }
-    }    
+    addButton() {
+      editBus.$emit('addButton', this.buttonRef);
+    },
+    removeButton(i) {
+      // emit this
+      editBus.$emit('removeButton', i);
+      // this.buttonsButton.splice('', i)
+      // alert(i)      
+    }
+  },
+  created() {
+    this.buttonRef = JSON.parse(JSON.stringify(this.buttonsButton[0]))
   }
 }
 </script>

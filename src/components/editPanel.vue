@@ -2,48 +2,67 @@
   <section class="c-editPanel" v-if="items.length > 0">
     <div>
       <custom-heading sm center :el="'h2'">Edit Panel</custom-heading>
-      <!-- Item -->
+      <!-- Item Section -->
       <fieldset>
-        <h3 
-          class="c-editPanel__heading o-hdr o-hdr--t u-mt0" 
-          @click="toggleSections('item')" 
-          :class="{active: editPanelSections.item}">
+        <!-- Heading -->
+        <custom-heading            
+          t
+          :el="'h3'"
+          class="c-editPanel__heading"
+          :class="{active: editPanelSections.item}"
+          @click.native="toggleSections('item')"
+          >
           Item
-        </h3>             
+        </custom-heading>
+        <!-- Accordion content -->
         <editItem :items="items" :editPanel="editPanel"></editItem>             
       </fieldset>
 
-      <!-- Item Image -->
+      <!-- Item Image Section -->
       <fieldset> 
-        <h3 
-          class="c-editPanel__heading o-hdr o-hdr--t u-mt0" 
-          @click="toggleSections('image')" 
-          :class="{active: editPanelSections.image}">
+        <!-- Heading -->
+        <custom-heading            
+          t
+          :el="'h3'"
+          class="c-editPanel__heading u-mt0"
+          :class="{active: editPanelSections.image}"
+          @click.native="toggleSections('image')"
+          >
           Item Image
-        </h3>       
-         <editImg :img="items[editPanel.itemIndex].image"></editImg>
+        </custom-heading>
+        <!-- Accordion content -->
+        <editImg :img="items[editPanel.itemIndex].image"></editImg>
       </fieldset>
 
-      <!-- Item content -->    
+      <!-- Item Content Section -->    
       <fieldset> 
-        <h3 
-          class="c-editPanel__heading o-hdr o-hdr--t u-mt0" 
-          @click="toggleSections('content')" 
-          :class="{active: editPanelSections.content}">
+        <!-- Heading -->
+        <custom-heading            
+          t
+          :el="'h3'"
+          class="c-editPanel__heading u-mt0"
+          :class="{active: editPanelSections.content}"
+          @click.native="toggleSections('content')"
+          >
           Item Content
-        </h3>
+        </custom-heading>
         <!-- Accordion content -->
         <editItemContent :items="items" :editPanel="editPanel"></editItemContent>    
       </fieldset>   
 
-      <!-- Item Buttons -->         
-      <fieldset>        
-        <h3 
-          class="c-editPanel__heading o-hdr o-hdr--t u-mt0" 
-          @click="toggleSections('buttons')" 
-          :class="{active: editPanelSections.buttons}">
+      <!-- Item Buttons Content -->         
+      <fieldset>      
+        <!-- Heading -->  
+        <custom-heading            
+          t
+          :el="'h3'"
+          class="c-editPanel__heading u-mt0"
+          :class="{active: editPanelSections.buttons}"
+          @click.native="toggleSections('buttons')"
+          >
           Item Buttons
-        </h3>
+        </custom-heading>
+        <!-- Accordion content -->
         <editItemButtons :items="items" :editPanel="editPanel"></editItemButtons>    
       </fieldset>        
       </div>
@@ -113,7 +132,16 @@ export default {
       let clone = JSON.parse(JSON.stringify(itemClass.content.heading.headings[0]));      
       this.items[this.editPanel.itemIndex].content.heading.headings.push(clone);
     })  
-
+    editBus.$on('addButton', (button) => {
+      // see prototype extension in main.js
+      const copy = this.$extendObj(button) 
+      this.items[this.editPanel.itemIndex].content.buttons.button.push(copy);
+    })
+    editBus.$on('removeButton', (index) => {
+      this.items[this.editPanel.itemIndex].content.buttons.button.splice(index, 1)
+      console.log(index)
+    })    
+    // console.log(this.$root.$root.util)
   },   
   data() {
     return {
@@ -132,16 +160,22 @@ export default {
 
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 
 .c-btn-tag {
-  border-radius: 4px;
+  border-radius: 2px;
   background: lightgray;
   margin-top:6px;
+  padding:4px 8px;
+
 }
 
+.c-btn-tag:empty { display:none; }
+
 .c-btn-tag.active {
-  background: darkseagreen;
+  background: green;
+  color: #fff;
+  text-shadow: -0.5px -0.5px 0px rgba(0,0,0,.3);  
 }
 
 .c-btn-tag:empty {
