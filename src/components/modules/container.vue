@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="o-container u-mt-lg" :ref="module.name" :class="module.classes.applied" style="background:rgba(277, 7, 19, .1); min-height:30vh">      
+    <div class="o-container" :ref="module.name" :class="module.classes.applied" style="background:rgba(277, 7, 19, .1); min-height:30vh; margin-top:1.5rem">      
       <slot>Module component</slot>
     </div>
     <div class="o-container">
@@ -54,7 +54,13 @@ export default {
     CustomHeader
   },
   methods: {
-    getHtml() { return this.$refs[this.module.name].outerHTML }    
+    getHtml() { 
+      const htmlContent = this.$refs[this.module.name].outerHTML,
+            htmlContentCleaned = htmlContent.replace(/ style="[^"]*"/, "")
+      console.log(htmlContentCleaned)
+      // htmlContent.replace(/style="[^"]*"/, "") // this isn't working
+      return htmlContentCleaned
+    }    
   },
   computed: {
     classesAvailable() { return this.module.classes.available },
