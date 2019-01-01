@@ -3,12 +3,12 @@
     <div class="c-debug-toggle o-container">
       <input 
         type="checkbox"  
-        id="module-debug"       
+        :id="`${module.name}-debug`"       
         :checked="module.debug.show"        
         :value="module.debug.show"
         @click="module.debug.show = !module.debug.show"
         >
-      <label for="module-debug">Show debug styles</label>   
+      <label :for="`${module.name}-debug`">Show debug styles</label>   
     </div>
     <div :ref="module.name" :class="defaultClasses" :style="debugStyles">      
       <slot>Module component</slot>
@@ -18,7 +18,7 @@
         small 
         basic 
         :class="{active: module.html.show}"
-        @click.native="module.html.show = !module.html.show"
+        @click.native.prevent="module.html.show = !module.html.show"
       >
         <span v-if="!module.html.show">Show</span>
         <span v-else>Hide</span>
@@ -35,7 +35,7 @@
           plain 
           class="c-btn-tag active" 
           v-for="(item, index) in classesApplied" 
-          @click.native="applyClass(index, module.classes, 'remove')">
+          @click.native.prevent="applyClass(index, module.classes, 'remove')">
           {{item}}
         </CustomButton>        
         <!-- Available Classes -->   
@@ -45,7 +45,7 @@
           class="c-btn-tag" 
           v-for="(item, index) in classesAvailable" 
           v-if="item.class[2] == true"
-          @click.native="applyClass(index, module.classes, 'apply')">
+          @click.native.prevent="applyClass(index, module.classes, 'apply')">
           {{item.class[0]}}
         </CustomButton>
       </div>
@@ -68,6 +68,9 @@ export default {
   components: {
     CustomButton,
     CustomHeader
+  },
+  props: {
+    module
   },
   methods: {
     getHtml() { 
@@ -96,29 +99,11 @@ export default {
       setTimeout(function() { this.module.html.content = this.getHtml() }.bind(this), 150)
     }
   },
-  data() {
-    return {   
-      module: {
-        name: 'Container',
-        html: {
-          show: false,
-          content: ''
-        },
-        debug: {
-          show: true,
-          styles: "background:rgba(277, 7, 19, .1); min-height:30vh; margin-top:1.5rem; display: flex; justify-content: center; align-items: center"
-        },
-        classes: {
-          default: ['o-container'],
-          applied: [],
-          available: [
-            { class: ['o-container-md', "Apply container styles at medium breakpoint", true] },
-            { class: ['o-container-lg', "Apply container styles at large breakpoint", true] }
-          ]
-        }
-      }          
-    }
-  },
+  // data() {
+  //   return {   
+         
+  //   }
+  // },
   mixins: [editPanelMixins],
   mounted() {
     this.module.html.content = this.getHtml()
