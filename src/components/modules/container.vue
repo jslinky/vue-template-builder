@@ -1,14 +1,30 @@
 <template>
   <div>
-    <div class="o-container" :ref="module.name" :class="module.classes.applied" style="background:rgba(277, 7, 19, .1); min-height:30vh; margin-top:1.5rem">      
+    <div class="c-debug-toggle o-container">
+      <input 
+        type="checkbox"  
+        id="module-debug"       
+        :checked="module.debug.show"        
+        :value="module.debug.show"
+        @click="module.debug.show = !module.debug.show"
+        >
+      <label for="module-debug">Show debug styles</label>   
+    </div>
+    <div :ref="module.name" :class="defaultClasses" :style="debugStyles">      
       <slot>Module component</slot>
     </div>
-    <div class="o-container">
-      <a href="#" class="o-btn">Show HTML</a>
-      <div style="padding:1.5rem; background:#eee; font:0.785rem 'Courier'; letter-spacing:0.75px">
-        {{ moduleHtml }}
-        <!-- {{module.htmlContainer}} -->
-      </div>
+    <div class="c-code o-container u-flex">
+      <CustomButton 
+        small 
+        basic 
+        :class="{active: module.html.show}"
+        @click.native="module.html.show = !module.html.show"
+      >
+        <span v-if="!module.html.show">Show</span>
+        <span v-else>Hide</span>
+        &nbsp;HTML
+      </CustomButton>        
+      <code v-if="module.html.show">{{ moduleHtml }}</code>
     </div>      
     <div class="o-container">
       <h4 class="o-hdr o-hdr--t">Related classes</h4>      
@@ -57,27 +73,43 @@ export default {
     getHtml() { 
       const htmlContent = this.$refs[this.module.name].outerHTML,
             htmlContentCleaned = htmlContent.replace(/ style="[^"]*"/, "")
-      console.log(htmlContentCleaned)
-      // htmlContent.replace(/style="[^"]*"/, "") // this isn't working
       return htmlContentCleaned
     }    
   },
   computed: {
+    defaultClasses() {
+      const classes = this.module.classes.default.map((className) => className)
+      this.classesApplied.map((className) => classes.push(className))
+      return classes      
+    },
     classesAvailable() { return this.module.classes.available },
     classesApplied() { return this.module.classes.applied },
-    moduleHtml() { return this.module.htmlContainer }
+    debugStyles() {
+      if(this.module.debug.show) {
+        return this.module.debug.styles
+      }
+    },
+    moduleHtml() { return this.module.html.content }
   },
   watch: {
     classesApplied: function() {
-      setTimeout(function() { this.module.htmlContainer = this.getHtml() }.bind(this), 150)
+      setTimeout(function() { this.module.html.content = this.getHtml() }.bind(this), 150)
     }
   },
   data() {
     return {   
       module: {
         name: 'Container',
-        htmlContainer: '',
+        html: {
+          show: false,
+          content: ''
+        },
+        debug: {
+          show: true,
+          styles: "background:rgba(277, 7, 19, .1); min-height:30vh; margin-top:1.5rem; display: flex; justify-content: center; align-items: center"
+        },
         classes: {
+          default: ['o-container'],
           applied: [],
           available: [
             { class: ['o-container-md', "Apply container styles at medium breakpoint", true] },
@@ -89,7 +121,7 @@ export default {
   },
   mixins: [editPanelMixins],
   mounted() {
-    this.module.htmlContainer = this.getHtml()
+    this.module.html.content = this.getHtml()
   }
 }
 
@@ -98,6 +130,23 @@ export default {
 
 <style lang="less">
 
+.c-code .o-btn {
+  flex:0 1 auto;
+  align-self:flex-start;
+}
 
+code {
+  flex:1 1 auto;
+  padding:1.5rem; 
+  background:#eee; 
+  font:0.785rem 'Courier'; 
+  letter-spacing:0.75px  
+}
+
+.c-debug-toggle {
+  text-align:right;
+  margin-top:1.5rem;
+  transform:translate(0, 1.25rem);
+}
 
 </style>

@@ -6,7 +6,9 @@
       <p>For a container with the maximum site width but no gutters use the class u-site-max-width in combination with u-mx-auto for centering.</p>
     </div>
     <Container>
-      o-container
+      <div style="text-align:center; padding:1.5rem 0">
+      <h3 class="o-hdr o-hdr--t u-mt0">o-container</h3>
+      </div>
     </Container>
   </div>
 </template>
@@ -24,11 +26,27 @@ export default {
   },
   data() {
     return {
-      classesApplied: [],
-      classesAvailable: [
-        { class: ['o-container-md', "Apply container styles at medium breakpoint", true] },
-        { class: ['o-container-lg', "Apply container styles at large breakpoint", true] }
-      ]
+      modules: {
+        container: {
+          name: 'Container',
+          html: {
+            show: false,
+            content: ''
+          },
+          debug: {
+            show: true,
+            styles: "background:rgba(277, 7, 19, .1); min-height:30vh; margin-top:1.5rem; display: flex; justify-content: center; align-items: center"
+          },
+          classes: {
+            default: ['o-container'],
+            applied: [],
+            available: [
+              { class: ['o-container-md', "Apply container styles at medium breakpoint", true] },
+              { class: ['o-container-lg', "Apply container styles at large breakpoint", true] }
+            ]
+          }
+        }
+      }
     }
   }  
 }
