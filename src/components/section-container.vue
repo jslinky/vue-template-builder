@@ -5,30 +5,30 @@
       <p>Use the class container for general puporse containers. It defines gutters and max-width for all screen sizes</p>
       <p>For a container with the maximum site width but no gutters use the class u-site-max-width in combination with u-mx-auto for centering.</p>
     </div>
-    <Container :module="modules.container">
+    <ModuleComponent :module="modules.container">
       <div style="text-align:center; padding:1.5rem 0">
       <h3 class="o-hdr o-hdr--t u-mt0">o-container</h3>
       </div>
-    </Container>
+    </ModuleComponent>
     <div class="o-container"><hr></div>
-    <Container :module="modules.maxWidth">
+    <ModuleComponent :module="modules.maxWidth">
       <div style="text-align:center; padding:1.5rem 0">
       <h3 class="o-hdr o-hdr--t u-mt0">u-mx-auto</h3>
       </div>
-    </Container>    
+    </ModuleComponent>    
   </div>
 </template>
 
 
 <script>
 
-import Container from './modules/container.vue'
+import ModuleComponent from './modules/module.vue'
 
 export default {
   // Name of this component
   name: 'sectionContainer',
   components: {
-    Container
+    ModuleComponent
   },
   data() {
     return {

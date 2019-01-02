@@ -1,15 +1,10 @@
 <template>
   <div>
-    <div class="c-debug-toggle o-container">
-      <input 
-        type="checkbox"  
-        :id="`${module.name}-debug`"       
-        :checked="module.debug.show"        
-        :value="module.debug.show"
-        @click="module.debug.show = !module.debug.show"
-        >
-      <label :for="`${module.name}-debug`">Show debug styles</label>   
+    <!-- Debug toggle component -->
+    <div class="o-container u-relative">
+      <DebugToggle :module="module" />
     </div>
+    <!-- Module component -->
     <div :ref="module.name" :class="defaultClasses" :style="debugStyles">      
       <slot>Module component</slot>
     </div>
@@ -26,7 +21,7 @@
       </CustomButton>        
       <code v-if="module.html.show">{{ moduleHtml }}</code>
     </div>      
-    <div class="o-container">
+    <div class="c-module-relatedClasses o-container">
       <h4 class="o-hdr o-hdr--t">Related classes</h4>      
       <div class="u-flex u-flex-column u-items-start">
         <!-- Applied Classes -->      
@@ -58,16 +53,20 @@
 
 <script>
 
+import { editBus } from '../../main'
 import CustomButton from '../button.vue'
 import CustomHeader from '../heading.vue'
+import DebugToggle from './debug-toggle.vue'
 import { editPanelMixins } from '../../mixins/editPanel-applyClass'
+
 
 export default {
   // Name of this component
-  name: 'Container',
+  name: 'ModuleComponent',
   components: {
     CustomButton,
-    CustomHeader
+    CustomHeader,
+    DebugToggle
   },
   props: {
     module
@@ -77,7 +76,7 @@ export default {
       const htmlContent = this.$refs[this.module.name].outerHTML,
             htmlContentCleaned = htmlContent.replace(/ style="[^"]*"/, "")
       return htmlContentCleaned
-    }    
+    }
   },
   computed: {
     defaultClasses() {
@@ -107,7 +106,14 @@ export default {
   mixins: [editPanelMixins],
   mounted() {
     this.module.html.content = this.getHtml()
-  }
+  },
+  created() {
+    // editBus.$on('toggle-debug', this.debugToggle())
+    editBus.$on('toggle-debug', (module) => {
+      console.log(module)
+      module.debug.show = !module.debug.show 
+    })    
+  }  
 }
 
 
@@ -128,10 +134,5 @@ code {
   letter-spacing:0.75px  
 }
 
-.c-debug-toggle {
-  text-align:right;
-  margin-top:1.5rem;
-  transform:translate(0, 1.25rem);
-}
 
 </style>
