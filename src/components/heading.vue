@@ -49,7 +49,8 @@ export default {
         'o-hdr--big': this.bg, 
         'o-hdr--hg': this.hg, 
         'o-hdr--msv': this.msv,
-        'center aligned': this.center        
+        'center aligned': this.center,
+        'inverted': this.inverted        
       }
     }
   },
@@ -103,6 +104,10 @@ export default {
     center: {
       type: Boolean,
       default: false
+    },
+    inverted: {
+      type: Boolean,
+      default:false
     }                  
   },
   mixins: [classPropsFilter]
