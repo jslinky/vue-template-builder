@@ -88,12 +88,8 @@ export default {
   methods: {
     switchActiveContent(contentRef) {
       this.activeContent = contentRef
-      // this.$refs[this.activeContent].getHtml()
-      setTimeout(() => {
-        // console.log(this.$refs[this.activeContent])
-        this.$refs[this.activeContent].getHtml()
-      }, 150)
-      
+      // should probably use a promise here
+      setTimeout(() => { this.$refs[this.activeContent].updateHtmlToCopy() })      
     }
   },
   data() {
@@ -122,10 +118,7 @@ export default {
         }        
       }
     }
-  },
-  mounted() {
-    // console.log(this.$refs[this.activeContent])
-  } 
+  }
 }
 
 

@@ -76,8 +76,16 @@ export default {
       let htmlContent = this.$refs[this.module.name].outerHTML,      
           htmlContentCleaned = htmlContent.replace(/ style="[^"]*"/, "");
       htmlContentCleaned = htmlContentCleaned.replace(/ (data-v-\w+="")/g, "") 
-      console.log('fired html method')
+      // console.log(htmlContentCleaned)
       return htmlContentCleaned
+    },
+    updateHtmlToCopy() {
+      setTimeout(function() { this.module.html.content = this.getHtml() }.bind(this), 150)
+      if(this.module.classes.applied.includes('transparent')) {
+        editBus.$emit('updateClassesApplied', true)        
+      } else {
+        editBus.$emit('updateClassesApplied', false)
+      }
     }
   },
   computed: {
@@ -97,12 +105,7 @@ export default {
   },
   watch: {
     classesApplied: function(newVal, oldVal) {
-      setTimeout(function() { this.module.html.content = this.getHtml() }.bind(this), 150)
-      if(this.module.classes.applied.includes('transparent')) {
-        editBus.$emit('updateClassesApplied', true)        
-      } else {
-        editBus.$emit('updateClassesApplied', false)
-      }           
+      this.updateHtmlToCopy()          
     }
   },
   mixins: [editPanelMixins],
