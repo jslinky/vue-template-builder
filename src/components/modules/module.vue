@@ -6,7 +6,7 @@
     </div>
     <!-- Module component -->
     <div :ref="module.name" :class="defaultClasses" :style="debugStyles">      
-      <slot>Module component</slot>
+      <slot>{{module.name}}</slot>
     </div>
     <div class="c-code o-container u-flex">
       <CustomButton 
@@ -73,8 +73,10 @@ export default {
   },
   methods: {
     getHtml() { 
-      const htmlContent = this.$refs[this.module.name].outerHTML,
-            htmlContentCleaned = htmlContent.replace(/ style="[^"]*"/, "")
+      let htmlContent = this.$refs[this.module.name].outerHTML,      
+          htmlContentCleaned = htmlContent.replace(/ style="[^"]*"/, "");
+      htmlContentCleaned = htmlContentCleaned.replace(/ (data-v-\w+="")/g, "") 
+      console.log('fired html method')
       return htmlContentCleaned
     }
   },
@@ -94,23 +96,21 @@ export default {
     moduleHtml() { return this.module.html.content }
   },
   watch: {
-    classesApplied: function() {
+    classesApplied: function(newVal, oldVal) {
       setTimeout(function() { this.module.html.content = this.getHtml() }.bind(this), 150)
+      if(this.module.classes.applied.includes('transparent')) {
+        editBus.$emit('updateClassesApplied', true)        
+      } else {
+        editBus.$emit('updateClassesApplied', false)
+      }           
     }
   },
-  // data() {
-  //   return {   
-         
-  //   }
-  // },
   mixins: [editPanelMixins],
   mounted() {
     this.module.html.content = this.getHtml()
   },
-  created() {
-    // editBus.$on('toggle-debug', this.debugToggle())
+  created() {  
     editBus.$on('toggle-debug', (module) => {
-      console.log(module)
       module.debug.show = !module.debug.show 
     })    
   }  

@@ -1,39 +1,37 @@
 <template>
   <div>
-    <!-- Do multiple template switcher -->
+    <SiteHeader />
     <!-- Do custom property amendments -->
     <DebugToggle :module="modules.masthead" class="u-fixed">
-      <div class="o-buttons o-buttons--grouped">
-      <CustomButton 
-        :class="{'u-mb0': true, 'active': activeContent == 'example-1' }" 
-        small primary inverted 
-        @click.native.prevent="activeContent = 'example-1'">
-        Example 1
-      </CustomButton>
-      <CustomButton 
-        :class="{'u-mb0': true, 'active': activeContent == 'example-2' }" 
-        small primary inverted 
-        @click.native.prevent="activeContent = 'example-2'">
-        Example 2
-      </CustomButton>            
+      <div class="u-flex u-items-center">
+        <CustomHeader class="u-mx-lg">Content examples</CustomHeader>
+        <div class="o-buttons o-buttons--grouped">
+        <CustomButton 
+          :class="{'u-mb0': true, 'active': activeContent == 'example-1' }" 
+          small primary inverted 
+          @click.native.prevent="switchActiveContent('example-1')">
+          Item 1
+        </CustomButton>
+        <CustomButton 
+          :class="{'u-mb0': true, 'active': activeContent == 'example-2' }" 
+          small primary inverted 
+          @click.native.prevent="switchActiveContent('example-2')">
+          Item 2
+        </CustomButton>            
+        </div>
       </div>
     </DebugToggle>
     <ModuleComponent :module="modules.masthead" ref="example-1" v-if="activeContent == 'example-1'">
-      <!-- make this item module -->
-    <!-- <item v-for="(item, index) in items" :itemInfo="item" :itemIndex="index" />  -->
     <article data-theme="inverted" class="o-item o-item--card reverse">
       <figure class="o-item__image">
         <a href="/gentlemen/clothing/coats-and-jackets/">
           <img src="https://www.jackwills.com/on/demandware.static/-/Sites/default/dwf35f318f/2018/WK37/01_HOMEPAGE/02_FF/ends-sunday.jpg">
         </a>
         <figcaption class="o-item__content middle aligned center aligned" style="background: #485063;">
-          <h1 class="o-hdr o-hdr--big center aligned u-mb-lg">{{modules.masthead.name}}</h1>          
-          <!-- <div class="o-item__artwork eight wide">
-            <img alt="Buy 2 shirts save %20" src="http://www.jackwills.com/on/demandware.static/-/Sites/default/dwf7167aef/2017/WK10/04_MEGADROP/tshirt_promo_uk.svg" title="Buy 2 shirts save 20%">
-          </div> -->
+          <h1 class="o-item__hdr o-hdr o-hdr--big center aligned u-mb-lg">{{modules.masthead.name}}</h1>          
           <div class="o-buttons u-mt-lg ten wide">
-            <h3 class="six wide u-mb-sm u-mt0">Women</h3>
-            <h3 class="six wide u-mb-sm u-mt0">Mens</h3>
+            <h3 class="o-hdr inverted six wide u-mb-sm u-mt0">Women</h3>
+            <h3 class="o-hdr inverted six wide u-mb-sm u-mt0">Mens</h3>
             <a href="#" class="o-btn o-btn--basic">Gill Sans Caps</a>
             <a href="#" class="o-btn o-btn--basic">Gill Sans Caps</a>
             <a href="#" class="o-btn o-btn--basic">Gill Sans Caps</a>
@@ -68,6 +66,8 @@
 
 <script>
 
+import { editBus } from '../main'
+import SiteHeader from './modules/site-header-example.vue'
 import ModuleComponent from './modules/module.vue'
 import DebugToggle from './modules/debug-toggle.vue'
 import CustomButton from './button.vue'
@@ -78,11 +78,23 @@ export default {
   // Name of this component
   name: 'sectionMasthead',
   components: {
+    SiteHeader,
     ModuleComponent,
     DebugToggle,
     CustomButton,
     CustomHeader
     // item
+  },
+  methods: {
+    switchActiveContent(contentRef) {
+      this.activeContent = contentRef
+      // this.$refs[this.activeContent].getHtml()
+      setTimeout(() => {
+        // console.log(this.$refs[this.activeContent])
+        this.$refs[this.activeContent].getHtml()
+      }, 150)
+      
+    }
   },
   data() {
     return {
@@ -110,14 +122,21 @@ export default {
         }        
       }
     }
-  }  
+  },
+  mounted() {
+    // console.log(this.$refs[this.activeContent])
+  } 
 }
 
 
 </script>
 
-<style lang="less">
+<style scoped lang="less">
 
+
+.c-debug-toggle {
+  top:120px;
+}
 
 
 </style>
