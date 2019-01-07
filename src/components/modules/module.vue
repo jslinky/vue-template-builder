@@ -7,12 +7,12 @@
     <!-- Module component -->
     <div :ref="module.name" :class="defaultClasses" :style="debugStyles">      
       <slot>{{module.name}}</slot>
-    </div>
+    </div>   
     <div class="c-code o-container u-flex">
       <CustomButton 
         small 
         basic 
-        :class="{active: module.html.show}"
+        :class="{active: module.html.show, inverted: invert}"
         @click.native.prevent="module.html.show = !module.html.show"
       >
         <span v-if="!module.html.show">Show</span>
@@ -21,7 +21,7 @@
       </CustomButton>        
       <code v-if="module.html.show">{{ moduleHtml }}</code>
     </div>      
-    <div class="c-module-relatedClasses o-container">
+    <div class="c-module-relatedClasses o-container" v-if="classesAvailable.length > 0">
       <h4 class="o-hdr o-hdr--t">Related classes</h4>      
       <div class="u-flex u-flex-column u-items-start">
         <!-- Applied Classes -->      
@@ -49,8 +49,6 @@
   </div>
 </template>
 
-
-
 <script>
 
 import { editBus } from '../../main'
@@ -71,10 +69,16 @@ export default {
   props: {
     module
   },
+  data() {
+    return {
+      invert: false
+    }
+  },
   methods: {
     getHtml() { 
-      let htmlContent = this.$refs[this.module.name].outerHTML,      
-          htmlContentCleaned = htmlContent.replace(/ style="[^"]*"/, "");
+      let htmlContent
+      htmlContent = this.module.classes.default.length > 0 ? this.$refs[this.module.name].outerHTML : this.$refs[this.module.name].innerHTML
+      let htmlContentCleaned = htmlContent.replace(/ style="[^"]*"/, "");
       htmlContentCleaned = htmlContentCleaned.replace(/ (data-v-\w+="")/g, "") 
       // console.log(htmlContentCleaned)
       return htmlContentCleaned
@@ -86,13 +90,18 @@ export default {
       } else {
         editBus.$emit('updateClassesApplied', false)
       }
+    },
+    toogleInvert() {
+      this.invert = !this.invert
     }
   },
   computed: {
     defaultClasses() {
-      const classes = this.module.classes.default.map((className) => className)
-      this.classesApplied.map((className) => classes.push(className))
-      return classes      
+      if(this.module.classes.default.length > 0) {
+        const classes = this.module.classes.default.map((className) => className)
+        this.classesApplied.map((className) => classes.push(className))
+        return classes      
+      }
     },
     classesAvailable() { return this.module.classes.available },
     classesApplied() { return this.module.classes.applied },
@@ -127,6 +136,7 @@ export default {
 .c-code .o-btn {
   flex:0 1 auto;
   align-self:flex-start;
+  padding:.5em 1em;
 }
 
 code {

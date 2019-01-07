@@ -1,39 +1,37 @@
 <template>
   <div :class="{'invert': invert}">
     <!-- Do custom property amendments -->
-    <!-- <DebugToggle :module="modules.masthead" class="u-fixed"> -->
-      <!-- ADD INVERT TOOGLE? -->
-      <!-- <div class="u-flex u-items-center">
-        <CustomHeader class="u-mx-lg">Content examples</CustomHeader>
-        <div class="o-buttons o-buttons--grouped">
-        <CustomButton 
-          :class="{'u-mb0': true, 'active': activeContent == 'example-1' }" 
-          small primary inverted 
-          @click.native.prevent="switchActiveContent('example-1')">
-          Item 1
-        </CustomButton>
-        <CustomButton 
-          :class="{'u-mb0': true, 'active': activeContent == 'example-2' }" 
-          small primary inverted 
-          @click.native.prevent="switchActiveContent('example-2')">
-          Item 2
-        </CustomButton>            
-        </div>
-      </div> -->
-    <!-- </DebugToggle> -->
- 
-    <!-- <ModuleComponent :module="modules.masthead" ref="example-2" v-else-if="activeContent == 'example-2'">
-    </ModuleComponent>         -->
-    <div class="o-container">
-      <CustomHeader msv inverted>Massive Heading</CustomHeader>
-      <CustomHeader hg>Huge Heading</CustomHeader>
-      <CustomHeader bg>Big Heading</CustomHeader>
-      <CustomHeader lg>Large Heading</CustomHeader>
-      <CustomHeader md>Medium Heading</CustomHeader>
-      <CustomHeader sm>Small Heading</CustomHeader>
-      <CustomHeader t secFont>Tiny Heading</CustomHeader>
-      <CustomHeader t>Tiny Heading (Secondary Font)</CustomHeader>
-      <CustomHeader>Standard Heading</CustomHeader>
+    <DebugToggle :module="modules.headingMsv" class="u-fixed">
+        <input 
+          type="checkbox"  
+          :id="toogleInvert"       
+          :checked="invert"        
+          :value="invert"
+          @click="toogleInvert()"
+          >          
+        <label :for="toogleInvert">Inverted</label> 
+    </DebugToggle>
+    
+    <div class="c-header-container o-container">
+      <ModuleComponent :ref="modules.headingMsv.name" :module="modules.headingMsv">
+      <CustomHeader :el="'h1'" msv :class="{'inverted': invert}" style="margin-bottom:1rem">Massive Heading</CustomHeader>      
+      </ModuleComponent>      
+      <!-- <p :ref="`${modules.headingMsv.name}-desc`">Descriptive text here</p> -->
+      <ModuleComponent :ref="modules.headingHuge.name" :module="modules.headingHuge">
+        <CustomHeader hg :class="{'inverted': invert}" style="margin-bottom:1rem">Huge Heading</CustomHeader>
+      </ModuleComponent>  
+      <ModuleComponent :ref="modules.headingBig.name" :module="modules.headingBig">
+        <CustomHeader bg :class="{'inverted': invert}" style="margin-bottom:1rem">Big Heading</CustomHeader>
+      </ModuleComponent> 
+      <ModuleComponent :ref="modules.headingLarge.name" :module="modules.headingLarge">
+        <CustomHeader lg :class="{'inverted': invert}" style="margin-bottom:1rem">Large Heading</CustomHeader>
+      </ModuleComponent>    
+      <ModuleComponent :ref="modules.headingMedium.name" :module="modules.headingMedium">
+        <CustomHeader md :class="{'inverted': invert}" style="margin-bottom:1rem">Medium Heading</CustomHeader>
+      </ModuleComponent>         
+      <ModuleComponent :ref="modules.headingSmall.name" :module="modules.headingSmall">
+        <CustomHeader sm :class="{'inverted': invert}" style="margin-bottom:1rem">Small Heading</CustomHeader>
+      </ModuleComponent>       
     </div>
   </div>
 </template>
@@ -60,30 +58,179 @@ export default {
   },
   data() {
     return {
-      invert: true,
+      invert: false,
+      headingNames: [],
       modules: {
-        // masthead: {
-        //   name: 'Masthead',
-        //   html: {
-        //     show: false,
-        //     content: ''
-        //   },
-        //   debug: {
-        //     show: true,
-        //     styles: ""
-        //   },
-        //   classes: {
-        //     default: ['o-mh'],
-        //     applied: [],
-        //     available: [
-        //       { class: ['o-mh--fullScreen', "Full screen masthead", true] },
-        //       { class: ['o-mh--prop', "Proportional masthead", true] },
-        //       { class: ['transparent', "For transparent navigation", true] }
-        //     ]
-        //   }
-        // }        
+        headingMsv: {
+          name: 'headingMsv',
+          html: {
+            show: false,
+            content: ''
+          },
+          debug: {
+            show: false,
+            styles: ""
+          },
+          classes: {
+            default: [],
+            applied: ['o-hdr'],
+            available: [
+              // { class: ['o-btn--sm', "Small button", true] }
+            ]
+          }
+        },
+        headingHuge: {
+          name: 'headingHuge',
+          html: {
+            show: false,
+            content: ''
+          },
+          debug: {
+            show: false,
+            styles: ""
+          },
+          classes: {
+            default: [],
+            applied: [],
+            available: [
+              // { class: ['o-btn--sm', "Small button", true] }
+            ]
+          }
+        },
+        headingBig: {
+          name: 'headingBig',
+          html: {
+            show: false,
+            content: ''
+          },
+          debug: {
+            show: false,
+            styles: ""
+          },
+          classes: {
+            default: [],
+            applied: [],
+            available: [
+              // { class: ['o-btn--sm', "Small button", true] }
+            ]
+          }
+        },
+        headingLarge: {
+          name: 'headingLarge',
+          html: {
+            show: false,
+            content: ''
+          },
+          debug: {
+            show: false,
+            styles: ""
+          },
+          classes: {
+            default: [],
+            applied: [],
+            available: [
+              // { class: ['o-btn--sm', "Small button", true] }
+            ]
+          }
+        },
+        headingMedium: {
+          name: 'headingMedium',
+          html: {
+            show: false,
+            content: ''
+          },
+          debug: {
+            show: false,
+            styles: ""
+          },
+          classes: {
+            default: [],
+            applied: [],
+            available: [
+              // { class: ['o-btn--sm', "Small button", true] }
+            ]
+          }
+        },
+        headingSmall: {
+          name: 'headingSmall',
+          html: {
+            show: false,
+            content: ''
+          },
+          debug: {
+            show: false,
+            styles: ""
+          },
+          classes: {
+            default: [],
+            applied: [],
+            available: [
+              // { class: ['o-btn--sm', "Small button", true] }
+            ]
+          }
+        },
+        headingTiny: {
+          name: 'headingTiny',
+          html: {
+            show: false,
+            content: ''
+          },
+          debug: {
+            show: false,
+            styles: ""
+          },
+          classes: {
+            default: [],
+            applied: [],
+            available: [
+              // { class: ['o-btn--sm', "Small button", true] }
+            ]
+          }
+        },
+        headingStd: {
+          name: 'headingStd',
+          html: {
+            show: false,
+            content: ''
+          },
+          debug: {
+            show: false,
+            styles: ""
+          },
+          classes: {
+            default: [],
+            applied: [],
+            available: [
+              // { class: ['o-btn--sm', "Small button", true] }
+            ]
+          }
+        }                                                                    
       }
     }
+  },
+  methods: {
+    toogleInvert() {
+      this.invert = !this.invert
+      this.toogleModuleInvert()
+    },
+    toogleModuleInvert() {
+      this.headingNames.forEach(element => {
+        this.$refs[element].toogleInvert()
+      })
+    }
+  },
+  created() {
+    let headingNames = Object.keys(this.modules).reduce(function (names, key) {
+        names.push(key)
+        return names
+    }, []);   
+    this.headingNames = headingNames      
+  },  
+  mounted() {
+    if(this.invert) {
+      // Works but throwing an error undefined
+      this.toogleModuleInvert()      
+    }    
   }
 }
 
@@ -95,6 +242,14 @@ export default {
 // body is outside scope of this component 
 .invert {
   background-color:#101A31;
+}
+
+.invert .c-debug-toggle label {
+  color:#fff;
+}
+
+.c-header-container {
+  padding:.015rem 0 3.5rem;
 }
 
 
