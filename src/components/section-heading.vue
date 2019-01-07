@@ -59,12 +59,12 @@ export default {
   data() {
     return {
       invert: false,
-      headingNames: [],
+      moduleNames: [],
       modules: {
         headingMsv: {
           name: 'headingMsv',
           html: {
-            show: false,
+            show: true,
             content: ''
           },
           debug: {
@@ -82,7 +82,7 @@ export default {
         headingHuge: {
           name: 'headingHuge',
           html: {
-            show: false,
+            show: true,
             content: ''
           },
           debug: {
@@ -100,7 +100,7 @@ export default {
         headingBig: {
           name: 'headingBig',
           html: {
-            show: false,
+            show: true,
             content: ''
           },
           debug: {
@@ -118,7 +118,7 @@ export default {
         headingLarge: {
           name: 'headingLarge',
           html: {
-            show: false,
+            show: true,
             content: ''
           },
           debug: {
@@ -136,7 +136,7 @@ export default {
         headingMedium: {
           name: 'headingMedium',
           html: {
-            show: false,
+            show: true,
             content: ''
           },
           debug: {
@@ -154,7 +154,7 @@ export default {
         headingSmall: {
           name: 'headingSmall',
           html: {
-            show: false,
+            show: true,
             content: ''
           },
           debug: {
@@ -168,43 +168,7 @@ export default {
               // { class: ['o-btn--sm', "Small button", true] }
             ]
           }
-        },
-        headingTiny: {
-          name: 'headingTiny',
-          html: {
-            show: false,
-            content: ''
-          },
-          debug: {
-            show: false,
-            styles: ""
-          },
-          classes: {
-            default: [],
-            applied: [],
-            available: [
-              // { class: ['o-btn--sm', "Small button", true] }
-            ]
-          }
-        },
-        headingStd: {
-          name: 'headingStd',
-          html: {
-            show: false,
-            content: ''
-          },
-          debug: {
-            show: false,
-            styles: ""
-          },
-          classes: {
-            default: [],
-            applied: [],
-            available: [
-              // { class: ['o-btn--sm', "Small button", true] }
-            ]
-          }
-        }                                                                    
+        }                                                                   
       }
     }
   },
@@ -214,17 +178,18 @@ export default {
       this.toogleModuleInvert()
     },
     toogleModuleInvert() {
-      this.headingNames.forEach(element => {
+      this.moduleNames.forEach(element => {
         this.$refs[element].toogleInvert()
+        setTimeout(() => { this.$refs[element].updateHtmlToCopy() })   
       })
     }
   },
   created() {
-    let headingNames = Object.keys(this.modules).reduce(function (names, key) {
+    let moduleNames = Object.keys(this.modules).reduce(function (names, key) {
         names.push(key)
         return names
     }, []);   
-    this.headingNames = headingNames      
+    this.moduleNames = moduleNames      
   },  
   mounted() {
     if(this.invert) {

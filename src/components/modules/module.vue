@@ -147,5 +147,10 @@ code {
   letter-spacing:0.75px  
 }
 
+.c-header-container .c-code,
+.c-container-buttons .c-code {
+  --container-marginX:0;
+}
+
 
 </style>
