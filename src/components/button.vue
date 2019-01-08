@@ -7,7 +7,8 @@
       'inverted': inverted, 
       'o-btn--sm': small,
       'o-btn--lg': large,
-      'o-btn--plain': plain
+      'o-btn--plain': plain,
+      'o-btn--secondary': secondary
       }">
     <slot>Button</slot>
   </button> 
@@ -20,7 +21,8 @@
       'inverted': inverted, 
       'o-btn--sm': small,
       'o-btn--lg': large,
-      'o-btn--plain': plain
+      'o-btn--plain': plain,
+      'o-btn--secondary': secondary
     }">
     <slot>Button</slot>
   </a>    
@@ -51,6 +53,10 @@ export default {
       type:Boolean,
       default:false
     },
+    secondary: {
+      type:Boolean,
+      default:false
+    },    
     inverted: {
       type: Boolean,
       default: false      

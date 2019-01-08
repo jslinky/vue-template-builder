@@ -5,9 +5,17 @@
       <DebugToggle :module="module" />
     </div>
     <!-- Module component -->
-    <div :ref="module.name" :class="defaultClasses" :style="debugStyles">      
+    <div v-if="el === 'div'" :ref="module.name" :class="defaultClasses" :style="debugStyles">      
       <slot>{{module.name}}</slot>
-    </div>   
+    </div>
+    <a v-else-if="el === 'a'" :ref="module.name" :class="defaultClasses" :style="debugStyles">      
+      <slot>{{module.name}}</slot>
+    </a>     
+    <section v-else-if="el === 'section'" :ref="module.name" :class="defaultClasses" :style="debugStyles">      
+      <slot>{{module.name}}</slot>
+    </section>         
+
+    <!-- Show code -->  
     <div class="c-code o-container u-flex">
       <CustomButton 
         small 
@@ -67,7 +75,11 @@ export default {
     DebugToggle
   },
   props: {
-    module
+    module,
+    el: {
+      type: String,
+      default:'div'
+    }
   },
   data() {
     return {
@@ -115,6 +127,14 @@ export default {
   watch: {
     classesApplied: function(newVal, oldVal) {
       this.updateHtmlToCopy()          
+    },
+    invert: function(newVal) {
+      if(newVal) {
+        this.module.classes.applied.push('inverted')
+      } else if(!newVal && this.module.classes.applied.includes('inverted')) {
+        let index = this.module.classes.applied.indexOf('inverted')
+        this.module.classes.applied.splice(index, 1)
+      }    
     }
   },
   mixins: [editPanelMixins],
