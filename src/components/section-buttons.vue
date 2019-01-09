@@ -39,7 +39,8 @@
           type="radio"  
           id="smallBtn-radio"       
           :checked="buttonSize.small"        
-          :value="buttonSize.small"          
+          :value="buttonSize.small"     
+          @click="setSize('sm')"     
           >          
         <label for="smallBtn-radio">Small size</label>
 
@@ -47,7 +48,8 @@
           type="radio"  
           id="normalBtn-radio"       
           :checked="buttonSize.default"        
-          :value="buttonSize.default"          
+          :value="buttonSize.default"      
+          @click="setSize('default')"    
           >          
         <label for="normalBtn-radio">Default size</label>   
 
@@ -55,7 +57,8 @@
           type="radio"  
           id="largeBtn-radio"       
           :checked="buttonSize.large"        
-          :value="buttonSize.large"          
+          :value="buttonSize.large"     
+          @click="setSize('lg')"     
           >          
         <label for="largeBtn-radio">Large size</label>                 
       </div>    
@@ -184,7 +187,7 @@ export default {
           },
           classes: {
             default: ['o-btn', 'o-btn--plain'],
-            applied: [],
+            applied: ['o-btn--lg'],
             available: [
               // { class: ['o-btn--sm', "Small button", true] },
               // { class: ['o-btn--lg', "Large button", true] }
@@ -337,6 +340,29 @@ export default {
       this.moduleNames.forEach(element => {
         this.$refs[element].toogleInvert()
         setTimeout(() => { this.$refs[element].updateHtmlToCopy() })   
+      })
+    },
+    setSize(size) {
+      this.moduleNames.forEach(element => {
+        let classes = this.modules[element].classes,
+            classesApplied = classes.applied,
+            includesLarge = classesApplied.includes('o-btn--lg') ? classesApplied.indexOf('o-btn--lg') : false,
+            includesSmall = classesApplied.includes('o-btn--sm') ? classesApplied.indexOf('o-btn--sm') : false
+            if(size === 'default' && typeof includesLarge === 'number') {
+              classes.applied.splice(includesLarge, 1)
+            } else if(size === 'default' && typeof includesSmall === 'number') {
+              classes.applied.splice(includesSmall, 1)
+            } else if(size === 'lg' && includesLarge === false) {
+              if(typeof includesSmall === 'number') {
+                classes.applied.splice(includesSmall, 1)
+              }
+              classes.applied.push('o-btn--lg')
+            } else if(size === 'sm' && includesSmall === false) {
+              if(typeof includesLarge === 'number') {
+                classes.applied.splice(includesLarge, 1)
+              }              
+              classes.applied.push('o-btn--sm')
+            }     
       })
     },
     buttonsUpdate(action) {
