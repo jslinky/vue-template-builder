@@ -39,7 +39,7 @@
           type="radio"  
           id="smallBtn-radio"       
           :checked="buttonSize.small"        
-          :value="buttonSize.small"     
+          :value="!buttonSize.small"     
           @click="setSize('sm')"     
           >          
         <label for="smallBtn-radio">Small size</label>
