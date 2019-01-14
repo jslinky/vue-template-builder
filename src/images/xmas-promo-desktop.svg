@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="300" height="604" viewBox="0, 0, 300, 604">
+  <style type="text/css">
+  <![CDATA[
+  @font-face {
+    font-family: 'Gill Sans Light';
+    src: url('../fonts/GillSans-Light.ttf') format('truetype');
+  }
+
+  .gill-sans-light { font-family:"Gill Sans Light","Gill Sans MT",Calibri,sans-serif; }
+  .new-baskerville-roman { font-family:"NewBaskervilleStd-Roman",Times,"Times New Roman",serif; }
+  ]]>
+</style>
+  <g id="Layer_1">
+    <text transform="matrix(1, 0, 0, 1, 150, 103.5)">
+      <tspan x="-67.903" y="-21" font-family="GillSans-Light" font-size="37" kerning="4" fill="#FFFFFF">DON'T</tspan>
+      <tspan x="-62.667" y="21" font-family="GillSans-Light" font-size="37" kerning="4" fill="#FFFFFF">TRICK.</tspan>
+    </text>
+    <text transform="matrix(1, 0, 0, 1, 150, 201)">
+      <tspan x="-44.052" y="-10.5" font-family="GillSans-Light" font-size="37" kerning="4" fill="#FFFFFF">JUST </tspan>
+      <tspan x="-59.059" y="31.5" font-family="GillSans-Light" font-size="37" kerning="4" fill="#FFFFFF">TREAT</tspan>
+    </text>
+    <text transform="matrix(1, 0, 0, 1, 150, 301)">
+      <tspan x="-36.018" y="-3.5" font-family="Baskerville" font-size="20" kerning="4" fill="#FFFFFF">WITH</tspan>
+    </text>
+    <text transform="matrix(1, 0, 0, 1, 159.037, 356)">
+      <tspan x="-82.5" y="23.5" font-family="Baskerville" font-size="88" fill="#FFFFFF">20%</tspan>
+    </text>
+    <text transform="matrix(1, 0, 0, 1, 149.345, 423.5)">
+      <tspan x="-42.19" y="11" font-family="Baskerville" font-size="36" kerning="5" fill="#FFFFFF">OFF</tspan>
+    </text>
+    <g>
+      <path d="M100.5,257.5 L199.19,257.5" fill="#000000"/>
+      <path d="M100.5,257.5 L199.19,257.5" fill-opacity="0" stroke="#FFFFFF" stroke-width="1"/>
+    </g>
+    <text transform="matrix(1, 0, 0, 1, 159.038, 582.5)">
+      <tspan x="-87.546" y="-2.5" font-family="GillSans-Light" font-size="10" kerning="4" fill="#FFFFFF">SELECTED LINES ONLY</tspan>
+    </text>
+  </g>
+</svg>

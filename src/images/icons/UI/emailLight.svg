@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16">
+  <g fill="none" fill-rule="evenodd" transform="translate(-2 -4)">
+    <polygon points="0 24 24 24 24 0 0 0"/>
+    <path fill="#222" fill-rule="nonzero" d="M21,4 C21.5525,4 22,4.4475 22,5 L22,19 C22,19.5525 21.5525,20 21,20 L3,20 C2.4475,20 2,19.5525 2,19 L2,5 C2,4.4475 2.4475,4 3,4 L21,4 Z M3,19 L21,19 L21,5 L3,5 L3,19 Z"/>
+    <polygon fill="#222" fill-rule="nonzero" points="11.703 12.403 12 12.621 12.297 12.403 21.797 5.403 21.203 4.597 11.703 11.597 12.297 11.597 2.797 4.597 2.203 5.403"/>
+  </g>
+</svg>
