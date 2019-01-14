@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import axios from 'axios'
+import './test.less'
 
 Vue.config.productionTip = false
 // install axios to global Vue instance - access as $http
