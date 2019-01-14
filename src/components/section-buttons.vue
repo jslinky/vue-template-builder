@@ -142,26 +142,7 @@
         <CustomButton basic :class="{'inverted': invert}" v-for="button in modules.buttons.content.length">      
           Button         
         </CustomButton> 
-      </ModuleComponent>    
-
-      <article class="o-item o-item--imageSwap o-item--headerSwap">
-        <figure class="o-item__image">
-          <img alt="Shop Ladies" src="https://www.jackwills.com/on/demandware.static/-/Sites/default/dw423d13df/2018/WK39/03_GIFT_GUIDE/4.jpg" title="Shop Ladies">
-          <img alt="Shop Ladies" src="https://www.jackwills.com/on/demandware.static/-/Sites/default/dw8458cadd/2018/WK39/03_GIFT_GUIDE/6.jpg" title="Shop Ladies">
-          <figcaption class="o-item__content o-item__content--overlayMiddle">
-            <a href="/ladies/sportxlife/">Explore Ladies</a>
-            <h2 class="o-item__hdr o-hdr o-hdr--hg u-mt0 u-mb0 inverted ">Christmas...</h2>
-            <h2 class="o-item__hdr o-hdr o-hdr--hg u-mt0 u-mb0 inverted ">Sorted</h2>
-          </figcaption>
-        </figure>
-        <div class="o-item__content twelve wide">
-          <!-- replace margin-top with ultility class -->
-          <div class="o-buttons o-buttons--stacked-md" style="margin-top: var(--spacing);">
-            <a href="#" class="o-btn o-btn--basic">Shop Women</a>
-            <a href="#" class="o-btn o-btn--basic">Shop Men</a>
-          </div>
-        </div>
-      </article>      
+      </ModuleComponent>         
      
     </div>
   </div>
