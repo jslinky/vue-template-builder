@@ -39,28 +39,31 @@
           type="radio"  
           id="smallBtn-radio"       
           :checked="buttonSize.small"        
-          :value="!buttonSize.small"     
+          :value="true"    
+          name="buttonSize" 
           @click="setSize('sm')"     
           >          
-        <label for="smallBtn-radio">Small size</label>
+        <label for="smallBtn-radio" :class="{'inverted': invert}">Small size</label>
 
         <input 
           type="radio"  
           id="normalBtn-radio"       
           :checked="buttonSize.default"        
-          :value="buttonSize.default"      
+          :value="true"   
+          name="buttonSize"   
           @click="setSize('default')"    
           >          
-        <label for="normalBtn-radio">Default size</label>   
+        <label for="normalBtn-radio" :class="{'inverted': invert}">Default size</label>   
 
         <input 
           type="radio"  
           id="largeBtn-radio"       
           :checked="buttonSize.large"        
-          :value="buttonSize.large"     
+          :value="true"    
+          name="buttonSize" 
           @click="setSize('lg')"     
           >          
-        <label for="largeBtn-radio">Large size</label>                 
+        <label for="largeBtn-radio" :class="{'inverted': invert}">Large size</label>                 
       </div>    
 
     
@@ -140,6 +143,25 @@
           Button         
         </CustomButton> 
       </ModuleComponent>    
+
+      <article class="o-item o-item--imageSwap o-item--headerSwap">
+        <figure class="o-item__image">
+          <img alt="Shop Ladies" src="https://www.jackwills.com/on/demandware.static/-/Sites/default/dw423d13df/2018/WK39/03_GIFT_GUIDE/4.jpg" title="Shop Ladies">
+          <img alt="Shop Ladies" src="https://www.jackwills.com/on/demandware.static/-/Sites/default/dw8458cadd/2018/WK39/03_GIFT_GUIDE/6.jpg" title="Shop Ladies">
+          <figcaption class="o-item__content o-item__content--overlayMiddle">
+            <a href="/ladies/sportxlife/">Explore Ladies</a>
+            <h2 class="o-item__hdr o-hdr o-hdr--hg u-mt0 u-mb0 inverted ">Christmas...</h2>
+            <h2 class="o-item__hdr o-hdr o-hdr--hg u-mt0 u-mb0 inverted ">Sorted</h2>
+          </figcaption>
+        </figure>
+        <div class="o-item__content twelve wide">
+          <!-- replace margin-top with ultility class -->
+          <div class="o-buttons o-buttons--stacked-md" style="margin-top: var(--spacing);">
+            <a href="#" class="o-btn o-btn--basic">Shop Women</a>
+            <a href="#" class="o-btn o-btn--basic">Shop Men</a>
+          </div>
+        </div>
+      </article>      
      
     </div>
   </div>
@@ -324,7 +346,9 @@ export default {
               { class: ['o-buttons--stacked', "Stacked", true] },
               { class: ['o-buttons--stacked-md', "Stacked at medium", true] },
               { class: ['o-buttons--grouped', "Grouped", true] },
-              { class: ['two column grid-layout', "2 column layout", true] }              
+              { class: ['two column grid-layout', "2 column layout", true] },
+              { class: ['three column grid-layout', "3 column layout", true] },
+              { class: ['four column grid-layout', "4 column layout", true] }              
             ]
           }
         }                                                                                                            
@@ -344,6 +368,7 @@ export default {
     },
     setSize(size) {
       this.moduleNames.forEach(element => {
+        if(element !== 'buttons') {
         let classes = this.modules[element].classes,
             classesApplied = classes.applied,
             includesLarge = classesApplied.includes('o-btn--lg') ? classesApplied.indexOf('o-btn--lg') : false,
@@ -362,7 +387,8 @@ export default {
                 classes.applied.splice(includesLarge, 1)
               }              
               classes.applied.push('o-btn--sm')
-            }     
+            } 
+        }    
       })
     },
     buttonsUpdate(action) {
