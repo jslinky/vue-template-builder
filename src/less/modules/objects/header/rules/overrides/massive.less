@@ -1,0 +1,37 @@
+
+// Override 
+// #namespace { 
+//     .module() {
+//         @element: {
+//             // override code
+//         };
+//     } 
+// } 
+
+// Extend
+// #namespace {
+//     .module(element) {
+//         // extend code
+//     }
+// }
+
+
+// #objects {
+//   .header(hMassive-ruleset) {
+//     #objects.header-variables();
+//     .output() when (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+//       --headerFontFamily: @headerSecondaryFontFamily;
+//     }
+//     .output() when (@customPropFallback = true) and (@static-variables-only = false) {
+//       --headerFontFamily: @headerSecondaryFontFamily;
+//       font-family:@headerSecondaryFontFamily;
+//       font-family:var(--headerFontFamily);
+//     }
+//     .output() when (@static-variables-only = true) {
+//       font-family: @headerSecondaryFontFamily;
+//     }  
+//     .output();      
+//   }
+// } 
+
+

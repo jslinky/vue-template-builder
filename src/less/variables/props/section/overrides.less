@@ -1,0 +1,34 @@
+// Override 
+// #namespace { 
+//     .module() {
+//         @element: {
+//             // override code
+//         };
+//     } 
+// } 
+
+// Extend
+// #namespace {
+//     .module(element) {
+//         // extend code
+//     }
+// }
+
+
+
+//*******************************
+//    SECTION: Custom Prop Rulesets
+//*******************************
+
+//-------------------
+//  Section props
+//--------------------
+
+// Extend
+#props {
+    .section(default) {
+      #objects.section-variables();
+      // --itemHeaderOffset: ~"calc(@{itemHeaderOffset} / 2)";
+      // --itemContentOffset: ~"calc(@{itemContentOffset} / 2)";  
+    }
+}

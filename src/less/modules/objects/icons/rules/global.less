@@ -1,0 +1,42 @@
+
+//*******************************
+//    Ruleset calls
+//*******************************
+
+//-------------------
+//  CORE icon rules
+//--------------------
+
+#objects {
+  .icon() {        
+    @element: { 
+      #objects.icon(element-ruleset);
+     };     
+  }
+}
+
+//-------------------
+//  EXTEND(ED) core ruleset
+//--------------------
+
+#objects {
+  .icon(element) { 
+    .output-rules(element; icon);
+  }   
+}
+
+
+
+#objects {
+  .icon(@item) {
+    #objects.icon();
+    #objects.icon-variables();
+    @rules: @@item;
+    @rules();
+  }
+  .icon-variables(@item) {
+    #objects.icon-variables();
+    @rules: @@item;
+    @rules();
+  }  
+}

@@ -1,0 +1,413 @@
+
+#collections {
+  .form() {
+    @default-ruleset: {
+      position:relative;
+      max-width:100%;
+    };
+    // Fieldset
+    @fieldset-ruleset: {
+      clear:both;
+      .define-module-prop(form; margin; fieldMargin; fieldMarginFallback);
+      .define-module-prop(form; padding; fieldPadding; @fieldPadding);
+      .define-module-prop(form; border; fieldBorder);
+    };
+    @fieldset-customPropOnly-ruleset: { };
+    @fieldset-fallback-ruleset: { };
+    @fieldset-staticVarsOnly-ruleset: { };
+    // Label
+    @label-ruleset: {
+      .define-module-prop(form; font-family; labelFont; @labelFont);
+      .define-module-prop(form; color; labelColor);
+      .define-module-prop(form; margin; labelMargin; labelMarginFallback);
+      .define-module-prop(form; text-transform; labelTextTransform);
+      // .define-module-prop(form; width; labelWidth);
+      // .define-module-prop(form; max-width; labelMaxWidth);
+      .define-module-prop(form; display; labelDisplay);
+      .define-module-prop(form; letter-spacing; labelLetterSpacing; labelLetterSpacingFallback);
+    };
+    @label-customPropOnly-ruleset: { 
+      font-size:var(--labelFontSize);
+    };
+    @label-fallback-ruleset: { 
+      #collections.form(label-staticVarsOnly-ruleset);
+      #collections.form(label-customPropOnly-ruleset);
+    };
+    @label-staticVarsOnly-ruleset: { 
+      font-size:@@labelFontSize;      
+    };     
+    // Radio
+    @radio-label-ruleset: {
+
+    };
+    @radio-label-customPropOnly-ruleset: { 
+      --labelFontSize: ~"var(--@{checkboxLabelFontSize})";
+      --labelDistance: @checkboxLabelDistance;
+      --labelMargin: @checkboxLabelMargin;
+      --labelWidth: auto;
+      --gutter: var(--labelDistanceCalc);      
+    };
+    @radio-label-fallback-ruleset: { 
+      #collections.form(radio-label-staticVarsOnly-ruleset);
+      #collections.form(radio-label-customPropOnly-ruleset);      
+      font-size:var(--labelFontSize);
+      margin:var(--labelMargin);
+    };
+    @radio-label-staticVarsOnly-ruleset: { 
+      font-size: @@checkboxLabelFontSize;
+      margin:@checkboxLabelMarginFallback;
+    };    
+    //-------------------
+    // Text Input
+    //--------------------    
+    @input-text-ruleset: {
+      .define-module-prop(form; border; inputBorder);
+      .define-module-prop(form; font-family; inputFont; @inputFont);  
+      .define-module-prop(form; font-size; inputFontSize);  
+      .define-module-prop(form; transition; inputTransition);  
+      .define-module-prop(form; border-radius; inputBorderRadius; @inputBorderRadius);  
+      width:100%;   
+      -webkit-appearance:none; 
+    };
+    @input-text-customPropOnly-ruleset: { 
+      max-width:var(--inputMaxWidth);
+      padding:var(--inputPadding);
+      letter-spacing:~"var(--inputLetterSpacing, @{inputLetterSpacingFallback})";
+      content:'props';
+    };
+    @input-text-fallback-ruleset: { 
+      #collections.form(input-text-staticVarsOnly-ruleset);
+      #collections.form(input-text-customPropOnly-ruleset);      
+    };
+    @input-text-staticVarsOnly-ruleset: { 
+      max-width:@inputMaxWidthFallback;
+      padding:@inputPaddingFallback;
+      letter-spacing:@inputLetterSpacingFallback;
+    };        
+    // Text Input Placeholder
+    @input-placeholder-ruleset: { };
+    @input-placeholder-customPropOnly-ruleset: { 
+      color:~"var(--inputPlaceholderColor, @{inputPlaceholderColor})";
+    };
+    @input-placeholder-fallback-ruleset: { 
+      #collections.form(input-placeholder-staticVarsOnly-ruleset);
+      #collections.form(input-placeholder-customPropOnly-ruleset);            
+    };
+    @input-placeholder-staticVarsOnly-ruleset: { 
+      color:@inputPlaceholderColor;
+    };  
+    //-------------------
+    // Text Area Input
+    //--------------------    
+    @input-textArea-ruleset: {
+
+    };
+    @input-textArea-customPropOnly-ruleset: { 
+    };
+    @input-textArea-fallback-ruleset: { 
+      #collections.form(input-textArea-staticVarsOnly-ruleset);
+      #collections.form(input-textArea-customPropOnly-ruleset);      
+    };
+    @input-textArea-staticVarsOnly-ruleset: { 
+      resize: @textAreaResize;
+      // Other properties availble - see variables/form/form.less 
+    };   
+    //-------------------
+    // Text Area Input - Not Rows
+    //--------------------    
+    @input-textArea-notRows-ruleset: {
+
+    };
+    @input-textArea-notRows-customPropOnly-ruleset: { 
+    };
+    @input-textArea-notRows-fallback-ruleset: { 
+      #collections.form(input-textArea-notRows-staticVarsOnly-ruleset);
+      #collections.form(input-textArea-notRows-customPropOnly-ruleset);      
+    };
+    @input-textArea-notRows-staticVarsOnly-ruleset: { 
+      height: @textAreaHeight;
+      min-height: @textAreaMinHeight;
+      max-height: @textAreaMaxHeight;
+      // Other properties availble - see variables/form/form.less 
+    };        
+    //-------------------
+    // Select Menu
+    //--------------------    
+    @select-ruleset: {
+      display: block;
+      height: auto;
+      width: 100%;      
+      appearance: none;
+      text-overflow: ''; /* this is important for firefox! */
+      &::-ms-expand { display: none; }
+      // Background image
+      #collections.form(select-bgImage);
+    };
+    @select-customPropOnly-ruleset: { 
+      // to do
+    };
+    @select-fallback-ruleset: { 
+      #collections.form(select-staticVarsOnly-ruleset);
+      #collections.form(select-customPropOnly-ruleset);            
+    };
+    @select-staticVarsOnly-ruleset: { 
+      background-color: @selectBackground;
+      border: @selectBorder;
+      border-radius: @@selectBorderRadius;
+      box-shadow: @selectBoxShadow;
+      padding: @selectPaddingFallback;
+      color: @selectColor;
+      transition: @selectTransition;
+      font-size: @selectFontSize;
+      font-family:@@selectFont;
+      letter-spacing:@selectLetterSpacingFallback;
+    };      
+
+    @select-bgImage-ruleset: { 
+      .icon-fill('@{selectBackgroundImage}', '@{selectColor}');      
+      background-position: @selectBackgroundImagePostion;
+      background-size:@selectBackgroundImageSize;
+      background-repeat: @selectBackgroundImageRepeat;      
+    };
+
+    //-------------------
+    // Input Radio / Checkbox
+    //--------------------    
+    @radio-checkbox-ruleset: {
+
+    };
+    @radio-checkbox-customPropOnly-ruleset: { 
+      // to do
+    };
+    @radio-checkbox-fallback-ruleset: { 
+      #collections.form(radio-checkbox-staticVarsOnly-ruleset);
+      #collections.form(radio-checkbox-customPropOnly-ruleset);            
+    };
+    @radio-checkbox-staticVarsOnly-ruleset: { 
+      // replace with vars
+      -webkit-appearance: none;
+      border: @radioCheckboxBorder;
+      width: @radioCheckboxSize;
+      height: @radioCheckboxSize;
+      min-width: @radioCheckboxSize;
+      min-height: @radioCheckboxSize;      
+      border-radius: @radioCheckboxBorderRadius;
+      vertical-align: @radioCheckboxVerticalAlign;
+      transition:@radioCheckboxTransition;
+    };  
+    
+    //-------------------
+    // Input Radio
+    //--------------------    
+    @radio-ruleset: {
+
+    };
+    @radio-customPropOnly-ruleset: { 
+      // to do
+    };
+    @radio-fallback-ruleset: { 
+      #collections.form(radio-staticVarsOnly-ruleset);
+      #collections.form(radio-customPropOnly-ruleset);            
+    };
+    @radio-staticVarsOnly-ruleset: { 
+      border-radius: @radioBorderRadius;
+      // Optional values
+      // width: @radioSize;
+      // height: @radioSize;
+      // border: @radioBorder;
+    };  
+    
+    //-------------------
+    // Input Checkbox
+    //--------------------    
+    @checkbox-ruleset: {
+
+    };
+    @checkbox-customPropOnly-ruleset: { 
+      // to do
+    };
+    @checkbox-fallback-ruleset: { 
+      #collections.form(checkbox-staticVarsOnly-ruleset);
+      #collections.form(checkbox-customPropOnly-ruleset);            
+    };
+    @checkbox-staticVarsOnly-ruleset: { 
+      border-radius: @checkboxBorderRadius;
+      // Optional values
+      // width: @radioSize;
+      // height: @radioSize;
+      // border: @radioBorder;      
+    };      
+
+
+
+    //-------------------
+    // States :Focus
+    //--------------------    
+    // Text Input
+    @input-text-focus-ruleset: { };
+    @input-text-focus-customPropOnly-ruleset: { 
+      --inputBorderColor: @inputFocusBorderColor;
+      outline: ~"var(--inputOutline, @{inputFocusOutline})";
+    };
+    @input-text-focus-fallback-ruleset: { 
+      #collections.form(input-text-focus-staticVarsOnly-ruleset);
+      #collections.form(input-text-focus-customPropOnly-ruleset); 
+      border-color:~"var(--inputBorderColor, @{inputFocusBorderColor})";     
+    };
+    @input-text-focus-staticVarsOnly-ruleset: { 
+      border-color: @inputFocusBorderColor;
+      outline: @inputFocusOutline;
+      // Optional values //
+      // background: @inputFocusBackground;
+      // color: @inputFocusColor;
+      // box-shadow: @inputFocusBoxShadow;
+      // border-radius: @inputFocusBorderRadius;
+    };        
+    // Input Placeholder
+    @input-placeholder-focus-ruleset: { };
+    @input-placeholder-focus-customPropOnly-ruleset: { 
+      --inputPlaceholderColor: @inputPlaceholderFocusColor;
+    };
+    @input-placeholder-focus-fallback-ruleset: { 
+      #collections.form(input-placeholder-focus-staticVarsOnly-ruleset);
+      #collections.form(input-placeholder-customPropOnly-ruleset);
+    };
+    @input-placeholder-focus-staticVarsOnly-ruleset: { 
+      color:@inputPlaceholderFocusColor;
+    }; 
+    // Select Menu
+    @select-focus-ruleset: { };
+    @select-focus-customPropOnly-ruleset: { 
+      --selectBorderColor: @selectFocusBorderColor;
+      outline: ~"var(--selectOutline, @{selectFocusOutline})";
+    };
+    @select-focus-fallback-ruleset: { 
+      #collections.form(select-focus-staticVarsOnly-ruleset);
+      #collections.form(select-focus-customPropOnly-ruleset); 
+      border-color:~"var(--selectBorderColor, @{selectFocusBorderColor})";     
+    };
+    @select-focus-staticVarsOnly-ruleset: { 
+      border-color: @selectFocusBorderColor;
+      outline: @selectFocusOutline;
+      // Optional values //
+      // background: @inputFocusBackground;
+      // color: @inputFocusColor;
+      // box-shadow: @inputFocusBoxShadow;
+      // border-radius: @inputFocusBorderRadius;
+    };  
+
+    // Radio / Checkbox checkbox
+    @radio-checkbox-focus-ruleset: {
+      outline:none;
+    };
+    @radio-checkbox-focus-customPropOnly-ruleset: { 
+
+    };
+    @radio-checkbox-focus-fallback-ruleset: { 
+      #collections.form(radio-checkbox-focus-staticVarsOnly-ruleset);
+      #collections.form(radio-checkbox-focus-customPropOnly-ruleset);            
+    };
+    @radio-checkbox-focus-staticVarsOnly-ruleset: { 
+
+    };     
+
+
+    //-------------------
+    // States: Error
+    //--------------------         
+    @input-text-error-ruleset: { };
+    @input-text-error-customPropOnly-ruleset: { 
+      --inputBorderColor: @inputErrorBorderColor;
+    };
+    @input-text-error-fallback-ruleset: { 
+      #collections.form(input-text-error-staticVarsOnly-ruleset);
+      #collections.form(input-placeholder-customPropOnly-ruleset);
+      border: ~"var(--inputBorderColor, @inputBorderColor)";
+    };
+    @input-text-error-staticVarsOnly-ruleset: { 
+      border: @inputErrorBorder;
+      // Optional values //
+      // background: @inputErrorBackground;  
+      // color: @inputErrorColor;
+      // box-shadow:@inputErrorBoxShadow;      
+    };     
+    // Input Placeholder
+    @input-placeholder-error-ruleset: { };
+    @input-placeholder-error-customPropOnly-ruleset: { 
+      --inputPlaceholderColor: @inputErrorPlaceholderColor;
+    };
+    @input-placeholder-error-fallback-ruleset: { 
+      #collections.form(input-placeholder-error-staticVarsOnly-ruleset);
+      #collections.form(input-placeholder-error-customPropOnly-ruleset);
+      color:~"var(--inputPlaceholderColor, @{inputErrorPlaceholderColor})";
+    };
+    @input-placeholder-error-staticVarsOnly-ruleset: { 
+      color:@inputErrorPlaceholderColor;
+    };   
+    
+    
+    @prompt-error-ruleset: { };
+    @prompt-error-customPropOnly-ruleset: { 
+      
+    };
+    @prompt-error-fallback-ruleset: { 
+      #collections.form(prompt-error-staticVarsOnly-ruleset);
+      #collections.form(prompt-error-customPropOnly-ruleset);      
+    };
+    @prompt-error-staticVarsOnly-ruleset: { 
+      background:@promptBackground;
+      color:@promptTextColor;
+      font-size: @promptFontSize;
+      margin:@promptMargin;
+      padding:@promptPadding;
+    };       
+
+
+    //-------------------
+    // States: Checked
+    //--------------------    
+    // Checkbox
+    @checkbox-checked-ruleset: {
+
+    };
+    @checkbox-checked-customPropOnly-ruleset: { 
+      // to do
+    };
+    @checkbox-checked-fallback-ruleset: { 
+      #collections.form(checkbox-checked-staticVarsOnly-ruleset);
+      #collections.form(checkbox-checked-customPropOnly-ruleset);            
+    };
+    @checkbox-checked-staticVarsOnly-ruleset: { 
+      background-color:@checkboxCheckedBackground;
+      .icon-fill('@{checkboxCheckedBackgroundImage}', '@{checkboxCheckedIconColor}');
+      background-repeat:@checkboxBackgroundImageRepeat;
+      background-size: @checkboxBackgroundImageSize;
+      background-position:@checkboxBackgroundImagePostion;
+    }; 
+
+    // Radio
+    @radio-checked-ruleset: {
+
+    };
+    @radio-checked-customPropOnly-ruleset: { 
+      // to do
+    };
+    @radio-checked-fallback-ruleset: { 
+      #collections.form(radio-checked-staticVarsOnly-ruleset);
+      #collections.form(radio-checked-customPropOnly-ruleset);            
+    };
+    @radio-checked-staticVarsOnly-ruleset: { 
+      background-color:@radioCheckedBackground;
+      box-shadow: @radioCheckedBoxShadow;
+      // Optional values
+      // background-repeat:@radioBackgroundImageRepeat;
+      // background-size: @radioBackgroundImageSize;
+      // background-position:@radioBackgroundImagePostion;
+
+    };     
+    
+
+
+  }
+}
+ 

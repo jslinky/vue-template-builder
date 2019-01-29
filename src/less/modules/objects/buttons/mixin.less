@@ -1,0 +1,46 @@
+
+//-------------------
+//   Create new instances of button types
+//--------------------
+
+#objects {
+  // Unlock button variables
+  #objects.button-variables();  
+  
+  .create-underline() { #objects.button-type(underline); }
+
+
+  .create-button(@colorVal:@color; @type) {
+    @color: @colorVal;
+  }
+  // Generates layout for a button
+  .create-button(@colorVal; @type:all) when (@type = layout) {
+    @color: @colorVal;
+    #objects.button-type(layout);
+  }
+  // Creates variations of all button types based on @colorVal prop
+  .create-button(@colorVal; @type:all) when (@type = all) {
+    @color: @colorVal;
+    #objects.button-type(every-btn-type);
+  }
+  // Creates a default type button
+  .create-button(@colorVal; @type:all) when (@type = default) {
+    @color: @colorVal;
+    #objects.button-type(default-btn-type);
+  }
+  // Creates a basic type button
+  .create-button(@colorVal; @type:all) when (@type = basic) {
+    @color: @colorVal;
+    #objects.button-type(basic-btn-type);
+  }    
+  // Creates a primary type button
+  .create-button(@colorVal; @type:all) when (@type = primary) {
+    @color: @colorVal;
+    #objects.button-type(primary-btn-type);
+  }
+  // Creates a inverted primary type button
+  .create-button(@colorVal; @type:all) when (@type = primary-inverted) {
+    @color: @colorVal;
+    #objects.button-type(primary-btn-type-inverted);
+  }  
+}

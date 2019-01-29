@@ -77,11 +77,13 @@ export const itemClass = {
       status: false,
       url: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw8458cadd/2018/WK39/03_GIFT_GUIDE/6.jpg'
     },        
-    classes: {
-      fullWidth: 'o-item__image--100vw',
+    classes: {    
+      applied: [],  
       available: [
         { class: ['o-item__image--100vw', "Image 100vw", true] }
-      ]
+      ],
+      alignment: [],
+      fullWidth: 'o-item__image--100vw',      
     }          
   },
   content: {
@@ -163,7 +165,8 @@ export const itemClass = {
       available: [  
         { class: ['o-item__content--overlay', "Content overlays image", true] },
         { class: ['o-item__content--overlay', "Content overlays image", true] }        
-      ]
+      ],
+      alignment:[]
     }          
   }                 
 }

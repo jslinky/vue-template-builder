@@ -1,0 +1,109 @@
+/*******************************
+            Button
+*******************************/
+
+
+#objects {
+  .container-variables() {
+  /*-------------------
+        Element
+  --------------------*/
+
+
+    @container-maxWidth                       : 100%;    
+    @container-mobileWidthVal                 : inherit;
+    @container-mobileWidth                    : auto;
+    @container-mobileGutterMultiplyer         : 0.5;
+
+    @container-tabletWidthVal                 : inherit;
+    @container-tabletWidth                    : auto;
+    @container-tabletGutterMultiplyer         : 2;
+
+    @container-computerWidthVal               : inherit;
+    @container-computerWidth                  : auto;
+    @container-computerGutterMultiplyer       : 2;
+
+    @container-largeMonitorWidthVal           : unit(@site-max-widthPixel); 
+    @container-largeMonitorWidth              : ~"calc("@container-largeMonitorWidthVal*@rem ~"- ((@{gutter} * @{container-largeMonitorGutterMultiplyer}) * 2))";
+    @container-largeMonitorGutterMultiplyer   : 2;    
+
+  }
+}
+
+
+
+// /*******************************
+//             Container
+// *******************************/
+
+// /*-------------------
+//        Element
+// --------------------*/
+
+// /* Minimum Gutter is used to determine  the maximum container width for a given device */
+
+// @maxWidth: 100%;
+
+// /* Devices */
+// @mobileMinimumGutter: 0rem;
+// @mobileWidth: auto;
+// @mobileGutter: 0.75rem;
+
+// @tabletMinimumGutter: (@emSize  * 1);
+// @tabletWidth: auto; /*@tabletBreakpoint - (@tabletMinimumGutter * 2) - @scrollbarWidth*/
+// @tabletGutter: 3rem; /* auto */
+
+// @computerMinimumGutter: (@emSize  * 1.5);
+// @computerWidth: auto; /*@computerBreakpoint - (@computerMinimumGutter * 2) - @scrollbarWidth*/
+// @computerGutter: 3rem;
+
+// @largeMonitorMinimumGutter:(@emSize  * 3); /*(@emSize  * 2)*/
+// @largeMonitorWidth: @largeMonitorBreakpointPixel - (@largeMonitorMinimumGutter*2);
+// @largeMonitorGutter: auto;
+
+// /* Coupling (Add Negative Margin to container size) */
+// @gridgutter: @gutter; //2rem;
+// @relaxedGridgutter: @relaxedgutter; //3rem;
+// @veryRelaxedGridgutter: @veryRelaxedgutter; //5rem;
+
+// @mobileGridWidth: @mobileWidth;
+// @tabletGridWidth: ~"calc("@tabletWidth~" + "@gridgutter~")";
+// @computerGridWidth: ~"calc("@computerWidth~" + "@gridgutter~")";
+// @largeMonitorGridWidth: ~"calc("@largeMonitorWidth~" + "@gridgutter~")";
+
+// @mobileRelaxedGridWidth: @mobileWidth;
+// @tabletRelaxedGridWidth: ~"calc("@tabletWidth~" + "@relaxedGridgutter~")";
+// @computerRelaxedGridWidth: ~"calc("@computerWidth~" + "@relaxedGridgutter~")";
+// @largeMonitorRelaxedGridWidth: ~"calc("@largeMonitorWidth~" + "@relaxedGridgutter~")";
+
+// @mobileVeryRelaxedGridWidth: @mobileWidth;
+// @tabletVeryRelaxedGridWidth: ~"calc("@tabletWidth~" + "@veryRelaxedGridgutter~")";
+// @computerVeryRelaxedGridWidth: ~"calc("@computerWidth~" + "@veryRelaxedGridgutter~")";
+// @largeMonitorVeryRelaxedGridWidth: ~"calc("@largeMonitorWidth~" + "@veryRelaxedGridgutter~")";
+
+// #objects {
+//   .container() {
+//     .variables(px) {
+//     // px value for breakpoint calculation of large screen container
+//     @container-lg-maxWidth-gutter-scrollbar: ((@largeMonitorMinimumGutter * 2) + @scrollbarWidth);
+//     }
+//     .variables(em) {
+//     // em value breakpoint calculation of large screen container
+//     @container-lg-maxWidth-gutter-scrollbar: (((@largeMonitorMinimumGutter * 2) / @emSize) + (@scrollbarWidth / @emSize));
+//     }
+//   }
+// }
+
+
+
+
+
+// /*-------------------
+//        Types
+// --------------------*/
+
+// /* Text */
+// @textWidth: 700px;
+// @textFontFamily: @pageFont;
+// @textLineHeight: 1.5;
+// @textSize: @large;

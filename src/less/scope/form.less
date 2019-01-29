@@ -1,0 +1,25 @@
+
+// Form row 
+.form-row {
+  &:extend(.o-form__fieldset);
+}
+
+// Remove padding from scoped code
+.form-row.form-row,
+form fieldset {
+  padding:0;
+}
+
+// Error validation
+.error,
+.error-message,
+.search-error {
+  #collections.form-variables();
+  color:@promptTextColor;
+  font-size: @promptFontSize;
+}
+
+@import "form/checkout.less";
+@import "form/plp.less";
+@import "form/myAccount.less";
+

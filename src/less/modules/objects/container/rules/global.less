@@ -1,0 +1,89 @@
+
+
+//*******************************
+//    Ruleset calls
+//*******************************
+
+//-------------------
+//  CORE container rules
+//--------------------
+
+#objects {
+  .container() {    
+    // Initial container rules
+    @element: { 
+      #objects.container(element-ruleset);
+    };     
+     // Initial rules for the o-container-md class
+    @element-tabletBreakpointOnly: {
+      #objects.container(element-tabletBreakpointOnly-ruleset);
+    };
+    // Initial rules for the o-container-lg class
+    @element-computerBreakpointOnly: { 
+      #objects.container(element-computerBreakpointOnly-ruleset);
+    };        
+    // Tablet breakpoint rules
+    @element-tabletBreakpoint: { 
+      #objects.container(element-tabletBreakpoint-ruleset);
+    };
+    // Computer breakpoint rules
+    @element-computerBreakpoint: { 
+      #objects.container(element-computerBreakpoint-ruleset);
+    };
+    // Large monitor rules
+    @element-largeMonitorBreakpoint: { 
+      #objects.container(element-largeMonitorBreakpoint-ruleset);
+    };      
+  }
+}
+
+
+//-------------------
+//  EXTEND(ED) core ruleset
+//--------------------
+
+#objects {
+  .container(element) {
+    .output-rules(element; container);
+  }  
+  .container(element-tabletBreakpointOnly) {
+    .output-rules(element-tabletBreakpointOnly; container);
+  }  
+  .container(element-computerBreakpointOnly) {
+    .output-rules(element-computerBreakpointOnly; container);
+  } 
+  .container(element-tabletBreakpoint) {
+    .output-rules(element-tabletBreakpoint; container);
+  }    
+  .container(element-computerBreakpoint) {
+    .output-rules(element-computerBreakpoint; container);
+  } 
+  .container(element-largeMonitorBreakpoint) {
+    .output-rules(element-largeMonitorBreakpoint; container);
+  }        
+}
+
+//-------------------
+//  OVERRIDE core ruleset
+//  If you need to override / extend any core framework rulesets
+//--------------------
+
+@import "overrides/config.less";
+
+//-------------------
+//  DEFINE RULESET MIXIN
+//--------------------
+
+#objects {
+  .container(@ruleset) {
+    #objects.container();
+    #objects.container-variables();
+    @rules: @@ruleset;
+    @rules();
+  }
+  .container-variables(@ruleset) {
+    #objects.container-variables();
+    @rules: @@ruleset;
+    @rules();
+  }  
+}

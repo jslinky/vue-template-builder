@@ -1,0 +1,104 @@
+
+// /*--------------
+//   Page Heading
+// ---------------*/
+
+#objects {
+  .header-variables() {
+    @static-variables-only                : false; // turn off custom prop on a module level - define on a per site basis in overrides
+    @local-scoped-custom-prop-fallback    : false; // not sure this works! local scoped variable - should be moved to overrides
+    
+    @headerFontSizeVal                    : mini;
+    @headerFontSize                       : @@headerFontSizeVal; // nice pattern
+    @headerLetterSpacing                  : 0.75*@rem; 
+
+    // @headerHLarge-textTransform           : uppercase;
+    @headerHMedium-letterSpacingUpperVal  : 1.5;
+    @headerHMedium-letterSpacingUpper     : @headerHMedium-letterSpacingUpperVal*@rem;          
+    @headerHSmall-textTransform           : uppercase;
+    @headerHSmall-letterSpacingUpperVal   : 3;
+    @headerHSmall-letterSpacingUpper      : @headerHSmall-letterSpacingUpperVal*@rem;  
+    
+    @headerHTiny-textTransform            : uppercase;
+    @headerHTiny-letterSpacingUpperVal    : 1.5; 
+    @headerHTiny-letterSpacingUpper       : @headerHTiny-letterSpacingUpperVal*@rem;  
+    
+    // H5 - secondary syle
+    @headerHMedium-secondaryFont          : @secondaryFontStack;
+    @headerHMedium-secondaryLetterSpacingVal : 2.5;  
+
+    @headerHTiny-secondaryFont            : @secondaryFontStack;
+    @headerHTiny-secondaryLetterSpacingVal: 2.5;
+    @headerHTiny-secondaryLetterSpacingVal: 2.5;      
+
+
+
+    @headerFont                           : @primaryFontRegular;
+    @headerFontFamily                     : @primaryFontRegularStack;
+    @headerSecondaryFont                  : @secondaryFont;
+    @headerSecondaryFontFamily            : @secondaryFontStack;     
+    
+    // Header Font
+    @hMassiveFontFamily                   : headerSecondaryFontFamily;
+    @hHugeFontFamily                      : headerSecondaryFontFamily;
+    @hBigFontFamily                       : headerSecondaryFontFamily;
+    @hLargeFontFamily                     : headerSecondaryFontFamily;
+    @hMediumFontFamily                    : headerSecondaryFontFamily;
+    @hSmallFontFamily                     : headerSecondaryFontFamily;
+    @hTinyFontFamily                      : inherit;    
+
+    @massiveSizeVal                       : 72;
+    @hugeSizeVal                          : 48;
+    @bigSizeVal                           : 36;
+    @largeSizeVal                         : 26;
+    @mediumSizeVal                        : 22;
+    @smallSizeVal                         : 16;
+    @miniSizeVal                          : 12;
+    @tinySizeVal                          : 10;        
+
+    @massive                              : @massiveSizeVal*@rem;
+    @huge                                 : @hugeSizeVal*@rem;
+    @big                                  : @bigSizeVal*@rem;
+    @large                                : @largeSizeVal*@rem;
+    @medium                               : @mediumSizeVal*@rem;
+    @small                                : @smallSizeVal*@rem;
+    @mini                                 : @miniSizeVal*@rem;
+    @tiny                                 : @tinySizeVal*@rem;
+
+    @hMassiveVal                          : massive;
+    @hHugeVal                             : huge;
+    @hBigVal                              : big;
+    @hLargeVal                            : large;
+    @hMediumVal                           : medium;
+    @hSmallVal                            : small;
+    @hTinyVal                             : mini;
+
+    @hMassive                             : @@hMassiveVal;
+    @hHuge                                : @@hHugeVal;
+    @hBig                                 : @@hBigVal;
+    @hLarge                               : @@hLargeVal;
+    @hMedium                              : @@hMediumVal;
+    @hSmall                               : @@hSmallVal;
+    @hTiny                                : @@hTinyVal;
+
+    // Line Height Addition - baseline value of line-height is font-size
+    @headerHMassive-lineHeightAddition    : 8*@rem; // size in REM or VMIN / MAX
+    @headerHHuge-lineHeightAddition       : 6*@rem;
+    @headerHBig-lineHeightAddition        : 5*@rem;
+    @headerHLarge-lineHeightAddition      : 9*@rem;
+    @headerHMedium-lineHeightAddition     : 8*@rem;
+    @headerHSmall-lineHeightAddition      : 9*@rem;
+    @headerHTiny-lineHeightAddition       : 13*@rem;    
+
+    // Offset multiplyers
+    @headerHMassive-offsetMultiplyer      : 2.5;
+    @headerHHuge-offsetMultiplyer         : 2;
+    @headerHBig-offsetMultiplyer          : 2;
+    @headerHLarge-offsetMultiplyer        : 2;
+    @headerHMedium-offsetMultiplyer       : 2;
+    @headerHSmall-offsetMultiplyer        : 2;
+    @headerHTiny-offsetMultiplyer         : 2;    
+    
+  }
+}
+

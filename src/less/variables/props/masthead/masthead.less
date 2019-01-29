@@ -1,0 +1,185 @@
+
+
+//*******************************
+//    MASTHEAD: Custom Prop Rulesets
+//*******************************
+
+//-------------------
+//  Masthead props
+//--------------------
+
+#props {
+  .masthead() {
+    @default: {
+      //**********************
+      //  Breakpoint Height Values
+      //  Variables (interger) for every breakpoint. 
+      //  Used to change value of [mh-height, mh-minHeight, mh-maxHeight]
+      //********************************************        
+      //-------------------
+      //   Header Height Values - move?
+      //--------------------         
+      --hdrHVal-m                               : @hdrHVal-m;
+      --hdrHVal-lmb                             : @hdrHVal-lmb;
+      --hdrHVal-t                               : @hdrHVal-tb;
+      --hdrHVal-cb                              : @hdrHVal-cb;
+      //-------------------
+      //   Masthead Height Values
+      //--------------------            
+      // @mh-hVal-vh                               : 100;
+      --mh-hVal-vh                              : @mh-hVal-vh;
+
+      // @mh-hVal-m                                : auto;
+      // @mh-hVal-m-fallback                       : auto;
+      --mh-hVal-m                               : @mh-hVal-m;
+      // @mh-hVal-lmb                              : auto;
+      // @mh-hVal-lmb-fallback                     : auto;
+      --mh-hVal-lmb                             : @mh-hVal-lmb;
+      // @mh-hVal-tb                               : ~"calc((var(--mh-hVal-vh) * 1vh) - var(--mh-subtract))";
+      // @mh-hVal-tb-fallback                      : ~"calc((@{mh-hVal-vh}* 1vh))"; // finish this off by adding - subtract
+      --mh-hVal-tb                              : @mh-hVal-tb;
+
+      // @mh-hVal-cb                               : ~"calc((var(--mh-hVal-vh) * 1vh) - var(--mh-subtract))";
+      // @mh-hVal-cb-fallback                      : ~"calc((@{mh-hVal-vh}* 1vh))"; // finish this off  
+      --mh-hVal-cb                              : @mh-hVal-cb;
+      //-------------------
+      //   Masthead Min Height Values
+      //--------------------        
+      // @mh-minHVal-m                             : 400;
+      --mh-minHVal-m                            : @mh-minHVal-m;
+      // @mh-minHVal-lmb                           : 450;
+      --mh-minHVal-lmb                          : @mh-minHVal-lmb;
+      // @mh-minHVal-tb                            : 600;
+      --mh-minHVal-tb                           : @mh-minHVal-tb;
+      // @mh-minHVal-cb                            : 600;
+      --mh-minHVal-cb                           : @mh-minHVal-cb;
+      //-------------------
+      //   Masthead Max Height Values
+      //--------------------         
+      // @mh-maxHVal-m                             : inherit;
+      --mh-maxHVal-m                            : @mh-maxHVal-m;
+      // @mh-maxHVal-lmb                           : inherit;
+      --mh-maxHVal-lmb                          : @mh-maxHVal-lmb;
+      // @mh-maxHVal-tb                            : 1500;
+      --mh-maxHVal-tb                           : @mh-maxHVal-tb;
+      // @mh-maxHVal-cb                            : 1500;
+      --mh-maxHVal-cb                           : @mh-maxHVal-cb;
+      //-------------------
+      //   Masthead Adjacent Content Height Values
+      //--------------------      
+      // @mh-adjContent                            : 150;
+      --mh-adjContent                           : @mh-adjContent;
+      // @mh-subtract                              : ~"calc((var(--mh-adjContent)) * ((1 / var(--fontSizeRoot)) * 1rem))";
+      // @mh-subtract-fallback                     : ~"calc((@{mh-adjContent}) * ((1 / @{fontSizeRoot}) * 1rem))";
+      --mh-subtract                             : @mh-subtract;                 
+      // @mSafariChrome                            : 75;
+      --mSafariChrome                           : @mSafariChrome;
+      
+      //**********************
+      //  Masthead Height Values
+      //********************************************    
+      // Masthead height values - changed over breakpoints
+      --mh-hVal                                 : var(--mh-hVal-m);
+      --mh-minHVal                              : var(--mh-minHVal-m);
+      --mh-maxHVal                              : var(--mh-maxHVal-m);
+      //**********************
+      //  Masthead Heights
+      //********************************************   
+      // Masthead (min) height, (max) height, height - changed over breakpoints - Values shouldn't change, but might
+      // @mh-minH-fallback-m                       : ~"calc(@{mh-hVal-m} * ((1 / @{fontSizeRoot}) * 1rem))";
+      // @mh-minH-fallback-lmb                     : ~"calc(@{mh-hVal-lmb} * ((1 / @{fontSizeRoot}) * 1rem))";
+      // @mh-minH-fallback-tb                      : ~"calc(@{mh-hVal-tb} * ((1 / @{fontSizeRoot}) * 1rem))";
+      // @mh-minH-fallback-cb                      : ~"calc(@{mh-hVal-cb} * ((1 / @{fontSizeRoot}) * 1rem))";
+      
+      --mh-minH                                 : ~"calc(var(--mh-minHVal) * ((1 / var(--fontSizeRoot)) * 1rem))";
+
+      // @mh-maxH-fallback-m                       : @mh-minHVal-m;
+      // @mh-maxH-fallback-lmb                     : @mh-minHVal-lmb;
+      // @mh-maxH-fallback-tb                      : @mh-minHVal-tb;
+      // @mh-maxH-fallback-cb                      : @mh-minHVal-cb;
+
+      --mh-maxH                                 : var(--mh-maxHVal);
+
+      // @mh-h-fallback-m                          : @mh-hVal-m-fallback;
+      // @mh-h-fallback-lmb                        : @mh-hVal-lmb-fallback;
+      // @mh-h-fallback-tb                         : @mh-hVal-tb-fallback;
+      // @mh-h-fallback-cb                         : @mh-hVal-cb-fallback;
+
+      --mh-h                                    : var(--mh-hVal);
+
+      --mh-prop-ratio-w-val-m                   : @mh-prop-ratio-w-val-m-fallback;
+      --mh-prop-ratio-h-val-m                   : @mh-prop-ratio-h-val-m-fallback;
+      
+      --mh-prop-ratio-w-val-lmb                 : @mh-prop-ratio-w-val-lmb-fallback;
+      --mh-prop-ratio-h-val-lmb                 : @mh-prop-ratio-h-val-lmb-fallback;
+
+      --mh-prop-ratio-w-val-tb                  : @mh-prop-ratio-w-val-tb-fallback;
+      --mh-prop-ratio-h-val-tb                  : @mh-prop-ratio-h-val-tb-fallback;  
+
+      --mh-prop-ratio-w-val-cb                  : @mh-prop-ratio-w-val-cb-fallback;
+      --mh-prop-ratio-h-val-cb                  : @mh-prop-ratio-h-val-cb-fallback;
+
+      --mh-prop-ratio-w-val-lcb                 : @mh-prop-ratio-w-val-lcb-fallback;
+      --mh-prop-ratio-h-val-lcb                 : @mh-prop-ratio-h-val-lcb-fallback;        
+
+      --mh-prop-ratio-w                         : var(--mh-prop-ratio-w-val-m);
+      --mh-prop-ratio-h                         : var(--mh-prop-ratio-w-val-m);  
+    };
+    @extend-prop-classes: {
+        //*******************************
+        //   Classes used for extending properties
+        //*******************************
+        // Default
+        .o-mh-props { #props.masthead(default); }
+    };
+    @extend-elements: {
+        //*******************************
+        //   Element classes that extend related properties
+        //*******************************          
+        .o-mh { &:extend(.o-mh-props); }
+
+    };
+    @output-custom-properties: {
+      #objects.masthead-variables();
+      .output-custom-properties() when 
+        (@customPropFallback = false) and 
+        (@local-scoped-custom-prop-fallback = false) and 
+        (@static-variables-only = false), 
+        (@customPropFallback = true) and 
+        (@static-variables-only = false),
+        (@customPropFallback = false) and 
+        (@local-scoped-custom-prop-fallback = true) {
+        //*******************************
+        //   Classes used for extending properties
+        //*******************************
+        #props.masthead(extend-prop-classes);
+        //*******************************
+        //   Element classes that extend related properties
+        //*******************************        
+        #props.masthead(extend-elements);
+      }
+      .output-custom-properties();
+    };
+  }
+}   
+
+//*******************************
+//   DEFINE MIXIN
+//*******************************
+
+#props {
+  .masthead(@item) {
+      #props.masthead();
+      #objects.masthead-variables();
+      @rules: @@item;
+      @rules();
+  }
+}
+
+//*******************************
+//   Init module custom property output
+//*******************************
+#props.masthead(output-custom-properties);
+
+
+    

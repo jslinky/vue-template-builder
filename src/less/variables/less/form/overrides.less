@@ -1,0 +1,67 @@
+
+
+#collections {
+  .form-variables() {
+    #objects.button-variables();
+    @rowSpacing                 : 1rem;
+    @rowDistance                : rowSpacing;
+    @fieldMargin                : 0em 0em ~"var(--@{rowDistance})";
+    @fieldMarginFallback        : 0em 0em @@rowDistance;
+
+    @inputFont                  : primaryFontLightStack;
+    @labelFont                  : primaryFontLightStack;
+    @inputMaxWidth              : 100%;
+    @inputMaxWidthFallback      : 100%;    
+    @inputColor                 : @jw-navy-shade3;
+    @inputPlaceholderColor      : @jw-navy-shade2;
+    @inputVerticalPadding       : @verticalPadding; // uses scope of buttons module variable
+    @inputFontSize              : @tiny;
+    @formErrorColor             : @jw-red;
+    
+    @inputErrorBorderColor      : @formErrorColor;
+    @inputErrorBorderWidth      : 1px;
+    @inputErrorBorderStyle      : solid;    
+    @inputErrorBorder           : @inputErrorBorderWidth @inputErrorBorderStyle @inputErrorBorderColor;
+
+    @inputErrorFocusBorderWidth : 1px;
+    @inputErrorFocusBorderStyle : solid;
+    @inputErrorFocusBorderColor : @formErrorColor;    
+    @inputErrorFocusBorder      : @inputErrorFocusBorderWidth @inputErrorFocusBorderStyle @inputErrorFocusBorderColor;    
+
+    @inputErrorPlaceholderColor : @formErrorColor;
+    @inputFocusBorderColor      : @primaryColor;
+    @inputErrorBackground       : #fff;
+    @inputErrorColor            : @inputColor;
+    @promptFontSize             : @inputFontSize;
+
+    @selectBackgroundImage      : '../../images/icons/UI/chevronDownLight.svg';
+    @selectFontSize             : @inputFontSize;
+    @selectFont                 : @inputFont;
+    @selectBackgroundImageSize  : @mini auto;
+    @selectBackgroundImagePostion: ~"calc(100% - 2em)" center; 
+    @selectColor                : @jw-navy-digital;
+    @selectFocusBorderColor     : @strongBorderColor;
+
+    @checkboxCheckedBackgroundImage: '../../images/interface/checked.svg';
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

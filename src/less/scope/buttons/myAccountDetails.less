@@ -1,0 +1,57 @@
+
+// My Account Details section
+
+.edit-account-buttons .light-button {
+  &:extend(.s-btn all, .s-btn-basic all);
+}
+
+.edit-account-buttons .light-button:after { display: none; }
+
+.edit-account-buttons button {
+  &:extend(.s-btn all, .s-btn-primary all);
+}
+
+// Back to index button
+.section-header-note:first-child {
+  font-size:@tiny;
+}
+
+.section-header-note:first-child:before {
+  content: '';
+  display: inline-block;
+  width: 20*@rem;
+  height: 20*@rem;
+  .icon-fill('../../images/icons/UI/chevronLeftLight.svg', '@{primaryColor}');
+  vertical-align: middle;
+  margin-right: 6*@rem;
+  background-repeat: no-repeat;
+  background-position: center;  
+}
+
+.section-header-note:first-child:after {
+  display:none;
+}
+
+.account-options > div > a {
+  &:extend([class*="-hdr"][class*="--sm"]);
+}
+
+.account-options > div > a:after {
+  margin-top:(@spacing / 2);
+}
+
+.account-options.account-options > div > a {
+ margin-top:0;
+}
+
+.section-header-note:last-child:not(:only-child) {
+  &:extend(.s-btn all, .s-btn-basic all);
+}
+
+.section-header-note.section-header-note:last-child:not(:only-child) {
+  margin:0 0 0 auto;
+}
+
+.edit-delete-address {
+  font-size:@tiny;
+}

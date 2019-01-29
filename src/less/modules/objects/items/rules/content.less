@@ -1,0 +1,184 @@
+
+
+#objects {
+  .item() {    
+    @content-ruleset: {
+      position:relative;
+      transition: var(--itemTransition);
+      display: flex;
+      flex-direction: column;
+    };
+    @content-fallback-ruleset: {
+      transition: @itemTransitionFallback;
+      transition: var(--itemTransition);
+    };    
+    @content-overlay-ruleset: {
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      display:flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      flex-direction:column;
+      align-items:center;      
+    };
+    @content-overlay-child-elements-not-links-or-buttons-ruleset: {
+      flex:0 1 auto;
+      z-index:1;      
+    };
+    @content-header-ruleset: { 
+      // margin-top: @verticalMarginSmall; replace this with offset
+      position: relative;
+      // .offset(margin-top, itemHeaderOffset, ~"@{itemHeaderOffset}");
+      .define-module-prop(item; margin-top; itemHeaderOffset);
+      .define-module-prop(item; color; itemHeaderColor);
+    };  
+    @content-header-adjacent-siblings-ruleset: {
+      // Replace this like above
+      .define-module-prop(item; margin-top; itemContentOffset);
+    }; 
+    @content-text-ruleset: {
+      margin-bottom:0;
+    };    
+    @content-artwork-ruleset: {
+      #objects.item-variables();          
+      --gutterMultiplyer: @gutterMultiplyer;    
+      width:80%;
+      max-width:~"calc(100% - (@{gutter} * @{gutterMultiplyer}))";
+      max-width: ~"calc(100% - var(--gutter))"; 
+      img,
+      object {
+        width:100%;
+      }
+    };
+    @content-overlay-header-ruleset: {
+      width:100%;
+      z-index:1;
+    };
+    @content-overlay-link-hoverTint-ruleset: {
+      --itemTintOpacity:1;
+      opacity:1; 
+    };
+    @content-overlay-link-ruleset: {
+      position: absolute;
+      left:0;
+      top:0;
+      height:100%;
+      width:50%;
+      z-index:2;    
+      text-indent: -999em;
+    };
+    @content-overlay-link-hoverTint-onlyChild-ruleset: {
+      // &:only-of-type {
+        width:100%;
+        &:hover {
+          ~ .o-buttons {
+            .o-btn {
+              &:after {
+                #objects.button-type(underline-hover);
+              }
+            }
+          }
+        }
+      // }
+    };
+    @content-overlay-link-oneOfTwo-ruleset: {
+        &:hover {
+          ~ .o-buttons {
+            .o-btn:first-of-type {
+              &:after {
+                #objects.button-type(underline-hover);
+              }              
+            }
+          }
+        }
+      // }
+    };
+    @content-overlay-link-twoOfTwo-ruleset: {
+      // Link 2 of 2
+      // &:last-of-type:not(:only-of-type) {
+        right:0;
+        left:auto;        
+        &:hover {
+          ~ .o-buttons {
+            .o-btn:last-of-type {
+              &:after {
+                #objects.button-type(underline-hover);
+              }              
+            }
+          }
+        }
+      // }
+    };
+
+
+
+
+    @content-buttons-ruleset: {
+      z-index:2;
+      > .o-btn {
+        white-space: nowrap;
+      }
+    };
+    @tint-pseudo-ruleset: {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      background: var(--itemOverlayHoverBackground);      
+      z-index: @item-zIndex;
+      opacity: var(--itemTintOpacity);
+      transition: var(--itemTransition); 
+    };
+    @tint-pseudo-fallback-ruleset: {
+      background: @itemOverlayHoverBackground;
+      background: var(--itemOverlayHoverBackground);      
+      opacity: @itemTintOpacity;
+      opacity: var(--itemTintOpacity);
+      transition: @itemTransitionFallback;
+      transition: var(--itemTransition);
+    };
+    @content-overlay-swap-ruleset: {       
+      &:nth-of-type(2) {
+        opacity:0;
+        position: absolute;
+        left:0;
+      }
+      &:nth-of-type(1) {
+        opacity:1;
+      }    
+    };
+    @content-overlay-swap-hover-ruleset: {
+      &:nth-of-type(1) {
+        opacity:0;        
+      }
+      &:nth-of-type(2) {
+        opacity:1;
+      }    
+    };
+    @content-overlay-header-swap-ruleset: {       
+      > .o-item__hdr:nth-of-type(2) {
+        opacity:0;
+        position: absolute;
+        left:0;
+      }
+      > .o-item__hdr:nth-of-type(1) {
+        opacity:1;
+      }    
+    };
+    @content-overlay-header-swap-hover-ruleset: {
+      > .o-item__hdr:nth-of-type(1) {
+        opacity:0;
+        position:absolute;
+      }
+      > .o-item__hdr:nth-of-type(2) {
+        opacity:1;
+        position:relative;
+      }    
+    };
+  }
+}  

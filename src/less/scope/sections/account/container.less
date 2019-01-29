@@ -1,0 +1,26 @@
+
+.reg-columns,
+.login-columns,
+.account-options,
+[class*="pt_"]:not(.pt_account) .section-header,
+[class*="pt_"]:not(.pt_account) .section-header + div,
+.pt_account .primary-content { &:extend(.scoped-container-rules); }
+
+[class*="pt_"] .section-header { overflow: hidden; }
+
+.reg-columns > form > fieldset { 
+    max-width:700*@rem; 
+    margin: 0 auto;
+}
+
+.account-options { 
+    display:flex; 
+    flex-wrap: wrap;
+}
+
+.pt_account .primary-content,
+.pt_order .primary-content,
+.pt_giftcard .primary-content,
+.pt_wish-list .primary-content {
+  padding-top:@spacing;
+}

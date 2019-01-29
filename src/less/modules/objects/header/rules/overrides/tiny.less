@@ -1,0 +1,32 @@
+
+[class*="-hdr"][class*="--t"][class*="--secFont"] {
+    #objects.header-variables();
+    @headerLetterSpacingMultiplyer: @headerHTiny-secondaryLetterSpacingVal;
+    @headerFontFamily: @headerHTiny-secondaryFont;
+    @headerHTiny-secondaryLineHeightAddition: 6;
+    @headerLineHeight: (@@hTinyVal + (@headerHTiny-secondaryLineHeightAddition*@rem));
+
+    .output() when (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+      --headerFontFamily: @headerFontFamily;
+      --headerLetterSpacingMultiplyer: @headerLetterSpacingMultiplyer;
+      --headerLineHeight: @headerLineHeight;
+    }        
+    .output() when (@customPropFallback = true) and (@static-variables-only = false) {      
+      --headerFontFamily: @headerFontFamily;
+      --headerLetterSpacingMultiplyer: @headerLetterSpacingMultiplyer;
+      --headerLineHeight: @headerLineHeight;
+      letter-spacing: @headerLetterSpacingMultiplyer*@rem;
+      letter-spacing: var(--headerLetterSpacingMultiplyer);
+      font-family:@headerFontFamily;
+      font-family:var(--headerFontFamily);
+      line-height:@headerLineHeight;
+      line-height:var(--headerLineHeight);
+    }            
+    .output() when (@static-variables-only = true) {
+      letter-spacing: @headerLetterSpacingMultiplyer*@rem;
+      font-family:@headerFontFamily;
+      line-height:@headerLineHeight;
+    }   
+    .output();
+
+}

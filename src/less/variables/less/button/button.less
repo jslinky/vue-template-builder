@@ -1,0 +1,718 @@
+/*******************************
+            Button
+*******************************/
+
+
+#objects {
+  .button-variables() {
+    @static-variables-only                : true; // turn off custom prop on a module level - define on a per site basis in overrides
+    @local-scoped-custom-prop-fallback    : false; // not sure this works! local scoped variable - should be moved to overrides    
+    // Colours
+    @color                      : @primaryColor;
+    @backgroundColor            : transparent; 
+    @tapColor                   : transparent;
+    // Text
+    @fontFamily                 : @framework-primaryRegularFontStack;
+    @fontSize                   : @tiny;    
+    @textTransform              : uppercase;
+    @fontWeight                 : normal;
+    @lineHeight                 : 1.5;
+    @letterSpacing              : unit( (1.5 / 16), rem);        
+    // Spacing  
+    @verticalMargin             : 0em;
+    @horizontalMargin           : @mini;
+    @margin                     : @verticalMargin @horizontalMargin @verticalMargin 0em;       
+    @verticalPadding            : 1.2em;
+    @horizontalPadding          : 2.5em; 
+    @padding                    : ~"calc(@{verticalPadding} + 0.1em)" @horizontalPadding @verticalPadding;
+    // Border
+    @borderRadius               : 0; //@defaultBorderRadius; -- create custom prop and allocate to ::root
+    @borderWidth                : 1px;
+    @borderStyle                : solid;        
+    @borderColor                : currentColor;
+    // Text Shadow
+    @textShadow                 : none;
+    // Inner Shadow
+    @innerShadow                : var(--innerShadowOffsetX, 0) var(--innerShadowOffsetY, 0) var(--innerShadowBlur) var(--innerShadowSpread, 0) var(--innerShadowColor, currentColor) inset;
+    @innerShadowFallback        : @innerShadowOffsetX @innerShadowOffsetY @innerShadowBlur @innerShadowSpread @innerShadowColor inset;
+    @innerShadowOffsetX         : 0;
+    @innerShadowOffsetY         : 0;
+    @innerShadowBlur            : 0;
+    @innerShadowSpread          : 0;
+    @innerShadowColor           : @borderColor;
+    // Drop Shadow
+    @dropShadow                 : var(--dropShadowOffsetX) var(--dropShadowOffsetY) var(--dropShadowBlur) var(--dropShadowSpread) var(--dropShadowColor);
+    @dropShadowFallback         : @dropShadowOffsetX @dropShadowOffsetY @dropShadowBlur @dropShadowSpread @dropShadowColor;
+    @dropShadowOffsetX          : 0;
+    @dropShadowOffsetY          : 0;
+    @dropShadowBlur             : 0;
+    @dropShadowSpread           : 0;
+    @dropShadowColor            : @borderColor;  
+    // Underline
+    @underlineHeight            : 1px;
+    @underlineWidth             : ~"calc(100% - (var(--horizontalPadding) * 2))";
+    @underlineWidthFallback     : ~"calc(100% - (@{horizontalPadding} * 2))";
+    @underlineBackground        : currentColor;
+    @underlineColorOpacity      : .2;
+    @hoverUnderlineColorOpacity : 1;
+    @underlineLeftPos           : var(--horizontalPadding);
+    @underlineLeftPosFallback   : @horizontalPadding;
+    @underlineBottomPos         : 1em;
+    @underlineTransition        : @defaultTransition;
+    @underlineTransitionFallback: @defaultTransitionFallback;
+
+    @linkUnderlineHeight        : @underlineHeight;
+    @linkUnderlineWidth         : 100%;
+    @linkUnderlineLeftPos       : 0;
+    @linkUnderlineBottomPos     : 0;
+
+    @underlineWidth-element     :100%;
+    @underlineLeftPos-element   :0;
+    @underlineBottomPos-element :-0.5em;
+    // Shadow
+    @invertedUnderlineShadowColor: @halfTransparentBlack;
+    @invertedUnderlineShadow    : 0/*1px 1px 0 0 @invertedUnderlineShadowColor*/;      
+    // Transition
+    @defaultTransition          : all var(--duration) var(--easing);
+    @defaultTransitionFallback  : all @defaultDuration @defaultEasing;
+    @defaultDuration            : .2s;
+    @defaultEasing              : ease-in;     
+
+    // Icon
+    @iconHeightSize             : relativeSmall;
+    @iconHeight                 : ~"var(--@{iconHeightSize})";
+    @iconHeightFallback         : @@iconHeightSize;
+    @iconWidth                  : @iconHeight;
+    @iconWidthFallback          : @iconHeightFallback;
+    @iconOpacity                : 0.8;
+    @iconMargin                 : 0;
+    @iconTransition             : @defaultTransition;
+    @iconTransitionFallback     : @defaultTransitionFallback;
+    @iconColor                  : currentColor;
+    @iconDistanceVal            : relativeSmall;
+    @iconDistance               : ~"var(--@{iconDistanceVal})";
+    @iconDistanceFallback       : @@iconDistanceVal;
+    @left-aligned-iconMargin    : ~"0 @{iconDistance} 0 calc(@{iconDistance} / -2)";
+    @left-aligned-iconMarginFallback : ~"0 @{iconDistanceFallback} 0 calc(@{iconDistanceFallback} / -2)";
+    @right-aligned-iconMargin    : ~"0 calc(@{iconDistance} / -2) 0 @{iconDistance}";
+    @right-aligned-iconMarginFallback : ~"0 calc(@{iconDistanceFallback} / -2) 0 @{iconDistanceFallback}";    
+ 
+
+    // Inverted
+
+    @invertedTextColor          : @white;
+    @invertedTextHoverColor     : @invertedTextColor;
+
+
+    //-------------------
+    //        States
+    //--------------------
+
+    // Hovered
+    @hoverColor                 : @textColor;
+    @hoverBackgroundColor       : transparent; 
+    // Use @hoverInnerShadow for custom prop values if needed
+    // @hoverInnerShadowOffsetX @hoverInnerShadowOffsetY @hoverInnerShadowBlur @hoverInnerShadowSpread @hoverInnerShadowColor inset
+    @hoverInnerShadow           : none; 
+    @hoverInnerShadowOffsetX    : 0;
+    @hoverInnerShadowOffsetY    : 0;
+    @hoverInnerShadowBlur       : 0;
+    @hoverInnerShadowSpread     : 0;
+    @hoverInnerShadowColor      : @borderColor;  
+    // Use these for custom prop values if needed
+    // @hoverDropShadowOffsetX @hoverDropShadowOffsetY @hoverDropShadowBlur @hoverDropShadowSpread @hoverDropShadowColor
+    @hoverDropShadow            : none;
+    @hoverDropShadowFallback    : none;
+    @hoverDropShadowOffsetX     : 0;
+    @hoverDropShadowOffsetY     : 0;
+    @hoverDropShadowBlur        : 0;
+    @hoverDropShadowSpread      : 0;
+    @hoverDropShadowColor       : @borderColor;  
+    @iconHoverOpacity           : 0.85;
+
+    // Focused
+    @focusedColor               : @textColor;
+    @focusedBackgroundColor     : transparent; 
+    // Use @focusedInnerShadow for custom prop values if needed
+    // @focusedInnerShadowOffsetX @focusedInnerShadowOffsetY @focusedInnerShadowBlur @focusedInnerShadowSpread @focusedInnerShadowColor inset    
+    @focusedInnerShadow         : none; 
+    @focusedInnerShadowFallback : none;
+    @focusedInnerShadowOffsetX  : 0;
+    @focusedInnerShadowOffsetY  : 0;
+    @focusedInnerShadowBlur     : 0;
+    @focusedInnerShadowSpread   : 0;
+    @focusedInnerShadowColor    : @borderColor;  
+    // Use these for custom prop values if needed
+    // @focusedDropShadowOffsetX @focusedDropShadowOffsetY @focusedDropShadowBlur @focusedDropShadowSpread @focusedDropShadowColor    
+    @focusedDropShadow          : none;
+    @focusedDropShadowFallback  : none;
+    @focusedDropShadowOffsetX   : 0;
+    @focusedDropShadowOffsetY   : 0;
+    @focusedDropShadowBlur      : 0;
+    @focusedDropShadowSpread    : 0;
+    @focusedDropShadowColor     : @borderColor;    
+    @iconFocusOpacity           : 0.85;
+
+    // Active
+    @activeColor                : @textColor;
+    @activeBackgroundColor      : transparent; 
+    // Use @activeInnerShadow for custom prop values if needed
+    // @activeInnerShadowOffsetX @activeInnerShadowOffsetY @activeInnerShadowBlur @activeInnerShadowSpread @activeInnerShadowColor inset     
+    @activeInnerShadow          : none;
+    @activeInnerShadowFallback  : none;
+    @activeInnerShadowOffsetX   : 0;
+    @activeInnerShadowOffsetY   : 0;
+    @activeInnerShadowBlur      : 0;
+    @activeInnerShadowSpread    : 0;
+    @activeInnerShadowColor     : @borderColor;  
+    // Use these for custom prop values if needed
+    // @activeDropShadowOffsetX @activeDropShadowOffsetY @activeDropShadowBlur @activeDropShadowSpread @activeDropShadowColor    
+    @activeDropShadow           : none;
+    @activeDropShadowFallback   : none;
+    @activeDropShadowOffsetX    : 0;
+    @activeDropShadowOffsetY    : 0;
+    @activeDropShadowBlur       : 0;
+    @activeDropShadowSpread     : 0;
+    @activeDropShadowColor      : @borderColor;    
+    @iconFocusOpacity           : 0.85;
+  
+
+    // Disabled
+    @disabledOpacity            : 0.45;
+    @disabledTextColor          : rgba(40, 40, 40, 0.3);
+    @invertedDisabledTextColor  : rgba(225, 225, 225, 0.3);  
+
+
+    //-------------------
+    //        Types
+    //--------------------
+
+    // Primary    
+    @primaryTextColor           : @invertedTextColor;
+    @primaryBackgroundColor     : transparent; 
+
+    @primaryBorderSize          : 1px;    
+    @primaryBorderStyle         : solid;
+    @primaryBorderColor         : currentColor;
+    @primaryBorderRadius        : @borderRadius;
+    @primaryBorder              : @primaryBorderSize @primaryBorderStyle @primaryBorderColor;
+
+    // Use @primaryInnerShadow for custom prop values if needed
+    // @primaryInnerShadowOffsetX @primaryInnerShadowOffsetY @primaryInnerShadowBlur @primaryInnerShadowSpread @primaryInnerShadowColor inset     
+    @primaryInnerShadow         : none;
+    @primaryInnerShadowOffsetX  : 0;
+    @primaryInnerShadowOffsetY  : 0;
+    @primaryInnerShadowBlur     : 0;
+    @primaryInnerShadowSpread   : 0;
+    @primaryInnerShadowColor    : @borderColor;  
+    // Use these for custom prop values if needed
+    // @primaryDropShadowOffsetX @primaryDropShadowOffsetY @primaryDropShadowBlur @primaryDropShadowSpread @primaryDropShadowColor    
+    @primaryDropShadow          : none;
+    @primaryDropShadowOffsetX   : 0;
+    @primaryDropShadowOffsetY   : 0;
+    @primaryDropShadowBlur      : 0;
+    @primaryDropShadowSpread    : 0;
+    @primaryDropShadowColor     : @borderColor;     
+
+    // primary Hover 
+    @primaryHoverTextColor      : @invertedTextColor;
+    @primaryHoverBackgroundColor: transparent;     
+    @primaryHoverInnerShadow    : none;
+    @primaryHoverDropShadow     : none;
+
+    // primary Focus 
+    @primaryFocusTextColor      : inherit;
+    @primaryFocusBackgroundColor: transparent;     
+    @primaryFocusInnerShadow    : none;
+    @primaryFocusDropShadow     : none;    
+
+    // primary Active 
+    @primaryActiveTextColor     : inherit;
+    @primaryActiveBackgroundColor: transparent;     
+    @primaryActiveInnerShadow   : none;
+    @primaryActiveDropShadow    : none;        
+
+    // primary Inverted    
+    @primaryInvertedBorderSize  : 1px;    
+    @primaryInvertedBorderStyle : solid;
+    @primaryInveredBorderColor  : currentColor;
+
+    @primaryInvertedColor       : @invertedTextColor; //@darkWhite;
+    @primaryInvertedHoverColor  : @invertedTextColor; //@darkWhiteHover;
+    @primaryInvertedDownColor   : @invertedTextColor; //@darkWhiteActive;
+    @primaryInvertedActiveColor : @invertedTextColor;    
+
+    @primaryInvertedBackgroundColor  : transparent;
+    @primaryInvertedFocusBackgroundColor: transparent;
+    @primaryInvertedDownBackgroundColor: @transparentWhite;
+    @primaryInvertedActiveBackgroundColor: @transparentWhite;
+
+    @primaryInvertedInnerShadow : none;
+    @primaryInvertedHoverInnerShadow: none;
+    @primaryInvertedFocusInnerShadow: none;
+    @primaryInvertedActiveInnerShadow: none;
+
+    @primaryInvertedBoxShadow   : none;
+    @primaryInvertedHoverBoxShadow: none;
+    @primaryInvertedFocusBoxShadow: none;
+    @primaryInvertedActiveBoxShadow: none;    
+
+
+    // Basic    
+    @basicTextColor             : @textColor;
+    @basicBackgroundColor       : transparent; 
+
+    @basicBorderSize            : 1px;    
+    @basicBorderStyle           : solid;
+    @basicBorderColor           : currentColor;
+    @basicBorderRadius          : @borderRadius;
+    @basicBorder                : @basicBorderSize @basicBorderStyle @basicBorderColor;
+
+    // Use @basicInnerShadow for custom prop values if needed
+    // @basicInnerShadowOffsetX @basicInnerShadowOffsetY @basicInnerShadowBlur @basicInnerShadowSpread @basicInnerShadowColor inset     
+    @basicInnerShadow           : none;
+    @basicInnerShadowOffsetX    : 0;
+    @basicInnerShadowOffsetY    : 0;
+    @basicInnerShadowBlur       : 0;
+    @basicInnerShadowSpread     : 0;
+    @basicInnerShadowColor      : @borderColor;  
+    // Use these for custom prop values if needed
+    // @basicDropShadowOffsetX @basicDropShadowOffsetY @basicDropShadowBlur @basicDropShadowSpread @basicDropShadowColor    
+    @basicDropShadow            : none;
+    @basicDropShadowOffsetX     : 0;
+    @basicDropShadowOffsetY     : 0;
+    @basicDropShadowBlur        : 0;
+    @basicDropShadowSpread      : 0;
+    @basicDropShadowColor       : @borderColor;     
+
+    // Basic Hover 
+    @basicHoverTextColor        : inherit;
+    @basicHoverBackgroundColor  : transparent;     
+    @basicHoverInnerShadow      : none;
+    @basicHoverDropShadow       : none;
+
+    // Basic Focus 
+    @basicFocusTextColor        : inherit;
+    @basicFocusBackgroundColor  : transparent;     
+    @basicFocusInnerShadow      : none;
+    @basicFocusDropShadow       : none;    
+
+    // Basic Active 
+    @basicActiveTextColor       : inherit;
+    @basicActiveBackgroundColor : transparent;     
+    @basicActiveInnerShadow     : none;
+    @basicActiveDropShadow      : none;        
+
+    // Basic Inverted
+    @basicInvertedBorderSize    : 1px;    
+    @basicInvertedBorderStyle   : solid;
+    @basicInveredBorderColor    : currentColor;
+
+    @basicInvertedColor         : @invertedTextColor; //@darkWhite;
+    @basicInvertedHoverColor    : @invertedTextColor; //@darkWhiteHover;
+    @basicInvertedDownColor     : @invertedTextColor; //@darkWhiteActive;
+    @basicInvertedActiveColor   : @invertedTextColor;    
+
+    @basicInvertedBackground    : transparent;
+    @basicInvertedFocusBackgrounds: transparent;
+    @basicInvertedDownBackground: @transparentWhite;
+    @basicInvertedActiveBackground: @transparentWhite;
+
+    @basicInvertedInnerShadow   : none;
+    @basicInvertedHoverInnerShadow: none;
+    @basicInvertedFocusInnerShadow: none;
+    @basicInvertedActiveInnerShadow: none;
+
+    @basicInvertedBoxShadow     : none;
+    @basicInvertedHoverBoxShadow: none;
+    @basicInvertedFocusBoxShadow: none;
+    @basicInvertedActiveBoxShadow: none;    
+  
+
+    //-------------------
+    //        Button group
+    //--------------------
+
+    @groupBtnMarginHorizontal    : @horizontalMargin;
+    @groupBtnMarginVertical      : @groupBtnMarginHorizontal;
+
+
+    //-------------------
+    //        Button Size
+    //--------------------
+
+    @smallFontSize                : 9*@em;
+    @smallFontSizeLetterSpacing   : 1.5*@em;
+    @largeFontSize                : @small;
+    @largeFontSizeLetterSpacing   : 1.5*@em;
+    @largerFontSize               : @massive;
+    @largerFontSizeLetterSpacing  : @4px;
+
+
+  // //
+  // // @basicInvertedColor: @darkWhite;
+  // // @basicInvertedHoverColor: @darkWhiteHover;
+  // // @basicInvertedDownColor: @darkWhiteActive;
+  // // @basicInvertedActiveColor: @invertedTextColor;
+
+
+  // //
+  // // @basicBackground: transparent none;
+  // // @basicFontWeight: normal;
+  // // @basicBorder: 1px solid @borderColor;
+  // // @basicBoxShadow: 0px 0px 0px @basicBorderSize @borderColor inset;
+  // // @basicLoadingColor: @offWhite;
+  // // @basicTextTransform: none;
+  // //
+  // // // Basic Hover
+  // // @basicHoverBackground: #FFFFFF;
+  // // @basicHoverTextColor: @hoveredTextColor;
+  // // @basicHoverBoxShadow:
+  // //   0px 0px 0px @basicBorderSize @selectedBorderColor inset,
+  // //   0px 0px 0px 0px @borderColor inset
+  // // ;
+  // // // Basic Focus
+  // // @basicFocusBackground: @basicHoverBackground;
+  // // @basicFocusTextColor: @basicHoverTextColor;
+  // // @basicFocusBoxShadow: @basicHoverBoxShadow;
+  // //
+  // // // Basic Down
+  // // @basicDownBackground: #F8F8F8;
+  // // @basicDownTextColor: @pressedTextColor;
+  // // @basicDownBoxShadow:
+  // //   0px 0px 0px @basicBorderSize rgba(0, 0, 0, 0.15) inset,
+  // //   0px 1px 4px 0px @borderColor inset
+  // // ;
+  // // // Basic Active
+  // // @basicActiveBackground: @transparentBlack;
+  // // @basicActiveBoxShadow: '';
+  // // @basicActiveTextColor: @selectedTextColor;
+  // //
+  // // // Basic Inverted
+  // // @basicInvertedBackground: transparent;
+  // // @basicInvertedFocusBackground: transparent;
+  // // @basicInvertedDownBackground: @transparentWhite;
+  // // @basicInvertedActiveBackground: @transparentWhite;
+  // //
+  // // @basicInvertedBoxShadow: 0px 0px 0px @invertedBorderSize rgba(255, 255, 255, 0.5) inset;
+  // // @basicInvertedHoverBoxShadow: 0px 0px 0px @invertedBorderSize rgba(255, 255, 255, 1) inset;
+  // // @basicInvertedFocusBoxShadow: 0px 0px 0px @invertedBorderSize rgba(255, 255, 255, 1) inset;
+  // // @basicInvertedDownBoxShadow: 0px 0px 0px @invertedBorderSize rgba(255, 255, 255, 0.9) inset;
+  // // @basicInvertedActiveBoxShadow: 0px 0px 0px @invertedBorderSize rgba(255, 255, 255, 0.7) inset;
+  // //
+  // // @basicInvertedColor: @darkWhite;
+  // // @basicInvertedHoverColor: @darkWhiteHover;
+  // // @basicInvertedDownColor: @darkWhiteActive;
+  // // @basicInvertedActiveColor: @invertedTextColor;
+
+
+
+
+    // EVERYTHING BELOW HERE NEEDS SORTING
+
+    
+    // @hoverUnderlineColor: currentColor;
+
+
+  // @transition:
+  //   opacity @defaultDuration @defaultEasing,
+  //   background-color @defaultDuration @defaultEasing,
+  //   color @defaultDuration @defaultEasing,
+  //   box-shadow @defaultDuration @defaultEasing,
+  //   background @defaultDuration @defaultEasing
+  // ;    
+
+
+
+
+
+
+
+    
+    
+
+
+
+
+    // Box Shadow
+    // @borderBoxShadowColor: @halfTransparentBlack;
+    // @borderBoxShadowWidth: 0;
+    // @borderBoxShadow: 1px 1px 3px @borderBoxShadowWidth @borderBoxShadowColor;
+    // @boxShadow:
+    //   @borderBoxShadow,
+    //   @shadowBoxShadow
+    // ;
+  //   @boxShadow: @shadowBoxShadow;
+
+  //   // everything below here needs resorting.
+    
+  //   // Internal Shadow - old stuff
+    @shadowDistance: 0em;
+    @shadowOffset: (@shadowDistance / 2);
+  //   @shadowBoxShadowWidth: @1px;
+  //   @shadowBoxShadow: 0px -@shadowDistance 0px @shadowBoxShadowWidth @borderColor inset;
+  //   // end    
+    
+    
+  //   // @fontSize: unit( round((12 / unit(16px)) * 16px) / 16px, rem);
+        
+  //   @invertedTextShadowColor: @halfTransparentBlack;
+  //   @invertedTextShadow: 1px 1px 0px @invertedTextShadowColor;
+    
+    @verticalAlign: baseline;
+
+
+
+
+
+  // @selectedBorderColor: #000;
+  // @darkWhiteHover: #fff;
+  // @darkWhiteActive: #fff;
+
+  // //-------------------
+  // //       Element
+  // //--------------------
+
+
+
+  // // Button
+
+  
+  // @backgroundImage: none;
+  // @background: @backgroundColor @backgroundImage;
+
+
+  // // Button defaults to using same height as input globally
+  
+  // // these need to be not custom properties for fallback
+
+
+
+
+
+
+
+
+
+
+
+
+  // // Loader
+  // @invertedLoaderFillColor: rgba(0, 0, 0, 0.15);
+
+
+  // //
+  //@willChange: box-shadow, transform, opacity, color, background;
+  // //
+  @willChange: ~"color, background-color, box-shadow";
+
+  // //-------------------
+  // //        Group
+  // //--------------------
+
+  // @groupBoxShadow: none;
+  // @groupButtonBoxShadow: @boxShadow;
+  // @verticalBoxShadow: none;
+  // @groupButtonOffset: 0px 0px 0px 0px;
+  // @verticalGroupOffset: 0px 0px 0px 0px;
+
+  // //-------------------
+  // //        States
+  // //--------------------
+
+  // // Hovered
+  // @hoverBackgroundColor: transparent; // set and get from variable/color.less
+  // @hoverBackgroundImage: @backgroundImage;
+  // @hoverBoxShadow: @boxShadow;  
+  // @iconHoverOpacity: 0.85;
+
+  // // Focused
+  // @focusBackgroundColor: @hoverBackgroundColor;
+  // @focusBackgroundImage: '';
+  // @focusBoxShadow: '';
+  // @focusColor: @hoveredTextColor;
+  // @iconFocusOpacity: 0.85;
+
+  // // Pressed Down
+  // @downBackgroundColor: @hoverBackgroundColor;
+  // @downBackgroundImage: '';
+  // @downPressedShadow: none;
+  // @downBoxShadow:
+  //   // @borderBoxShadow,
+  //   @downPressedShadow
+  // ;
+  // @downColor: @pressedTextColor;
+
+  // // Active
+  // @activeBackgroundColor: #C0C1C2;
+  // @activeBackgroundImage: none;
+  // @activeColor: @selectedTextColor;
+  // @activeBoxShadow: @borderBoxShadow;
+
+  // // Active + Hovered
+  // @activeHoverBackgroundColor: @activeBackgroundColor;
+  // @activeHoverBackgroundImage: none;
+  // @activeHoverColor: @activeColor;
+  // @activeHoverBoxShadow: @activeBoxShadow;
+
+  // // Disabled
+  // // See global vars - shared with form element
+
+  // // Loading
+  // @loadingOpacity: 1;
+  // @loadingPointerEvents: auto;
+  // @loadingTransition:
+  //   all 0s linear,
+  //   opacity @defaultDuration @defaultEasing
+  // ;
+
+
+  // //-------------------
+  // //        Types
+  // //--------------------
+
+  // // // Or
+  // // @orText: 'or';
+  // //
+  // // @orGap: 0.3em;
+  // // @orHeight: (@verticalPadding * 2) + 1em;
+  // // @orZIndex: 3;
+  // //
+  // // @orCircleDistanceToEdge: (@verticalPadding);
+  // // @orCircleSize: @orHeight - @orCircleDistanceToEdge;
+  // // @orLineHeight: (@orCircleSize);
+  // // @orBoxShadow: @borderBoxShadow;
+  // //
+  // // @orVerticalOffset: -(@orCircleSize / 2);
+  // // @orHorizontalOffset: -(@orCircleSize / 2);
+  // //
+  // // @orBackgroundColor: @white;
+  // // @orTextShadow: @invertedTextShadow;
+  // // @orTextStyle: normal;
+  // // @orTextWeight: bold;
+  // // @orTextColor: @lightTextColor;
+  // //
+  // //
+  // // @orSpacerHeight: @verticalPadding;
+  // // @orSpacerColor: transparent;
+  // //
+  // // Icon
+  // @iconButtonOpacity: 0.9;
+  // //
+  // // // Labeled Icon
+  // // @labeledIconWidth: 1em + (@verticalPadding * 2);
+  // // @labeledIconBackgroundColor: rgba(0, 0, 0, 0.05);
+  // // @labeledIconPadding: (@horizontalPadding + @labeledIconWidth);
+  // // @labeledIconBorder: transparent;
+  // // @labeledIconColor: '';
+  // //
+  // // @labeledIconLeftShadow: -1px 0px 0px 0px @labeledIconBorder inset;
+  // // @labeledIconRightShadow: 1px 0px 0px 0px @labeledIconBorder inset;
+  // //
+  // // // Inverted
+  // // @invertedBorderSize: 2px;
+  // @invertedTextColor: @white;
+  // @invertedTextHoverColor: @invertedTextColor;
+  // // @invertedGroupButtonOffset: 0px 0px 0px -(@invertedBorderSize);
+  // // @invertedVerticalGroupButtonOffset: 0px 0px -(@invertedBorderSize) 0px;
+  // //
+  // // // Basic
+  // // @basicBorderRadius: @borderRadius;
+  // // @basicBorderSize: 1px;
+  // // @basicTextColor: @textColor;
+  // // @basicColoredBorderSize: 2px;
+  // //
+  // // @basicBackground: transparent none;
+  // // @basicFontWeight: normal;
+  // // @basicBorder: 1px solid @borderColor;
+  // // @basicBoxShadow: 0px 0px 0px @basicBorderSize @borderColor inset;
+  // // @basicLoadingColor: @offWhite;
+  // // @basicTextTransform: none;
+  // //
+  // // // Basic Hover
+  // // @basicHoverBackground: #FFFFFF;
+  // // @basicHoverTextColor: @hoveredTextColor;
+  // // @basicHoverBoxShadow:
+  // //   0px 0px 0px @basicBorderSize @selectedBorderColor inset,
+  // //   0px 0px 0px 0px @borderColor inset
+  // // ;
+  // // // Basic Focus
+  // // @basicFocusBackground: @basicHoverBackground;
+  // // @basicFocusTextColor: @basicHoverTextColor;
+  // // @basicFocusBoxShadow: @basicHoverBoxShadow;
+  // //
+  // // // Basic Down
+  // // @basicDownBackground: #F8F8F8;
+  // // @basicDownTextColor: @pressedTextColor;
+  // // @basicDownBoxShadow:
+  // //   0px 0px 0px @basicBorderSize rgba(0, 0, 0, 0.15) inset,
+  // //   0px 1px 4px 0px @borderColor inset
+  // // ;
+  // // // Basic Active
+  // // @basicActiveBackground: @transparentBlack;
+  // // @basicActiveBoxShadow: '';
+  // // @basicActiveTextColor: @selectedTextColor;
+  // //
+  // // // Basic Inverted
+  // // @basicInvertedBackground: transparent;
+  // // @basicInvertedFocusBackground: transparent;
+  // // @basicInvertedDownBackground: @transparentWhite;
+  // // @basicInvertedActiveBackground: @transparentWhite;
+  // //
+  // // @basicInvertedBoxShadow: 0px 0px 0px @invertedBorderSize rgba(255, 255, 255, 0.5) inset;
+  // // @basicInvertedHoverBoxShadow: 0px 0px 0px @invertedBorderSize rgba(255, 255, 255, 1) inset;
+  // // @basicInvertedFocusBoxShadow: 0px 0px 0px @invertedBorderSize rgba(255, 255, 255, 1) inset;
+  // // @basicInvertedDownBoxShadow: 0px 0px 0px @invertedBorderSize rgba(255, 255, 255, 0.9) inset;
+  // // @basicInvertedActiveBoxShadow: 0px 0px 0px @invertedBorderSize rgba(255, 255, 255, 0.7) inset;
+  // //
+  // // @basicInvertedColor: @darkWhite;
+  // // @basicInvertedHoverColor: @darkWhiteHover;
+  // // @basicInvertedDownColor: @darkWhiteActive;
+  // // @basicInvertedActiveColor: @invertedTextColor;
+  // //
+  // //
+  // // // Basic Group
+  // // @basicGroupBorder: @basicBorderSize solid @borderColor;
+  // // @basicGroupBoxShadow: none;
+  // //
+  // // //-------------------
+  // // //      Variations
+  // // //--------------------
+  // //
+
+  // //
+  // // // Ordinality
+  // // @primaryBackgroundImage: @coloredBackgroundImage;
+  // // @primaryTextColor: @invertedTextColor;
+  // // @primaryTextShadow: @invertedTextShadow;
+  // // @primaryBoxShadow: @coloredBoxShadow;
+  // //
+  // // @secondaryBackgroundImage: @coloredBackgroundImage;
+  // // @secondaryTextColor: @invertedTextColor;
+  // // @secondaryTextShadow: @invertedTextShadow;
+  // // @secondaryBoxShadow: @coloredBoxShadow;
+  // //
+  // // // Compact
+  // // @compactVerticalPadding: (@verticalPadding * 0.75);
+  // // @compactHorizontalPadding: (@horizontalPadding * 0.75);
+  // //
+  // // // Attached
+  // // @attachedOffset: -1px;
+  // // @attachedBoxShadow: 0px 0px 0px 1px @borderColor;
+  // // @attachedHorizontalPadding: 0.75em;
+  // // @attachedZIndex: 2;
+  // //
+  // // // Floated
+  // // @floatedMargin: 0.25em;
+  // //
+  // // // Animated
+  // // @animatedVerticalAlign: middle;
+  // // @animatedZIndex: 1;
+  // // @animationDuration: 0.3s;
+  // // @animationEasing: ease;
+  // // @fadeScaleHigh: 1.5;
+  // // @fadeScaleLow: 0.75;
+
+  }
+
+}

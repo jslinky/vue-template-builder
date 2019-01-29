@@ -1,0 +1,59 @@
+
+//*******************************
+//    Color Custom Prop Rulesets
+//*******************************
+
+//-------------------
+//  Color props
+//--------------------
+
+#props {
+  .color() {
+    @brand-colors: {
+      // --primaryColor    : @primaryColor;
+      // --primaryColorR   : @primaryColorR;
+      // --primaryColorG   : @primaryColorG; 
+      // --primaryColorB   : @primaryColorB;
+      // --primaryOpacity  : 1;
+      // --primaryColorRGBA: ~"rgba(var(--primaryColorR), var(--primaryColorG), var(--primaryColorB), var(--primaryOpacity))";
+    };    
+  }
+}
+
+//*******************************
+//   Classes used for extending properties
+//*******************************
+
+//-------------------
+//  Colors
+//--------------------
+#props {
+  .color-props-brand { #props.color(brand-colors); }
+  .color-props-site {
+    #props.color-props-brand;
+  }
+}
+
+.color-props-site { #props.color-props-site; }
+
+//*******************************
+//   DEFINE MIXIN
+//*******************************
+
+#props {
+  .color(@item) {
+      #props.color();
+      // #objects.color-variables();
+      @rules: @@item;
+      @rules();
+  }
+}
+
+
+
+
+
+
+
+
+

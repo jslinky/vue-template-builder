@@ -1,0 +1,38 @@
+//*******************************
+//  Item
+//*******************************
+
+.o-item { #objects.item(element); }
+
+.o-item.o-item--100vw {
+  // make this a ruleset
+  width:100vw;
+  margin-left:~"calc(50% - 50vw)";
+  margin-right:~"calc(50% - 50vw)";
+  padding:0;  
+}
+
+//-------------------
+//  Alignment of overlayed content
+//--------------------
+// Left
+/////////////////////////
+.o-item[class*="left aligned"] .o-item__content[class*="--overlay"] { #objects.item(element-left-aligned); }
+// Right
+/////////////////////////
+.o-item[class*="right aligned"] .o-item__content[class*="--overlay"] { #objects.item(element-right-aligned); }
+// Middle
+/////////////////////////
+.o-item[class*="middle aligned"] .o-item__content[class*="--overlay"] { #objects.item(element-middle-aligned); }
+// Center 
+/////////////////////////
+.o-item[class*="center aligned"] .o-item__content[class*="--overlay"] { #objects.item(element-center-aligned); }
+// Center Middle
+/////////////////////////
+.o-item[class*="center aligned"][class*="middle aligned"] .o-item__content[class*="--overlay"] { #objects.item(element-center-middle-aligned); }
+// Top
+/////////////////////////
+.o-item[class*="top aligned"] .o-item__content[class*="--overlay"] { #objects.item(element-top-aligned); }
+// Bottom
+/////////////////////////
+.o-item[class*="bottom aligned"] .o-item__content[class*="--overlay"] { #objects.item(element-bottom-aligned); }

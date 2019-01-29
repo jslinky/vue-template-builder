@@ -1,0 +1,70 @@
+
+//*******************************
+//    ICON: Custom Prop Rulesets
+//*******************************
+
+//-------------------
+//  Icon props
+//--------------------
+
+#props {
+  .icon() {
+    @size: {
+      --iconSize: ~"var(--@{iconSize})";
+    };   
+    @extend-prop-classes: {
+        //*******************************
+        //   Classes used for extending properties
+        //*******************************
+        // Default
+        .o-icon-props { #props.icon(size); }
+    };
+    @extend-elements: {
+        //*******************************
+        //   Element classes that extend related properties
+        //*******************************          
+        .o-icon { &:extend(.o-icon-props); }
+    };
+    @output-custom-properties: {
+      #objects.icon-variables();
+      .output-custom-properties() when 
+      (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false), 
+      (@customPropFallback = true) and (@static-variables-only = false),
+      (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = true) {
+        //*******************************
+        //   Classes used for extending properties
+        //*******************************
+        #props.icon(extend-prop-classes);
+        //*******************************
+        //   Element classes that extend related properties
+        //*******************************        
+        #props.icon(extend-elements);
+      }
+      .output-custom-properties();
+    };
+  }
+}
+
+//*******************************
+//   DEFINE MIXIN
+//*******************************
+
+#props {
+  .icon(@item) {
+      #props.icon();
+      #objects.icon-variables();
+      @rules: @@item;
+      @rules();
+  }
+}
+
+//*******************************
+//   Init module custom property output
+//*******************************
+#props.icon(output-custom-properties);
+
+
+    
+
+
+

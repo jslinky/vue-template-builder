@@ -1,0 +1,82 @@
+
+@negativeTextColor          : @red;
+
+//-------------------
+//    Brand Colors
+//--------------------
+
+//-------------------
+//    Navy
+
+@jw-navy-digital            : #101A31;
+@jw-navy-digital-r          : red(@jw-navy-digital);
+@jw-navy-digital-g          : green(@jw-navy-digital);
+@jw-navy-digital-b          : blue(@jw-navy-digital);
+@jw-navy-digital-rgb-val    : @jw-navy-digital-r, @jw-navy-digital-g, @jw-navy-digital-b;
+@jw-navy-digital-rgb        :~"rgb(@{jw-navy-digital-rgb-val})";
+
+//-------------------
+//    Navy - alternate
+
+@jw-navy                    : @navy;
+@jw-navy-r                  : red(@jw-navy);
+@jw-navy-g                  : green(@jw-navy);
+@jw-navy-b                  : blue(@jw-navy);
+@jw-navy-rgb-val            : @jw-navy-r, @jw-navy-g, @jw-navy-b;
+@jw-navy-rgb                : ~"rgb(@{jw-navy-rgb-val})";
+
+//-------------------
+//    Pink
+
+@jw-pink                    : @pink;
+@jw-pink-r                  : red(@jw-pink);
+@jw-pink-g                  : green(@jw-pink);
+@jw-pink-b                  : blue(@jw-pink);
+@jw-pink-rgb-val            : @jw-pink-r, @jw-pink-g, @jw-pink-b;
+@jw-pink-rgb                : ~"rgb(@{jw-pink-rgb-val})";
+
+//-------------------
+//    Red (sale)
+
+@jw-red                     : @red;
+@jw-red-r                   : red(@jw-red);
+@jw-red-g                   : green(@jw-red);
+@jw-red-b                   : blue(@jw-red);
+@jw-red-rgb-val             : @jw-red-r, @jw-red-g, @jw-red-b;
+@jw-red-rgb                 : ~"rgb(@{jw-red-rgb-val})";
+
+//-------------------
+//    Primary Colour alias
+
+@primaryColor               : @jw-navy-digital;
+@secondaryColor             : @jw-navy;
+
+
+//-------------------
+//    Shades  
+//--------------------
+
+@jw-navy-shade1              : #353F56;
+@jw-navy-shade2              : #8F94A1;
+@jw-navy-shade3              : #BBBFC6;
+@jw-navy-shade4              : #D2D4DA;
+@jw-navy-shade5              : #EFF0F2;
+
+//-------------------
+//    DEBUG CODE - REMOVE
+//--------------------
+
+.constant-width-to-height-ratio {
+  background: @jw-navy-shade5;
+  width: 100%;
+}
+.constant-width-to-height-ratio::before {
+  content: '';
+  padding-top: 100%;
+  float: left;
+}
+.constant-width-to-height-ratio::after {
+  content: '';
+  display: block;
+  clear: both;
+}

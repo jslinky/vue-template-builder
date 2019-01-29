@@ -1,0 +1,122 @@
+//*******************************
+//    Product Details Section
+//*******************************
+
+// Container
+/////////////////////////
+
+.product-info-section-wrapp {
+  display: flex;
+  flex-wrap:wrap;
+}
+
+// Breadcrumb
+/////////////////////////
+.product-info-section-wrapp .breadcrumb {
+  padding-top:@spacing;
+  flex-basis: 100%;
+  margin-bottom:0;
+  padding-bottom:1.2rem;
+}
+.breadcrumb li {
+  font-size:@tiny;
+  font-family: @secondaryFontStack;
+  margin-right: .25rem;
+  letter-spacing: 2*@rem;
+  text-transform: uppercase;
+  display: inline-block;      
+}
+.breadcrumb li a {
+  &:extend(.o-link all);
+}
+.breadcrumb li a:not(:hover):after {
+  opacity:0!important;
+}
+.breadcrumb.breadcrumb li a {
+  font-size: inherit;
+  font-family: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  padding-bottom:3*@rem;
+}
+.breadcrumb.breadcrumb li a:after {
+  background-color:@jw-navy-shade4!important;
+}
+
+// Content Slot - Below Breadcrum
+/////////////////////////  
+.below-beadcrumb-slot-wrapper { width: 100%; }    
+// Content Slot - Below Breadcrumb
+/////////////////////////  
+.above-recently-viewed-wrapper,
+.you-may-like-wrapper,
+.below-you-may-like-wrapper {
+  margin-left: ~"calc(50% - 50vw)";
+  margin-right: ~"calc(50% - 50vw)";
+  width: 100vw;
+}    
+// Product Details Column
+/////////////////////////
+#product-info-section,
+.product-top-content-section-wrapp {  
+  margin-left:@spacing;
+  margin-right:@spacing;
+}
+.product-info-section-wrapp .product-additional-information { flex-basis:100%; }
+// Product Details Heading (Accordion)
+/////////////////////////
+.pdp-main .prod-short-desc,
+.wrapp-style-advice > h3 { 
+  #objects.header(default);
+  #objects.header(hTiny);    
+  letter-spacing: @headerHMedium-secondaryLetterSpacingVal*@rem;
+  font-family:@headerHMedium-secondaryFont;  
+  // text-transform: uppercase;
+  padding:@pdp-productDetailsColumnHeadingPadding;
+  margin-top:0;
+}
+
+.pdp-main .prod-care-advice,
+.pdp-main .prod-delivery { &:extend(.pdp-main .prod-short-desc); }  
+.product-additional-information .ui-accordion-content.ui-widget-content { padding:0; }
+.product-additional-information h3 { line-height:2; }
+
+// Details Heading Direct Sibling
+/////////////////////////
+.pdp-main .prod-care-advice + *,
+.pdp-main .wrapp-style-advice + h3 + p,
+.pdp-main .wrapp-style-advice > h3 + p,
+.pdp-main .prod-short-desc + * { 
+  margin-top:0; 
+  @paragraphLineHeight: 1.84;
+  @paragraphLetterSpacing: 1.5px;    
+  line-height: @paragraphLineHeight;
+  letter-spacing: @paragraphLetterSpacing;
+}
+
+// Product Details List
+/////////////////////////  
+.product-additional-information ul { &:extend(.o-list); }
+.product-additional-information ul { 
+  @listLineHeight:1.85;
+  line-height: @listLineHeight;
+  display: block;
+  margin-bottom:0;
+}  
+.product-additional-information ul + * {
+  margin-top:@spacing;
+}
+.product-additional-information li { &:extend(.o-list li); }
+.product-additional-information li {  
+  @listItem-letterSpacing:1.5*@em;
+  letter-spacing: @listItem-letterSpacing;
+  font-size:@tiny;
+}
+.product-additional-information ul {  
+  --listStylePosition: inside; // do fallback
+  margin-left:0;
+  padding-left:0;
+}
+
+.linkedProd-furtherOp,
+.in-store-availability-text { font-size:@tiny; }

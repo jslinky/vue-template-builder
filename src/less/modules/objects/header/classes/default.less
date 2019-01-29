@@ -1,0 +1,29 @@
+// Default styles
+[class*="-hdr"] { #objects.header(default); }
+
+// // Header 1 - 7 
+[class*="-hdr"] {
+  &[class*="--msv"] { #objects.header(hMassive); }
+  &[class*="--hg"] { #objects.header(hHuge); }
+  &[class*="--big"] { #objects.header(hBig); }
+  &[class*="--lg"] { #objects.header(hLarge); }
+  &[class*="--md"] { #objects.header(hMedium); }
+  &[class*="--sm"] { #objects.header(hSmall); }
+  &[class*="--t"] { #objects.header(hTiny); }
+}
+
+// Inverted
+[class*="-hdr"].inverted { #objects.header(inverted); }
+
+// Text transform: none
+[class*="-hdr"][class*="--lower"] { #objects.header(capatalise); }
+
+// Text transform: uppercase
+[class*="-hdr"][class*="--upper"] { #objects.header(uppercase); }
+
+// // Secondary Font
+[class*="-hdr"][class*="--secFont"]{ #objects.header(secondaryFont); }
+
+// Centered
+
+[class*="-hdr"].center.aligned { text-align:center; }

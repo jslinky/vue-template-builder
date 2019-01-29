@@ -1,0 +1,79 @@
+
+
+//*******************************
+//    MASTHEAD: Custom Prop Rulesets
+//*******************************
+
+//-------------------
+//  Masthead props
+//--------------------
+
+#props {
+  .section() {
+    @default: {
+      //-------------------
+      //   Section props
+      //--------------------         
+      --section-spacing-top : var(--divider-spacing-top);
+      --section-spacing-bottom : var(--divider-spacing-bottom);
+      --section-spacing-top-tabletBreakpoint: var(--divider-spacing-top-tabletBreakpoint);
+      --section-spacing-bottom-tabletBreakpoint: var(--divider-spacing-bottom-tabletBreakpoint);              
+      //-------------------
+      //   Divider props
+      //--------------------               
+
+    };
+    @extend-prop-classes: {
+        //*******************************
+        //   Classes used for extending properties
+        //*******************************
+        // Default
+        .o-section-props { #props.section(default); }
+    };
+    @extend-elements: {
+        //*******************************
+        //   Element classes that extend related properties
+        //*******************************          
+        .o-section { &:extend(.o-section-props); }
+
+    };
+    @output-custom-properties: {
+      #objects.section-variables();
+      .output-custom-properties() when 
+      (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false), 
+      (@customPropFallback = true) and (@static-variables-only = false),
+      (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = true) {
+        //*******************************
+        //   Classes used for extending properties
+        //*******************************
+        #props.section(extend-prop-classes);
+        //*******************************
+        //   Element classes that extend related properties
+        //*******************************        
+        #props.section(extend-elements);
+      }
+      .output-custom-properties();
+    };
+  }
+}
+
+//*******************************
+//   DEFINE MIXIN
+//*******************************
+
+#props {
+  .section(@item) {
+      #props.section();
+      #objects.section-variables();
+      @rules: @@item;
+      @rules();
+  }
+}
+
+//*******************************
+//   Init module custom property output
+//*******************************
+#props.section(output-custom-properties);
+
+
+    

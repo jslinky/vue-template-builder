@@ -1,0 +1,293 @@
+
+
+
+#components {
+  .menu() {   
+    // Initial menu rules 
+    @element-ruleset: {
+        font-family: var(--menu-fontFamily);
+        // font-weight: @fontWeight;        
+        font-size:var(--menu-fontSize);
+        list-style-type: none;
+        display: flex;
+        margin: @menu-margin;        
+        background:var(--menu-background);
+        border: @menu-border;        
+        //box-shadow: @menu-boxShadow;
+        //min-height: @menu-minHeight;   
+        border-radius: var(--menu-borderRadius);
+        border: var(--menu-borderWidth) solid var(--menu-borderColor);     
+        padding:0;
+        &:extend(.o-btn-props-underline);
+        position: relative;
+        justify-content: center;
+    };
+    @element-fallback-ruleset: {
+      font-size:@menu-fontSize;
+      background: @menu-background;
+    };
+    @element-tiny-ruleset: {
+      --menu-fontSize: var(--tiny);
+    };
+    @element-tiny-fallback-ruleset: {
+      font-size: @tiny;
+      font-size: var(--menu-fontSize);
+    };    
+    @element-sm-ruleset: {
+      --menu-fontSize: var(--small);
+    };
+    @element-sm-fallback-ruleset: {
+      font-size: @small;
+      font-size: var(--menu-fontSize);
+    };   
+    @element-lg-ruleset: {
+      --menu-fontSize: var(--large);
+    };
+    @element-lg-fallback-ruleset: {
+      font-size: @large;
+      font-size: var(--menu-fontSize);
+    };        
+    @menu-compact-item-ruleset: {
+      --menu-itemHorizontalPaddingLargeScreen: var(--menu-itemHorizontalPaddingSmallScreen);
+    };
+    @menu-compact-item-fallback-ruleset: {
+      padding-left: @@menu-itemHorizontalPaddingSmallScreen;
+      padding-right: @@menu-itemHorizontalPaddingSmallScreen;
+      padding-left:var(--menu-itemHorizontalPaddingLargeScreen);
+      padding-right:var(--menu-itemHorizontalPaddingLargeScreen);
+    };       
+    @menu-vertical-ruleset: {
+      flex-direction: column;
+      position: relative;
+    };        
+    @menu-vertical-item-ruleset: {
+      width:100%;
+      flex-wrap:wrap;
+    };
+    @item-ruleset: {      
+      display: flex;
+      align-items: center;
+      justify-content: center;     
+      flex: 0 1 auto; 
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      // font-family: @primaryFont;      
+      font-size: var(--menu-itemFontSize);
+      font-weight: var(--menu-itemFontWeight);
+      letter-spacing: var(--menu-itemLetterSpacing);
+      text-transform: var(--menu-itemTextTransform);
+      color: var(--menu-itemTextColor); 
+      background:var(--menu-itemBackground);
+      padding: var(--menu-itemVerticalPadding) var(--menu-itemHorizontalPadding);      
+      // transition: @menu-itemTransition;
+      
+    };
+    @item-fallback-ruleset: {
+      font-size: @@menu-itemFontSizeSmallScreen;
+      font-weight: @menu-itemFontWeight;
+      letter-spacing: @menu-itemLetterSpacing;
+      text-transform: @menu-itemTextTransform;
+      color: @menu-itemTextColor; 
+      background:@menu-itemBackground;
+      padding: @@menu-itemVerticalPadding @@menu-itemHorizontalPaddingSmallScreen;
+    };
+    @item-computerBreakpoint-ruleset: {  
+      --menu-itemHorizontalPadding: var(--menu-itemHorizontalPaddingLargeScreen);
+      --menu-itemFontSize: var(--menu-itemFontSizeLargeScreen);    
+    };
+    @item-computerBreakpoint-fallback-ruleset: {  
+      padding: @@menu-itemVerticalPadding @@menu-itemHorizontalPaddingLargeScreen;
+      padding: var(--menu-itemVerticalPadding) var(--menu-itemHorizontalPadding);      
+      font-size: @@menu-itemFontSizeLargeScreen;
+      font-size: var(--menu-itemFontSize);
+    };    
+    @item-hover-ruleset: {
+      cursor:pointer;
+      color: var(--menu-hoverColor);
+      background: var(--menu-hoverBackground);            
+    };
+    @item-hover-fallback-ruleset: {
+      color: @menu-hoverColor;
+      background: @menu-hoverBackground;
+      // @unselectedTextColor         : rgba(60, 60, 60, 0.4);
+      // @hoveredTextColor            : rgba(60, 60, 60, 0.8);
+      // @pressedTextColor            : rgba(60, 60, 60, 0.9);
+      // @selectedTextColor           : rgba(60, 60, 60, 0.95);
+      // @disabledTextColor           : rgba(60, 60, 60, 0.2);
+    };    
+    @item-notHover-underline-ruleset: {
+      display:none;
+    };
+    @item-active-ruleset: {
+      color: var(--menu-activeColor);
+      background: var(--menu-activeBackground);
+    };
+    @item-active-fallback-ruleset: {
+      color: @menu-activeColor;
+      background: @menu-activeBackground;
+    };
+    @item-selected-ruleset: {
+      color: var(--menu-selectedColor);
+      background: var(--menu-selectedBackground);
+    };
+    @item-selected-fallback-ruleset: {
+      color: @menu-selectedColor;
+      background: @menu-selectedBackground;
+    };    
+    @item-underline-ruleset: {
+      position: relative;
+    };      
+    @item-underline-after-ruleset: {
+      #objects.button-type(underline);
+    };        
+    @pipe-item-ruleset: {
+      position:relative;
+    };
+    // Underline fallback?
+    @pipe-item-after-ruleset: {
+      content:'';
+      display:inline-block;
+      position:absolute;
+      width:1px;
+      height:50%;
+      background:currentColor;
+      opacity:.5;
+      right:0;
+      top:50%;
+      transform:translate(0, -50%);
+    };
+    @pipe-fullHeight-item-after-ruleset: {
+      height:100%;
+    };
+    // @pipe-borderColor-ruleset: {
+    //   border-color:var(--borderColor);
+    // };
+    // @pipe-borderColor-fallback-ruleset: {
+    //   border-color:@borderColor;
+    // };    
+    @text-ruleset: {
+      text-transform:none;
+      --menu-itemLetterSpacing: @relative1px;
+    };
+    @text-fallback-ruleset: {
+      letter-spacing:@relative1px;
+      letter-spacing:var(--menu-itemLetterSpacing);      
+    };    
+    @sub-menu-ruleset: {
+      // flex-direction: column;
+      background:grey; // debug
+      left:0;
+      top:100%;
+      width:100%;
+      z-index:10; // should be var
+      display: none;
+      margin-top: @@menu-itemVerticalPadding;
+      margin-bottom:0;
+      position:absolute;
+      margin-top:0;
+    };
+    @sub-menu-vertical-ruleset: {
+      flex-direction:column;
+      position: relative;      
+      margin-top:var(--menu-itemVerticalPadding); // do fallback rules below
+    };
+    @sub-menu-tabletBreakpoint-ruleset: {
+      // position:absolute;
+      // margin-top:@subMenuDistance;
+      // margin-top:0;
+    };
+    @sub-menu-100vw-ruleset: {
+      width: 100vw;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+    };
+    @sub-menu-item-ruleset: {
+      // padding-left:0;
+      // padding-right:0;
+      font-size: var(--subMenu-itemFontSize);
+      color: var(--subMenu-itemTextColor);
+      background: var(--subMenu-itemBackground);
+      padding: var(--subMenu-itemVerticalPadding) var(--subMenu-itemHorizontalPadding);     
+    };
+    @sub-menu-item-fallback-ruleset: {
+      font-size: @@subMenu-itemFontSizeSmallScreen;
+      color: @subMenu-itemTextColor;
+      background: @subMenu-itemBackground;
+      padding: @@subMenu-itemVerticalPadding @@subMenu-itemHorizontalPaddingSmallScreen;             
+    };
+    @sub-menu-item-hover-ruleset: {
+      --subMenu-itemTextColor: var(--subMenu-hoverColor);
+      --subMenu-itemBackground: var(--subMenu-hoverBackground);
+    };
+    @sub-menu-item-hover-fallback-ruleset: {
+      color: @subMenu-hoverColor;
+      color: var(--subMenu-itemTextColor);
+      background: @subMenu-hoverBackground;
+      background: var(--subMenu-itemBackground);
+    };    
+    @sub-menu-item-active-ruleset: {
+      --subMenu-itemTextColor: var(--subMenu-activeColor);
+      --subMenu-itemBackground: var(--subMenu-activeBackground);      
+    };
+    @sub-menu-item-active-fallback-ruleset: {
+      color: @subMenu-activeColor;
+      color: var(--subMenu-itemTextColor);
+      background: @subMenu-activeBackground;
+      background: var(--subMenu-itemBackground);
+    };
+    @sub-menu-item-selected-ruleset: {
+      --subMenu-itemTextColor: var(--subMenu-selectedColor);
+      --subMenu-itemBackground: var(--subMenu-selectedBackground); 
+    };
+    @sub-menu-item-selected-fallback-ruleset: {
+      color: @subMenu-selectedColor;
+      color: var(--subMenu-itemTextColor);
+      background: @subMenu-selectedBackground;
+      background: var(--subMenu-itemBackground);
+    };    
+    @stackable-largestStackedScreen-ruleset: {
+      flex-direction:column;
+    };
+    @stackable-largestStackedScreen-header-ruleset: {
+      display: inline-block;
+      text-align: center;
+    };
+    @stackable-largestStackedScreen-header-not-active-ruleset: {
+      display:none;
+    };
+    @stackable-largestStackedScreen-header-active-ruleset: {
+      display:none;
+    };  
+    @stackable-largestStackedScreen-item-ruleset: {
+      width:100%;
+      flex-wrap:wrap;
+    };        
+    @stackable-largestStackedScreen-item-after-ruleset: {
+      display:none;
+    };   
+    @stackable-largestStackedScreen-sub-menu-ruleset: {
+      // flex-direction:column;
+      // position: relative;      
+      // margin-top:var(--menu-itemVerticalPadding); // do fallback rules below
+    };  
+    @stackable-largestStackedScreen-sub-menu-fallback-ruleset: {
+      
+    };      
+    @stackable-largestStackedScreen-piped-item-ruleset: {
+      position:relative;
+    };
+    @stackable-largestStackedScreen-piped-after-ruleset: {
+      display: inline-block;
+      width: 80%;
+      height: 1px;
+      bottom: 0;
+      top: auto;
+      transform: translate(-50%, 0);
+      left: 50%;
+      position: absolute;
+    };                    
+  }
+}

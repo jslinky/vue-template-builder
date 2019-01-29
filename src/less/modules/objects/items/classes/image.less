@@ -1,0 +1,25 @@
+//-------------------
+//   Image element
+//--------------------
+.o-item__image img { #objects.item(image); }
+
+// Full width (100vw) image on mobile
+@media (max-width:@largestMobileScreen) {
+  .o-item__image.o-item__image--100vw img {
+    #objects { .item(image) { #objects.item(image100vw-ruleset); } } // Override image ruleset
+    #objects.item(image);  
+  }
+}
+
+// Image fit within viewport height of screen
+// Image Full Bleed (Mobile screens)
+@supports (object-position: top) {
+  .o-item__image.o-item__image--fitscreen {
+    @media (min-width:@computerBreakpoint) and (min-height:500px) {
+      #objects { .item(image) { #objects.item(image-fit-screenHeight-ruleset); } } // Override image ruleset
+    }
+  }
+}
+
+// Object Fit: Cover Image
+.o-item__image.o-item__image--objFitCover img { #objects.item(image-100Height-objectFitCover); }

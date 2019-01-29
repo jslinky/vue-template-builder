@@ -1,0 +1,168 @@
+
+// /*--------------
+//   Page Heading
+// ---------------*/
+
+#objects {
+  .header-variables() {
+    @static-variables-only                : true; // turn off custom prop on a module level - define on a per site basis in overrides
+    @local-scoped-custom-prop-fallback    : false; // not sure this works! local scoped variable - should be moved to overrides
+
+    @headerColor                          : @primaryColor;    
+    @headerFontSizeVal                    : medium;
+    @headerFontSize                       : @@headerFontSizeVal; // nice pattern 
+    
+    @headerTextTransform                  : none; // DARWIN NAV COMPAT - REMOVE WHEN CAN
+    // @textTransform                        : none;
+    @headerLetterSpacing                  : normal;
+    @headerLineHeight                     : 1; 
+    @headerOffsetMultiplyer               : 1;        
+    // not currently used - tie these in with font
+    @headerFontWeight                     : lighter;
+    @headerFontStyle                      : normal;
+    @headerFont                           : @primaryFontRegular;
+    @headerFontFamily                     : @primaryFontRegularStack;
+    @headerSecondaryFont                  : @secondaryFont;
+    @headerSecondaryFontFamily            : @secondaryFontStack;    
+    
+    // Header Font
+    @hMassiveFontFamily                   : inherit;
+    @hHugeFontFamily                      : inherit;
+    @hBigFontFamily                       : inherit;
+    @hLargeFontFamily                     : inherit;
+    @hMediumFontFamily                    : inherit;
+    @hSmallFontFamily                     : inherit;
+    @hTinyFontFamily                      : inherit;
+
+    // Header Sizes
+    @hMassiveVal                          : massive;
+    @hHugeVal                             : huge;
+    @hBigVal                              : big;
+    @hLargeVal                            : large;
+    @hMediumVal                           : medium;
+    @hSmallVal                            : small;
+    @hTinyVal                             : mini;
+
+    @hMassive                             : @@hMassiveVal;
+    @hHuge                                : @@hHugeVal;
+    @hBig                                 : @@hBigVal;
+    @hLarge                               : @@hLargeVal;
+    @hMedium                              : @@hMediumVal;
+    @hSmall                               : @@hSmallVal;
+    @hTiny                                : @@hTinyVal;
+
+    // Fluid sizes - see outside of namespace
+
+    // Line Height Addition - baseline value of line-height is font-size
+    @headerHMassive-lineHeightAddition     : 1vmin;
+    @headerHHuge-lineHeightAddition        : 1vmin;
+    @headerHBig-lineHeightAddition         : 1vmin;
+    @headerHLarge-lineHeightAddition       : 1vmin;
+    @headerHMedium-lineHeightAddition      : 1vmin;
+    @headerHSmall-lineHeightAddition       : 1vmin;
+    @headerHTiny-lineHeightAddition        : 1vmin;
+
+    // Offset multiplyers
+    @headerHMassive-offsetMultiplyer       : 2.5;
+    @headerHHuge-offsetMultiplyer          : 2;
+    @headerHBig-offsetMultiplyer           : 2;
+    @headerHLarge-offsetMultiplyer         : 1.5;
+    @headerHMedium-offsetMultiplyer        : 1;
+    @headerHSmall-offsetMultiplyer         : 1;
+    @headerHTiny-offsetMultiplyer          : 1;
+
+    @headerHMassive-textTransform          : @headerTextTransform;
+    @headerHHuge-textTransform             : @headerTextTransform;
+    @headerHBig-textTransform              : @headerTextTransform;
+    @headerHLarge-textTransform            : @headerTextTransform;
+    @headerHMedium-textTransform           : @headerTextTransform;
+    @headerHSmall-textTransform            : @headerTextTransform;
+    @headerHTiny-textTransform             : @headerTextTransform;
+
+    // Letter spacing (converts to EM)
+    @headerLetterSpacingNoCaps             : 0.75; // 6% of fontSize
+    @headerLetterSpacingCaps               : 3; // 20% of fontSize
+
+    @headerHMassive-letterSpacingNoUpperVal: 1.5; 
+    @headerHHuge-letterSpacingNoUpperVal   : 1.5; 
+    @headerHBig-letterSpacingNoUpperVal    : 1.5; 
+    @headerHLarge-letterSpacingNoUpperVal  : 1.5; 
+    @headerHMedium-letterSpacingNoUpperVal : 1; 
+    @headerHSmall-letterSpacingNoUpperVal  : 0.75; 
+    @headerHTiny-letterSpacingNoUpperVal   : 0.75; 
+
+    @headerHMassive-letterSpacingNoUpper   : @headerHMassive-letterSpacingNoUpperVal*@rem; 
+    @headerHHuge-letterSpacingNoUpper      : @headerHHuge-letterSpacingNoUpperVal*@rem; 
+    @headerHBig-letterSpacingNoUpper       : @headerHBig-letterSpacingNoUpperVal*@rem; 
+    @headerHLarge-letterSpacingNoUpper     : @headerHLarge-letterSpacingNoUpperVal*@rem; 
+    @headerHMedium-letterSpacingNoUpper    : @headerHMedium-letterSpacingNoUpperVal*@rem; 
+    @headerHSmall-letterSpacingNoUpper     : @headerHSmall-letterSpacingNoUpperVal*@rem; 
+    @headerHTiny-letterSpacingNoUpper      : @headerHTiny-letterSpacingNoUpperVal*@rem; 
+
+
+    @headerHMassive-letterSpacingUpperVal  : 3; 
+    @headerHHuge-letterSpacingUpperVal     : 3; 
+    @headerHBig-letterSpacingUpperVal      : 3; 
+    @headerHLarge-letterSpacingUpperVal    : 3; 
+    @headerHMedium-letterSpacingUpperVal   : 2.5; 
+    @headerHSmall-letterSpacingUpperVal    : 2.5;
+    @headerHTiny-letterSpacingUpperVal     : 2.5; 
+
+    @headerHMassive-letterSpacingUpper     : @headerHMassive-letterSpacingUpperVal*@rem; 
+    @headerHHuge-letterSpacingUpper        : @headerHHuge-letterSpacingUpperVal*@rem; 
+    @headerHBig-letterSpacingUpper         : @headerHBig-letterSpacingUpperVal*@rem; 
+    @headerHLarge-letterSpacingUpper       : @headerHLarge-letterSpacingUpperVal*@rem; 
+    @headerHMedium-letterSpacingUpper      : @headerHMedium-letterSpacingUpperVal*@rem; 
+    @headerHSmall-letterSpacingUpper       : @headerHSmall-letterSpacingUpperVal*@rem;     
+    @headerHTiny-letterSpacingUpper        : @headerHTiny-letterSpacingUpperVal*@rem;     
+
+    // Header group
+    @headerGroupSubHeadingFontSizeVal     : relativeMini;
+    @headerGroupSubHeadingFontSize        : @@headerGroupSubHeadingFontSizeVal;
+    @headerGroupSubHeadingOffsetMultiplyer: 0.25;
+    @headerGroupSubHeadingLetterSpacingMultiplyer: 0.1;
+    @headerGroupSubHeadingLetterSpacing   : ~"calc(@{headerGroupSubHeadingLetterSpacingMultiplyer} * @{headerGroupSubHeadingFontSize})";
+    @headerGroupTextAlign                 : center;
+
+    // Header underline
+    @headerUnderlineHeight                : 1px; // create var
+    @headerUnderlineWidth                 : 100%;
+    @headerUnderlineWidthSubtractVal      : relativeMedium;
+    @headerUnderlineWidthSubtractMultiplyer : 2;
+    @headerUnderlineWidthCalc             : ~"calc(100% - (var(--headerUnderlineWidthSubtractVal) * var(--headerUnderlineWidthSubtractMultiplyer)))"; 
+    @headerUnderlineWidthCalcFallback     : ~"calc(100% - (@{@{headerUnderlineWidthSubtractVal}} * @{headerUnderlineWidthSubtractMultiplyer}))"; 
+
+    @headerUnderlineMaxWidthVal           : 54; // px
+    @headerUnderlineMaxWidthCalc          : var(--headerUnderlineMaxWidthVal)~" /" var(--fontSizeRoot);
+    @headerUnderlineMaxWidthCalcFallback  : @headerUnderlineMaxWidthVal / @fontSizeRoot;
+    @headerUnderlineMaxWidth              : ~"calc("var(--headerUnderlineMaxWidthCalc)~"*1rem)";        
+    @headerUnderlineMaxWidthFallback      : ~"calc("@headerUnderlineMaxWidthCalc~"*1rem)";        
+
+    @headerUnderlineBackground            : currentColor;
+    @headerUnderlineOpacity               : .5; 
+
+    @headerUnderlineMargin                : 0 auto;
+    @headerUnderlineVerticalRhythmMultiplyer: 0.7;
+    @headerUnderlineVerticalRhythm        : calc(var(--headerUnderlineVerticalRhythmMultiplyer) ~"*" var(--lineHeightRem));
+    @headerUnderlineVerticalRhythmFallback: calc(@headerUnderlineVerticalRhythmMultiplyer ~"*" @lineHeightRem);
+    // @headerUnderlineTransition:  var(--o-btn-transition);
+    // @headerUnderlineBoxShadow:   @invertedUnderlineShadow;
+
+    // Header line through
+    @headerLineThroughHeight              : 1px;
+    @headerLineThroughWidth               : 100vw;
+    @headerLineThroughLeftPos             : 0;
+    @headerLineThroughTopPos              : 50%;
+    @headerLineThroughBottomPos           : auto;
+    @headerLineThroughMaxWidth            : unit(@largeMonitorBreakpoint, rem); // replace with correct var
+    @headerLineThroughTransform           : translateZ(0) scale(1.0, 1.0);
+    @headerLineThroughZIndex              : 1;
+
+
+  }
+}
+
+@headerFluidMinWidthPixel             : @largeMobileBreakpointPixel;
+@headerFluidMaxWidthPixel             : @largeMonitorBreakpointPixel;
+@headerFluidMinVW                     : unit((unit(@headerFluidMinWidthPixel) / @fontSizeRoot), rem);
+@headerFluidMaxVW                     : unit((unit(@headerFluidMaxWidthPixel) / @fontSizeRoot), rem);

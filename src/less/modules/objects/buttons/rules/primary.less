@@ -1,0 +1,146 @@
+//-------------------
+//   Primary type
+//--------------------
+
+
+// Core ruleset
+/////////////////////////
+#objects {
+  .button-type() {    
+    // Custom property ruleset
+    @primary-btn-type-props-ruleset: {
+      --color: @primaryTextColor;
+      --backgroundColor: @colorVal;
+      --borderColor: var(--backgroundColor);
+      content:'props';
+    };
+    // Static LESS var ruleset
+    @primary-btn-type-vars-ruleset: {
+      color: @primaryTextColor;        
+      background-color: @colorVal;
+      border-color: @colorVal;
+      content:'static';
+    };
+    // Custom property ruleset - fallback
+    @primary-btn-type-propsFallback-ruleset: {        
+      #objects.button-type(primary-btn-type-vars-ruleset);
+      #objects.button-type(primary-btn-type-props-ruleset);
+      color: var(--color);
+      background-color: var(--backgroundColor);
+      border-color: var(--borderColor);        
+      content:'fallback';
+    };
+
+    // HOVER
+    // Custom property ruleset
+    @primary-btn-type-hover-props-ruleset: {
+      &:hover,
+      &:focus,
+      &:active,
+      &.active:active,
+      &.active,
+      &.active:hover  {
+        --backgroundColor: transparent;        
+        --innerShadowSpread: 2px;
+        --color: @colorVal;
+        --innerShadowColor: currentColor;
+      }
+    };
+    // Static LESS var ruleset
+    @primary-btn-type-hover-vars-ruleset: {
+      &:hover,
+      &:focus,
+      &:active,
+      &.active:active,
+      &.active,
+      &.active:hover  {
+        color: @colorVal;
+        background-color: transparent;
+        box-shadow: 0 0 0 1px currentColor inset; // this needs replacing with the proper LESS variables
+      }          
+    };
+    // Custom property ruleset - fallback
+    @primary-btn-type-hover-propsFallback-ruleset: {        
+      &:hover,
+      &:focus,
+      &:active,
+      &.active:active,
+      &.active,
+      &.active:hover  {
+        color: @colorVal;
+        color: var(--color);
+        background-color: transparent;
+        background-color: var(--backgroundColor);
+        box-shadow: 0 0 0px 1px currentColor inset; // this needs replacing with the proper LESS variables
+        box-shadow: var(--innerShadow), var(--dropShadow);          
+      }        
+    };       
+
+    // Inverted ruleset
+
+    // Custom property ruleset
+    @primary-btn-type-inverted-props-ruleset: {
+      --color: @colorVal;
+      --backgroundColor: @primaryInvertedBackgroundColor;
+      --borderColor: @colorVal;      
+    };
+    // Static LESS var ruleset
+    @primary-btn-type-inverted-vars-ruleset: {
+      color: @colorVal;
+      background-color: @primaryInvertedBackgroundColor; // turn into var
+      border-color: @colorVal;
+    };
+    // Custom property ruleset - fallback
+    @primary-btn-type-inverted-propsFallback-ruleset: {        
+      #objects.button-type(primary-btn-type-inverted-vars-ruleset);
+      #objects.button-type(primary-btn-type-inverted-props-ruleset);
+      color: var(--color);     
+      background-color: var(--backgroundColor);
+      border-color: var(--borderColor);      
+    };   
+    // HOVER 
+    // Custom property ruleset
+    @primary-btn-type-inverted-hover-props-ruleset: {
+      &:hover,
+      &:focus,
+      &:active,
+      &.active:active,
+      &.active,
+      &.active:hover  {
+        --color: @primaryInvertedHoverColor;
+        --backgroundColor: @colorVal;
+        --innerShadowColor: @colorVal;
+      }      
+    };
+    // Static LESS var ruleset
+    @primary-btn-type-inverted-hover-vars-ruleset: {
+      &:hover,
+      &:focus,
+      &:active,
+      &.active:active,
+      &.active,
+      &.active:hover  {
+        color: @primaryInvertedHoverColor;
+        background-color: @colorVal;
+        box-shadow: 0 0 0px 1px @colorVal inset; // this needs replacing with the proper LESS variables        
+      }
+    };
+    // Custom property ruleset - fallback
+    @primary-btn-type-inverted-hover-propsFallback-ruleset: {        
+      &:hover,
+      &:focus,
+      &:active,
+      &.active:active,
+      &.active,
+      &.active:hover  {
+        color: @primaryInvertedHoverColor;
+        color: var(--color);
+        background-color: @colorVal;
+        background-color: var(--backgroundColor);
+        box-shadow: 0 0 0px 1px @colorVal inset; // this needs replacing with the proper LESS variables
+        box-shadow: var(--innerShadow), var(--dropShadow);              
+      }    
+    };       
+   
+  }
+}

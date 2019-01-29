@@ -1,0 +1,43 @@
+
+//*******************************
+//    SECTION: Custom Prop Rulesets
+//*******************************
+
+//-------------------
+//  Section props
+//--------------------
+
+#props {
+  .section() {
+    @spacing: {
+        --section-spacing-top : var(--divider-spacing-top);
+        --section-spacing-bottom : var(--divider-spacing-bottom);
+        --section-spacing-top-tabletBreakpoint: var(--divider-spacing-top-tabletBreakpoint);
+        --section-spacing-bottom-tabletBreakpoint: var(--divider-spacing-bottom-tabletBreakpoint);        
+    };
+  }
+}
+
+//*******************************
+//   DEFINE MIXIN
+//*******************************
+
+#props {
+  .section(@item) {
+      #props.section();
+      #objects.section-variables();
+      @rules: @@item;
+      @rules();
+  }
+}
+
+//*******************************
+//   Classes used for extending properties
+//*******************************
+.o-section-props-spacing { #props.section(spacing); }
+
+//*******************************
+//   Element classes that extend related properties
+//*******************************
+
+.o-section { &:extend(.o-section-props-spacing, .o-divider-props); }

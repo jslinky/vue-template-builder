@@ -1,0 +1,59 @@
+
+
+#objects {
+  .button-type() {
+    @link-btn-type-ruleset: {      
+      &:extend(.o-btn);
+    };
+    // Custom property ruleset
+    @link-btn-type-customPropOnly-ruleset: {
+      &:extend(.o-btn-props-underline, .o-btn-props-transition);      
+      --underlineWidth: @linkUnderlineWidth;
+      --underlineBottomPos: @linkUnderlineBottomPos;                
+      --underlineLeftPos: @linkUnderlineLeftPos;
+      --horizontalPadding: @linkUnderlineLeftPos; 
+      --borderWidth: 0;
+      --textTransform: none;
+      --padding:0;
+    };
+    // Static LESS var ruleset
+    @link-btn-type-staticVarsOnly-ruleset: {
+      padding:0;
+      border:0;
+      text-transform: none; // make var
+      font-size:inherit;
+      margin:0;
+    };
+    // Custom property ruleset - fallback
+    @link-btn-type-fallback-ruleset: {        
+      #objects.button-type(link-btn-type-staticVarsOnly-ruleset);
+      #objects.button-type(link-btn-type-customPropOnly-ruleset);
+    };  
+
+    // AFTER
+    @link-btn-type-underline-ruleset: {
+      &:extend(.extend-button-underline);
+    };    
+    // Custom property ruleset
+    @link-btn-type-underline-customPropOnly-ruleset: {
+      // do left position prop here
+    };
+    // Static LESS var ruleset
+    @link-btn-type-underline-staticVarsOnly-ruleset: {
+      left:@linkUnderlineLeftPos;
+      width: @linkUnderlineWidth;
+      bottom: @linkUnderlineBottomPos;      
+    };
+    // Custom property ruleset - fallback
+    @link-btn-type-underline-fallback-ruleset: {        
+      #objects.button-type(link-btn-type-underline-staticVarsOnly-ruleset);
+      #objects.button-type(link-btn-type-underline-customPropOnly-ruleset);
+    };      
+
+    @link-btn-type-inverted-ruleset: {
+      // &:extend([class*="o-btn"].inverted);
+      #objects.button-type(default-btn-type-inverted);
+    };
+
+  }
+}

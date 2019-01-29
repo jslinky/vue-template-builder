@@ -1,0 +1,77 @@
+
+
+
+
+
+//*******************************
+//    Ruleset calls
+//*******************************
+
+//-------------------
+//  CORE site rules
+//--------------------
+
+#global {
+  .site() {    
+    @html-body: { 
+        #global.site(html-body-ruleset);
+    };        
+    @html: {
+        #global.site(html-ruleset);    
+    };  
+    @catch-all-inc-before-and-after: { 
+        #global.site(catch-all-inc-before-and-after-ruleset);    
+    };
+    @body: {
+        #global.site(body-ruleset);
+    };
+    @paragraph: {
+        #global.site(paragraph-ruleset);
+    };
+    @main-element: {
+        #global.site(main-element-ruleset);
+    };
+    @selection-highlight: {
+        #global.site(selection-highlight-ruleset);
+    };
+    @form-selection-highlight: {
+        #global.site(form-selection-highlight-ruleset);
+    };
+    @link: {
+      #global.site(link-ruleset);
+    };
+    @link-hover: {
+      #global.site(link-hover-ruleset);
+    };   
+    @list: {
+      #global.site(list-ruleset);
+    };
+    @listItem: {
+      #global.site(listItem-ruleset);
+    };    
+  }
+}
+
+
+//-------------------
+//  EXTEND(ED) core ruleset
+//--------------------
+
+#global {
+  // .site(body) when (@customPropFallback = true) {
+  //   #global.site(body-fallback-ruleset);
+  // }   
+}
+
+#global {
+  .site(@ruleset) {
+    #global.site();
+    #global.site-variables();
+    @rules: @@ruleset;
+    @rules();
+  }
+  .site-variables(@ruleset) {
+    @rules: @@ruleset;
+    @rules();
+  }  
+}

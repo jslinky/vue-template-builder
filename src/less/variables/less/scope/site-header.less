@@ -1,0 +1,85 @@
+
+
+#scope {
+  .site-header-variables() {
+    #components.menu-variables();
+    // Transition
+    @headerDefaultEasing             : cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    // Header
+    @headerHeightVal                 : 49; // debug value 
+    @headerHeightVal-largeMobileBreakpoint: 74;
+    @headerHeight                    : ~"var(--headerHeightVal) * ((1 / var(--fontSizeRoot)) * 1rem)";
+    @headerHeightFallback            : ~"@{headerHeightVal} * ((1 / @{fontSizeRoot}) * 1rem)";
+    @headerHeight-largeMobileBreakpointFallback : ~"@{headerHeightVal-largeMobileBreakpoint} * ((1 / @{fontSizeRoot}) * 1rem)";  
+    @headerInverseColor              : #fff;
+    // Logo
+    @site-logoWidthVal               : 106;
+    @site-logoWidth                  : ~"var(--site-logoWidthVal) * ((1 / var(--fontSizeRoot)) * 1rem)";
+    @site-logoWidthFallback          : ~"@{site-logoWidthVal} * ((1 / @{fontSizeRoot}) * 1rem)";
+    // Content Slot Banners
+    @bannerMinHeightVal              : 46;    
+    @bannerMinHeight                 : ~"var(--bannerMinHeightVal) * ((1 / var(--fontSizeRoot)) * 1rem)";
+    @bannerMinHeightFallback         : ~"@{bannerMinHeightVal} * ((1 / @{fontSizeRoot}) * 1rem)";
+    @bannerDismiss-iconSize          : large;
+    // Search
+    @mobile-nav-search-inputWidthVal : 256;
+    @mobile-nav-search-inputWidth    : ~"var(--mobile-nav-search-inputWidthVal) * ((1 / var(--fontSizeRoot)) * 1rem)";    
+    @mobile-nav-search-inputWidthFallback : ~"@{mobile-nav-search-inputWidthVal} * ((1 / @{fontSizeRoot}) * 1rem)";    
+    // Navigation
+    @site-navigation-closeIcon-size  : small;
+    @site-navigation-catMenuActive-header-logoWidth : ~"calc(100% - ("var(--site-navigation-closeIcon-size)~" + ("var(--menu-itemHorizontalPadding)~" * 4)))";
+    @site-navigation-catMenuActive-header-logoWidthFallback : ~"calc(100% - ("@@site-navigation-closeIcon-size~" + ("@@menu-itemHorizontalPadding~" * 4)))";    
+    // Category Menu
+    @site-catMenu-font               : secondaryFontStack;
+    @site-catMenu-mobile-bgColor     : primaryColor;
+    @site-catMenu-mobile-maxWidthValPixel : 421px;
+    @site-catMenu-mobile-maxWidthVal : site-catMenu-mobile-maxWidthValPixel;
+    // @site-catMenu-mobile-maxWidth    : ~"calc("@@site-catMenu-mobile-maxWidthVal~" * ((1 / var(--fontSizeRoot)) * 1rem)";
+    @site-catMenu-mobile-maxWidth    : @@site-catMenu-mobile-maxWidthVal;  
+    @site-catMenu-subMenu-bg         : #EFF0F2;
+  // Category Sub Menu (computer)
+    @site-catSubMenuHeader-linkFontSize: tiny;
+    @site-catSubMenuHeader-linkLetterSpacingVal: 1;  
+    // Arrow
+    @site-catSubMenuHeader-arrowWidth: 0;
+    @site-catSubMenuHeader-arrowHeight: 0;
+    @site-catSubMenuHeader-arrowSize : mini;
+    @site-catSubMenuHeader-arrowLeftPos: ~"calc(50% - var(--o-btn-underlineSize))";
+    @site-catSubMenuHeader-arrowLeftPosFallback: ~"calc(-@{@{site-catSubMenuHeader-arrowSize}} + 50%)"; 
+    @site-catSubMenuHeader-arrowBottom    : 0px;
+    @site-catSubMenuHeader-arrowBackground: transparent;
+    @site-catSubMenuHeader-arrowOpacity: 1;
+    @site-catSubMenuHeader-arrowBoxShadow: none;
+
+
+
+    @site-catSubMenu-fontSize-computer : relativeTiny;    
+    // Category Sub Menu (mobile)
+    @site-catSubMenu-subLinks-fontSizeVal-mobile: 12;
+    @site-catSubMenu-subLinks-color-mobile: #fff;
+
+    // Category Menu - Sign in / Account Button
+    @site-catMenu-mobile-signInAccount-bgColor: #1f2a44;
+    // Primary Menu
+    @primaryMenu-width               : 100;    
+    @primaryNavPanel-bgColor         : #EFF0F2; // make a var
+    @primaryMenu-itemHorizontalPadding: relativeMini;  
+    @primaryMenu-itemVerticalPadding : 0;   
+    @primaryMenu-iconSizeVal         : 44px;
+    @primaryMenu-iconSize            : primaryMenu-iconSizeVal;   
+  // Primary Menu - Bag Item
+    @primaryMenu-bagTextColorInverted: #000;   
+    @primaryMenu-bagFontSize         : mini;     
+    // Navigation dimmer
+    @navigationDimmer-bgColor        : @navigationDimmer-bgColorFallback;
+    @navigationDimmer-bgColorFallback: ~"@{jw-navy-digital-r}, @{jw-navy-digital-g}, @{jw-navy-digital-b}, @{navigationDimmer-bgColorOpacity}";
+    @navigationDimmer-bgColorOpacity : .7;    
+    // Currency Select
+    @currencySelectVerticalPadding   : relativeMedium;
+    @currencySelectHorizontalPadding : relativeBig;    
+    @currencySelectItemTextColor     : #fff;
+    @currencySelectItemBackgroundColor : #1f2a44;
+    // Site footer
+    @site-footer-bgColor             : primaryColor;      
+  }
+}

@@ -1,0 +1,58 @@
+
+
+
+.aspect-ratio(@width, @height, @multiplyer, @multiplyerUnit) {
+  --artwork-ratio-width: @width;
+  --artwork-ratio-height: @height;
+  
+  max-width:~"calc((var(--artwork-ratio-height) / var(--artwork-ratio-width)) * (var(--@{multiplyer}) * 1@{multiplyerUnit}))";
+  &:before {
+    padding-top: ~"calc((var(--artwork-ratio-height) / var(--artwork-ratio-width)) * 100%)";
+  }
+  
+}
+
+
+
+
+// .cust-prop(@prop, @value, @definedAlternativeFallback:false) when (@definedAlternativeFallback = false) {       
+//     @rules: @@value;
+//     .cust-prop-fallback(@prop, @rules);
+//     @{prop}: ~"var(--@{value}"~")";
+// }
+
+// .cust-prop(@prop, @value, @definedAlternativeFallback) when not (@definedAlternativeFallback = false) {       
+//     @rules: @@definedAlternativeFallback;
+//     .cust-prop-fallback(@prop, @rules);
+//     @{prop}: ~"var(--@{value}"~")";    
+// }
+
+// .cust-prop-fallback(@prop, @value) when (@customPropFallback = true) {   
+//     @{prop}: @rules;
+// }
+
+// .cust-prop(text-transform, headerTextTransform, headerTextTransform);
+
+
+
+
+
+
+
+
+
+.aspect-ratio(@width, @height, @multiplyer, @multiplyerUnit) when (@customPropFallback = true) {
+  .aspect-ratio-fallback(@width, @height, @multiplyer, @multiplyerUnit);
+  max-width:~"calc((var(--artwork-ratio-height) / var(--artwork-ratio-width)) * (var(--@{multiplyer}) * 1@{multiplyerUnit}))";
+  &:before {    
+    padding-top: ~"calc((var(--artwork-ratio-height) / var(--artwork-ratio-width)) * 100%)";
+  }
+  
+}
+
+.aspect-ratio-fallback(@width, @height, @multiplyer, @multiplyerUnit) {
+  max-width:~"calc((@{height} / @{width}) * (@{multiplyer} * 1@{multiplyerUnit}))";
+  &:before {
+    padding-top: (@height / @width) * 100%;
+  }
+}

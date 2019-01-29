@@ -1,0 +1,48 @@
+
+.o-item-imageSwap() when (@include_item-imageSwap = true) {  
+  // Image Swap on hover
+  .o-item.o-item--imageSwap .o-item__image { #objects.item(imageSwap); }
+  .o-item.o-item--imageSwap .o-item__image:hover { #objects.item(imageSwap-hover); }
+
+  // Animated variants
+
+  // Scale down
+  .o-item.o-item--imageSwap.imageSwap-scaleDown .o-item__image:hover { 
+    // #objects { 
+    //   .item(imageSwap-hover) { 
+        > img:nth-child(1) {
+          transform:scale(0);
+        }    
+    //   } 
+    // }
+  }
+
+  // Swipe left
+  .o-item.o-item--imageSwap.imageSwap-swipeLeft .o-item__image:hover { 
+    > img:nth-child(1) {
+      transform:translate(-100%, 0);
+    }    
+  }
+
+  // Swipe right
+  .o-item.o-item--imageSwap.imageSwap-swipeRight .o-item__image:hover {  
+      > img:nth-child(1) {
+        transform:translate(100%, 0);
+      }    
+  }
+
+  // Circular clip
+  .o-item.o-item--imageSwap.imageSwap-circleClip .o-item__image { 
+    > img:nth-child(1) {
+      clip-path: circle(100% at center);
+    }    
+  }
+
+  .o-item.o-item--imageSwap.imageSwap-circleClip .o-item__image:hover { 
+    > img:nth-child(1) {
+      clip-path: circle(0% at center);
+    }    
+  }  
+}
+
+.o-item-imageSwap();

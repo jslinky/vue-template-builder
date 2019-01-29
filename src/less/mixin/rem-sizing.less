@@ -1,0 +1,12 @@
+
+
+// PX to REM unit conversion
+
+.rem-unit(@property, @value) {
+  @{property}: @value;
+}
+
+.rem-unit(@property, @value) when (ispixel(@value) ) {
+  @rem-value: unit((@value*@rem), rem);
+  @{property}: @rem-value;
+}

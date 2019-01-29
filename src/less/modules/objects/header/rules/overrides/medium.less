@@ -1,0 +1,64 @@
+
+// Override 
+// #objects { 
+//     .container() {
+//         @element: {
+//             // override code
+//         };
+//     } 
+// } 
+
+// Extend
+// #objects {
+//     .container(element) {
+//         // extend code
+//     }
+// }
+
+// #objects {
+//   #objects.header-variables();
+//   @headerFontFamily: @primaryFontLightStack;
+
+//   .header(hMedium-ruleset) when (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+//     --headerFontFamily: @primaryFontLightStack;
+//   }
+//   .header(hMedium-ruleset) when (@customPropFallback = true) and (@static-variables-only = false) {
+//     --headerFontFamily: @primaryFontLightStack;
+//     font-family:@primaryFontLightStack;
+//     font-family:var(--headerFontFamily);
+//   }  
+//   .header(hMedium-ruleset) when (@static-variables-only = true) {
+//     font-family:@primaryFontLightStack;
+//   }    
+// }
+
+
+
+// [class*="-hdr"][class*="--md"][class*="--secFont"] {
+//     #objects.header-variables();
+//     @headerLetterSpacingMultiplyer: @headerHMedium-secondaryLetterSpacingVal;
+//     @headerFontFamily: @headerHMedium-secondaryFont;
+
+//     .output() when (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+//       --headerFontFamily: @headerFontFamily;
+//       --headerLetterSpacingMultiplyer: @headerLetterSpacingMultiplyer;
+//     }        
+//     .output() when (@customPropFallback = true) and (@static-variables-only = false) {      
+//       --headerFontFamily: @headerFontFamily;
+//       --headerLetterSpacingMultiplyer: @headerLetterSpacingMultiplyer;
+//       letter-spacing: @headerLetterSpacingMultiplyer*@rem;
+//       letter-spacing: var(--headerLetterSpacingMultiplyer);
+//       font-family:@headerFontFamily;
+//       font-family:var(--headerFontFamily);
+//     }            
+//     .output() when (@static-variables-only = true) {
+//       letter-spacing: @headerLetterSpacingMultiplyer*@rem;
+//       font-family:@headerFontFamily;
+//     }   
+//     .output();
+
+// }
+
+
+
+

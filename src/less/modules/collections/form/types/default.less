@@ -1,0 +1,456 @@
+
+//-------------------
+// Form
+//--------------------  
+.o-form {
+  position:relative;
+  max-width:100%;
+}
+//-------------------
+// Fieldset
+//--------------------  
+.o-form__fieldset { #collections.form(fieldset); }
+//--------------------  
+// Stacked
+.o-form__fieldset.o-form__fieldset--stacked .o-form__label {
+  display:block;
+}
+
+//-------------------
+// Label
+//--------------------  
+.o-form__label { #collections.form(label); }
+.o-form__label:nth-of-type(1n + 2) {
+  margin-top:@@rowDistance;
+}
+
+//-------------------
+// Stacked
+
+.o-form__fieldset.o-form__fieldset--stacked .o-form__label {
+    --gutter:@labelDistanceCalc;
+}
+.o-form__fieldset.o-form__fieldset--stacked .o-form__label:not(:first-of-type) {
+  margin-top:@@rowDistance;
+}
+
+//-------------------
+// Input - Text
+//--------------------  
+
+.o-form__inputText { #collections.form(input-text); }
+
+//--------------------  
+// Placeholder
+
+.o-form__inputText {
+  &::-webkit-input-placeholder,
+  &::-moz-placeholder,
+  &:-ms-input-placeholder,
+  &:-moz-placeholder {  
+    #collections.form(input-placeholder);
+  }
+}
+
+//--------------------  
+// Focus
+
+.o-form__inputText:focus { 
+  #collections.form(input-text-focus);
+}
+
+//--------------------  
+// Focus Placeholder
+
+.o-form__inputText:focus {
+  &::-webkit-input-placeholder,
+  &::-moz-placeholder,
+  &:-ms-input-placeholder,
+  &:-moz-placeholder {
+    #collections.form(input-placeholder-focus);
+  }  
+}
+
+//--------------------  
+// Error
+
+.o-form__inputText.error {
+  #collections.form(input-text-error);
+}
+
+//--------------------  
+// Error Placeholder
+
+.o-form__inputText.error::-webkit-input-placeholder {
+  color:@inputErrorPlaceholderColor;
+} 
+
+.o-form__inputText.error::-moz-placeholder {
+  color:@inputErrorPlaceholderColor;
+} 
+
+.o-form__inputText.error:-ms-input-placeholder {
+  color:@inputErrorPlaceholderColor;
+} 
+
+.o-form__inputText.error:-moz-placeholder {
+  color:@inputErrorPlaceholderColor;
+} 
+
+//--------------------  
+// Error Focus
+
+.o-form__inputText.error:focus { 
+  // Optional values //
+  // background: @inputErrorFocusBackground;
+  // color: @inputErrorFocusColor;
+  // box-shadow:@inputErrorFocusBoxShadow;
+  border: @inputErrorFocusBorder;
+}
+
+//--------------------  
+// Error Focus Placeholder
+
+.o-form__inputText.error:focus {
+  &::-webkit-input-placeholder,
+  &::-moz-placeholder,
+  &:-ms-input-placeholder,
+  &:-moz-placeholder {
+    color:@inputErrorPlaceholderFocusColor;
+  }  
+}
+
+//-------------------
+// Error Prompt
+//--------------------  
+
+.o-form__errorMsg { #collections.form(prompt-error); }
+
+//-------------------
+// Radio / Checkbox - shared styles
+//--------------------  
+
+/*input[type="radio"] + label:before,
+input[type="checkbox"] + label:before, */
+.o-form__radioCheckbox + label:before,
+.o-form__radio + label:before,
+.o-form__checkbox + label:before { 
+  #collections.form(radio-checkbox);
+}
+
+/*input[type="radio"]:focus + label:before,
+input[type="checkbox"]:focus + label:before, */
+.o-form__radioCheckbox:focus + label:before,
+.o-form__radio:focus + label:before,
+.o-form__checkbox:focus + label:before { 
+  #collections.form(radio-checkbox-focus);
+}
+
+
+/*input[type="radio"],
+input[type="checkbox"]*/ 
+.o-form__radioCheckbox,
+.o-form__radio,
+.o-form__checkbox {
+  display:none;
+}
+
+/*input[type="radio"] + label:before,
+input[type="checkbox"] + label:before*/ 
+.o-form__radioCheckbox + label:before,
+.o-form__radio + label:before,
+.o-form__checkbox + label:before {
+  content:'';
+  display: inline-block;
+  margin-right:@6px;
+}
+
+//--------------------  
+// Stacked
+
+.o-form__fieldset.o-form__fieldset--stacked input[type="radio"],
+.o-form__fieldset.o-form__fieldset--stacked input[type="radio"] + .o-form__label {
+  width:auto;
+}
+
+.o-form__fieldset.o-form__fieldset--stacked input[type="radio"]:not(.o-form__radio),
+.o-form__fieldset.o-form__fieldset--stacked input[type="radio"]:not(.o-form__radio) + .o-form__label,
+.o-form__fieldset.o-form__fieldset--stacked input[type="radio"]:not(.o-form__checkbox),
+.o-form__fieldset.o-form__fieldset--stacked input[type="checkbox"]:not(.o-form__checkbox) + .o-form__label {
+  // float:left;
+}
+
+.o-form__fieldset.o-form__fieldset--stacked input[type="radio"] {
+  clear:left;
+}
+//--------------------  
+// Stacked - Label
+
+.o-form__fieldset.o-form__fieldset--stacked input[type="radio"] + .o-form__label {
+  margin-top:0;
+}
+
+//-------------------
+// Text Area
+//--------------------  
+
+/*form textarea*/ 
+.o-form__inputTextArea { #collections.form(input-textArea);  }
+/*form textarea:not([rows])*/ 
+.o-form__inputTextArea:not([rows]) { #collections.form(input-textArea-notRows); }
+
+//-------------------
+// Radio
+//--------------------  
+
+//--------------------  
+// Label
+.o-form__radio + .o-form__label { #collections.form(radio-label); }
+
+.o-form__radio + .o-form__label:before { #collections.form(radio); }
+
+.o-form__radio:checked + .o-form__label:before { #collections.form(radio-checked); }
+
+//-------------------
+// Checkbox
+//-------------------- 
+
+.o-form__checkbox + .o-form__label:before {
+  #collections.form(checkbox);
+}
+
+.o-form__checkbox:checked + .o-form__label:before { 
+  #collections.form(checkbox-checked); 
+}
+
+//-------------------
+// Select
+//--------------------  
+
+.o-form__select { #collections.form(select); }
+//--------------------  
+// Focus
+.o-form__select:focus { #collections.form(select-focus); }
+
+//-------------------
+// Form Grid - Layout
+//--------------------  
+
+[class*="o-form"] .grid .row > .column {
+  display:flex;
+  align-items:flex-start;
+
+  flex-wrap:wrap;
+  // justify-content: flex-end;
+}
+
+[class*="o-form"] .column .o-form__label {
+  flex: 0 1 25%;
+  max-width: inherit;
+  width: auto;
+  padding-top: var(--inputPadding);
+  padding-top: 13px; // as above
+}
+
+[class*="o-form"] .column .o-form__inputText {
+  // flex:2;
+  flex-basis: 65%;
+  max-width:inherit;
+  width:auto;
+}
+
+[class*="o-form"] .column .o-form__inputText,
+.o-form__errorMsg {
+  flex: 1 1 50%;
+  max-width: ~"calc(75% - var(--labelDistanceCalc))";
+  max-width: ~"calc(75% - @{labelDistanceCalcFallback})";  
+  margin: 0 0 0 auto;
+}
+
+
+
+[class*="o-form"] .o-form__label.o-form__label--above,
+.o-form__fieldset.o-form__fieldset--stacked .o-form__label,
+[class*="o-form"] .o-form__label.o-form__label--above ~ .o-form__inputText,
+.o-form__fieldset.o-form__fieldset--stacked .o-form__inputText,
+[class*="o-form"] .o-form__label.o-form__label--above ~ .o-form__errorMsg,
+.o-form__fieldset.o-form__fieldset--stacked .o-form__errorMsg, {
+  flex:1 1 100%;
+  margin-right:0;
+  max-width: inherit;
+}
+
+[class*="o-form"] .o-form__label.o-form__label--above,
+.o-form__fieldset.o-form__fieldset--stacked .o-form__label {
+  padding-top:0;
+}
+
+.o-form__fieldset.o-form__fieldset--stacked input[type="radio"]:nth-of-type(2) ~ label {
+  margin-top:@spacing/2;
+}
+
+
+//-------------------
+// Extend framework classes to native HTML elements
+//--------------------   
+
+.extend-to-native-elements() {
+  #collections.form-variables();
+  .output() when (@apply-native-elements = true) {
+    // Form
+    form { &:extend(.o-form); }
+    // Fieldset
+    fieldset { &:extend(.o-form__fieldset); }
+    // Label
+    label { &:extend(.o-form__label); }
+    label:nth-of-type(1n + 2) { &:extend(.o-form__label:nth-of-type(1n + 2)); }
+    // Input
+    input:not([type]),
+    input[type="date"],
+    input[type="datetime-local"],
+    input[type="email"],
+    input[type="number"],
+    input[type="password"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="time"],
+    input[type="text"],
+    input[type="url"] {
+      &:extend(.o-form__inputText);
+    }
+    // Focus
+    input:not([type]):focus,
+    input[type="date"]:focus,
+    input[type="datetime-local"]:focus,
+    input[type="email"]:focus,
+    input[type="number"]:focus,
+    input[type="password"]:focus,
+    input[type="search"]:focus,
+    input[type="tel"]:focus,
+    input[type="time"]:focus,
+    input[type="text"]:focus,
+    input[type="url"]:focus {
+      &:extend(.o-form__inputText:focus);
+    }    
+    // Error
+    input:not([type]).error,
+    input[type="date"].error,
+    input[type="datetime-local"].error,
+    input[type="email"].error,
+    input[type="number"].error,
+    input[type="password"].error,
+    input[type="search"].error,
+    input[type="tel"].error,
+    input[type="time"].error,
+    input[type="text"].error,
+    input[type="url"].error {
+      &:extend(.o-form__inputText.error);
+    } 
+    // Error Placeholder - webkit
+    input:not([type]).error::-webkit-input-placeholder,
+    input[type="date"].error::-webkit-input-placeholder,
+    input[type="datetime-local"].error::-webkit-input-placeholder,
+    input[type="email"].error::-webkit-input-placeholder,
+    input[type="number"].error::-webkit-input-placeholder,
+    input[type="password"].error::-webkit-input-placeholder,
+    input[type="search"].error::-webkit-input-placeholder,
+    input[type="tel"].error::-webkit-input-placeholder,
+    input[type="time"].error::-webkit-input-placeholder,
+    input[type="text"].error::-webkit-input-placeholder,
+    input[type="url"].error::-webkit-input-placeholder {
+      &:extend(.o-form__inputText.error::-webkit-input-placeholder);
+    }
+    // Error Placeholder - Moz
+    input:not([type]).error::-moz-placeholder,
+    input[type="date"].error::-moz-placeholder,
+    input[type="datetime-local"].error::-moz-placeholder,
+    input[type="email"].error::-moz-placeholder,
+    input[type="number"].error::-moz-placeholder,
+    input[type="password"].error::-moz-placeholder,
+    input[type="search"].error::-moz-placeholder,
+    input[type="tel"].error::-moz-placeholder,
+    input[type="time"].error::-moz-placeholder,
+    input[type="text"].error::-moz-placeholder,
+    input[type="url"].error::-moz-placeholder {
+      &:extend(.o-form__inputText.error::-moz-placeholder);
+    }
+    // Error Placeholder - MS
+    input:not([type]).error:-ms-input-placeholder,
+    input[type="date"].error:-ms-input-placeholder,
+    input[type="datetime-local"].error:-ms-input-placeholder,
+    input[type="email"].error:-ms-input-placeholder,
+    input[type="number"].error:-ms-input-placeholder,
+    input[type="password"].error:-ms-input-placeholder,
+    input[type="search"].error:-ms-input-placeholder,
+    input[type="tel"].error:-ms-input-placeholder,
+    input[type="time"].error:-ms-input-placeholder,
+    input[type="text"].error:-ms-input-placeholder,
+    input[type="url"].error:-ms-input-placeholder {
+      &:extend(.o-form__inputText.error:-ms-input-placeholder);
+    }  
+    // Error:focus
+    input:not([type]).error:focus,
+    input[type="date"].error:focus,
+    input[type="datetime-local"].error:focus,
+    input[type="email"].error:focus,
+    input[type="number"].error:focus,
+    input[type="password"].error:focus,
+    input[type="search"].error:focus,
+    input[type="tel"].error:focus,
+    input[type="time"].error:focus,
+    input[type="text"].error:focus,
+    input[type="url"].error:focus {
+      &:extend(.o-form__inputText.error:focus);
+    }    
+    // Text Area
+    form textarea {
+      &:extend(.o-form__inputTextArea);
+    }
+    form textarea:not([rows]) {
+      &:extend(.o-form__inputTextArea:not([rows]));
+    }
+    // Radio / Checkbox shared 
+    input[type="radio"],
+    input[type="checkbox"] {
+      &:extend(.o-form__radioCheckbox);
+    }    
+    input[type="radio"] + label:before,
+    input[type="checkbox"] + label:before {
+      &:extend(.o-form__radioCheckbox + label:before);
+    }    
+    // Focus
+    input[type="radio"]:focus + label:before,
+    input[type="checkbox"]:focus + label:before {
+      &:extend(.o-form__radioCheckbox:focus + label:before);
+    }
+    // Radio
+    input[type="radio"] + label {
+      &:extend(.o-form__radio + .o-form__label);
+    }
+    input[type="radio"] + label:before {
+      &:extend(.o-form__radio + .o-form__label:before);
+    }
+    input[type="radio"]:checked + label:before {
+      &:extend(.o-form__radio:checked + .o-form__label:before);
+    }
+    // Checkbox
+    input[type="checkbox"]:checked + label:before {
+      &:extend(.o-form__checkbox + .o-form__label:before);
+    }
+    input[type="checkbox"]:checked + label:before {
+      &:extend(.o-form__checkbox:checked + .o-form__label:before);
+    }
+    // Select
+    select {
+      &:extend(.o-form__select);
+    }
+    select:focus {
+      &:extend(.o-form__select:focus);
+    }
+
+  
+  }
+  .output();
+}
+
+.extend-to-native-elements();

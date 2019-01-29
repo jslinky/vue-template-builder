@@ -1,0 +1,107 @@
+
+
+#objects {
+  .masthead() {          
+     // Proportional masthead
+     @element-proportional-ruleset: {
+
+     };
+     @element-proportional-fallback-ruleset: {
+      #objects.masthead(element-proportional-staticVarsOnly-ruleset);
+      #objects.masthead(element-proportional-customPropOnly-ruleset);
+      min-height:var(--mh-minH);
+      max-height:var(--mh-maxH);
+      height:var(--mh-h);      
+     };                    
+     @element-proportional-staticVarsOnly-ruleset: {
+        min-height:initial;
+        max-height:initial;
+        height:auto;
+     };
+     @element-proportional-customPropOnly-ruleset: {
+        --mh-minH: initial; // less var as second value
+        --mh-maxH: initial; // less var as second value    
+        --mh-h:auto;
+     };
+     // Proptional :before
+     @element-proportionalBefore-ruleset: {
+        display: block;
+        content: "";
+        width: 100%;       
+     };
+     @element-proportionalBefore-fallback-ruleset: {
+      #objects.masthead(element-proportionalBefore-staticVarsOnly-ruleset);
+      #objects.masthead(element-proportionalBefore-customPropOnly-ruleset);
+     };                    
+     @element-proportionalBefore-staticVarsOnly-ruleset: {
+        padding-top: ~"calc((@{mh-prop-ratio-h-val-m-fallback} / @{mh-prop-ratio-w-val-m-fallback}) * 100%)";   
+     };
+     @element-proportionalBefore-customPropOnly-ruleset: {
+        padding-top: ~"calc((var(--mh-prop-ratio-h) / var(--mh-prop-ratio-w)) * 100%)";   
+     };          
+     // Proptional :before - large mobile
+     @element-proportionalBefore-largeMobileBreakpoint-ruleset: {
+
+     };
+     @element-proportionalBefore-largeMobileBreakpoint-fallback-ruleset: {
+      #objects.masthead(element-proportionalBefore-largeMobileBreakpoint-staticVarsOnly-ruleset);
+      #objects.masthead(element-proportionalBefore-largeMobileBreakpoint-customPropOnly-ruleset);
+      padding-top: ~"calc((var(--mh-prop-ratio-h) / var(--mh-prop-ratio-w)) * 100%)"; 
+     };                    
+     @element-proportionalBefore-largeMobileBreakpoint-staticVarsOnly-ruleset: {
+        padding-top: ~"calc((@{mh-prop-ratio-h-val-lmb-fallback} / @{mh-prop-ratio-w-val-lmb-fallback}) * 100%)";   
+     };
+     @element-proportionalBefore-largeMobileBreakpoint-customPropOnly-ruleset: {          
+        --mh-prop-ratio-w : var(--mh-prop-ratio-w-val-lmb);
+        --mh-prop-ratio-h : var(--mh-prop-ratio-h-val-lmb);            
+     };     
+     // Proptional :before - tablet breakpoint
+     @element-proportionalBefore-tabletBreakpoint-ruleset: {
+
+     };
+     @element-proportionalBefore-tabletBreakpoint-fallback-ruleset: {
+      #objects.masthead(element-proportionalBefore-tabletBreakpoint-staticVarsOnly-ruleset);
+      #objects.masthead(element-proportionalBefore-tabletBreakpoint-customPropOnly-ruleset);
+      padding-top: ~"calc((var(--mh-prop-ratio-h) / var(--mh-prop-ratio-w)) * 100%)";
+     };                    
+     @element-proportionalBefore-tabletBreakpoint-staticVarsOnly-ruleset: {
+        padding-top: ~"calc((@{mh-prop-ratio-h-val-tb-fallback} / @{mh-prop-ratio-w-val-tb-fallback}) * 100%)";   
+     };
+     @element-proportionalBefore-tabletBreakpoint-customPropOnly-ruleset: {
+        --mh-prop-ratio-w : var(--mh-prop-ratio-w-val-tb);
+        --mh-prop-ratio-h : var(--mh-prop-ratio-h-val-tb);              
+     };                  
+     // Proptional :before - computer breakpoint
+     @element-proportionalBefore-computerBreakpoint-ruleset: {
+
+     };
+     @element-proportionalBefore-computerBreakpoint-fallback-ruleset: {
+      #objects.masthead(element-proportionalBefore-computerBreakpoint-staticVarsOnly-ruleset);
+      #objects.masthead(element-proportionalBefore-computerBreakpoint-customPropOnly-ruleset);
+      padding-top: ~"calc((var(--mh-prop-ratio-h) / var(--mh-prop-ratio-w)) * 100%)"; 
+     };                    
+     @element-proportionalBefore-computerBreakpoint-staticVarsOnly-ruleset: {
+        padding-top: ~"calc((@{mh-prop-ratio-h-val-cb-fallback} / @{mh-prop-ratio-w-val-cb-fallback}) * 100%)";   
+     };
+     @element-proportionalBefore-computerBreakpoint-customPropOnly-ruleset: {
+        --mh-prop-ratio-w : var(--mh-prop-ratio-w-val-cb);
+        --mh-prop-ratio-h : var(--mh-prop-ratio-h-val-cb);              
+     };  
+     // Proptional :before - large monitor breakpoint
+     @element-proportionalBefore-largeMonitorBreakpoint-ruleset: {
+
+     };
+     @element-proportionalBefore-largeMonitorBreakpoint-fallback-ruleset: {
+      #objects.masthead(element-proportionalBefore-largeMonitorBreakpoint-staticVarsOnly-ruleset);
+      #objects.masthead(element-proportionalBefore-largeMonitorBreakpoint-customPropOnly-ruleset);
+      padding-top: ~"calc((var(--mh-prop-ratio-h) / var(--mh-prop-ratio-w)) * 100%)";   
+     };                    
+     @element-proportionalBefore-largeMonitorBreakpoint-staticVarsOnly-ruleset: {
+        padding-top: ~"calc((@{mh-prop-ratio-h-val-lcb-fallback} / @{mh-prop-ratio-w-val-lcb-fallback}) * 100%)";   
+     };
+     @element-proportionalBefore-largeMonitorBreakpoint-customPropOnly-ruleset: {
+        --mh-prop-ratio-w : var(--mh-prop-ratio-w-val-lcb);
+        --mh-prop-ratio-h : var(--mh-prop-ratio-h-val-lcb); 
+     };            
+  }
+}

@@ -5,7 +5,7 @@
       <div v-if="activeComponent != 'templateBuilder'">
         <a class="o-btn" data-ref="masthead" @click="switchComponent($event)">Mastheads</a>
         <a class="o-btn" data-ref="sectionHeading" @click="switchComponent($event)">Headings</a>
-        <a class="o-btn" data-ref="items" @click="switchComponent($event)">Items</a>
+        <a class="o-btn" data-ref="sectionItems" @click="switchComponent($event)">Items</a>
         <a class="o-btn" data-ref="sectionContainer" @click="switchComponent($event)">Container</a>
         <a class="o-btn" data-ref="buttons" @click="switchComponent($event)">Buttons</a>
         <a class="o-btn" data-ref="grid" @click="switchComponent($event)">Grid</a>
@@ -25,7 +25,7 @@
 
 import { editBus } from './main'
 import masthead from './components/section-masthead.vue'
-import items from './components/section-items.vue'
+import sectionItems from './components/section-items.vue'
 import sectionContainer from './components/section-container.vue'
 import sectionHeading from './components/section-heading.vue'
 import buttons from './components/section-buttons.vue'
@@ -40,7 +40,7 @@ export default {
   name: 'app',
   components: {
     masthead,
-    items,
+    sectionItems,
     sectionContainer,
     sectionHeading,
     buttons,

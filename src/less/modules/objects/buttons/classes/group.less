@@ -1,0 +1,53 @@
+//*******************************
+//  Button group container - o-buttons
+//*******************************
+
+.o-buttons { #objects.button-type(buttons); }
+.o-buttons > .o-btn { #objects.button-type(buttons-btn); }
+// make this a ruleset
+.o-buttons > .o-btn:only-child { margin-bottom:0; }
+
+@media (min-width:@tabletBreakpoint) {
+  // start: make this a ruleset
+  .o-buttons[class*="two column grid-layout"] > .o-btn {
+    width:~"calc(50% - ("@groupBtnMarginHorizontal~" * 5))";      
+    &:nth-child(2n + 1) { margin-left: @groupBtnMarginHorizontal; }
+    &:nth-child(2n + 2) { margin-right: @groupBtnMarginHorizontal; }
+  }
+  // end: make this a ruleset
+
+  .o-buttons[class*="three column grid-layout"] > .o-btn { #objects.button-type(buttons-3col-flex-btn-tabletBreakpoint); }
+  .o-buttons[class*="four column grid-layout"] > .o-btn { #objects.button-type(buttons-4col-flex-btn-tabletBreakpoint); }  
+}
+
+@supports (display: grid) and ((--a: 0)) {
+  .o-buttons[class*="grid-layout"] { #objects.button-type(buttons-grid-layout); }
+  .o-buttons[class*="grid-layout"] > .o-btn.o-btn { margin:0; width:auto; }
+  @media (min-width:@tabletBreakpoint) {
+    .o-buttons[class*="grid-layout"] { #objects.button-type(buttons-grid-layout-tabletBreakpoint); } 
+    .o-buttons[class*="three column grid-layout"] { #objects.button-type(buttons-grid-layout-3col-tabletBreakpoint); }
+    .o-buttons[class*="four column grid-layout"] { #objects.button-type(buttons-grid-layout-4col-tabletBreakpoint); }  
+  }
+}
+
+//-------------------
+//   Grouped button modifyiers
+//--------------------
+
+// Buttons grouped - no margins or space
+.o-buttons.o-buttons--grouped > .o-btn { margin-right:0; margin-left:0; } // add in column-gap reset
+// Buttons stacked
+
+// CODE BELOW THROWING ERRROR
+
+@media (max-width:@largestMobileScreen) {
+  .o-buttons.o-buttons--stacked { #objects.button-type(buttons-stacked); }
+  .o-buttons.o-buttons--stacked > .o-btn { #objects.button-type(buttons-stacked-btn); }
+  .o-buttons.o-buttons--stacked > .o-btn:last-child { margin-bottom:0; }
+}
+
+@media (min-width:@tabletBreakpoint) {
+  .o-buttons.o-buttons--stacked-md { #objects.button-type(buttons-stacked); }
+  .o-buttons.o-buttons--stacked-md > .o-btn { #objects.button-type(buttons-stacked-btn); }
+  .o-buttons.o-buttons--stacked-md > .o-btn:last-child { margin-bottom:0; }
+}

@@ -1,0 +1,61 @@
+
+
+#objects {
+  .header() {
+    @hHuge-hMassive-min-font-size-ruleset: {
+      .set-header-rules(Huge); 
+      // #objects.header(h2);
+    };
+    @hHuge-hMassive-min-size-ruleset: {
+      .fluid-type-no-media(font-size, @headerFluidMinVW, @headerFluidMaxVW, Huge, Massive);
+    };
+    @hHuge-hMassive-max-size-ruleset: {
+      .set-header-rules(Massive);
+      // #objects.header(h1);
+    };
+    @hBig-hHuge-min-font-size-ruleset: {
+      .set-header-rules(Big);
+      // #objects.header(h3);
+    };
+    @hBig-hHuge-min-size-ruleset: {
+      .fluid-type-no-media(font-size, @headerFluidMinVW, @headerFluidMaxVW, Big, Huge);
+    };
+    @hBig-hHuge-max-size-ruleset: {
+      .set-header-rules(Huge);
+      // #objects.header(h2);
+    };
+    @hLarge-hBig-min-font-size-ruleset: {
+      .set-header-rules(Large);
+      // #objects.header(h4);
+    };
+    @hLarge-hBig-min-size-ruleset: {
+      .fluid-type-no-media(font-size, @headerFluidMinVW, @headerFluidMaxVW, Large, Big);
+    };
+    @hLarge-hBig-max-size-ruleset: {
+      .set-header-rules(Big);
+      // #objects.header(h3);
+    };
+    @hMedium-hLarge-min-font-size-ruleset: {
+      .set-header-rules(Medium);
+      // #objects.header(h5);
+    };
+    @hMedium-hLarge-min-size-ruleset: {
+      .fluid-type-no-media(font-size, @headerFluidMinVW, @headerFluidMaxVW, Medium, Large);
+    };
+    @hMedium-hLarge-max-size-ruleset: {
+      .set-header-rules(Large);
+      // #objects.header(h4);
+    };
+    @hSmall-hMedium-min-font-size-ruleset: {
+      .set-header-rules(Small);
+      // #objects.header(h6);
+    };
+    @hSmall-hMedium-min-size-ruleset: {
+      .fluid-type-no-media(font-size, @headerFluidMinVW, @headerFluidMaxVW, Small, Medium);
+    };
+    @hSmall-hMedium-max-size-ruleset: {
+      .set-header-rules(Medium);
+      // #objects.header(h5);
+    };                    
+  }
+}

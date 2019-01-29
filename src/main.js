@@ -9,6 +9,9 @@ Vue.prototype.$http = axios
 Vue.prototype.$extendObj = function(copyThis) {
   return Vue.util.extend({}, copyThis)
 }
+Vue.prototype.$stringObj = function(obj) {
+  return JSON.parse(JSON.stringify(obj))
+}
 
 export const editBus = new Vue();
 

@@ -1,0 +1,114 @@
+//*******************************
+//    Form Custom Prop Rulesets
+//*******************************
+
+//-------------------
+//  Form props
+//--------------------
+
+#props {
+  .form() {
+    #collections.form-variables(); // required here to unlock vars 
+    @fieldset: {
+      --fieldMargin                   : @fieldMargin;
+      --fieldPadding                  : ~"var(--@{fieldPadding})"; 
+    };
+    @label: {
+      --labelDistance                 : @labelDistance;
+      --labelDistanceCalc             : @labelDistanceCalc;
+      --labelMargin                   : @labelMargin;
+      --labelFont                     : ~"var(--@{labelFont})";
+      --labelColor                    : @labelColor;
+      --labelTextTransform            : @labelTextTransform;
+      --labelFontSize                 : ~"var(--@{labelFontSize})";
+      --labelWidth                    : @labelWidth;
+      --labelMaxWidth                 : @labelMaxWidth;
+      --labelDisplay                  : @labelDisplay;
+    };
+    @inputText: {
+      --inputFontSize                 : @inputFontSize;
+      --inputWidth                    : @inputWidth;
+      --inputVerticalPadding          : @inputVerticalPadding; // uses scope of buttons module variable
+      --inputHorizontalPadding        : @inputHorizontalPadding;      
+      --inputPadding                  : @inputPadding;
+      --inputMaxWidth                 : @inputMaxWidth;
+      --inputBorderWidth              : @inputBorderWidth;
+      --inputBorderStyle              : @inputBorderStyle;
+      --inputBorderColor              : @inputBorderColor;
+      --inputBorder                   : var(--inputBorderWidth) var(--inputBorderStyle) var(--inputBorderColor);
+      --inputBackground               : @inputBackground;
+      --inputBorderRadius             : @@inputBorderRadius;
+      --inputPlaceholderColor         : @inputPlaceholderColor;
+      --inputOutline                  : @inputFocusOutline;
+      --inputLetterSpacing            : @inputLetterSpacing;
+      --inputLetterSpacingVal         : @inputLetterSpacingVal;
+      --inputTransition               : @inputTransition;
+    };
+   
+    @extend-prop-classes: {
+      //*******************************
+      //   Classes used for extending properties
+      //*******************************
+      .form-props-fieldset { #props.form(fieldset); }
+      .form-props-label { #props.form(label); }
+      .form-props-inputText { #props.form(inputText); }
+    };
+    @extend-elements: {
+      .o-form__fieldset {
+        &:extend(.form-props-fieldset);
+      }
+      .o-form__label {
+        &:extend(
+          .form-props-label
+        );
+      }
+      .o-form__inputText {
+        &:extend(          
+          .o-btn-props-spacing,
+          .form-props-label,
+          .form-props-inputText
+        );        
+      }
+      .o-form__errorMsg {
+        &:extend(.form-props-label);
+      }
+    };
+    @output-custom-properties: {
+      #collections.form-variables();
+      .output-custom-properties() when 
+      (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false), 
+      (@customPropFallback = true) and (@static-variables-only = false),
+      (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = true) {
+        //*******************************
+        //   Classes used for extending properties
+        //*******************************
+        #props.form(extend-prop-classes);
+        //*******************************
+        //   Element classes that extend related properties
+        //*******************************        
+        #props.form(extend-elements);
+      }
+      .output-custom-properties();
+    };
+  }
+
+}
+
+
+//*******************************
+//   DEFINE MIXIN
+//*******************************
+
+#props {
+  .form(@item) {
+      #collections.form-variables();
+      #props.form();      
+      @rules: @@item;
+      @rules();
+  } 
+}
+
+//*******************************
+//   Init module custom property output
+//*******************************
+#props.form(output-custom-properties);

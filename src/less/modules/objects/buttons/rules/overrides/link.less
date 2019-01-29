@@ -1,0 +1,32 @@
+// Override 
+// #namespace { 
+//     .module() {
+//         @element: {
+//             // override code
+//         };
+//     } 
+// } 
+
+// Extend
+// #namespace {
+//     .module(element) {
+//         // extend code
+//     }
+// }
+
+
+#objects {
+  .button-type(link-btn-type-customPropOnly-ruleset) {
+    #objects.button-type(default-btn-type-noBorder-customPropOnly-ruleset);
+  }
+  .button-type(link-btn-type-fallback-ruleset) {
+    #objects.button-type(default-btn-type-noBorder-fallback-ruleset);
+  }  
+  .button-type(link-btn-type-staticVarsOnly-ruleset) {
+    #objects.button-type(default-btn-type-noBorder-staticVarsOnly-ruleset);
+  }    
+}
+
+
+    
+

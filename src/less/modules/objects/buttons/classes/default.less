@@ -1,0 +1,77 @@
+//*******************************
+//  Default Button - o-btn
+//*******************************
+
+// Initialising #objects.create-button(@textColor, layout) creates the core base styles for a button
+.o-btn { 
+  #objects.button-variables(); // Unlock button vars
+  #objects.create-button(@color, layout); // Pass in default button color var
+}
+
+// Reset button border variable for default buttons
+[class*="o-btn"]:not(.o-btn--primary):not(.o-btn--basic) { #objects.button-type(default-btn-type-noBorder); } 
+
+// Remove default margin-right if only-of-type or last-of-type
+[class*="o-btn"]:only-of-type,
+[class*="o-btn"]:last-of-type { margin-right:0; }
+
+// Inverted
+[class*="o-btn"].inverted { #objects.button-type(default-btn-type-inverted); }
+
+//-------------------
+//   Hover state
+//--------------------
+
+
+// Underline
+.o-btn:hover:after { #objects.button-type(underline-hover); }
+
+//-------------------
+//   Disabled
+//--------------------
+
+.o-btn.disabled,
+.o-btn:disabled,
+.o-btn.disabled:hover,
+.o-btn.disabled.active {
+  #objects.button-type(disabled);
+}
+
+//*******************************
+//  Button underline element
+//*******************************
+
+.extend-button-underline,
+.o-btn:after { #objects.create-underline(); }
+
+.o-btn__underline {
+  display:inline-block;
+  position: relative;
+  &:after { #objects.button-type(underline-element); }
+}
+.o-btn:hover .o-btn__underline:after {
+  &:extend(.o-btn:hover:after);
+}
+
+
+
+//*******************************
+//  Other button types - secondary | primary | basic
+//*******************************
+
+// Plain button - no underline at all
+[class*="o-btn"].o-btn--plain,
+[class*="o-btn"].o-btn--primary,
+[class*="o-btn"].o-btn--basic {
+  &:after { display:none; }
+}
+
+//-------------------
+//   Button Icon
+//--------------------
+
+
+.o-btn__icon { #objects.button-type(icon); }
+.o-btn__icon[class*="left aligned"] { #objects.button-type(icon-left-aligned); }
+.o-btn__icon[class*="right aligned"] { #objects.button-type(icon-right-aligned); } 
+

@@ -1,0 +1,72 @@
+
+
+#objects {
+  .button-type() {
+    @layout-ruleset: {      
+
+      .define-module-prop(button; color; color);
+      .define-module-prop(button; background-color; backgroundColor);                
+      .define-module-prop(button; font-size; fontSize); 
+      .define-module-prop(button; font-family; fontFamily);
+      .define-module-prop(button; margin; margin);
+      .define-module-prop(button; padding; padding);
+      .define-module-prop(button; text-transform; textTransform);
+      .define-module-prop(button; text-shadow; textShadow);
+      .define-module-prop(button; font-weight; fontWeight);
+      .define-module-prop(button; line-height; lineHeight);
+      .define-module-prop(button; border-radius; borderRadius);
+      .define-module-prop(button; letter-spacing; letterSpacing);
+      .define-module-prop(button; transition; transition; defaultTransitionFallback);
+
+      
+      cursor:                       pointer;
+      position:                     relative;
+      display:                      inline-block;
+      display:                      inline-flex;
+      align-items:                  center;
+      justify-content:              center;
+      min-height:                   1em;
+      outline:                      none;
+      font-style:                   normal;
+      text-align:                   center;
+      text-decoration:              none;
+      vertical-align:               @verticalAlign;
+      will-change:                  @willChange;
+      // &:after {
+      //   #objects.button(underline-ruleset); // Import underline rules as standard o-btn class has an underline.
+      // }
+    };
+    // @layout-ruleset-fallback: {
+    //     // #objects.button-variables();
+    //     box-shadow: @innerShadowFallback, @dropShadowFallback;
+    //     border: @borderWidth @borderStyle @borderColor;    
+    //     -webkit-tap-highlight-color: @tapColor;
+
+    //     color:@colorVal;
+    // };
+
+      // Custom property ruleset
+      @layout-customPropOnly-ruleset: {
+        box-shadow: var(--innerShadow), var(--dropShadow);  
+        -webkit-tap-highlight-color:  var(--tapHighlightColor);    
+        border: var(--borderWidth) var(--borderStyle) var(--borderColor);  
+        --underlineBoxShadow: none;      
+        
+        --color:@colorVal;
+        color:var(--color);
+      };
+      // Static LESS var ruleset
+      @layout-staticVarsOnly-ruleset: {
+        box-shadow: @innerShadowFallback, @dropShadowFallback;
+        border: @borderWidth @borderStyle @borderColor;
+        -webkit-tap-highlight-color: @tapColor;
+
+        color:@colorVal;
+      };
+      // Custom property ruleset - fallback
+      @layout-fallback-ruleset: {        
+        #objects.button-type(layout-staticVarsOnly-ruleset);
+        #objects.button-type(layout-customPropOnly-ruleset);
+      };        
+  }
+}

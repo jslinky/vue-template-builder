@@ -1,0 +1,149 @@
+
+
+
+//*******************************
+//    ROOT: Custom Prop Rulesets
+//*******************************
+
+//-------------------
+//  Root props
+//--------------------
+
+#props {
+  .root() {
+//-------------------
+//  Global spacing props:- line height --->> vertical rhythm --->> offset / spacing
+//  LESS var path:- /less/type.less
+//--------------------
+    @spacing: {
+      // Unitless value based on REM
+      --lineHeight               : @lineHeight;
+      // Calc based prop converting above into REM based value
+      --lineHeightRem            : var(--lineHeight) ~"* 1rem";
+      // Multipler value for determining scale of offset / line height on elements
+      --verticalRhythmMultiplyer : @verticalRhythmMultiplyer;
+      // Vertical rhythm - prop used to apply line-height on an element
+      --verticalRhythm           : var(--verticalRhythmMultiplyer) ~"*" var(--lineHeightRem);
+      // Offset used as a dynamic width based spacing calc
+      --offset                   : var(--lineHeightRem) ~"+ 2vmin";
+      // Global default spacing value used as a basis for all spacing (margin/padding) values
+      --spacing                  : ~"calc("var(--verticalRhythm)~"*" var(--spacingMultiplyer)~")";
+//-------------------
+//    Gutter prop - used globally but predominantly in grid collection
+//--------------------
+      // Multipler value for determining scale of offset / line height on elements
+      --gutterMultiplyer         : var(--verticalRhythmMultiplyer);
+      // Vertical rhythm - prop used to apply line-height on an element
+      --gutterCalc               : var(--gutterMultiplyer) ~"*" var(--lineHeightRem);  
+      // Gutter width for columns - same as above for spacing
+      --gutter                   : ~"calc("var(--gutterCalc)~"*1)"; 
+//-------------------
+//    Row prop - used globally but predominantly in grid collection
+//--------------------
+      // Multipler value for determining scale of offset / line height on elements
+      --rowSpacingMultiplyer     : var(--verticalRhythmMultiplyer);
+      // Vertical rhythm - prop used to apply line-height on an element
+      --rowSpacingCalc           : var(--rowSpacingMultiplyer) ~"*" var(--lineHeightRem);  
+      // rowSpacing width for columns - same as above for spacing
+      --rowSpacing               : ~"calc("var(--rowSpacingCalc)~"*1)";  
+//-------------------
+//    Spacing size multiplyers
+//    LESS var path:- /less/size.less
+//--------------------       
+      // Spacing related sizing
+
+      // Should these props values be custom props???
+      --spacingMultiplyer        : @spacingMultiplyer;
+      --spacingMultiplyerMini    : @spacingMultiplyerMini;
+      --spacingMultiplyerTiny    : @spacingMultiplyerTiny;
+      --spacingMultiplyerSmall   : @spacingMultiplyerSmall;
+      --spacingMultiplyerMedium  : @spacingMultiplyerMedium;
+      --spacingMultiplyerLarge   : @spacingMultiplyerLarge;
+      --spacingMultiplyerBig     : @spacingMultiplyerBig;
+      --spacingMultiplyerHuge    : @spacingMultiplyerHuge;
+      --spacingMultiplyerMassive : @spacingMultiplyerMassive;   
+    };
+//-------------------
+//    Global sizing props
+//    LESS var path:- /less/size.less
+//--------------------      
+    @sizing: {
+      --miniSizeVal              : @miniSizeVal;
+      --miniSizeCalc             : var(--miniSizeVal)~" /" var(--fontSizeRoot);
+      --mini                     : ~"calc("var(--miniSizeCalc)~"*1rem)";
+      --relativeMini             : ~"calc("var(--miniSizeCalc)~"*1em)";
+
+      --tinySizeVal              : @tinySizeVal;
+      --tinySizeCalc             : var(--tinySizeVal)~" /" var(--fontSizeRoot);
+      --tiny                     : ~"calc("var(--tinySizeCalc)~"*1rem)";
+      --relativeTiny             : ~"calc("var(--tinySizeCalc)~"*1em)";
+
+      --smallSizeVal             : @smallSizeVal;
+      --smallSizeCalc            : var(--smallSizeVal)~" /" var(--fontSizeRoot);
+      --small                    : ~"calc("var(--smallSizeCalc)~"*1rem)";
+      --relativeSmall            : ~"calc("var(--smallSizeCalc)~"*1em)";
+
+      --mediumSizeVal            : @mediumSizeVal;
+      --mediumSizeCalc           : var(--mediumSizeVal)~" /" var(--fontSizeRoot);
+      --medium                   : ~"calc("var(--mediumSizeCalc)~"*1rem)";
+      --relativeMedium           : ~"calc("var(--mediumSizeCalc)~"*1em)";
+
+      --largeSizeVal             : @largeSizeVal;
+      --largeSizeCalc            : var(--largeSizeVal)~" /" var(--fontSizeRoot);
+      --large                    : ~"calc("var(--largeSizeCalc)~"*1rem)";
+      --relativeLarge            : ~"calc("var(--largeSizeCalc)~"*1em)";
+
+      --bigSizeVal               : @bigSizeVal;
+      --bigSizeCalc              : var(--bigSizeVal)~" /" var(--fontSizeRoot);
+      --big                      : ~"calc("var(--bigSizeCalc)~"*1rem)";
+      --relativeBig              : ~"calc("var(--bigSizeCalc)~"*1em)";
+
+      --hugeSizeVal              : @hugeSizeVal;
+      --hugeSizeCalc             : var(--hugeSizeVal)~" /" var(--fontSizeRoot);
+      --huge                     : ~"calc("var(--hugeSizeCalc)~"*1rem)";
+      --relativeHuge             : ~"calc("var(--hugeSizeCalc)~"*1em)";
+
+      --massiveSizeVal           : @massiveSizeVal;
+      --massiveSizeCalc          : var(--massiveSizeVal)~" /" var(--fontSizeRoot);
+      --massive                  : ~"calc("var(--massiveSizeCalc)~"*1rem)";
+      --relativeMassive          : ~"calc("var(--massiveSizeCalc)~"*1em)";
+      
+    };
+  }
+}
+
+//*******************************
+//   DEFINE MIXIN
+//*******************************
+
+#props {
+  .root(@item) {
+      #props.root();
+      // #objects.root-variables();
+      @rules: @@item;
+      @rules();
+  }
+}
+
+//*******************************
+//   Classes used for extending properties
+//*******************************
+
+.root-props-spacing { #props.root(spacing); }
+.root-props-sizing { #props.root(sizing); }
+
+//*******************************
+//   Element classes that extend related properties
+//*******************************
+
+:root { 
+  &:extend(
+    .type-props-site,
+    .root-props-sizing,
+    .root-props-spacing,    
+    .font-props-site,
+    // .site-props,
+    .icon-props,
+    .color-props-site
+  ); 
+}

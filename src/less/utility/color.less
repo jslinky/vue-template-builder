@@ -1,0 +1,44 @@
+
+// Background colour classes
+
+@colorClassNames:
+jw-navy-digital,
+jw-navy,
+jw-pink,
+jw-red,
+primaryColor,
+secondaryColor,
+jw-navy-shade1,
+jw-navy-shade2,
+jw-navy-shade3,
+jw-navy-shade4,
+jw-navy-shade5;
+
+.u-color- {
+  .-(@i: length(@colorClassNames)) when (@i > 0) {
+    @name: extract(@colorClassNames, @i);
+    &@{name} { color: @@name!important; }
+    .-((@i - 1));
+  } .-;
+}
+
+.u-bg-color- {
+  .-(@i: length(@colorClassNames)) when (@i > 0) {
+    @name: extract(@colorClassNames, @i);
+    &@{name} { background-color: @@name!important; }
+    .-((@i - 1));
+  } .-;
+}
+
+.u-border-color- {
+  .-(@i: length(@colorClassNames)) when (@i > 0) {
+    @name: extract(@colorClassNames, @i);
+    &@{name} { border-color: @@name!important; }
+    .-((@i - 1));
+  } .-;
+}
+
+.inverted:not(.o-btn) {
+  color:@white!important;
+  -webkit-font-smoothing:antialiased;
+}

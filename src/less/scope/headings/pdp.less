@@ -1,0 +1,68 @@
+
+// New header style if text ever gets returned in camel case
+
+// .pt_product-details .wrapper_content h1 {
+//   &:extend([class*="-hdr"][class*="--3-2"]);
+// }
+// .pt_product-details.pt_product-details .wrapper_content h1 {
+//   font-family:@headerSecondaryFontFamily;  
+//   margin-top:0;
+// }
+
+.product-recomm-wrapper .callout-message > h2,
+.pt_product-details .last-visited > h2,
+.last-visited > h2 {
+  &:extend([class*="-hdr"][class*="--md"]);
+  margin-bottom:@spacing;
+} 
+
+.product-recomm-wrapper .callout-message.callout-message > h2,
+.pt_product-details .last-visited > h2,
+.last-visited.last-visited > h2 {
+  margin-top:0;
+}
+
+.product-content .attribute .label {
+  &:extend([class*="-hdr"][class*="--t"]);
+}
+
+.product-content .attribute .label.label {
+  &:extend([class*="-hdr"][class*="--t"][class*="--secFont"]);
+}
+
+.product-content .attribute.size-attr .label {
+  margin-top:(@spacing / 2);
+}
+
+.container-wrapper-search .container-title,
+.stock-availability-container .container-title { 
+  &:extend([class*="-hdr"][class*="--md"]); 
+  margin-bottom:@spacing;
+} 
+
+.opening-times-container > .title,
+.get-in-touch-container > legend,
+.list-of-stores .nearest-store-heading,
+.also-available-container > .title { 
+  &:extend([class*="-hdr"][class*="--t"], [class*="-hdr"][class*="--t"][class*="--secFont"]);
+}
+
+.stock-availability-container {
+  .opening-times-container > .title,
+  .get-in-touch-container > legend { 
+    margin-top:0;
+  }
+}
+
+.get-in-touch-container > legend {
+  color:#fff;
+  margin: 0;
+  float: left;
+  width: 100%;  
+}
+
+.list-of-stores .store-name { &:extend([class*="-hdr"][class*="--t"]); }
+.list-of-stores .store-name.store-name { 
+  margin:@6px 0 @12px; 
+  font-family:@primaryFontRegularStack;
+}

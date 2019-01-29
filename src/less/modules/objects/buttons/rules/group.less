@@ -1,0 +1,286 @@
+
+// CORE button related rulesets
+#objects {    
+    .button-type() { 
+        @buttons: {
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+            @media (min-width:@tabletBreakpoint) {
+                &.o-buttons--collapse {
+                    > .o-btn { flex:0 1 auto; }
+                }
+            }
+        };
+        @buttons-btn: {
+            // .output() when (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+            //     // just custom props
+            //     #objects.button-type(buttons-btn-customPropOnly-ruleset);
+            // }
+            // .output() when (@customPropFallback = true) and (@static-variables-only = false) {
+            //     // fallback
+            //     #objects.button-type(buttons-btn-fallback-ruleset);
+            // }    
+            // .output() when (@static-variables-only = true) {
+            //     // just static vars
+            //     #objects.button-type(buttons-btn-staticVarsOnly-ruleset);
+            // }        
+            // .output();
+            .output-rules(buttons-btn; button);
+
+
+
+            flex: 1 1 auto; // buttons to fill out remaining space
+            // margin-bottom: @groupBtnMarginVertical;
+            // margin-left:@groupBtnMarginHorizontal / 2;
+            // margin-right:@groupBtnMarginHorizontal / 2;
+            // width:~"calc(50% - (@{groupBtnMarginHorizontal} * 4))";    
+            
+            &:nth-child(2n + 1) { margin-left:0; }
+            &:nth-child(2n + 2) { margin-right:0; }                             
+            &:nth-child(odd):last-child { margin-right:0; }                
+            // Two button only
+            &:nth-child(1):nth-last-child(2) { margin-left:0; }
+            &:nth-child(2):nth-last-child(1) { margin-right:0; }
+            // Three button only
+            &:nth-child(1):nth-last-child(3) { margin-left:0; }
+            &:nth-child(3):nth-last-child(1) { margin-right:0; }
+            // Four button only
+            &:nth-child(1):nth-last-child(4) { margin-left:0; }
+            &:nth-child(4):nth-last-child(1) { margin-right:0; }  
+
+            @media (max-width:@largestMobileScreen) {
+                // Three button only
+                &:nth-child(2):nth-last-child(2) { margin-right:0; }
+                &:nth-child(3):nth-last-child(1) { margin-left:0; }
+
+                // Four button only
+                &:nth-child(2):nth-last-child(3) { margin-right:0; }
+                &:nth-child(1):nth-last-child(4) ~ .o-btn:nth-child(2n + 1) { margin-left:0; }                                                        
+            }
+
+            // @media (min-width:@tabletBreakpoint) {
+            //     margin-left:@groupBtnMarginHorizontal;
+            //     margin-right:@groupBtnMarginHorizontal;                    
+                                    
+            //     &:nth-child(2):nth-last-child(2),
+            //     &:nth-child(2):nth-last-child(3) { margin-right:@groupBtnMarginHorizontal; }
+
+            //     // Third child if three buttons
+            //     &:nth-child(3):nth-last-child(1),
+            //     &:nth-child(3):nth-last-child(2) { margin-left:@groupBtnMarginHorizontal; }
+
+            //     // three buttons
+            //     &:nth-child(3):nth-last-child(1),
+            //     &:nth-child(2):nth-last-child(2),
+            //     &:nth-child(1):nth-last-child(3) { width:~"calc(33.33333% - (@{groupBtnMarginHorizontal} * 4.3))"; }
+            //     // four buttons
+            //     &:nth-child(4):nth-last-child(1),
+            //     &:nth-child(3):nth-last-child(2),
+            //     &:nth-child(2):nth-last-child(3),
+            //     &:nth-child(1):nth-last-child(4) { width:~"calc(25% - (@{groupBtnMarginHorizontal} * 4.4))"; } 
+            // }                       
+        };  
+        @buttons-btn-staticVarsOnly-ruleset: {
+
+            margin-bottom: @groupBtnMarginVertical;
+            margin-left:@groupBtnMarginHorizontal / 2;
+            margin-right:@groupBtnMarginHorizontal / 2;
+            width:~"calc(50% - (@{groupBtnMarginHorizontal} * 4))";            
+
+            @media (min-width:@tabletBreakpoint) {
+                margin-left:@groupBtnMarginHorizontal;
+                margin-right:@groupBtnMarginHorizontal;                    
+                                    
+                &:nth-child(2):nth-last-child(2),
+                &:nth-child(2):nth-last-child(3) { margin-right:@groupBtnMarginHorizontal; }
+
+                // Third child if three buttons
+                &:nth-child(3):nth-last-child(1),
+                &:nth-child(3):nth-last-child(2) { margin-left:@groupBtnMarginHorizontal; }
+
+                // three buttons
+                &:nth-child(3):nth-last-child(1),
+                &:nth-child(2):nth-last-child(2),
+                &:nth-child(1):nth-last-child(3) { width:~"calc(33.33333% - (@{groupBtnMarginHorizontal} * 4.3))"; }
+                // four buttons
+                &:nth-child(4):nth-last-child(1),
+                &:nth-child(3):nth-last-child(2),
+                &:nth-child(2):nth-last-child(3),
+                &:nth-child(1):nth-last-child(4) { width:~"calc(25% - (@{groupBtnMarginHorizontal} * 4.4))"; } 
+            }                       
+        }; 
+        @buttons-btn-fallback-ruleset: {
+
+            margin-bottom: @groupBtnMarginVertical;
+            margin-bottom: var(--groupBtnMarginVertical);
+            margin-left:@groupBtnMarginHorizontal / 2;
+            margin-left:~"calc(var(--groupBtnMarginHorizontal) / 2)";
+            margin-right:@groupBtnMarginHorizontal / 2;
+            margin-right:~"calc(var(--groupBtnMarginHorizontal) / 2)";
+            width:~"calc(50% - (@{groupBtnMarginHorizontal} * 4))";            
+            width:~"calc(50% - (var(--groupBtnMarginHorizontal) * 4))";
+            @media (min-width:@tabletBreakpoint) {
+                margin-left:@groupBtnMarginHorizontal;
+                margin-left:var(--groupBtnMarginHorizontal);
+                margin-right:@groupBtnMarginHorizontal;                  
+                margin-right:var(--groupBtnMarginHorizontal);                                    
+                                    
+                &:nth-child(2):nth-last-child(2),
+                &:nth-child(2):nth-last-child(3) { 
+                    margin-right:@groupBtnMarginHorizontal; 
+                    margin-right:var(--groupBtnMarginHorizontal); 
+                }
+
+                // Third child if three buttons
+                &:nth-child(3):nth-last-child(1),
+                &:nth-child(3):nth-last-child(2) { 
+                    margin-left:@groupBtnMarginHorizontal; 
+                    margin-left:var(--groupBtnMarginHorizontal); 
+                }
+
+                // three buttons
+                &:nth-child(3):nth-last-child(1),
+                &:nth-child(2):nth-last-child(2),
+                &:nth-child(1):nth-last-child(3) { 
+                    width:~"calc(33.33333% - (@{groupBtnMarginHorizontal} * 4.3))"; 
+                    width:~"calc(33.33333% - (var(--groupBtnMarginHorizontal) * 4.3))"; 
+                }
+                // four buttons
+                &:nth-child(4):nth-last-child(1),
+                &:nth-child(3):nth-last-child(2),
+                &:nth-child(2):nth-last-child(3),
+                &:nth-child(1):nth-last-child(4) { 
+                    width:~"calc(25% - (@{groupBtnMarginHorizontal} * 4.4))"; 
+                    width:~"calc(25% - (var(--groupBtnMarginHorizontal) * 4.4))"; 
+                } 
+            }                       
+        };                  
+        @buttons-btn-customPropOnly-ruleset: {
+
+            margin-bottom: var(--groupBtnMarginVertical);
+            margin-left:~"calc(var(--groupBtnMarginHorizontal) / 2)";
+            margin-right:~"calc(var(--groupBtnMarginHorizontal) / 2)";
+            width:~"calc(50% - (var(--groupBtnMarginHorizontal) * 4))";            
+
+            @media (min-width:@tabletBreakpoint) {
+                margin-left:var(--groupBtnMarginHorizontal);
+                margin-right:var(--groupBtnMarginHorizontal);                    
+                                    
+                &:nth-child(2):nth-last-child(2),
+                &:nth-child(2):nth-last-child(3) { margin-right:var(--groupBtnMarginHorizontal); }
+
+                // Third child if three buttons
+                &:nth-child(3):nth-last-child(1),
+                &:nth-child(3):nth-last-child(2) { margin-left:var(--groupBtnMarginHorizontal); }
+
+                // three buttons
+                &:nth-child(3):nth-last-child(1),
+                &:nth-child(2):nth-last-child(2),
+                &:nth-child(1):nth-last-child(3) { width:~"calc(33.33333% - (var(--groupBtnMarginHorizontal) * 4.3))"; }
+                // four buttons
+                &:nth-child(4):nth-last-child(1),
+                &:nth-child(3):nth-last-child(2),
+                &:nth-child(2):nth-last-child(3),
+                &:nth-child(1):nth-last-child(4) { width:~"calc(25% - (var(--groupBtnMarginHorizontal) * 4.4))"; } 
+            }                       
+        };        
+
+
+
+
+        @buttons-3col-flex-btn-tabletBreakpoint: {
+            .output() when (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+                // just custom props
+                #objects.button-type(buttons-3col-flex-btn-tabletBreakpoint-customPropOnly-ruleset);
+            }
+            .output() when (@customPropFallback = true) and (@static-variables-only = false) {
+                // fallback
+                #objects.button-type(buttons-3col-flex-btn-tabletBreakpoint-fallback-ruleset);
+            }    
+            .output() when (@static-variables-only = true) {
+                // just static vars
+                #objects.button-type(buttons-3col-flex-btn-tabletBreakpoint-staticVarsOnly-ruleset);
+            }        
+            .output();   
+            &:nth-child(3n + 1) { margin-left:0; }
+            &:nth-child(3n + 3) { margin-right:0; }              
+        };
+
+        @buttons-3col-flex-btn-tabletBreakpoint-staticVarsOnly-ruleset: {
+            width:~"calc(33.33333% - ("@groupBtnMarginHorizontal~" * 5))";      
+            &:nth-child(2n + 1) { margin-left: @groupBtnMarginHorizontal; }
+            &:nth-child(2n + 2) { margin-right: @groupBtnMarginHorizontal; }
+        };  
+        @buttons-3col-flex-btn-tabletBreakpoint-customPropOnly-ruleset: {
+            width:~"calc(33.33333% - ("var(--groupBtnMarginHorizontal)~" * 5))";      
+            &:nth-child(2n + 1) { margin-left: var(--groupBtnMarginHorizontal); }
+            &:nth-child(2n + 2) { margin-right: var(--groupBtnMarginHorizontal); } 
+        };
+        @buttons-3col-flex-btn-tabletBreakpoint-fallback-ruleset: {
+            #objects.button-type(buttons-3col-flex-btn-tabletBreakpoint-staticVarsOnly-ruleset);
+            #objects.button-type(buttons-3col-flex-btn-tabletBreakpoint-customPropOnly-ruleset);
+        };                                     
+
+        @buttons-4col-flex-btn-tabletBreakpoint: {
+            .output() when (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+                // just custom props
+                #objects.button-type(buttons-4col-flex-btn-tabletBreakpoint-customPropOnly-ruleset);
+            }
+            .output() when (@customPropFallback = true) and (@static-variables-only = false) {
+                // fallback
+                #objects.button-type(buttons-4col-flex-btn-tabletBreakpoint-fallback-ruleset);
+            }    
+            .output() when (@static-variables-only = true) {
+                // just static vars
+                #objects.button-type(buttons-4col-flex-btn-tabletBreakpoint-staticVarsOnly-ruleset);
+            }        
+            .output();              
+            &:nth-child(4n + 1) { margin-left:0; }
+            &:nth-child(4n + 4) { margin-right:0; }
+        };
+
+        @buttons-4col-flex-btn-tabletBreakpoint-staticVarsOnly-ruleset: {
+            width:~"calc(25% - ("@groupBtnMarginHorizontal~" * 2))";      
+            &:nth-child(2n + 1) { margin-left: @groupBtnMarginHorizontal; }
+            &:nth-child(2n + 2) { margin-right: @groupBtnMarginHorizontal; }
+        };        
+        @buttons-4col-flex-btn-tabletBreakpoint-customPropOnly-ruleset: {
+            width:~"calc(25% - ("var(--groupBtnMarginHorizontal)~" * 2))";      
+            &:nth-child(2n + 1) { margin-left: var(--groupBtnMarginHorizontal); }
+            &:nth-child(2n + 2) { margin-right: var(--groupBtnMarginHorizontal); }
+        };        
+        @buttons-4col-flex-btn-tabletBreakpoint-fallback-ruleset: {
+            #objects.button-type(buttons-4col-flex-btn-tabletBreakpoint-staticVarsOnly-ruleset);
+            #objects.button-type(buttons-4col-flex-btn-tabletBreakpoint-customPropOnly-ruleset);
+        };                
+
+
+        @buttons-grid-layout: {
+            display: grid;
+            grid-column-gap: var(--groupBtnMarginHorizontal);
+            grid-row-gap: var(--groupBtnMarginVertical);
+            grid-template-columns: repeat(var(--groupBtnColumnCount), 1fr);
+        };
+        @buttons-grid-layout-tabletBreakpoint: {
+            grid-column-gap: ~"calc("var(--groupBtnMarginHorizontal) ~"* 2)";
+        };
+        @buttons-grid-layout-3col-tabletBreakpoint: {
+            --groupBtnColumnCount: 3;
+        };
+        @buttons-grid-layout-4col-tabletBreakpoint: {
+            --groupBtnColumnCount: 4;
+        };        
+        @buttons-stacked: {
+            --groupBtnColumnCount: 1; 
+            flex-direction: column;
+        };
+        @buttons-stacked-btn: {
+            margin-left:0!important;
+            margin-right:0!important;
+            // width:auto!important;
+            width:100%!important;
+        };
+    } 
+}

@@ -1,0 +1,25 @@
+
+.o-section--divider-sm:before,
+.o-section--divider-sm:after,
+.o-section--divider-top-sm:before,
+.o-section--divider-bottom-sm:after {
+    #objects.divider(element);
+    #objects.divider(section);
+}
+
+.o-section--divider-sm:before,
+.o-section--divider-top-sm:before,
+.o-section--divider:before { top:0; }
+
+.o-section--divider-sm:after,
+.o-section--divider-bottom-sm:after,
+.o-section--divider:after { bottom:0; }
+
+// .o-section--divider-bottom-sm,
+// [class*="u-"].o-section--divider-bottom-sm {
+// padding-bottom:@verticalMargin*1.5!important; // create vars in section.less
+// // add padding top to sibling - .o-item by default
+// + .o-item {
+//     padding-top:@verticalMargin + (@rowSpacing / 2)!important;
+// }
+// }

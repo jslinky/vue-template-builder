@@ -1,0 +1,420 @@
+
+//*******************************
+//    set-header-rules - Mixin for defining default heading rules 
+//*******************************
+
+  .set-header-rules(@size) {
+    #objects.header-variables();
+  }
+
+  .set-header-rules(@size) {
+    // Unlock header variables
+    #objects.header-variables();
+    //-------------------
+    //  Define mixin variables
+    //--------------------    
+    // Local ref. to size arg. passed in mixin 
+    @header-size: @size;
+
+    // Static prop variables
+    /////////////////////////      
+    // Margin Top (Offset)
+    @marginTop-local-var:~"calc( (@{spacing} * (@{lineHeight} / (@{lineHeight} /  @{headerH@{header-size}-offsetMultiplyer}))) )";    
+    // Line Height Addition (line-height = font-size + Addition Value)
+    @lineHeight-local-var:~"calc(@{h@{header-size}} + @{lineHeightAddition-local-prop})";
+    // Font Size
+    @headerFontSize-local-var:~"@{h@{header-size}}";
+    // Font Family
+    @font-family-local-var: ~"@{h@{header-size}FontFamily}";    
+
+    // Custom prop variables
+    /////////////////////////
+    // Margin Top (Offset)
+    @offsetMultiplyer-local-prop:~"@{headerH@{header-size}-offsetMultiplyer}";
+    @marginTop-local-prop:~"calc((var(--spacing) * (var(--lineHeight) / (var(--lineHeight) / var(--headerOffsetMultiplyer)))))";    
+    // Line Height Addition (line-height = font-size + Addition Value)
+    @lineHeightAddition-local-prop: ~"@{headerH@{header-size}-lineHeightAddition}";
+    @lineHeight-local-prop: ~"calc(var(--headerFontSize) + var(--headerLineHeightAddition))";
+    // Font Size
+    @fontSize-local-prop: var(~"--@{h@{header-size}Val}");
+    
+    //-------------------
+    //  Rules inner mixin - outputs CSS
+    //--------------------        
+    // Custom prop only
+    /////////////////////////    
+    .rules(@size) when (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+      --headerFontSize: @fontSize-local-prop;    
+      --headerLineHeight: @lineHeight-local-prop;
+      --headerLineHeightAddition: @lineHeightAddition-local-prop;
+      --headerOffsetMultiplyer: @offsetMultiplyer-local-prop;
+      // content:'props';
+      // Defines font-family if header-size's font-family var isn't set to inherit
+      .header-font-family() when not (@font-family-local-var = inherit) {
+        --headerFontFamily: ~"var(--@{font-family-local-var})";        
+      } 
+      // Call header font-family mixin
+      .header-font-family();           
+    }
+    // Custom prop fallback
+    /////////////////////////        
+    .rules(@size) when (@customPropFallback = true) and (@static-variables-only = false) {
+      --headerFontSize: @fontSize-local-prop;    
+      --headerLineHeight: @lineHeight-local-prop;
+      --headerLineHeightAddition: @lineHeightAddition-local-prop;
+      --headerOffsetMultiplyer: @offsetMultiplyer-local-prop;
+      margin-top: @marginTop-local-var;      
+      margin-top:@marginTop-local-prop;
+      line-height:@lineHeight-local-var; 
+      line-height:@lineHeight-local-prop;
+      font-size:@headerFontSize-local-var;   
+      font-size:var(--headerFontSize);  
+      // content:'fallback';     
+      // Defines font-family if header-size's font-family var isn't set to inherit
+      .header-font-family() when not (@font-family-local-var = inherit) {
+        --headerFontFamily: ~"var(--@{font-family-local-var})";        
+        font-family: @@font-family-local-var;
+        font-family: var(--headerFontFamily);
+      } 
+      // Call header font-family mixin
+      .header-font-family();            
+    }
+    // Static vars only
+    /////////////////////////    
+    .rules(@size) when (@static-variables-only = true) {      
+      margin-top: @marginTop-local-var;      
+      line-height:@lineHeight-local-var;
+      font-size:@headerFontSize-local-var;
+      // content:'static';
+      // Defines font-family if header-size's font-family var isn't set to inherit
+      .header-font-family() when not (@font-family-local-var = inherit) {
+        font-family: @@font-family-local-var;
+      } 
+      // Call header font-family mixin
+      .header-font-family();         
+    }    
+    // Init rules mixin
+    /////////////////////////        
+    .rules(@header-size);
+  }
+
+
+  // Header font-size only
+
+  .set-header-rules-font-size(@size) {
+    @header-size: @size;
+    #objects.header-variables();
+    .define-module-prop(header; font-size; headerFontSize; ~"h@{header-size}");
+
+    .rules(@size) {
+      @headerFontSize-local:var(~"--@{h@{header-size}Val}");
+    }
+    .rules(@size) when (@customPropFallback = true) and (@static-variables-only = false) and (@local-scoped-custom-prop-fallback = true) {
+      --headerFontSize: @headerFontSize-local;    
+    }  
+    .rules(@size) when (@customPropFallback = false), (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+      --headerFontSize: @headerFontSize-local;    
+    } 
+    .rules(@header-size);       
+  }
+
+
+  // Text transform mixin
+  .set-header-rules-text-transform-inc-letterSpacing(@size; @transform) {
+    @header-size: @size;
+    @_transform: @transform;
+    #objects.header-variables();    
+    .unlock-local-vars(@transform) when (@transform = uppercase) {
+      @letterSpacingMultiplyer-local:~"@{headerH@{header-size}-letterSpacingUpperVal}";
+      @letterSpacing-local:~"@{headerH@{header-size}-letterSpacingUpper}";
+      @textTransform-local: ~"@{headerH@{header-size}-textTransform}";        
+    }
+    .unlock-local-vars(@transform) when (@transform = none) {
+      @letterSpacingMultiplyer-local:~"@{headerH@{header-size}-letterSpacingNoUpperVal}";
+      @letterSpacing-local:~"@{headerH@{header-size}-letterSpacingNoUpper}";
+      @textTransform-local: ~"@{headerH@{header-size}-textTransform}";         
+    } 
+    .unlock-local-vars(@_transform);  
+
+    .rules(@size) when (@customPropFallback = true) and (@static-variables-only = false) and (@local-scoped-custom-prop-fallback = true) {
+      --headerTextTransform:@textTransform-local;
+      --headerLetterSpacingMultiplyer: @letterSpacingMultiplyer-local;    
+    }
+    .rules(@size) when (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+      --headerTextTransform:@textTransform-local;
+      --headerLetterSpacingMultiplyer: @letterSpacingMultiplyer-local;       
+    }    
+
+    .rules(@size) when (@customPropFallback = true) and (@static-variables-only = false) {
+      --headerTextTransform:@textTransform-local;
+      --headerLetterSpacingMultiplyer: @letterSpacingMultiplyer-local;          
+      text-transform:@textTransform-local;
+      @headerLetterSpacing:@letterSpacing-local;
+      letter-spacing:@headerLetterSpacing;       
+      text-transform:var(--headerTextTransform);
+      letter-spacing: var(--headerLetterSpacing);      
+    }  
+    .rules(@size) when (@static-variables-only = true) {
+      text-transform:@textTransform-local;
+      @headerLetterSpacing:@letterSpacing-local;
+      letter-spacing: @headerLetterSpacing;       
+    }        
+    .rules(@header-size);    
+  }
+  
+
+
+
+
+
+
+
+  .header(uppercase) { 
+    #objects.header-variables(); // do i need?
+    .output() when (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+      #objects.header(letter-spacing-uppercase-ruleset);
+    }
+    .output() when (@customPropFallback = true) and (@static-variables-only = false) {
+      #objects.header(letter-spacing-uppercase-fallback-ruleset);
+    }    
+    .output() when (@static-variables-only = true) {
+      #objects.header(letter-spacing-uppercase-staticVarsOnly-ruleset);
+    }     
+    .output();
+  }
+
+
+
+  // Header text transform
+  
+  .set-header-rules-text-transform(@size) {
+    @header-size: @size;
+    #objects.header-variables();
+
+    @textTransform-local: ~"@{headerH@{header-size}-textTransform}";
+
+    .rules(@size) when (@customPropFallback = true) and (@static-variables-only = false) and (@local-scoped-custom-prop-fallback = true) {
+      --headerTextTransform:@textTransform-local;
+    }
+    .rules(@size) when (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+      --headerTextTransform:@textTransform-local;      
+    }    
+
+    .rules(@size) when (@customPropFallback = true) and (@static-variables-only = false) {
+      --headerTextTransform:@textTransform-local;     
+      text-transform:@textTransform-local;   
+      text-transform:var(--headerTextTransform);
+    }  
+    .rules(@size) when (@static-variables-only = true) {
+      text-transform:@textTransform-local;     
+    }    
+
+    .rules(@header-size);  
+  }
+
+
+  // Header letter spacing 
+  
+  .set-header-rules-letterSpacing(@size; @transform) {
+    @header-size: @size;
+    @_transform: @transform;
+    #objects.header-variables();    
+    .unlock-local-vars(@transform) when (@transform = uppercase) {
+      @letterSpacingMultiplyer-local:~"@{headerH@{header-size}-letterSpacingUpperVal}";
+      @letterSpacing-local:~"@{headerH@{header-size}-letterSpacingUpper}";   
+    }
+    .unlock-local-vars(@transform) when (@transform = none) {
+      @letterSpacingMultiplyer-local:~"@{headerH@{header-size}-letterSpacingNoUpperVal}";
+      @letterSpacing-local:~"@{headerH@{header-size}-letterSpacingNoUpper}";        
+    } 
+    .unlock-local-vars(@_transform);  
+
+    .rules(@size) when (@customPropFallback = true) and (@static-variables-only = false) and (@local-scoped-custom-prop-fallback = true) {
+      --headerLetterSpacingMultiplyer: @letterSpacingMultiplyer-local;          
+    }
+    .rules(@size) when (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+      --headerLetterSpacingMultiplyer: @letterSpacingMultiplyer-local;            
+    }    
+    .rules(@size) when (@customPropFallback = true) and (@static-variables-only = false) {
+      --headerLetterSpacingMultiplyer: @letterSpacingMultiplyer-local;            
+      @headerLetterSpacing:@letterSpacing-local;
+      letter-spacing:@headerLetterSpacing;
+      letter-spacing: var(--headerLetterSpacing);    
+    }  
+    .rules(@size) when (@static-variables-only = true) {
+      @headerLetterSpacing:@letterSpacing-local;
+      letter-spacing:@headerLetterSpacing;
+    }   
+    .rules(@header-size);     
+  }  
+
+
+
+  // Dynamic header sizing
+
+  // .fluid-type-no-media(@property, @min-vw, @max-vw, @min-size, @max-size) {
+  //   #objects.header-variables();
+  //   .fluid-type-variables() when (@property = font-size) {
+  //     --headerFontSizeMinVal: ~"@{@{min-size}SizeVal}";
+  //     --headerFontSizeMaxVal: ~"@{@{max-size}SizeVal}";
+  //     // --headerFontSizeFluidCalc: calc(var(--headerFontSizeMinVal)~" /" var(--headerFontSizeMaxVal));
+  //     --headerFontSizeMin: @@min-size;
+  //     --headerFontSizeMax: @@max-size;
+  //   }
+  // }
+
+  // .fluid-type-no-media(@property, @min-vw, @max-vw, @min-size, @max-size) when (@customPropFallback = true) and (@static-variables-only = false) and (@local-scoped-custom-prop-fallback = true) { 
+  //   #objects.header-variables();
+  //   .fluid-type-variables();      
+  //   .fluid-type-rules() when (@property = font-size) {
+  //     @{property}: calc( var(--headerFontSizeMin) ~" + " calc(var(--headerFontSizeMinVal)~" /" var(--headerFontSizeMaxVal)) ~" * ((100vw - " @min-vw ~") /" unit(@max-vw - @min-vw) ~")" );	
+  //   }    
+  //   .fluid-type-rules() when (@property = letter-spacing) {
+  //     // letter-spacing rules go here
+  //   }
+  //   .fluid-type-rules(); 
+  // }
+
+  // .fluid-type-no-media(@property, @min-vw, @max-vw, @min-size, @max-size) when (@static-variables-only = true) {
+  //   #objects.header-variables();
+  //   .fluid-type-rules() when (@property = font-size) {
+  //     @{property}: calc( @@min-size ~" + " unit(@@max-size - @@min-size) ~" * ((100vw - " @min-vw ~") /" unit(@max-vw - @min-vw) ~")" );	
+  //   }
+  //   .fluid-type-rules() when (@property = letter-spacing) {
+  //     // letter-spacing rules go here
+  //   }    
+  //   .fluid-type-rules();
+  // }
+
+  // .fluid-type-no-media(@property, @min-vw, @max-vw, @min-size, @max-size) when (@customPropFallback = false), (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+  //   #objects.header-variables();
+  //   .fluid-type-variables();
+  //   .fluid-type-rules() when (@property = font-size) {
+  //     @{property}: calc( var(--headerFontSizeMin) ~" + " calc(var(--headerFontSizeMinVal)~" /" var(--headerFontSizeMaxVal)) ~" * ((100vw - " @min-vw ~") /" unit(@max-vw - @min-vw) ~")" );	
+  //     @{property}: calc( @@min-size ~" + " unit(@@max-size - @@min-size) ~" * ((100vw - " @min-vw ~") /" unit(@max-vw - @min-vw) ~")" );	
+  //   }
+  //   .fluid-type-rules() when (@property = letter-spacing) {
+  //     // letter-spacing rules go here
+  //   }    
+  //   .fluid-type-rules();
+  // }
+
+  // .fluid-type-no-media(@property, @min-vw, @max-vw, @min-size, @max-size) {
+  //   #objects.header-variables();
+  //   .fluid-type-variables() when (@property = font-size) {
+  //     --headerFontSizeMinVal: ~"@{@{min-size}SizeVal}";
+  //     --headerFontSizeMaxVal: ~"@{@{max-size}SizeVal}";
+  //     // --headerFontSizeFluidCalc: calc(var(--headerFontSizeMinVal)~" /" var(--headerFontSizeMaxVal));
+  //     --headerFontSizeMin: @@min-size;
+  //     --headerFontSizeMax: @@max-size;
+  //   }
+  // }
+
+  // .fluid-type-no-media(@property, @min-vw, @max-vw, @min-size, @max-size) { 
+  //   #objects.header-variables();
+  //   .fluid-type-variables();      
+  //   .fluid-type-rules() when (@property = font-size) and (@customPropFallback = true) and (@static-variables-only = false) and (@local-scoped-custom-prop-fallback = true) {
+  //     @{property}: calc( var(--headerFontSizeMin) ~" + " calc(var(--headerFontSizeMinVal)~" /" var(--headerFontSizeMaxVal)) ~" * ((100vw - " @min-vw ~") /" unit(@max-vw - @min-vw) ~")" );	
+  //   }    
+  //   .fluid-type-rules() when (@property = letter-spacing) and (@customPropFallback = true) and (@static-variables-only = false) and (@local-scoped-custom-prop-fallback = true) {
+  //     // letter-spacing rules go here
+  //   }
+  //   .fluid-type-rules(); 
+  // }
+
+  // .fluid-type-no-media(@property, @min-vw, @max-vw, @min-size, @max-size) {
+  //   #objects.header-variables();
+  //   .fluid-type-rules() when (@property = font-size) and (@static-variables-only = true) {
+  //     @{property}: calc( @@min-size ~" + " unit(@@max-size - @@min-size) ~" * ((100vw - " @min-vw ~") /" unit(@max-vw - @min-vw) ~")" );	
+  //   }
+  //   .fluid-type-rules() when (@property = letter-spacing) and (@static-variables-only = true) {
+  //     // letter-spacing rules go here
+  //   }    
+  //   .fluid-type-rules();
+  // }
+
+  // .fluid-type-no-media(@property, @min-vw, @max-vw, @min-size, @max-size) {
+  //   #objects.header-variables();
+  //   .fluid-type-variables();
+  //   .fluid-type-rules() when (@property = font-size) and (@customPropFallback = false), (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+  //     @{property}: calc( var(--headerFontSizeMin) ~" + " calc(var(--headerFontSizeMinVal)~" /" var(--headerFontSizeMaxVal)) ~" * ((100vw - " @min-vw ~") /" unit(@max-vw - @min-vw) ~")" );	
+  //     @{property}: calc( @@min-size ~" + " unit(@@max-size - @@min-size) ~" * ((100vw - " @min-vw ~") /" unit(@max-vw - @min-vw) ~")" );	
+  //   }
+  //   .fluid-type-rules() when (@property = letter-spacing) and (@customPropFallback = false), (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+  //     // letter-spacing rules go here
+  //   }    
+  //   .fluid-type-rules();
+  // }
+
+  .fluid-type-no-media(@property, @min-vw, @max-vw, @min-size, @max-size) {
+    #objects.header-variables();
+    .fluid-type-variables() {
+      @headerFontSizeMinVal: ~"@{@{h@{min-size}Val}SizeVal}";
+      @headerFontSizeMaxVal: ~"@{@{h@{max-size}Val}SizeVal}";
+
+      --headerFontSizeMinVal: @headerFontSizeMinVal;
+      --headerFontSizeMaxVal: @headerFontSizeMaxVal;
+      
+      // --headerFontSizeMinVal: ~"@{@{min-size}SizeVal}";
+      // --headerFontSizeMaxVal: ~"@{@{max-size}SizeVal}";
+
+      @headerFontSizeMin: ~"@{h@{min-size}Val}";
+      @headerFontSizeMax: ~"@{h@{max-size}Val}";      
+
+      @headerFontSizeMinUnitless: unit(@@headerFontSizeMin);
+      @headerFontSizeMaxUnitless: unit(@@headerFontSizeMax);      
+
+      --headerFontSizeMin: @@headerFontSizeMin;
+      --headerFontSizeMax: @@headerFontSizeMax;
+
+      --headerFontSizeMinUnitless: @headerFontSizeMinUnitless;
+      --headerFontSizeMaxUnitless: @headerFontSizeMaxUnitless;      
+      
+      // --headerFontSizeMin: @@min-size;
+      // --headerFontSizeMax: @@max-size;
+
+      @headerLineHeightAddition: ~"@{headerH@{min-size}-lineHeightAddition}";
+      --headerLineHeightAddition: @headerLineHeightAddition;
+
+    }
+
+    .fluid-type-variables();
+
+
+    .fluid-type-rules() when (@property = font-size) and (@customPropFallback = true) and (@static-variables-only = false) and (@local-scoped-custom-prop-fallback = true) {
+      @{property}: calc( var(--headerFontSizeMin) ~" + (var(--headerFontSizeMaxUnitless) - var(--headerFontSizeMinUnitless))" ~" * ((100vw - " @min-vw ~") /" unit(@max-vw - @min-vw) ~")" );	
+      line-height: calc( ~"("var(--headerFontSizeMin) ~"+" var(--headerLineHeightAddition)~") + " calc(var(--headerFontSizeMinVal)~" /" var(--headerFontSizeMaxVal)) ~" * ((100vw - " @min-vw ~") /" unit(@max-vw - @min-vw) ~")" );	
+    }    
+    .fluid-type-rules() when (@property = letter-spacing) and (@customPropFallback = true) and (@static-variables-only = false) and (@local-scoped-custom-prop-fallback = true) {
+      // letter-spacing rules go here
+    }   
+
+    .fluid-type-rules() when (@property = font-size) and (@static-variables-only = true) {      
+      @{property}: calc( @@headerFontSizeMin ~" + " (@headerFontSizeMaxUnitless - @headerFontSizeMinUnitless) ~" * ((100vw - " @min-vw ~") /" unit(@max-vw - @min-vw) ~")" );      
+      line-height: calc( ~"(@{@{headerFontSizeMin}} + @{headerLineHeightAddition}) + " (@headerFontSizeMaxUnitless - @headerFontSizeMinUnitless) ~" * ((100vw - " @min-vw ~") /" unit(@max-vw - @min-vw) ~")" );      
+    }
+    .fluid-type-rules() when (@property = letter-spacing) and (@static-variables-only = true) {
+      // letter-spacing rules go here
+    }  
+  
+    
+    .fluid-type-rules() when (@property = font-size) and (@customPropFallback = false), (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {      
+      line-height: calc( ~"(@{@{headerFontSizeMin}} + @{headerLineHeightAddition}) + " (@headerFontSizeMaxUnitless - @headerFontSizeMinUnitless) ~" * ((100vw - " @min-vw ~") /" unit(@max-vw - @min-vw) ~")" );      
+      line-height: calc( ~"("var(--headerFontSizeMin) ~"+" var(--headerLineHeightAddition)~") + " calc(var(--headerFontSizeMinVal)~" /" var(--headerFontSizeMaxVal)) ~" * ((100vw - " @min-vw ~") /" unit(@max-vw - @min-vw) ~")" );	      
+      @{property}: calc( @@headerFontSizeMin ~" + " (@headerFontSizeMaxUnitless - @headerFontSizeMinUnitless) ~" * ((100vw - " @min-vw ~") /" unit(@max-vw - @min-vw) ~")" );            
+      @{property}: calc( var(--headerFontSizeMin) ~" + (var(--headerFontSizeMaxUnitless) - var(--headerFontSizeMinUnitless))" ~" * ((100vw - " @min-vw ~") /" unit(@max-vw - @min-vw) ~")" );	
+    }
+    .fluid-type-rules() when (@property = letter-spacing) and (@customPropFallback = false), (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+      // letter-spacing rules go here
+    }    
+ 
+    
+    .fluid-type-rules();    
+  }
+
+
+
+
+
+
+

@@ -1,0 +1,116 @@
+
+
+#objects {
+  .masthead() {        
+    @element-ruleset: { 
+      display: flex;
+      align-items: stretch;
+      position: relative;
+      overflow: hidden;  
+      background:#ccc; // debug value
+      transition:all 250ms ease-in;
+     };
+     @element-fallback-ruleset: {
+        #objects.masthead(element-staticVarsOnly-ruleset);
+        #objects.masthead(element-customPropOnly-ruleset);
+     };
+     @element-staticVarsOnly-ruleset: {
+        min-height:(@mh-minHVal-m)*@rem;
+        max-height:@mh-maxHVal-m;
+        height: @mh-hVal-m-fallback;
+     };    
+     @element-customPropOnly-ruleset: {
+        min-height: var(--mh-minH);
+        max-height: var(--mh-maxH);
+        height: var(--mh-h);
+     };           
+     // Large Mobile 
+     @element-largeMobileBreakpoint-ruleset: {
+
+     };
+     @element-largeMobileBreakpoint-fallback-ruleset: {
+        #objects.masthead(element-largeMobileBreakpoint-staticVarsOnly-ruleset);
+        #objects.masthead(element-largeMobileBreakpoint-customPropOnly-ruleset);
+        // Make below a ruleset for all brreakpoints?
+        min-height: var(--mh-minH);
+        max-height: var(--mh-maxH);
+        height: var(--mh-h);        
+     };
+     @element-largeMobileBreakpoint-staticVarsOnly-ruleset: {
+        min-height: (@mh-minHVal-lmb)*@rem;
+        max-height: @mh-maxHVal-lmb;
+        height:@mh-hVal-lmb-fallback;        
+     };    
+     @element-largeMobileBreakpoint-customPropOnly-ruleset: {
+        // Min height        
+        --mh-minH: var(--mh-minHVal-lmb, 450); // less var as second value
+        // Max height        
+        --mh-maxH: var(--mh-maxHVal-lmb, auto); // less var as second value
+        // Height
+        --mh-h: var(--mh-hVal-lmb);     
+        // Proportional ratio
+        // --mh-prop-ratio-w : var(--mh-prop-ratio-w-val-lmb);
+        // --mh-prop-ratio-h : var(--mh-prop-ratio-h-val-lmb);               
+     }; 
+     // Tablet Breakpoint
+     @element-tabletBreakpoint-ruleset: {
+
+     };
+     @element-tabletBreakpoint-fallback-ruleset: {
+        #objects.masthead(element-tabletBreakpoint-staticVarsOnly-ruleset);
+        #objects.masthead(element-tabletBreakpoint-customPropOnly-ruleset);
+        min-height: var(--mh-minH);
+        max-height: var(--mh-maxH);
+        height: var(--mh-h);
+     };
+     @element-tabletBreakpoint-staticVarsOnly-ruleset: {
+        min-height: (@mh-minHVal-tb)*@rem;
+        max-height: (@mh-maxHVal-tb)*@rem;
+        height: @mh-hVal-tb-fallback;
+     };    
+     @element-tabletBreakpoint-customPropOnly-ruleset: {
+        // Min height        
+        --mh-minH: var(--mh-minHVal-tb, 600); // less var as second value
+        // Max height        
+        --mh-maxH: var(--mh-maxHVal-tb, auto); // less var as second value    
+        // Height        
+        --mh-h:var(--mh-hVal-tb);
+        // Proportional ratio
+        // --mh-prop-ratio-w : var(--mh-prop-ratio-w-val-tb);
+        // --mh-prop-ratio-h : var(--mh-prop-ratio-h-val-tb);                 
+     };    
+   // Computer Breakpoint
+     @element-computerBreakpoint-ruleset: {
+
+     };
+     @element-computerBreakpoint-fallback-ruleset: {
+        #objects.masthead(element-computerBreakpoint-staticVarsOnly-ruleset);
+        #objects.masthead(element-computerBreakpoint-customPropOnly-ruleset);
+        max-height:var(--mh-maxH);        
+        height:var(--mh-h);
+        min-height: var(--mh-minH);        
+     };
+     @element-computerBreakpoint-staticVarsOnly-ruleset: {
+        min-height: (@mh-minHVal-cb)*@rem;
+        max-height: (@mh-maxHVal-cb)*@rem;
+        height: @mh-hVal-cb-fallback;
+     };    
+     @element-computerBreakpoint-customPropOnly-ruleset: {
+        // Min height        
+        --mh-minH: var(--mh-minHVal-cb, 600); // less var as second value
+        // Max height
+        --mh-maxH: var(--mh-maxHVal-cb, auto); // less var as second value    
+        // Height        
+        --mh-h:var(--mh-hVal-cb);
+        // Proportional ratio
+        // --mh-prop-ratio-w : var(--mh-prop-ratio-w-val-cb);
+        // --mh-prop-ratio-h : var(--mh-prop-ratio-h-val-cb);                         
+     };                   
+     // Large monitor breakpoint
+    @element-largeMonitorBreakpoint-ruleset: { 
+      // Proportional ratio
+      // --mh-prop-ratio-w : 16;
+      // --mh-prop-ratio-h : 7;    
+     };  
+  }
+}

@@ -1,0 +1,74 @@
+//*******************************
+//  These are temp styles which should be replaced with frameworkV2
+//*******************************  
+
+.is-darwin-content .o-header ~ a,
+.s-primaryMenu-panelSearch__search + .s-site-bannerSlot a {
+  &:extend(
+    .s-categoryMenu-item-subMenu__menu--computer a, 
+    .s-categoryMenu-item-subMenu__menu--computer a span,
+    .s-categoryMenu-item-subMenu__menu--computer a:hover span:after); 
+}
+
+.is-darwin-content .o-header.o-header ~ a,
+.s-primaryMenu-panelSearch__search + .s-site-bannerSlot a {
+  --o-btn-underlineBottomPos: -0.5em; // do fallback
+}
+
+.is-darwin-content .o-header ~ a:after,
+.s-primaryMenu-panelSearch__search + .s-site-bannerSlot a:after {
+  &:extend(
+    .s-categoryMenu-item-subMenu__menu--computer a span:after, 
+    .s-categoryMenu-item-subMenu__menu--computer a:hover span::after
+    ); 
+}
+
+.is-darwin-content .o-header {
+  &:extend(
+    .s-categoryMenu-item-subMenu__menu.s-categoryMenu-item-subMenu__menu > h3,
+    .s-categoryMenu-item-subMenu__menu > h3
+  );
+}
+
+.is-darwin-content .o-header.o-header {
+  margin-top:8*@rem;
+  margin-bottom:0;
+}
+
+.is-darwin-content .o-item__content {
+  text-align:left;
+}
+
+.is-darwin-content .o-item__image > a {
+  display:block;
+}
+
+.s-primaryMenu-panelSearch__search + .s-site-bannerSlot {
+  justify-content: flex-start;
+}
+
+.s-primaryMenu-panelSearch__search + .s-site-bannerSlot .o-header {
+  &:extend(.s-primaryMenu-panel .callout-message > h2);  
+}
+
+.s-primaryMenu-panelSearch__search + .s-site-bannerSlot .o-header.o-header {
+  margin-top:12*@rem;
+  margin-bottom:12*@rem;
+}
+
+.s-primaryMenu-panelSearch__search + .s-site-bannerSlot ul {
+  list-style-type: none;
+  padding:0;
+  margin:0;
+}
+
+.s-primaryMenu-panelSearch__search + .s-site-bannerSlot a:not(:hover):after {
+  opacity:0;
+}
+
+.s-primaryMenu-panelSearch__search.s-primaryMenu-panelSearch__search + .s-site-bannerSlot a {
+  font-size:@tiny;
+}
+
+
+

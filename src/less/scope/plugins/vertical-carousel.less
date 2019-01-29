@@ -1,0 +1,92 @@
+.vc_goUp.is-disabled, .vc_goDown.is-disabled {
+     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+     opacity: 0;
+     cursor: default !important;
+ }
+
+.vc_container {
+    overflow: hidden;
+    transition: height 0.3s ease-out;
+}
+
+.vc_list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    transition: transform 0.3s ease-out;
+}
+
+@media (min-width: 48em) {
+    .s-primaryMenu-panel.is-BurgerMenuSearch .s-primaryMenu-panelSearch__productContainer > a,
+    .s-primaryMenu-panel.is-BurgerMenuSearch .s-primaryMenu-panelSearch__productContainer > a:last-child {
+        display: flex !important;
+    }
+
+    .s-primaryMenu-panel.is-BurgerMenuSearch .s-primaryMenu-panelRecProds {
+        margin-top: 1.5rem !important;
+    }
+}
+
+.pswp__pagination--container {
+    pointer-events: all;
+}
+
+/* Lazy Load CSS */
+.js .s-site-header .lazyload {
+    visibility: hidden;
+}
+
+.js .s-site-header.s-site-header--transparentActive .lazyload {
+    visibility: visible;
+}
+
+.lazyload {
+    display: none;
+}
+
+.js .lazyload {
+    display: block;
+}
+
+noscript img {
+    visibility: visible;
+}
+
+.js noscript img {
+    display: none;
+}
+
+// Messing up PDP carousel
+// .js .product-image-container .owl-item img {
+//     visibility: hidden;
+// }
+
+// .js .product-image-container .owl-item.active img {
+//     visibility: visible;
+// }
+
+// Revised below
+.js .product-image-container .owl-item img {
+    visibility: visible;
+}
+// End revised
+
+.product-tile figure {
+    margin: 0;
+    position: relative;
+}
+
+.product-tile figure.show-rollover .rollover img {
+    display: block;
+}
+
+.product-tile figure .rollover img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.product-image-container figure {
+    margin: 0;
+}

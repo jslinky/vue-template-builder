@@ -1,0 +1,27 @@
+
+@media (min-width:@largeMobileBreakpoint) {
+    @import "default-largeMobileBreakpoint.less";
+    @import "fullScreen-largeMobileBreakpoint.less";
+    @import "proportional-largeMobileBreakpoint.less";
+}
+@media (min-width:@tabletBreakpoint) {
+    @import "default-tabletBreakpoint.less";
+    @import "fullScreen-tabletBreakpoint.less";
+    @import "proportional-tabletBreakpoint.less";    
+}
+@media (min-width:@computerBreakpoint) {
+    @import "default-computerBreakpoint.less";
+    @import "fullScreen-computerBreakpoint.less";
+    @import "proportional-computerBreakpoint.less";  
+}
+@media (min-width:@largeMonitorBreakpoint) {
+    @import "proportional-largeMonitorBreakpoint.less";
+}
+
+@media (min-width:@tabletBreakpoint) and (max-height:800px) {
+  .o-mh .o-item__artwork { #objects.masthead(artwork-tabletBreakpoint-maxHeight); }
+}
+
+@media (min-width:@tabletBreakpoint) and (min-height:1500px) {
+  .o-mh .o-item__artwork { #objects.masthead(artwork-tabletBreakpoint-minHeight); }
+}

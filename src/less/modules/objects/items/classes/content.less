@@ -1,0 +1,176 @@
+//*******************************
+//  Item content - Default
+//*******************************
+
+// Item Content
+/////////////////////////
+.o-item__content { #objects.item(content); }
+
+//-------------------
+//   Header 
+//--------------------
+.o-item__content .o-item__hdr { #objects.item(content-header); }
+
+// Header Adjecent Siblings
+/////////////////////////
+.o-item__hdr ~ * { #objects.item(content-header-adjacent-siblings); }
+
+//-------------------
+//   Artwork
+//--------------------
+.o-item__artwork { #objects.item(content-artwork); }
+
+//-------------------
+//   Text
+//--------------------
+.o-item__content p { #objects.item(content-text); }
+
+//*******************************
+//  Item content - Overlay variation
+//*******************************
+
+// Overlayed Item Content
+/////////////////////////
+.o-item__content[class*="--overlay"] {
+  #objects { .item(content) { #objects.item(content-overlay-ruleset); } }
+  #objects.item(content); 
+}
+
+// Overlayed Child Elements - not o-buttons
+/////////////////////////
+.o-item__content[class*="--overlay"] > *:not(a):not(.o-buttons) { #objects.item(content-overlay-child-elements-not-links-or-buttons); }
+
+//-------------------
+//   Header 
+//--------------------
+.o-item__content[class*="--overlay"] > .o-item__hdr {
+  #objects { .item(content-header) { #objects.item(content-overlay-header-ruleset); } }
+  #objects.item(content-header);  
+}
+
+//-------------------
+//   Button Group 
+//--------------------
+.o-item__content[class*="--overlay"] > .o-buttons { #objects.item(content-buttons); }
+
+//-------------------
+//   Default Button
+//--------------------
+.o-item__content > [class*="o-btn"]:not(.o-btn--primary):not(.o-btn--basic) {
+  margin-top:0;
+  align-self:center;
+}
+
+//-------------------
+//   Overlayed Link
+//--------------------
+.o-item__content[class*="--overlay"] > a { #objects.item(content-overlay-link); }
+// Single link
+/////////////////////////
+.o-item__content[class*="--overlay"] > a:only-of-type { #objects.item(content-overlay-link-hoverTint-onlyChild); }
+// Link 1 of 2
+/////////////////////////
+.o-item__content[class*="--overlay"] > a:first-of-type:not(:only-of-type) { #objects.item(content-overlay-link-oneOfTwo); }
+// Link 2 of 2
+/////////////////////////
+.o-item__content[class*="--overlay"] > a:last-of-type:not(:only-of-type) { #objects.item(content-overlay-link-twoOfTwo); }
+
+
+//-------------------
+//   Item Tint 
+//--------------------
+// Default setting
+/////////////////////////
+.o-item__content[class*="--overlay"]:before { background-color:transparent; }
+
+.o-item[class*="--tint"] .o-item__content[class*="--overlay"]:before { #objects.item(tint-pseudo); }
+
+// Tint without :HOVER
+/////////////////////////
+.o-item--tint .o-item__content[class*="--overlay"]:before { opacity:1; --itemTintOpacity:1; }
+
+// Light tint 
+/////////////////////////
+.o-item--tintLight .o-item__content[class*="--overlay"]:not(:hover):before { opacity:.25; --itemTintOpacity:.25; }
+
+// :HOVER tint
+/////////////////////////
+.o-item--tintHover .o-item__content[class*="--overlay"]:hover:before { #objects.item(content-overlay-link-hoverTint); }
+
+// Hide :HOVER tint for touch devices
+/////////////////////////
+.o-item--tintHover .o-item__content[class*="--overlay"]:before {  
+  @media (hover:none), (hover:on-demand) {
+    display: none;
+  }
+}
+
+// Tint covers 100% of item canvas regardless of content dimensions
+/////////////////////////
+.o-item[class*="item--tint"].cover .o-item__content[class*="--overlay"]:before {
+  top:auto;
+  left:auto;
+  width:100vw;
+  height:100vh;
+  margin-left: ~"calc(50% - 50vw)";
+  margin-right: ~"calc(50% - 50vw)";  
+}
+
+
+//*******************************
+//  Item Content Alignment
+//*******************************
+//-------------------
+//   Left 
+//--------------------
+.o-item__content[class*="left aligned"] {
+  align-items:flex-start;
+}
+// Header
+/////////////////////////
+.o-item__content[class*="left aligned"] .o-item__hdr,
+.o-item__content[class*="left aligned"] p {
+  text-align:left;
+}
+//-------------------
+//   Right
+//--------------------
+.o-item__content[class*="right aligned"] {
+  align-items:flex-end;
+}
+// Header
+/////////////////////////
+.o-item__content[class*="right aligned"] .o-item__hdr,
+.o-item__content[class*="right aligned"] p {
+  text-align:right;
+}
+//-------------------
+//   Center
+//--------------------
+.o-item__content[class*="center aligned"] {
+  align-items:center;
+}
+// Header
+/////////////////////////
+.o-item__content[class*="center aligned"] .o-item__hdr,
+.o-item__content[class*="center aligned"] p {
+  text-align:center;
+}
+//-------------------
+//   Top
+//--------------------
+.o-item__content[class*="top aligned"] {
+  justify-content:flex-start;
+}
+//-------------------
+//   Middle
+//--------------------
+.o-item__content[class*="middle aligned"] {
+  justify-content:center;
+}
+//-------------------
+//   Bottom
+//--------------------
+.o-item__content[class*="bottom aligned"] {
+  justify-content:flex-end;
+}

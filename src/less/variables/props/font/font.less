@@ -1,0 +1,121 @@
+
+
+//*******************************
+//    FONTS: Custom Prop Rulesets 
+//*******************************
+
+//-------------------
+//  Fonts props
+//--------------------
+
+#props {
+  .fonts() {
+    @framework-font-stack: {
+      --framework-primaryRegularFontStack           : @framework-primaryRegularFontStack;
+      --framework-primaryLightFontStack             : @framework-primaryLightFontStack;
+      --framework-secondaryFontStack                : @framework-secondaryFontStack;
+    };
+    @primary-font-stack: {
+      --primaryFontRegularStack                     : @primaryFontRegularStack; 
+      --primaryFontMediumStack                      : @primaryFontMediumStack; 
+      --primaryFontLightStack                       : @primaryFontLightStack; 
+    };
+    @primary-font: {
+      --primaryFontRegular                          : @primaryFontRegular; 
+      --primaryFontMedium                           : @primaryFontMedium;
+      --primaryFontLight                            : @primaryFontLight; 
+    };
+    @secondary-font-stack: {
+      --secondaryFontStack                          : @secondaryFontStack;
+    };
+    @secondary-font: {      
+      --secondaryFont                               : @secondaryFont;
+    };
+    @font-stack-options: {
+      // System font stack */
+      --system-fontStack                            : @system-fontStack;
+      // Times New Roman-based stack */
+      --timesNewRoman-based-fontStack               : @timesNewRoman-based-fontStack;
+      // Modern Georgia-based serif stack */
+      --georgia-based-fontStack                     : @georgia-based-fontStack;
+      // Traditional Garamond-based serif stack */
+      --garamond-based-fontStack                    : @garamond-based-fontStack;
+      // Helvetica/Arial-based sans serif stack */
+      --helvetica-arial-sansSerif-based-fontStack   : @helvetica-arial-sansSerif-based-fontStack; 
+      // Verdana-based sans serif stack */
+      --verdana-sansSerif-based-fontStack           : @verdana-sansSerif-based-fontStack;  
+      /* Trebuchet-based sans serif stack */
+      --trebuchet-sansSerif-based-fontStack         : @trebuchet-sansSerif-based-fontStack; 
+      /* Impact-based sans serif stack */
+      --impact-sansSerif-based-fontStack            : @impact-sansSerif-based-fontStack;
+      /* Monospace stack */
+      --monospace-based-fontStack                   : @monospace-based-fontStack; 
+    };  
+     
+    @extend-prop-classes: {
+        //*******************************
+        //   Classes used for extending properties
+        //*******************************
+        // Default
+        .font-props-site {
+            #props.fonts(framework-font-stack);
+            #props.fonts(primary-font-stack);
+            #props.fonts(primary-font);
+            #props.fonts(secondary-font-stack);
+            #props.fonts(secondary-font);
+        }         
+        .font-props-framework-fonts { #props.fonts(framework-font-stack); }
+        .font-props-primary-stack { #props.fonts(primary-font-stack); }
+        .font-props-primary-font { #props.fonts(primary-font); }
+        .font-props-secondary-stack { #props.fonts(secondary-font-stack); }
+        .font-props-secondary-font { #props.fonts(secondary-font); }
+        .font-props-stack-options { #props.fonts(font-stack-options); }
+    };
+    @extend-elements: {
+        //*******************************
+        //   Element classes that extend related properties
+        //*******************************          
+
+    };
+    @output-custom-properties: {
+      // load associated variables - if any
+      @static-variables-only               : true; // turn off custom prop on a module level - define on a per site basis in overrides
+      @local-scoped-custom-prop-fallback   : false; // not sure this works! local scoped variable - should be moved to overrides      
+      .output-custom-properties() when 
+      (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false), 
+      (@customPropFallback = true) and (@static-variables-only = false),
+      (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = true) {
+        //*******************************
+        //   Classes used for extending properties
+        //*******************************
+        #props.fonts(extend-prop-classes);
+        //*******************************
+        //   Element classes that extend related properties
+        //*******************************        
+        #props.fonts(extend-elements);
+      }
+      .output-custom-properties();
+    };
+  }
+}
+
+//*******************************
+//   DEFINE MIXIN
+//*******************************
+
+#props {
+  .fonts(@item) {
+      #props.fonts();
+      // load associated variables - if any
+      @rules: @@item;
+      @rules();
+  }
+}
+
+//*******************************
+//   Init module custom property output
+//*******************************
+#props.fonts(output-custom-properties);
+
+
+    

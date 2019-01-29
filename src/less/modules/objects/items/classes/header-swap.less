@@ -1,0 +1,9 @@
+
+.o-item-headerSwap() when (@include_item-headerSwap = true) {  
+  // Header Swap on hover - chnage this or create a content swap class aswell
+  .o-item.o-item--headerSwap .o-item__image .o-item__content { #objects.item(content-overlay-header-swap); }
+  .o-item.o-item--headerSwap .o-item__image:hover .o-item__content { #objects.item(content-overlay-header-swap-hover); }
+}
+
+.o-item-headerSwap();
+

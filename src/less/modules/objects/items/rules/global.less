@@ -1,0 +1,140 @@
+
+//*******************************
+//    Ruleset calls
+//*******************************
+
+//-------------------
+//  CORE item rules
+//--------------------
+
+#objects {
+  .item() {    
+    // Comment goes here!
+    /////////////////////////
+    @element: { 
+      #objects.item(element-ruleset);
+     };     
+    @element-top-aligned: {
+      #objects.item(element-top-aligned-ruleset);
+    };    
+    @element-bottom-aligned: {
+      #objects.item(element-bottom-aligned-ruleset);
+    };         
+    @element-left-aligned: {
+      #objects.item(element-left-aligned-ruleset);
+    };
+    @element-right-aligned: {
+      #objects.item(element-right-aligned-ruleset);
+    };
+    @element-middle-aligned: {
+      #objects.item(element-middle-aligned-ruleset);
+    };    
+    @element-center-aligned: {
+      #objects.item(element-center-aligned-ruleset);
+    };            
+    @element-center-middle-aligned: {
+      #objects.item(element-middle-aligned-ruleset);
+    };        
+    @image-container: {
+      #objects.item(image-container-ruleset);
+    };    
+    @image-container-direct-link: {
+      #objects.item(image-container-direct-link-ruleset);
+    };            
+    @image: {
+      #objects.item(image-ruleset);
+    };
+    @image-100Height-objectFitCover: {
+      #objects.item(image-100Height-objectFitCover-ruleset);      
+    };
+    @imageSwap: {
+      #objects.item(imageSwap-ruleset);
+    };    
+    @imageSwap-hover: {
+      #objects.item(imageSwap-hover-ruleset);
+    };      
+    @content: {
+      #objects.item(content-ruleset);
+    };
+    @content-overlay-child-elements-not-links-or-buttons: {
+      #objects.item(content-overlay-child-elements-not-links-or-buttons-ruleset);
+    };    
+    @content-header: {
+      #objects.item(content-header-ruleset);
+    };
+    @content-header-adjacent-siblings: {
+      #objects.item(content-header-adjacent-siblings-ruleset);
+    };
+    @content-text: {
+      #objects.item(content-text-ruleset);
+    };    
+    @content-artwork: {
+      #objects.item(content-artwork-ruleset);
+    };
+    @content-overlay-link: {
+      #objects.item(content-overlay-link-ruleset);
+    };
+    @content-overlay-link-hoverTint: {
+      #objects.item(content-overlay-link-hoverTint-ruleset);
+    };
+    @content-overlay-link-hoverTint-onlyChild: {
+      #objects.item(content-overlay-link-hoverTint-onlyChild-ruleset);
+    };
+    @content-overlay-link-oneOfTwo: {
+      #objects.item(content-overlay-link-oneOfTwo-ruleset);
+    };
+    @content-overlay-link-twoOfTwo: {
+      #objects.item(content-overlay-link-twoOfTwo-ruleset);
+    };     
+    @content-buttons: {
+      #objects.item(content-buttons-ruleset);
+    };
+    @tint-pseudo: {
+      #objects.item(tint-pseudo-ruleset);
+    };         
+    @content-overlay-swap: {
+      #objects.item(content-overlay-swap-ruleset);
+    };
+    @content-overlay-swap-hover: {
+      #objects.item(content-overlay-swap-hover-ruleset);
+    };  
+    @content-overlay-header-swap: {
+      #objects.item(content-overlay-header-swap-ruleset);
+    };
+    @content-overlay-header-swap-hover: {
+      #objects.item(content-overlay-header-swap-hover-ruleset);
+    };     
+  }
+}
+
+//-------------------
+//  EXTEND(ED) core ruleset
+//--------------------
+
+#objects {
+  .item(content) when (@customPropFallback = true) {
+    #objects.item(content-fallback-ruleset);
+  }
+  .item(tint-pseudo) when (@customPropFallback = true) {
+    #objects.item(tint-pseudo-fallback-ruleset);
+  }
+  .item(imageSwap) when (@customPropFallback = true) {
+    #objects.item(imageSwap-fallback-ruleset);
+  }    
+}
+
+
+
+#objects {
+  .item(@item) {
+    #objects.item();
+    #objects.item-variables();
+    @rules: @@item;
+    @rules();
+  }
+  .item-variables(@item) {
+    #objects.item-variables();
+    @rules: @@item;
+    @rules();
+  }  
+}

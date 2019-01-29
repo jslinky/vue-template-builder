@@ -1,0 +1,54 @@
+// Override 
+// #namespace { 
+//     .module() {
+//         @element: {
+//             // override code
+//         };
+//     } 
+// } 
+
+// Extend
+// #namespace {
+//     .module(element) {
+//         // extend code
+//     }
+// }
+
+// #objects {
+//   .header(h4-h3-min-size) {
+//     text-transform:none;
+//     letter-spacing: 1.5*@rem;
+//   }
+// }
+
+#objects {
+  .header(hLarge-hBig-min-font-size) {
+    #objects.header-variables();
+    .output() when (@customPropFallback = false), (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+      --headerLetterSpacing: @headerHBig-letterSpacingNoUpper;
+      --headerTextTransform: none;
+    }
+    .output() when (@customPropFallback = true) and (@static-variables-only = false) {
+      letter-spacing:@headerHBig-letterSpacingNoUpper;
+      letter-spacing:var(--headerLetterSpacing);
+      text-transform: none;
+      text-transform: var(--headerTextTransform);
+    }
+    .output() when (@static-variables-only = true) {
+      letter-spacing: @headerHBig-letterSpacingNoUpper;
+      text-transform: none;
+    }  
+    .output();      
+  }  
+}
+
+
+
+
+
+
+#objects {
+  .header(h5-h4-min-font-size) {
+    font-family:@secondaryFontStack;
+  }
+}

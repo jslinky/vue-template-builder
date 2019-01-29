@@ -1,0 +1,33 @@
+// Override 
+// #namespace { 
+//     .module() {
+//         @element: {
+//             // override code
+//         };
+//     } 
+// } 
+
+// Extend
+// #namespace {
+//     .module(element) {
+//         // extend code
+//     }
+// }
+
+
+
+//*******************************
+//    ITEM: Custom Prop Rulesets
+//*******************************
+
+//-------------------
+//  Item props
+//--------------------
+
+// Extend
+#props {
+    .menu(menu) {
+      #components.menu-variables();
+        // override values go here
+    }
+}

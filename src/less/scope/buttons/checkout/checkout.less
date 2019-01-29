@@ -1,0 +1,24 @@
+
+.pt_singlepagecheckout_v2 .light-button,
+.pt_singlepagecheckout_v2 .button-fancy-large,
+.pt_singlepagecheckout_v2 .order-submit > .button { 
+  &:extend(.s-btn all, .s-btn-primary all);
+}
+
+.pt_singlepagecheckout_v2 .link,
+.pt_singlepagecheckout_v2 .discount-link,
+.pt_singlepagecheckout_v2 .terms-and-conditions > a,
+.address-lookup .address-not-found {
+  &:extend(.o-link all);
+}
+
+.pt_singlepagecheckout_v2 .link.link,
+.pt_singlepagecheckout_v2 .discount-link.discount-link,
+.pt_singlepagecheckout_v2 .terms-and-conditions.terms-and-conditions > a {
+  #objects.button-variables();
+  font-size:@fontSize;
+}
+
+.pt_cart_v2 .cart-actions .cart-action-continue-shopping .button:after {
+  display:none;
+}

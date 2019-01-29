@@ -1,0 +1,149 @@
+
+//*******************************
+//    Ruleset calls
+//*******************************
+
+//-------------------
+//  CORE masthead rules
+//--------------------
+
+#objects {
+  .masthead() {    
+    // Element rules
+    /////////////////////////
+    @element: { #objects.masthead(element-ruleset); }; 
+    @element-fullScreen: { #objects.masthead(element-fullScreen-ruleset) };        
+    @proportional: { #objects.masthead(element-proportional-ruleset); }; 
+    @proportionalBefore: { #objects.masthead(element-proportionalBefore-ruleset); };  
+    // Item
+    /////////////////////////        
+    @item: { #objects.masthead(item-ruleset); }; 
+    // Item Image
+    /////////////////////////
+    @image: { #objects.masthead(image-ruleset); };          
+    @image-img: { #objects.masthead(image-img-ruleset); };           
+    @item-card-image-element-img: { #objects.masthead(item-card-image-element-img-ruleset) };   
+    // Artwork
+    /////////////////////////
+    @artwork: { #objects.masthead(artwork-ruleset); };    
+    @artwork-tabletBreakpoint-maxHeight: { #objects.masthead(artwork-tabletBreakpoint-maxHeight-ruleset); };
+    @artwork-tabletBreakpoint-minHeight: { #objects.masthead(artwork-tabletBreakpoint-minHeight-ruleset); };    
+    @proportional-artwork: { #objects.masthead(element-proportional-artwork-ruleset) };
+    @artwork-content: { #objects.masthead(artwork-content-ruleset); };
+    @artwork-ratio: { #objects.masthead(artwork-ratio-ruleset); };
+    //-------------------
+    //  Breakpoint
+    //--------------------
+    // Large Mobile
+    /////////////////////////
+    @element-largeMobileBreakpoint: { #objects.masthead(element-largeMobileBreakpoint-ruleset); }; 
+    @element-fullScreen-largeMobileBreakpoint: { #objects.masthead(element-fullScreen-largeMobileBreakpoint-ruleset); };          
+    @proportionalBefore-largeMobileBreakpoint: { #objects.masthead(element-proportionalBefore-largeMobileBreakpoint-ruleset); };    
+    // Tablet
+    /////////////////////////
+    @element-tabletBreakpoint: { #objects.masthead(element-tabletBreakpoint-ruleset); };           
+    @element-fullScreen-tabletBreakpoint: { #objects.masthead(element-fullScreen-tabletBreakpoint-ruleset) };          
+    @proportional-tabletBreakpoint: { #objects.masthead(element-proportional-tabletBreakpoint-ruleset); };       
+    @proportionalBefore-tabletBreakpoint: { #objects.masthead(element-proportionalBefore-tabletBreakpoint-ruleset); };    
+    // Computer 
+    /////////////////////////
+    @element-computerBreakpoint: { #objects.masthead(element-computerBreakpoint-ruleset); };   
+    @element-fullScreen-computerBreakpoint: { #objects.masthead(element-fullScreen-computerBreakpoint-ruleset); };          
+    @proportionalBefore-computerBreakpoint: { #objects.masthead(element-proportionalBefore-computerBreakpoint-ruleset); };    
+    // Large Monitor breakpoint 
+    /////////////////////////  
+    @element-largeMonitorBreakpoint: { #objects.masthead(element-largeMonitorBreakpoint-ruleset); };
+    @proportionalBefore-largeMonitorBreakpoint: { #objects.masthead(element-proportionalBefore-largeMonitorBreakpoint-ruleset); };    
+  }
+}
+
+
+//-------------------
+//  EXTEND(ED) core ruleset
+//--------------------
+
+#objects {
+  .masthead(element) { 
+    .output-rules(element; masthead); 
+    // #objects.masthead-variables();
+    // .output() when (@customPropFallback = false), (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+    //   #objects.masthead(element-customPropOnly-ruleset);
+    // }
+    // .output() when 
+    // (@customPropFallback = true) and (@static-variables-only = false),
+    // (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = true) {
+    //   #objects.masthead(element-fallback-ruleset);
+    // }    
+    // .output() when (@static-variables-only = true) {    
+    //   #objects.masthead(element-staticVarsOnly-ruleset);
+    // }    
+    // .output();    
+  }  
+  .masthead(proportional) { 
+    .output-rules(element-proportional; masthead);
+  }   
+  .masthead(proportionalBefore) { 
+    .output-rules(element-proportionalBefore; masthead);
+  }     
+  .masthead(artwork) { 
+    .output-rules(artwork; masthead);
+  }   
+  .masthead(element-fullScreen) {
+    .output-rules(element-fullScreen; masthead);
+  }  
+  //-------------------
+  //  Breakpoint
+  //--------------------  
+  // Large Mobile
+  .masthead(element-largeMobileBreakpoint) {
+    .output-rules(element-largeMobileBreakpoint; masthead);
+  }   
+  .masthead(proportionalBefore-largeMobileBreakpoint) { 
+    .output-rules(element-proportionalBefore-largeMobileBreakpoint; masthead);
+  }         
+  .masthead(element-fullScreen-largeMobileBreakpoint) { 
+    .output-rules(element-fullScreen-largeMobileBreakpoint; masthead);
+  }           
+  // Tablet Breakpoint
+  .masthead(element-tabletBreakpoint) { 
+    .output-rules(element-tabletBreakpoint; masthead);
+  }
+  .masthead(proportionalBefore-tabletBreakpoint) { 
+    .output-rules(element-proportionalBefore-tabletBreakpoint; masthead);
+  }  
+  .masthead(element-fullScreen-tabletBreakpoint) { 
+    .output-rules(element-fullScreen-tabletBreakpoint; masthead);
+  }    
+  // Tablet and max / min-height
+  .masthead(artwork-tabletBreakpoint-maxHeight) { 
+    .output-rules(artwork-tabletBreakpoint-maxHeight; masthead);
+  }   
+  .masthead(artwork-tabletBreakpoint-minHeight) { 
+    .output-rules(artwork-tabletBreakpoint-minHeight; masthead);
+  }       
+  // Computer Breakpoint
+  .masthead(element-computerBreakpoint) { 
+    .output-rules(element-computerBreakpoint; masthead);
+  }    
+  .masthead(proportionalBefore-computerBreakpoint) { 
+    .output-rules(element-proportionalBefore-computerBreakpoint; masthead);
+  }    
+  .masthead(element-fullScreen-computerBreakpoint) { 
+    .output-rules(element-fullScreen-computerBreakpoint; masthead);
+  }      
+  
+}
+
+#objects {
+  .masthead(@ruleset) {
+    #objects.masthead();
+    #objects.masthead-variables();
+    @rules: @@ruleset;
+    @rules();
+  }
+  .masthead-variables(@ruleset) {
+    #objects.masthead-variables();
+    @rules: @@ruleset;
+    @rules();
+  }  
+}

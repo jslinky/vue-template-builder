@@ -1,0 +1,525 @@
+
+// REFACTOR THIS - TAKEN FROM V1 
+
+#modules {
+  .carousel(@item) {
+    #modules.carousel();
+    @rules: @@item;
+    @rules();
+  }
+  .carousel() {
+    .variables() {
+      @carousel-btn-size: 50;
+      @carousel-btn-icon-size: 25;
+      @carousel-btn-padding: 1.92em;
+      @carousel-item-width: @tenWide;      
+      @pills-position:absolute;
+      @pills-width:100%;
+      @pills_container-position: absolute;
+      @pills_container-bottom:0;
+      @pills_container-left:50%;
+      @pills_container-transform:translate(-50%, 0);
+      @pills_container-margin:0 0 @spacing 0;
+      @pills_container-z-index:2;
+      @pill-border-radius: 50%;
+      @pill-padding: @small;
+      @pill-margin:0 @small;
+      @pill-background: #fff;
+      @pill-active-background: @primaryColor;
+    }
+  }
+  @carousel: {
+    position:relative;
+    transition: transform 1s;
+  };
+  @inner-container: {
+    display: block;
+    position: relative;
+    overflow: hidden;
+  };
+  @inner: {
+    // display:block;
+    // white-space: nowrap;
+    display:flex;
+    flex-wrap: nowrap;
+    position: relative;
+    left:0px;
+    transition: left 1s;
+  };
+  @btn: {
+    position: absolute;
+    width:@carousel-btn-size*@rem;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index:1;
+  };
+  @btn__o-btn: {
+    margin-right: 0;
+    // #elements.button-variables();    
+    // @shadowBoxShadow: 0px -@shadowDistance 0px @shadowBoxShadowWidth @tertiaryGrey inset;
+    // @boxShadow: @shadowBoxShadow;
+    // #elements.button.default-state.shadow();
+    background-color: rgba(255, 255, 255, 0.9)!important;
+    padding: 1.93em;
+    &:hover {
+      // #elements.button-variables();
+      // @shadowBoxShadowWidth: @2px;
+      // @hoverBoxShadow: @shadowBoxShadow;
+      // @shadowBoxShadow: 0px -@shadowDistance 0px @shadowBoxShadowWidth @tertiaryGrey inset;
+      // #elements.button.default-state-hover.shadow();
+    }
+  };
+  @o-btn__icon: {
+    width:@carousel-btn-icon-size*@rem;
+    height:@carousel-btn-icon-size*@rem;
+  };
+  @btn-prev: {
+    left:0;
+  };
+  @btn-next: {
+    right:0;
+  };
+  @carousel-item: {
+    width:@carousel-item-width;
+    // display: inline-block;
+    // flex:1 1 auto;
+    flex:1 0 auto;
+    // margin-right:-(@5px); // for inline-block whitespace
+  };
+  @pills: {
+    position: @pills-position;
+    width:@pills-width;
+    text-align: center;
+  };
+  @pills_container: {
+    position: @pills_container-position;
+    bottom:@pills_container-bottom;
+    left:@pills_container-left;
+    transform:@pills_container-transform;
+    margin: @pills_container-margin;
+    z-index:@pills_container-z-index;
+    width:100%;
+  };
+  @pills_imageSizer: {
+    > img {
+      width:100%;
+      visibility: hidden;
+    }
+  };
+  @pill: {
+    display: inline-block;
+    border-radius:@pill-border-radius;
+    padding:@pill-padding;
+    margin:@pill-margin;
+    background-color:@pill-background;
+    &:hover {
+      cursor: pointer;
+    }
+  };
+  @pill-sm: {
+    @pill-padding: @tiny;
+    padding: @pill-padding;
+  };
+  @pill--active: {
+    background-color:@pill-active-background;
+  };
+}
+
+
+.c-carousel { #modules.carousel(carousel); }
+.c-carousel__inner-container { #modules.carousel(inner-container); }
+.c-carousel__inner { #modules.carousel(inner); }
+
+// Next & Previous buttons
+.c-carousel__btn {
+  #modules.carousel.variables();
+  #modules.carousel(btn);
+}
+
+.c-carousel__btn > .o-btn { #modules.carousel(btn__o-btn); }
+
+// .c-carousel__btn > .o-btn,
+// .c-carousel__btn > .o-btn:hover {
+//   background:#fff;
+// }
+
+.c-carousel__btn > .o-btn > .o-btn__icon {
+  #modules.carousel.variables();
+  #modules.carousel(o-btn__icon);
+}
+
+// Disabled class
+// .c-carousel__btn.disabled { &:extend(.new-css .o-btn.disabled all); }
+.c-carousel__btn[class*="left aligned"] { #modules.carousel(btn-prev); }
+.c-carousel__btn[class*="right aligned"] { #modules.carousel(btn-next); }
+
+
+// Pills (optional)
+.c-carousel__pills {
+  #modules.carousel.variables();
+  #modules.carousel(pills);
+}
+.c-carousel__pillContainer {
+  #modules.carousel.variables();
+  #modules.carousel(pills_container);
+}
+.c-carousel__pill {
+  #modules.carousel.variables();
+  #modules.carousel(pill);
+}
+.c-carousel__pills.c-carousel__pills--sm .c-carousel__pill {
+  #modules.carousel.variables();
+  #modules.carousel(pill-sm);
+}
+.c-carousel__pill.is-active {
+  #modules.carousel.variables();
+  #modules.carousel(pill--active);
+}
+.c-carousel__pillsImageSizer { #modules.carousel(pills_imageSizer); }
+
+// Define width of an item - mobile first
+.c-carousel .c-carousel__item.c-carousel__item {
+  #modules.carousel.variables();
+  #modules.carousel(carousel-item);
+}
+// Always take up available space - don't collapse
+// .c-carousel .c-carousel__item {
+//   flex:1 1 auto;
+//   margin-right:-5px; // for inline-block whitespace
+// }
+// Item header
+.c-carousel__item .o-header { white-space:pre-wrap; }
+
+
+// Two items
+.c-carousel .c-carousel__item:nth-child(1):nth-last-child(2) { margin-left:0; }
+.c-carousel .c-carousel__item:nth-child(1):nth-last-child(2),
+.c-carousel .c-carousel__item:nth-child(1) + .c-carousel__item:nth-last-child(1) {
+	width:unit((100/2),~"%");
+}
+
+@media (max-width:@largestMobileScreen) {
+  .c-carousel .c-carousel__item:nth-child(1):nth-last-child(2).column-sm--10,
+  .c-carousel__item:first-child { margin-left:@oneWide; }
+}
+
+@media (min-width:@tabletBreakpoint) {
+
+  // Default
+  .c-carousel .c-carousel__item:nth-child(-n+3),
+  .c-carousel .c-carousel__item:nth-child(3) ~ .c-carousel__item  {
+    width:unit((100/3),~"%");
+  }
+
+  .c-carousel__btn[class*="left aligned"] {
+    #modules.carousel.variables();
+    left:0;
+    transform:translateX(-(unit((@carousel-btn-size/2)*@rem, rem)));
+  }
+
+  .c-carousel__btn[class*="right aligned"] {
+    #modules.carousel.variables();
+    right:0;
+    transform:translateX((unit((@carousel-btn-size/2)*@rem, rem)));
+  }
+
+}
+
+@media (min-width:@tabletBreakpoint) and (max-width:@largestSmallMonitor) {
+
+  .c-carousel__btn.inset { transform:none; }
+
+
+}
+
+@media (min-width:@computerBreakpoint) {
+
+  // Default
+  .c-carousel .c-carousel__item:nth-child(-n+3),
+  .c-carousel .c-carousel__item:nth-child(3) ~ .c-carousel__item  {
+    width:unit((100/4),~"%");
+  }
+
+}
+
+@media (min-width:@tabletBreakpoint) {
+
+  .c-carousel--wrap-md .c-carousel__inner {
+    white-space: normal;
+    pointer-events: none;
+  }
+
+  // Only two items
+  .c-carousel .c-carousel__item:nth-child(1):nth-last-child(2) { margin-left:0; }
+  .c-carousel .c-carousel__item:nth-child(1):nth-last-child(2),
+  .c-carousel .c-carousel__item:nth-child(1) + .c-carousel__item:nth-last-child(1) {
+  	width:unit((100/2),~"%");
+  }
+
+  // Only three items
+  .c-carousel .c-carousel__item:nth-child(1):nth-last-child(3),
+  .c-carousel .c-carousel__item:nth-child(2):nth-last-child(2),
+  .c-carousel .c-carousel__item:nth-child(3):nth-last-child(1) {
+  	width:unit((100/3),~"%");
+  }
+
+}
+
+
+@media (min-width:@largeMonitorBreakpoint) {
+
+  .c-carousel__btn[class*="left aligned"] {
+    #modules.carousel.variables();
+    transform:translateX(-(unit((@carousel-btn-size*0.75)*@rem, rem)));
+  }
+
+  .c-carousel__btn[class*="right aligned"] {
+    #modules.carousel.variables();
+    transform:translateX((unit((@carousel-btn-size*0.75)*@rem, rem)));
+  }
+
+}
+
+// Modified arrow styles - without basic button style, arrows sit outside of images instead of overlaped
+
+.c-carousel__btn--transparent .o-btn.o-btn--basic.o-btn--icon {
+  box-shadow:none;
+  background:transparent!important;
+  border:0;
+}
+
+// Requires a duplicate SVG icon
+
+.c-carousel__btn--transparent .o-btn.o-btn--basic.o-btn--icon .o-btn__icon:nth-child(1) {
+  visibility:hidden;
+  content:'If hidden, add a duplicate .o-btn__icon element';
+}
+
+.c-carousel__btn--transparent .o-btn.o-btn--basic.o-btn--icon .o-btn__icon:nth-child(2) {
+  position:absolute;  
+}
+
+.c-carousel__btn[class*="left aligned"].c-carousel__btn--transparent .o-btn.o-btn--basic.o-btn--icon .o-btn__icon:nth-child(2) {
+  left: 32%;
+    transform: translate(-50%, 0);
+}
+
+.c-carousel__btn[class*="right aligned"].c-carousel__btn--transparent .o-btn.o-btn--basic.o-btn--icon .o-btn__icon:nth-child(2) {
+  right: 32%;
+  transform: translate(50%, 0);
+}
+
+@media (min-width:@tabletBreakpoint) {
+  
+
+  .c-carousel__btn[class*="left aligned"].c-carousel__btn--transparent .o-btn.o-btn--basic.o-btn--icon .o-btn__icon:nth-child(2) {
+    left: 0;
+    transform:none;
+  }
+
+  .c-carousel__btn[class*="right aligned"].c-carousel__btn--transparent .o-btn.o-btn--basic.o-btn--icon .o-btn__icon:nth-child(2) {
+    right: 0;
+    transform:none;
+  }
+
+
+}
+
+
+
+// Interactive Carousel Classes
+
+// Seasonnaires Interactive Carousel - refactor this into main JW carousel
+
+#modules {
+  .carousel() {
+    .seasonnairesInteractive() {
+      overflow: hidden;
+      .interactive-carousel {
+        transform-style: preserve-3d;
+        @media all and (min-width:700px) {
+          padding-bottom: 67.3%;
+        }
+        &__photo {
+          position: absolute;
+          margin:auto;
+          padding: 10px 30px;
+          display: none;
+          z-index: 100;
+          transition: transform 1s, opacity .5s;
+          max-width:100%; // added to make summer campaign work;
+          height:auto; // added to make summer campaign work;
+          line-height: 0; // added to make summer campaign work;
+          &.initial {
+            display: block;
+            position: relative;
+            z-index: 2000;
+            opacity: 1;
+          }
+
+
+          @media all and (min-width:(700*@em)) {
+            padding: 0;
+            // transition: transform 1s, opacity .5s;
+
+            &.initial {
+              display: block;
+              position: absolute;
+              z-index: 2000;
+            }
+
+            opacity: 0;
+            display: block;
+            position: absolute;
+            z-index: 100;
+            width: 50%;
+            top:0;
+            left:25%;
+            transform: translateX(0%) scale(0.9, 0.9);
+          }
+
+          &.active {
+            position: relative;
+            display:block;
+            z-index: 1001;
+
+
+            @media all and (min-width:(700*@em)) {
+              position: absolute;
+              opacity: 1;
+              width: 50%;
+              transform: translateX(0%) scale(1, 1);
+            }
+          }
+
+          &.prevActive,
+          &.nextActive {
+            display: block;
+            position: absolute;
+            top:0;
+            z-index: 900;
+            // max-width: 30%;
+            // top: 50%;
+            // transform: translateY(-50%);
+            transition: transform 1s, opacity 1s, z-index 1s;
+
+
+            @media all and (min-width:(700*@em)) {
+              opacity: 0.5;
+              position: absolute;
+              display: block;
+            }
+          }
+
+          &.prevActive {
+            transform: translateX(-100%) scale(1, 1);
+            @media all and (min-width:(700*@em)) {
+              transform: translateX(-55%) scale(0.9, 0.9);
+            }
+          }
+
+          &.nextActive {
+            transform: translateX(100%) scale(1, 1);
+            @media all and (min-width:(700*@em)) {
+              transform: translateX(55%) scale(0.9, 0.9);
+            }
+          }
+        }
+
+        &__button {
+          transform-style: preserve-3d;
+          opacity: 0;
+
+          &.visible {
+            opacity: 0.7;
+          }
+
+          position: absolute;
+          width:60px;
+          height:60px;
+          background-color: #FFF;
+          border:1px solid #CCC;
+          top:50%;
+          margin-top:-30px;
+          cursor: pointer;
+
+          transition: opacity 1s;
+
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+
+          z-index: 2000;
+
+          &:after {
+
+            content: " ";
+            position: absolute;
+            width: 10px;
+            height:10px;
+            top:50%;
+            left:47%;
+            border-right:2px solid @lightSecondaryColor;
+            border-bottom:2px solid @lightSecondaryColor;
+
+            transform: translate(-50%, -50%) rotate(-45deg);
+          }
+
+          &--next {
+            right:0;
+          }
+
+          &--prev {
+            left:0;
+            &:after {
+              left:54%;
+              transform: translate(-50%, -50%) rotate(135deg);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// main.summer-campaign-2017-container .interactive-carousel-container { #modules.carousel.seasonnairesInteractive(); }
+
+
+// // Dash Hudson carousel
+// .ls-slider-widget-container .slick-arrow {
+//   &:extend(.c-carousel__btn);
+//   #elements.button-variables(); // Import and unlocks required variables related to buttons
+//   #modules.carousel.variables();
+//   background:transparent!important;
+//   visibility: visible!important;
+//   opacity:1!important;
+//   width: unit(((unit(@horizontalPadding*2)*@emSize) + @carousel-btn-icon-size)*@rem, rem)!important;
+// }
+
+// .ls-slider-widget-container .slick-arrow.slick-prev:before {
+//   background-image:url('../images/icons/UI/chevronLeftLight.svg')!important;
+// }
+
+// .ls-slider-widget-container .slick-arrow.slick-next:before {
+//   background-image:url('../images/icons/UI/chevronRightLight.svg')!important;
+// }
+
+// .ls-slider-widget-container .slick-arrow:before {
+//   &:extend(.c-carousel__btn > .o-btn);
+//   #elements.button-variables(); // Import and unlocks required variables related to buttons
+//   #modules.carousel.variables();
+//   height: unit((@carousel-btn-icon-size*@rem) + (unit(@verticalPadding)), em)!important;
+//   width: unit((@carousel-btn-icon-size*@rem) + (unit(@horizontalPadding)), em)!important;
+//   padding:0!important;
+//   background-repeat: no-repeat!important;
+//   background-size: auto 50%!important;
+//   background-position: center!important;
+// }
+
+// Owl carousel - tryzens
+
+
+

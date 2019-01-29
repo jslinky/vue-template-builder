@@ -1,0 +1,22 @@
+
+.o-link:not([class*="link--"]):after,
+.o-btn:not([class*="btn--"]):after {
+  background:#D2D4DA;
+  opacity:1;
+}
+
+.o-link:not([class*="link--"]):hover:after,
+.o-btn:not([class*="btn--"]):hover:after {
+  background:currentColor;
+}
+
+// Inverted
+.o-link:not([class*="link--"]).inverted:after,
+.o-btn:not([class*="btn--"]).inverted:after {
+  opacity:.4;
+}
+
+.o-link:not([class*="link--"]).inverted:hover:after,
+.o-btn:not([class*="btn--"]).inverted:hover:after {
+  opacity:1;
+}

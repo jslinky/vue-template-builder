@@ -1,0 +1,33 @@
+
+// .o-mh { margin-top:75px; } // debug purposes - header height
+.o-mh ~ .o-mh { margin-top: 4rem; } // debug purposes
+
+//*******************************
+//  Masthead
+//*******************************
+
+.o-mh { #objects.masthead(element); }
+
+//*******************************
+//  Masthead Item
+//*******************************
+.o-mh .o-item > .o-item__image:only-of-type { #objects.masthead(image); }
+.o-mh .o-item > .o-item__image:only-of-type > img,
+.o-mh .o-item > .o-item__image:only-of-type > a > img,
+.o-mh .o-item > .o-item__image:only-of-type picture,
+.o-mh .o-item > .o-item__image:only-of-type picture img { #objects.masthead(image-img); }
+.o-mh .o-item[class*="center aligned"] > .o-item__image:only-of-type { justify-content:center; }
+// Card layout 
+/////////////////////////  
+.o-mh .o-item.o-item--card > .o-item__image:only-of-type > img,
+.o-mh .o-item.o-item--card > .o-item__image:only-of-type > a > img { #objects.masthead(item-card-image-element-img); }
+
+//*******************************
+//  Masthead Item Artwork
+//*******************************
+.o-mh .o-item__artwork { #objects.masthead(artwork); } 
+.o-mh .o-item__artwork:before { #objects.masthead(artwork-ratio); } 
+.o-mh .o-item__artwork img,
+.o-mh .o-item__artwork svg,
+.o-mh .o-item__artwork object, { #objects.masthead(artwork-content); } 
+

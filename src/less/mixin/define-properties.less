@@ -1,0 +1,176 @@
+// //*******************************
+// //  Define custom properties mixin
+// //*******************************
+
+//-------------------
+//   Unlock Module Scoped Variables
+//   Desc: This mixin is called within the ".define-module-prop" mixin and it unlocks module scoped variables
+//--------------------
+
+// Define mixin
+/////////////////////////
+.unlock-module-scope(@module) { }
+// |__ Button mixin guard
+/////////////////////////
+.unlock-module-scope(site) { #global.site-variables(); }
+.unlock-module-scope(button) { #objects.button-variables(); }
+.unlock-module-scope(header) { #objects.header-variables(); }
+.unlock-module-scope(item) { #objects.item-variables(); }
+.unlock-module-scope(icon) { #objects.icon-variables(); }
+.unlock-module-scope(section) { #objects.section-variables(); }
+.unlock-module-scope(form) { #collections.form-variables(); }
+.unlock-module-scope(container) { #objects.container-variables(); }
+.unlock-module-scope(masthead) { #objects.masthead-variables(); }
+//-------------------
+//   (Property | Values) Pair Mixin
+//--------------------
+// Define mixin
+/////////////////////////
+.define-module-prop(@module; @prop; @value) {
+    // Call the unlock module vars mixin
+    .unlock-module-scope(@module);
+    // Local scope the returned variables
+    @customFallback         : @customPropFallback;
+    @staticOnly             : @static-variables-only;
+    @localScopedFallback    : @local-scoped-custom-prop-fallback;
+    @_prop                  : @prop;
+    @_value                 : @value;
+    // Define the rules mixin
+    /////////////////////////    
+    // (When global fallback = false) && (LESS vars only = false)
+    // Only custom property value
+    .rules(@prop; @value) when (@customFallback = false) and (@localScopedFallback = false) and (@staticOnly = false) {
+        @{prop}: ~"var(--@{value}"~")";
+    } 
+    // ((When global fallback = true) && (Module LESS vars only = false)) && (Module LESS fallback = true)
+    // Custom property value & LESS fallback
+    .rules(@prop; @value) when 
+    (@customFallback = true) and (@staticOnly = false), 
+    (@customFallback = false) and (@localScopedFallback = true) {
+        .define-module-prop-fallback(@prop, @@value);
+        @{prop}: ~"var(--@{value}"~")";             
+    }
+    // (When global fallback = true) && (Module LESS vars only = true)
+    // LESS var only
+    .rules(@prop; @value) when (@static-variables-only = true) {
+        .define-module-prop-fallback(@prop; @@value);
+    }
+    // Call the rules mixin
+    .rules(@_prop; @_value);
+}
+
+//-------------------
+//   (Property | Values) Pair Mixin WITH a defined alternative LESS fallback option
+//--------------------
+// Define mixin
+/////////////////////////
+.define-module-prop(@module; @prop; @value; @definedAlternativeFallback) {
+    // Call the unlock module vars mixin
+    .unlock-module-scope(@module);
+    // Local scope the returned variables
+    @customFallback         : @customPropFallback;
+    @staticOnly             : @static-variables-only;
+    @localScopedFallback         : @local-scoped-custom-prop-fallback;
+    @_prop                  : @prop;
+    @_value                 : @value;
+
+    .rules-fallback(@prop; @value) when (@customFallback = false) and (@localScopedFallback = false) and (@staticOnly = false) {
+        @{prop}: ~"var(--@{value}"~")";
+    } 
+    // Define the rules mixin
+    /////////////////////////
+    // ((When global fallback = true) && (Module LESS vars only = false)) && (Module LESS fallback = true)
+    // Custom property value & LESS fallback            
+    .rules-fallback(@prop; @value) when 
+    (@customFallback = true) and (@staticOnly = false),
+    (@customFallback = false) and (@localScopedFallback = true) {
+        @rules: @@definedAlternativeFallback;
+        .define-module-prop-fallback(@prop, @rules);
+        @{prop}: ~"var(--@{value}"~")";             
+    }
+    // (When global fallback = true) && (Module LESS vars only = true)
+    // LESS var only    
+    .rules-fallback(@prop; @value) when (@staticOnly = true) {
+        @rules: @@definedAlternativeFallback;
+        .define-module-prop-fallback(@prop; @rules);
+    }
+    // Call the rules mixin    
+    .rules-fallback(@_prop; @_value);
+}    
+
+
+//-------------------
+//   Fallback rules mixin
+//--------------------
+.define-module-prop-fallback(@prop; @value) {
+    @{prop}: @value;
+}  
+
+    
+    // .define-module-prop(@module; @prop; @value) when (@customPropFallback = false) and (@static-variables-only = false) {       
+    //     .unlock-module-scope(@module);
+    //     @{prop}: ~"var(--@{value}"~")";
+    // }
+    
+    // .define-module-prop(@module; @prop; @value) when (@customPropFallback = true) and (@static-variables-only = false), (@local-scoped-custom-prop-fallback = true) {       
+    //     .unlock-module-scope(@module);
+    //     .define-module-prop-fallback(@prop, @@value);
+    //     @{prop}: ~"var(--@{value}"~")";    
+    // }
+    
+    // .define-module-prop(@module; @prop; @value) when (@customPropFallback = true) and (@static-variables-only = true) {       
+    //     .unlock-module-scope(@module);
+    //     .define-module-prop-fallback(@module; @prop; @@value);
+    // }
+    
+    // .define-module-prop(@prop; @value; @definedAlternativeFallback) when (@customPropFallback = true) and (@static-variables-only = false), (@local-scoped-custom-prop-fallback = true) {       
+    //     @rules: @@definedAlternativeFallback;
+    //     .define-module-prop-fallback(@prop, @rules);
+    //     @{prop}: ~"var(--@{value}"~")";    
+    // }
+    
+    // .define-module-prop(@prop; @value; @definedAlternativeFallback) when (@customPropFallback = true) and (@static-variables-only = true) {       
+    //     @rules: @@definedAlternativeFallback;
+    //     .define-module-prop-fallback(@module; @prop; @rules);
+    // }
+    
+  
+
+
+
+
+
+
+
+/// WORKS BELOW
+
+.cust-prop(@prop, @value) when (@customPropFallback = false) and (@static-variables-only = false) {       
+    @{prop}: ~"var(--@{value}"~")";
+}
+
+.cust-prop(@prop, @value) when (@customPropFallback = true) and (@static-variables-only = false), (@local-scoped-custom-prop-fallback = true) {       
+    .cust-prop-fallback(@prop, @@value);
+    @{prop}: ~"var(--@{value}"~")";    
+}
+
+.cust-prop(@prop, @value) when (@customPropFallback = true) and (@static-variables-only = true) {       
+    .cust-prop-fallback(@prop, @@value);
+}
+
+
+
+
+.cust-prop(@prop, @value, @definedAlternativeFallback) when (@customPropFallback = true) and (@static-variables-only = false), (@local-scoped-custom-prop-fallback = true) {       
+    @rules: @@definedAlternativeFallback;
+    .cust-prop-fallback(@prop, @rules);
+    @{prop}: ~"var(--@{value}"~")";    
+}
+
+.cust-prop(@prop, @value, @definedAlternativeFallback) when (@customPropFallback = true) and (@static-variables-only = true) {       
+    @rules: @@definedAlternativeFallback;
+    .cust-prop-fallback(@prop, @rules);
+}
+
+.cust-prop-fallback(@prop, @value) {
+    @{prop}: @value;
+}

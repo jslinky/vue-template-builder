@@ -1,6 +1,6 @@
 <template>
   <transition>
-  <div class="c-itemTemplate-container" :style="spanAcross" :class="{ toEdit: itemInfo.edit }"> <!-- wrapping div -->
+  <div class="c-itemTemplate-container" :style="spanAcross" :class="{ toEdit: itemInfo.edit || false }"> <!-- wrapping div -->
     <div class="o-item" :class="classesApplied" :id="itemInfo.id">
       <itemImage :img="itemInfo.image" :content="itemInfo.content" /> 
     </div>

@@ -1,0 +1,18 @@
+
+#objects {
+  .icon() {
+    @element-ruleset: { };
+    @element-customPropOnly-ruleset: {
+      width: var(--iconSize, @@iconSize);
+      height: var(--iconSize, @@iconSize);
+    };
+    @element-staticVarsOnly-ruleset: {
+      width: @@iconSize;
+      height: @@iconSize;
+    };
+    @element-fallback-ruleset: {
+      #objects.icon(element-staticVarsOnly-ruleset);
+      #objects.icon(element-customPropOnly-ruleset);
+    };        
+  }
+}

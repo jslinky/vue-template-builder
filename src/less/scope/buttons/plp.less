@@ -1,0 +1,21 @@
+
+.desktop-clear-all button, 
+.mobile-clear-all button {
+  &:extend(.o-link all);
+}
+
+.desktop-clear-all.desktop-clear-all > button, 
+.mobile-clear-all.mobile-clear-all > button {
+  font-size:@tiny;
+}
+
+.static-back-to-top .back-to-top-text {
+  &:extend(.o-link all);
+}
+
+.static-back-to-top.static-back-to-top > .back-to-top-text {
+  padding-top: @spacing;
+  text-transform: uppercase;
+  font-size: @tiny;
+  margin-bottom:@spacing;
+}

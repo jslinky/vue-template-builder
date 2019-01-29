@@ -1,0 +1,46 @@
+
+
+@scoped-container-rules: {
+  #objects.container-variables();
+  @container-width: @container-mobileWidth;
+  @gutterMultiplyer: @container-mobileGutterMultiplyer;
+  @container-marginX: ~"calc(@{gutter} * @{gutterMultiplyer})";
+  width:@container-mobileWidth;
+  margin-left: @container-marginX;
+  margin-right: @container-marginX;
+  @media (min-width:@tabletBreakpoint) { @scoped-container-tablet-rules(); }
+  @media (min-width:@computerBreakpoint) { @scoped-container-computer-rules(); }
+  @media(min-width:@largeMonitorBreakpoint) { @scoped-container-largeMonitor-rules(); }
+};
+
+@scoped-container-tablet-rules: {
+    #objects.container-variables();
+    @container-width: @container-tabletWidth;
+    @gutterMultiplyer: @container-tabletGutterMultiplyer;
+    @container-marginX: ~"calc(@{gutter} * @{gutterMultiplyer})";
+    width: @container-tabletWidth;
+    margin-left: @container-marginX;
+    margin-right: @container-marginX;   
+};
+
+@scoped-container-computer-rules: {
+    #objects.container-variables();
+    @container-width: @container-computerWidth;
+    @gutterMultiplyer: @container-computerGutterMultiplyer;
+    @container-marginX: ~"calc(@{gutter} * @{gutterMultiplyer})";
+    width:@container-computerWidth;   
+    margin-left: @container-marginX;
+    margin-right: @container-marginX;    
+};
+
+@scoped-container-largeMonitor-rules: {
+    #objects.container-variables();
+    @container-width: @container-largeMonitorWidth;
+    @gutterMultiplyer: @container-largeMonitorGutterMultiplyer;
+    @container-marginX: auto;
+    width: @container-largeMonitorWidth;
+    margin-left: @container-marginX;
+    margin-right: @container-marginX;    
+};
+
+.scoped-container-rules { @scoped-container-rules(); }

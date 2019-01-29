@@ -1,0 +1,220 @@
+// Shared - circular button - re-jig with size selector button code
+//////////////////////
+.pdp-main .value .size li:not(.size-chart-link), 
+.pagination li:not(.first-last):not(.next), 
+.list-of-stores .container-availability .selected-size {
+  width: 40*@rem;
+  height: 40*@rem;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;  
+  border:1px solid @fuscousGrey;
+  border-radius:50%;
+}
+.pagination li:not(.first-last):not(.next) a,
+.value li:not(.size-chart-link) a {
+  display: flex;
+  width:100%;
+  height:100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.value .swatches.Color li {
+  border-width: 1px;
+  border-style: solid;
+  border-color:transparent;  
+}
+
+.value .swatches li.selected {
+  border-color:@lightBlack;
+}
+
+
+//**********************
+//  Ruleset
+//**********************
+
+#product {
+  .detail-page() {
+    @product-detail-attribute-color-label: {
+      margin-top:0;
+    };
+    @product-detail-swatch-ul: {
+    //   &:extend(.o-swatch ul);
+      display: flex;
+      flex-wrap:wrap;
+      align-items:center;      
+    };
+    @product-detail-swatch-li: {
+    //   &:extend(.o-swatch .o-swatch__item all);
+      float:left;
+    };
+    @product-detail-swatch-li-disabled: {
+    //   &:extend(.o-btn.disabled);
+      color:#B4B4B4;
+      opacity:.6!important;
+    };
+    @product-detail-swatch-size-li: {
+      border-radius:50%;
+      border-color: @fuscousGrey;
+      margin-right:@spacing / 2;
+      position:relative;
+    };
+    @product-detail-swatch-size-li-link: {
+      font-size:@small;
+    };
+    @product-detail-swatch-size-li-selected: {
+      border-width:2px;
+    };
+    @product-detail-swatch-size-li-lowStock: {
+      background-image: linear-gradient(to right bottom, #fff, #fff 50%, @button-gradiant-grey 50%);
+    };
+    @product-detail-swatch-size-li-outOfStock-cross: {      
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background:#b4b4b4;
+      display: inline-block;      
+    };    
+    @product-detail-swatch-colour-li: {
+    //   &:extend(.o-swatch--sm .o-swatch__item all);
+    };
+    @product-detail-swatch-colour-li-link: {
+      text-indent:-9999em;
+      display: block;
+    };
+    @product-detail-sizeChart-link: {
+      font-size:@mini;
+      width:auto;
+      height:auto;
+      background:url('@{icon-ui-path}ic_size_care.png') 0 center no-repeat;
+      background-size:auto 100%;
+      padding-left:35*@rem;
+    };
+    @product-detail-add-to-cart-button: {
+      width:100%;
+      display: inline-block;
+    };
+    @product-detail-inStoreAvailability-container: {
+      display: inline-block;
+      text-align: center;
+      margin-bottom:@verticalMargin;
+    };
+    @product-detail-inStoreAvailability-button: {
+    //   &:extend(.o-btn all);
+    };
+    @product-detail-inStoreAvailability-buttonBefore: {
+      content: '';
+      display: inline-block;
+      width: @20px;
+      height: @20px;
+      position: absolute;
+      left: -(1em);
+      background-size: contain;
+      top:50%;
+      transform:translate(0, -50%);
+    };
+    @locationInput-icon: {
+      .icon-fill('@{icon-ui-path}storeLocation.svg', '@{primaryColor}');
+      background-repeat: no-repeat;
+    };
+    @product-detail-locationInputBg: {
+      background-size: auto 50%;
+      background-position: left @10px center;
+      padding-left: 35*@rem;
+    };
+  }
+}
+
+//**********************
+//  Product Image
+//**********************
+// Thumbnails
+////////////////////////
+// .product-thumbnails a.thumbnail-link { display:block; }
+
+//**********************
+//  Product details
+//**********************  
+.pdp-main .product-number,
+.pdp-main .availability { display:none; }
+// Swatches - Color | Size attributes
+///////////////////////////
+// Color attribute label
+.product-content .attribute.color-attr .label { #product.detail-page(product-detail-attribute-color-label); }
+// Swatches
+.value .swatches { #product.detail-page(product-detail-swatch-ul); }
+.value li { #product.detail-page(product-detail-swatch-li); }
+.value li.selected-value { display:none!important; }
+.value li.unselectable { #product.detail-page(product-detail-swatch-li-disabled); }
+// Color swatch
+.value .swatches.Color li { #product.detail-page(product-detail-swatch-colour-li); }
+.value .swatches.Color li a { #product.detail-page(product-detail-swatch-colour-li-link); }
+// Size select
+.value .size li:not(.size-chart-link) { #product.detail-page(product-detail-swatch-size-li); }
+// Size select link
+.value .size li:not(.size-chart-link) a { #product.detail-page(product-detail-swatch-size-li-link); }
+// Size select link - selected
+.value .size li.selected { #product.detail-page(product-detail-swatch-size-li-selected); }
+// Low stock
+.value .size li.low-in-stock { #product.detail-page(product-detail-swatch-size-li-lowStock); }
+// Out of stock
+.value .size li.out-of-stock:after,
+.value .size li.out-of-stock:before { #product.detail-page(product-detail-swatch-size-li-outOfStock-cross); } 
+.value .size li.out-of-stock:after { transform: rotate(45deg) translate(0, -50%); }    
+.value .size li.out-of-stock:before { transform: rotate(-45deg) translate(0, -50%); }    
+// Size chart link
+.value .size-chart-link { margin-top:@spacing; }
+.value .size-chart-link a { #product.detail-page(product-detail-sizeChart-link); }
+// Add to cart
+.product-add-to-cart .wl-action { display:none; } // hide wishlist button
+.product-add-to-cart  > form { clear:left; }
+// Add to cart button
+.pdp-main .add-to-cart { #product.detail-page(product-detail-add-to-cart-button); }
+// In store availability button
+.in-store-availability { #product.detail-page(product-detail-inStoreAvailability-container); }
+.in-store-availability a { #product.detail-page(product-detail-inStoreAvailability-button); }
+.in-store-availability a:before { #product.detail-page(product-detail-inStoreAvailability-buttonBefore); }
+.in-store-availability a:before,
+.stock-availability-container .locationInput { #product.detail-page(locationInput-icon); }
+.stock-availability-container .locationInput { #product.detail-page(product-detail-locationInputBg); }
+// Change this to a linked svg file?
+.in-store-availability .in-store-availability-text a:before { background-image:url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iOXB4IiBoZWlnaHQ9IjEycHgiIHZpZXdCb3g9IjAgMCA5IDEyIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPCEtLSBHZW5lcmF0b3I6IFNrZXRjaCA1MS4zICg1NzU0NCkgLSBodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2ggLS0+CiAgICA8dGl0bGU+U1RPUkVfRklOREVSX05hdnk8L3RpdGxlPgogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iUERQLShGSU5BTCkiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSIyNV9QRFBfMTI4MHB4LTEwMjRweF9EZXNrdG9wX1JvbGxfT3Zlcl9TdGF0ZXMiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC03MTQuMDAwMDAwLCAtNTAzLjAwMDAwMCkiPgogICAgICAgICAgICA8ZyBpZD0iU1RPUkVfRklOREVSX05hdnkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDcxNS4wMDAwMDAsIDUwNC4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSJHcm91cCIgc3Ryb2tlPSIjMTAxQjMxIiBzdHJva2Utd2lkdGg9IjAuNSI+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTMuNSwxMSBDNS44MzMzMzMzNSw3LjM4MzcwMjI4IDcsNC45MTQzMTQ1MiA3LDMuNTkxODM2NzQgQzcsMS42MDgxMjAwOCA1LjQzMjk5NjY0LDAgMy41LDAgQzEuNTY3MDAzMzgsMCAwLDEuNjA4MTIwMDggMCwzLjU5MTgzNjc0IEMwLDQuOTE0MzE0NTIgMS4xNjY2NjY2Nyw3LjM4MzcwMjI4IDMuNSwxMSBaIiBpZD0iT3ZhbCI+PC9wYXRoPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTMuNDU5ODkzMDUsNSBDMi42NTM2MTY0MSw1IDIsNC4zMjg0MjcwOSAyLDMuNSBDMiwyLjY3MTU3MjkgMi42NTM2MTY0MSwyIDMuNDU5ODkzMDUsMiBDNC4yNjYxNjk2OSwyIDQuOTE5Nzg2MSwyLjY3MTU3MjkgNC45MTk3ODYxLDMuNSBDNC45MTk3ODYxLDQuMzI4NDI3MDkgNC4yNjYxNjk2OSw1IDMuNDU5ODkzMDUsNSBaIE0zLjQ1OTg5MzA1LDQuNDk5OTk5OTkgQzMuOTk3NDEwODMsNC40OTk5OTk5OSA0LjQzMzE1NTA4LDQuMDUyMjg0NzQgNC40MzMxNTUwOCwzLjUgQzQuNDMzMTU1MDgsMi45NDc3MTUyNCAzLjk5NzQxMDgzLDIuNSAzLjQ1OTg5MzA1LDIuNSBDMi45MjIzNzUyNywyLjUgMi40ODY2MzEwMiwyLjk0NzcxNTI0IDIuNDg2NjMxMDIsMy41IEMyLjQ4NjYzMTAyLDQuMDUyMjg0NzQgMi45MjIzNzUyNyw0LjQ5OTk5OTk5IDMuNDU5ODkzMDUsNC40OTk5OTk5OSBaIiBpZD0iT3ZhbCIgZmlsbD0iIzEwMUIzMSIgZmlsbC1ydWxlPSJub256ZXJvIj48L3BhdGg+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg=='); }
+.in-store-availability .in-store-availability-text a:hover:before { background-image:url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iOXB4IiBoZWlnaHQ9IjEycHgiIHZpZXdCb3g9IjAgMCA5IDEyIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPCEtLSBHZW5lcmF0b3I6IFNrZXRjaCA1MS4zICg1NzU0NCkgLSBodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2ggLS0+CiAgICA8dGl0bGU+U1RPUkVfRklOREVSX0ZJTExFRDwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJQRFAtKEZJTkFMKSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9IjI1X1BEUF8xMjgwcHgtMTAyNHB4X0Rlc2t0b3BfUm9sbF9PdmVyX1N0YXRlcyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTcwNi4wMDAwMDAsIC01MDMuMDAwMDAwKSIgZmlsbD0iIzEwMUEzMSIgZmlsbC1ydWxlPSJub256ZXJvIiBzdHJva2U9IiMxMDFCMzEiIHN0cm9rZS13aWR0aD0iMC41Ij4KICAgICAgICAgICAgPGcgaWQ9IlNUT1JFX0ZJTkRFUl9GSUxMRUQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDcwNy4wMDAwMDAsIDUwNC4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0zLjUsMTEgQzEuMTY2NjY2NjcsNy4zODM3MDIyOCAwLDQuOTE0MzE0NTIgMCwzLjU5MTgzNjc0IEMwLDEuNjA4MTIwMDggMS41NjcwMDMzOCwwIDMuNSwwIEM1LjQzMjk5NjY0LDAgNywxLjYwODEyMDA4IDcsMy41OTE4MzY3NCBDNyw0LjkxNDMxNDUyIDUuODMzMzMzMzUsNy4zODM3MDIyOCAzLjUsMTEgWiBNMy40NTk4OTMwNSw1IEM0LjI2NjE2OTY5LDUgNC45MTk3ODYxLDQuMzI4NDI3MSA0LjkxOTc4NjEsMy41IEM0LjkxOTc4NjEsMi42NzE1NzI5IDQuMjY2MTY5NjksMiAzLjQ1OTg5MzA1LDIgQzIuNjUzNjE2NDEsMiAyLDIuNjcxNTcyOSAyLDMuNSBDMiw0LjMyODQyNzEgMi42NTM2MTY0MSw1IDMuNDU5ODkzMDUsNSBaIiBpZD0iQ29tYmluZWQtU2hhcGUiPjwvcGF0aD4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+'); }
+
+
+@media (max-width:@largestSmallMonitor) {
+//**********************
+//  Stock Availability
+//**********************
+  // Inner container
+  .container-wrapper-list { #product.detail-page(stockAvailability-containerInner-largestTabletScreen); }
+}
+
+@media (max-width:@1019-max-width) {
+  .stock-availability-container .container-title { margin-top:@spacing * 2; }
+}
+
+@media screen and (min-width:@1020-breakpoint) {
+  // Stock availabilty container
+  .stock-availability-container {
+    max-height: 586*@rem;
+    min-height: 30%;
+  }
+
+  .stock-availability-container.opened {
+      height: auto;
+      overflow-y: hidden;
+  }
+
+  .container-content .list-of-stores + .googleMap { margin-bottom:0; }
+}
+
+
+
+

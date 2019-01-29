@@ -1,0 +1,147 @@
+
+
+#objects {
+  .container() {   
+    // Initial container rules 
+    @element-ruleset: { 
+      max-width:@container-maxWidth;
+     };
+    @element-staticVarsOnly-ruleset: {
+      @container-width: @container-mobileWidth;
+      @gutterMultiplyer: @container-mobileGutterMultiplyer;
+      @gutter: @spacing;
+      @container-marginX: ~"calc("@gutter~" * @{gutterMultiplyer})";
+      width:@container-mobileWidth;
+      margin-left: @container-marginX;
+      margin-right: @container-marginX;
+    };
+    @element-customPropOnly-ruleset: {
+      --gutterMultiplyer: @container-mobileGutterMultiplyer;
+      --container-widthVal: var(--container-mobileWidthVal);
+      --gutterMultiplyer: var(--container-mobileGutterMultiplyer); 
+      --container-marginX: var(--gutter, @gutter);
+      --container-width: var(--container-mobileWidth, @container-mobileWidth);
+      width:var(--container-width);      
+      // background: red;
+      margin-left:var(--container-marginX);
+      margin-right:var(--container-marginX);      
+    };
+     // Initial container rules - fallback
+     @element-fallback-ruleset: {
+        #objects.container(element-staticVarsOnly-ruleset);
+        #objects.container(element-customPropOnly-ruleset);
+     };
+     @element-tabletBreakpointOnly-ruleset: {
+        
+     };
+     @element-tabletBreakpointOnly-staticVarsOnly-ruleset: {
+        @container-marginX: auto;
+        margin-left: @container-marginX;
+        margin-right: @container-marginX;               
+     };  
+     @element-tabletBreakpointOnly-customPropOnly-ruleset: {
+        --container-mobileGutterMultiplyer: 0;
+     };  
+     @element-tabletBreakpointOnly-fallback-ruleset: {
+        #objects.container(element-tabletBreakpointOnly-staticVarsOnly-ruleset);
+        #objects.container(element-tabletBreakpointOnly-customPropOnly-ruleset);
+        margin-left:var(--container-marginX);
+        margin-right:var(--container-marginX);          
+     };  
+
+     @element-computerBreakpointOnly-ruleset: {
+        
+     };
+     @element-computerBreakpointOnly-staticVarsOnly-ruleset: {
+        @container-marginX: auto;
+        margin-left: @container-marginX;
+        margin-right: @container-marginX;                     
+     };  
+     @element-computerBreakpointOnly-customPropOnly-ruleset: {
+        --container-mobileGutterMultiplyer: 0;
+        --container-tabletGutterMultiplyer: 0;        
+     };  
+     @element-computerBreakpointOnly-fallback-ruleset: {
+       #objects.container(element-computerBreakpointOnly-staticVarsOnly-ruleset);
+       #objects.container(element-computerBreakpointOnly-customPropOnly-ruleset);
+        margin-left:var(--container-marginX);
+        margin-right:var(--container-marginX);          
+     };  
+
+     @element-tabletBreakpoint-ruleset: {   
+
+     };  
+     @element-tabletBreakpoint-staticVarsOnly-ruleset: {
+        @container-width: @container-tabletWidth;
+        @gutterMultiplyer: @container-tabletGutterMultiplyer;
+        @gutter: @spacing;
+        @container-marginX: ~"calc("@gutter~" * @{gutterMultiplyer})";
+        width: @container-tabletWidth; 
+        margin-left: @container-marginX;
+        margin-right: @container-marginX;   
+     };  
+     @element-tabletBreakpoint-customPropOnly-ruleset: {
+      --container-widthVal: var(--container-tabletWidthVal);
+      --gutterMultiplyer: var(--container-tabletGutterMultiplyer);    
+      --container-width: var(--container-tabletWidth, @container-tabletWidth);          
+     };  
+     @element-tabletBreakpoint-fallback-ruleset: {
+        #objects.container(element-tabletBreakpoint-staticVarsOnly-ruleset);
+        #objects.container(element-tabletBreakpoint-customPropOnly-ruleset);
+        width:var(--container-width);       
+        margin-left:var(--container-marginX);
+        margin-right:var(--container-marginX);         
+     };        
+
+     @element-computerBreakpoint-ruleset: { 
+        
+     };
+     @element-computerBreakpoint-staticVarsOnly-ruleset: {
+      @container-width: @container-computerWidth;
+      @gutterMultiplyer: @container-computerGutterMultiplyer;
+      @gutter: @spacing;
+      @container-marginX: ~"calc("@gutter~" * @{gutterMultiplyer})";
+      width:@container-computerWidth;   
+      margin-left: @container-marginX;
+      margin-right: @container-marginX;           
+     };  
+     @element-computerBreakpoint-customPropOnly-ruleset: {
+      --container-widthVal: @container-computerWidthVal;
+      --gutterMultiplyer: @container-computerGutterMultiplyer;
+      --container-width: var(--container-computerWidth, @container-computerWidth);        
+     };  
+     @element-computerBreakpoint-fallback-ruleset: {
+       #objects.container(element-computerBreakpoint-staticVarsOnly-ruleset);
+       #objects.container(element-computerBreakpoint-customPropOnly-ruleset);
+       width:var(--container-width);       
+       margin-left:var(--container-marginX);
+       margin-right:var(--container-marginX);         
+     };      
+
+
+     @element-largeMonitorBreakpoint-ruleset: {
+        
+     };
+     @element-largeMonitorBreakpoint-staticVarsOnly-ruleset: {
+      @container-width: @container-largeMonitorWidth;
+      @gutterMultiplyer: @container-largeMonitorGutterMultiplyer;
+      @container-marginX: auto;
+      width: @container-largeMonitorWidth;
+      margin-left: @container-marginX;
+      margin-right: @container-marginX;           
+     };  
+     @element-largeMonitorBreakpoint-customPropOnly-ruleset: {
+      --container-widthVal: var(--container-largeMonitorWidthVal);
+      --gutterMultiplyer: var(--container-largeMonitorGutterMultiplyer);
+      --container-marginX: auto;
+      --container-width: var(--container-largeMonitorWidth, @container-largeMonitorWidth);        
+     };  
+     @element-largeMonitorBreakpoint-fallback-ruleset: {
+       #objects.container(element-largeMonitorBreakpoint-staticVarsOnly-ruleset);
+       #objects.container(element-largeMonitorBreakpoint-customPropOnly-ruleset);
+       width:var(--container-width);    
+       margin-left:var(--container-marginX);
+       margin-right:var(--container-marginX);         
+     };                                              
+  }
+}

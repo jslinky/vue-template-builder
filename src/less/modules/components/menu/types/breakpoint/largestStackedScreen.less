@@ -1,0 +1,32 @@
+
+.o-menu.stackable { #components.menu(stackable-largestStackedScreen); }
+.o-menu.stackable .o-menu__header { #components.menu(stackable-largestStackedScreen-header); }
+.o-menu.stackable .o-menu__header:not(.active) ~ .o-menu__item,
+.o-menu.stackable .o-menu__header:not(.active) > .o-icon--close {
+    // Ruleset contains classes 
+    #components.menu(stackable-largestStackedScreen-header-not-active);
+}
+
+.o-menu.stackable .o-menu__header.active > .o-icon--open {
+    // Ruleset contains classes 
+    #components.menu(stackable-largestStackedScreen-header-active);
+}
+.o-menu.stackable .o-menu__item { #components.menu(menu-vertical-item); }
+.o-menu.stackable .o-menu__item:after { #components.menu(stackable-largestStackedScreen-item-after); }
+
+// Sub menu
+.o-menu.stackable .o-menu { 
+  #components {
+    .menu(sub-menu) {
+      #components.menu(sub-menu-vertical);      
+    }   
+  }  
+  #components.menu(sub-menu);
+}
+// Piped menu
+.o-menu.stackable.o-menu--piped .o-menu__item {
+    #components.menu(stackable-largestStackedScreen-piped-item);
+}
+.o-menu.stackable.o-menu--piped .o-menu__item:not(:last-child):after {
+    #components.menu(stackable-largestStackedScreen-piped-after);
+}

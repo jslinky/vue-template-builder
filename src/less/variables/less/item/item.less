@@ -1,0 +1,35 @@
+
+// /*--------------
+//   Item Settings
+// ---------------*/
+
+#objects {
+  .item-variables() {
+    @static-variables-only                : true; // turn off custom prop on a module level - define on a per site basis in overrides
+    @local-scoped-custom-prop-fallback    : false; // not sure this works! local scoped variable - should be moved to overrides
+
+    @itemOverlayHoverBackground           : rgba(0,0,0,.5);
+    // @overlayEasing                   : ease-in;
+    // @overlayDuration                 : 150ms;
+    // @overlayTransition               : opacity @overlayDuration @overlayEasing;
+
+    // new 
+    @itemTransition                       : ~"all var(--@{itemTransitionDuration}) var(--@{itemTransitionEasing})";
+    @itemTransitionFallback               : all @itemTransitionDuration @itemTransitionEasing;
+    @itemTransitionDuration               : 150ms;
+    @itemTransitionEasing                 : ease-in;
+
+    @itemHeaderOffsetVal                  : spacing;
+    @itemHeaderOffset                     : (@@itemHeaderOffsetVal / 2);
+    @itemHeaderColor                      : inherit;
+    @itemTintOpacity                      : 0;
+    @itemContentOffsetVal                 : spacing;
+    @itemContentOffset                    : (@@itemContentOffsetVal / 2);
+    @itemContentElementsGutter            : @spacing; 
+    @gutterMultiplyer                     : 2;
+    @item-zIndex                          : 0;
+
+    @itemColor                            : @body-color;
+    @itemColorInverted                    : @invertedTextColor;
+  }
+}

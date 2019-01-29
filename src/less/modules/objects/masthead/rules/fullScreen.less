@@ -1,0 +1,67 @@
+
+
+#objects {
+  .masthead() {        
+     // Fullscreen
+     @element-fullScreen-ruleset: {
+        padding-top: @mh-pt-fH-m;
+     };
+     @element-fullScreen-fallback-ruleset: {
+        #objects.masthead(element-fullScreen-staticVarsOnly-ruleset);
+        #objects.masthead(element-customPropOnly-ruleset);
+        height:var(--mh-h);
+     };          
+     @element-fullScreen-staticVarsOnly-ruleset: {
+        height: ~"calc(@{mh-hVal-vh} * 1vh)";
+     };
+     @element-fullScreen-customPropOnly-ruleset: {
+        --mh-h: ~"calc(@{mh-hVal-vh} * 1vh)";
+     };    
+     // Large Mobile Breakpoint      
+     @element-fullScreen-largeMobileBreakpoint-ruleset: {
+        padding-top: @mh-pt-fH-lmb;
+     };
+     @element-fullScreen-largeMobileBreakpoint-fallback-ruleset: {
+        #objects.masthead(element-fullScreen-largeMobileBreakpoint-staticVarsOnly-ruleset);
+        #objects.masthead(element-fullScreen-largeMobileBreakpoint-customPropOnly-ruleset);
+        height: var(--mh-h);
+     };
+     @element-fullScreen-largeMobileBreakpoint-staticVarsOnly-ruleset: {
+        height: ~"calc(@{mh-hVal-vh} * 1vh)";
+     };
+     @element-fullScreen-largeMobileBreakpoint-customPropOnly-ruleset: {
+        --mh-h: ~"calc(@{mh-hVal-vh} * 1vh)";        
+     };  
+     // Tablet Breakpoint
+     @element-fullScreen-tabletBreakpoint-ruleset: {
+        padding-top: @mh-pt-fH-lmb;
+     };
+     @element-fullScreen-tabletBreakpoint-fallback-ruleset: {
+        #objects.masthead(element-fullScreen-tabletBreakpoint-staticVarsOnly-ruleset);
+        #objects.masthead(element-fullScreen-tabletBreakpoint-customPropOnly-ruleset);
+        height: var(--mh-h);
+     };
+     @element-fullScreen-tabletBreakpoint-staticVarsOnly-ruleset: {
+        height: ~"calc(@{mh-hVal-vh} * 1vh)";
+     };
+     @element-fullScreen-tabletBreakpoint-customPropOnly-ruleset: {
+        --mh-h: ~"calc(@{mh-hVal-vh} * 1vh)";        
+     }; 
+     // Computer Breakpoint
+     @element-fullScreen-computerBreakpoint-ruleset: {
+        padding-bottom: @banner-bf-header-height*@rem; // put this in cust prop code aswell
+     };
+     @element-fullScreen-computerBreakpoint-fallback-ruleset: {
+        #objects.masthead(element-fullScreen-computerBreakpoint-staticVarsOnly-ruleset);
+        #objects.masthead(element-fullScreen-computerBreakpoint-customPropOnly-ruleset);
+        height: var(--mh-h);
+     };
+     @element-fullScreen-computerBreakpoint-staticVarsOnly-ruleset: {
+        height: ~"calc(@{mh-hVal-vh} * 1vh)";
+     };
+     @element-fullScreen-computerBreakpoint-customPropOnly-ruleset: {
+        --mh-h: ~"calc(@{mh-hVal-vh} * 1vh)";        
+     };                         
+    
+  }
+}

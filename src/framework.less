@@ -1,0 +1,53 @@
+@import "./less/darwin.less";
+
+.c-btn-tag {
+  border-radius: 2px;
+  background: lightgray;
+  margin-top:6px;
+  padding:4px 8px;
+
+}
+
+.c-btn-tag:empty { display:none; }
+
+.c-btn-tag.active {
+  background: green;
+  color: #fff;
+  text-shadow: -0.5px -0.5px 0px rgba(0,0,0,.3);  
+}
+
+.c-btn-tag:empty {
+  display: none;
+}
+
+footer {
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:1rem 1rem 0;
+  background:#ccc;
+}
+
+.c-code {
+  display: flex;
+}
+
+.c-code .o-btn {
+  flex:0 1 auto;
+  align-self:flex-start;
+  padding:.5em 1em;
+}
+
+code {
+  flex:1 1 auto;
+  padding:1.5rem; 
+  background:#eee; 
+  font:0.785rem 'Courier'; 
+  letter-spacing:0.75px  
+}
+
+.c-header-container .c-code,
+.c-container-buttons .c-code {
+  --container-marginX:0;
+}

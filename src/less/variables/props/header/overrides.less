@@ -1,0 +1,51 @@
+// Override 
+// #namespace { 
+//     .module() {
+//         @element: {
+//             // override code
+//         };
+//     } 
+// } 
+
+// Extend
+// #namespace {
+//     .module(element) {
+//         // extend code
+//     }
+// }
+
+
+
+//*******************************
+//    HEADER: Custom Prop Rulesets
+//*******************************
+
+//-------------------
+//  Header props
+//--------------------
+
+// Extend
+#props {
+    .header(default) {
+      #objects.header-variables();
+      --largeSizeVal: @largeSizeVal;
+      --largeSizeCalc : var(--largeSizeVal)~" /" var(--fontSizeRoot);
+      --large : ~"calc("var(--largeSizeCalc)~"*1rem)";      
+
+      --mediumSizeVal: @mediumSizeVal;
+      --mediumSizeCalc: var(--mediumSizeVal)~" /" var(--fontSizeRoot);
+      --medium: ~"calc("var(--mediumSizeCalc)~"*1rem)";
+
+
+      --smallSizeVal: @smallSizeVal;
+      --smallSizeCalc : var(--smallSizeVal)~" /" var(--fontSizeRoot);
+      --small : ~"calc("var(--smallSizeCalc)~"*1rem)";      
+
+      --miniSizeVal: @miniSizeVal;
+      --miniSizeCalc : var(--miniSizeVal)~" /" var(--fontSizeRoot);
+      --mini : ~"calc("var(--miniSizeCalc)~"*1rem)";      
+      --tinySizeVal: @tinySizeVal;
+      --tinySizeCalc : var(--tinySizeVal)~" /" var(--fontSizeRoot);      
+      --tiny : ~"calc("var(--tinySizeCalc)~"*1rem)";
+    }
+}

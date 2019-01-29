@@ -1,0 +1,21 @@
+//*******************************
+//  Item image
+//*******************************
+
+//-------------------
+//   Container
+//--------------------
+.o-item__image { #objects.item(image-container); }
+
+// Full width (100vw) image on mobile
+@media (max-width:@largestMobileScreen) {
+  .o-item__image.o-item__image--100vw {
+    #objects { .item(image-container) { #objects.item(image-container-100vw-ruleset); } } // Override image ruleset
+    #objects.item(image-container);  
+  }
+}
+
+//-------------------
+//   Direct descendant link
+//--------------------
+.o-item__image > a { #objects.item(image-container-direct-link); }

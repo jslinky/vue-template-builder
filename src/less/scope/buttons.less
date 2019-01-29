@@ -1,0 +1,52 @@
+
+//*******************************
+//  Tryzen-related scoped button module
+//*******************************      
+// Create base button
+.s-btn {
+  #objects.button-variables();
+  #objects.create-button(@color, layout);
+}
+// Basic type
+.s-btn-basic { #objects.create-button(@primaryColor, basic); }
+// Primary type
+.s-btn-primary { #objects.create-button(@primaryColor; primary); }
+// Underline
+.s-link-underline { #scope.darwin(underlined-link); }
+.s-link-underline:after { #scope.darwin(underlined-linkAfter); }
+.s-link-underline:hover:after { #scope.darwin(underlined-linkHoverAfter); }
+
+
+.s-btn-basic:after,
+.s-btn-primary:after {
+  display:none;
+}
+
+//*******************************
+//  Tryzen-related button extends
+//*******************************  
+
+//-------------------
+//  Tryzens .button class
+//-------------------- 
+
+// Button
+.button { &:extend(.o-btn all); }
+// Non clickable
+.button.not-clickable,
+button[type="submit"].not-clickable {
+  &:extend(.o-btn.disabled all);
+}
+
+// @import sections / pages
+@import "buttons/myAccount.less";
+@import "buttons/myAccountDetails.less";
+@import "buttons/modal.less";
+@import "buttons/storeLocator.less";
+@import "buttons/checkout/config.less";
+@import "buttons/plp.less";
+@import "buttons/pdp.less";
+@import "buttons/pdp-stock-availability.less";
+// All link buttons in one place
+@import "buttons/link.less";
+

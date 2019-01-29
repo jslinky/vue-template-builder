@@ -1,0 +1,584 @@
+//*******************************
+//    Ruleset calls
+//*******************************
+// The following GLOBAL header rulesets define default header rules and (dynamic) sizes ranging from massive to tiny 
+// To modify / extend HEADER rulesets or classes, use the appropiate pattern (see readme.txt) within  ../modules/objects/header/rules/overrides.less  
+// To modify / extend HEADER variables, you should be declare in ../variables/less/header/overrides.less
+
+
+#objects {
+  .header() {
+  //-------------------
+  //  DEFAULT header ruleset
+  //--------------------     
+    @default: {
+      #objects.header(default-rules);
+    };
+  //-------------------
+  //  SIZES: massive, huge, big, large, medium, small, tiny
+  //--------------------         
+    @hMassive: {
+      #objects.header(hMassive-ruleset);
+    };
+    @hHuge: {
+      #objects.header(hHuge-ruleset);
+    }; 
+    @hBig: {
+      #objects.header(hBig-ruleset);
+    };    
+    @hLarge: {
+      #objects.header(hLarge-ruleset);
+    };    
+    @hMedium: {
+      #objects.header(hMedium-ruleset);
+    };    
+    @hSmall: {
+      #objects.header(hSmall-ruleset);
+    }; 
+    @hTiny: {
+      #objects.header(hTiny-ruleset);
+    };        
+  //-------------------
+  //  DYNAMIC SIZES: Fluid typography - Mobile (Smaller) > Larger (Desktop)
+  //--------------------      
+  @hHuge-hMassive-min-font-size: {
+    #objects.header(hHuge-hMassive-min-font-size-ruleset);
+  };    
+  @hHuge-hMassive-min-size: {
+    #objects.header(hHuge-hMassive-min-size-ruleset);
+  };    
+  @hHuge-hMassive-max-size: {
+    #objects.header(hHuge-hMassive-max-size-ruleset);
+  };
+  @hBig-hHuge-min-font-size: {
+    #objects.header(hBig-hHuge-min-font-size-ruleset);
+  };    
+  @hBig-hHuge-min-size: {
+    #objects.header(hBig-hHuge-min-size-ruleset);
+  };    
+  @hBig-hHuge-max-size: {
+    #objects.header(hBig-hHuge-max-size-ruleset);
+  }; 
+  @hLarge-hBig-min-font-size: {
+    #objects.header(hLarge-hBig-min-font-size-ruleset);
+  };    
+  @hLarge-hBig-min-size: {
+    #objects.header(hLarge-hBig-min-size-ruleset);
+  };    
+  @hLarge-hBig-max-size: {
+    #objects.header(hLarge-hBig-max-size-ruleset);
+  }; 
+  @hMedium-hLarge-min-font-size: {
+    #objects.header(hMedium-hLarge-min-font-size-ruleset);
+  };    
+  @hMedium-hLarge-min-size: {
+    #objects.header(hMedium-hLarge-min-size-ruleset);
+  };    
+  @hMedium-hLarge-max-size: {
+    #objects.header(hMedium-hLarge-max-size-ruleset);
+  }; 
+  @hSmall-hMedium-min-font-size: {
+    #objects.header(hSmall-hMedium-min-font-size-ruleset);
+  };    
+  @hSmall-hMedium-min-size: {
+    #objects.header(hSmall-hMedium-min-size-ruleset);
+  };    
+  @hSmall-hMedium-max-size: {
+    #objects.header(hSmall-hMedium-max-size-ruleset);
+  };    
+  //-------------------
+  //  SECONDARY FONT: ruleset which defines header secondary font
+  //--------------------         
+    @secondaryFont: {
+      // #objects.header(secondaryFont-ruleset);
+    };
+  //-------------------
+  //  TEXT TRANSFORM: ruleset which defines header text transform
+  //--------------------      
+    @capatalise: {
+      // #objects.header(letter-spacing-capatalise-ruleset);
+    };
+    @uppercase: {
+      // #objects.header(letter-spacing-uppercase-ruleset);
+    };    
+  //-------------------
+  //  TYPES: various header types including: inverted, groups, underline and line-through
+  //--------------------     
+    @inverted: {
+      // #objects.header(inverted-ruleset);
+    };   
+    @header-group: {
+      #objects.header(header-group-ruleset);
+    };
+    @underline: {
+      #objects.header(underline-ruleset);
+    };
+    @lineThrough: {
+      #objects.header(lineThrough-ruleset);
+    };
+    @lineThrough-span: {
+      #objects.header(lineThrough-span-ruleset);
+    };                    
+  }
+}
+
+
+//-------------------
+//  EXTEND(ED) core ruleset
+//  // .output-rules() mixin loads module scoped variables. See ../mixin/output-rules.less
+//--------------------
+
+#objects {
+
+  //-------------------
+  //  DEFAULT header ruleset
+  //  Mixin guard checking for @headerTextTransform = uppercase
+  //  Adjust letter-spacing
+  //--------------------       
+  .header(default) { 
+    #objects.header-variables(); // do i need?
+    .output() when (@headerTextTransform = uppercase) {
+      #objects.header(letter-spacing-uppercase-ruleset);
+    }
+    .output() when not (@headerTextTransform = uppercase) {
+      #objects.header(letter-spacing-capatalise-ruleset);
+    }                  
+    .output();    
+    .output-rules(default; header);
+  }
+
+  // DO I NEED THIS??
+  .header(default) { 
+    #objects.header-variables(); // do i need?
+    .output() when (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+      #objects.header(default-customPropOnly-ruleset);
+    }
+    .output();
+  }    
+
+  .header(inverted) { 
+    .output-rules(inverted; header);
+  }  
+
+
+  //-------------------
+  //  SECONDARY FONT header ruleset
+  //--------------------         
+  .header(secondaryFont) { 
+    #objects.header-variables(); // do i need?
+    .output() when (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+      #objects.header(secondaryFont-ruleset);
+    }
+    .output() when 
+    (@customPropFallback = true) and (@static-variables-only = false),
+    (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = true) {
+      #objects.header(secondaryFont-fallback-ruleset);
+    }    
+    .output() when (@static-variables-only = true) {
+      #objects.header(secondaryFont-staticVarsOnly-ruleset);
+    }        
+    .output();
+  }
+
+  
+  // Letter spacing fallback  
+
+  // .o-header-letterSpacingFallback() { 
+  //   #objects.header-variables(); // do i need?
+  //   .output() when (@headerTextTransform = uppercase) and (@customPropFallback = true) { 
+  //     #objects.header(letter-spacing-uppercase-fallback-ruleset);
+  //   }
+  //   .output() when not (@headerTextTransform = uppercase) and (@customPropFallback = true) { 
+  //     #objects.header(letter-spacing-capatalise-fallback-ruleset);
+  //   }    
+  //   .output();
+  // }
+
+
+  .header(lineThrough) { 
+    #objects.header-variables(); // do i need?
+    .output() when (@customPropFallback = true) {
+      #objects.header(lineThrough-ruleset-fallback);
+    }
+    .output();
+  }  
+
+
+  //-------------------
+  //  CAPATALISED header ruleset
+  //  Mixin guard checking for @headerTextTransform = uppercase
+  //--------------------     
+  .header(capatalise) {
+    #objects.header-variables(); // do i need?
+    .output() when not 
+    (@headerTextTransform = uppercase) and (@customPropFallback = false) and (@static-variables-only = true),
+    (@headerTextTransform = uppercase) and (@customPropFallback = true) and (@local-scoped-custom-prop-fallback = false) {
+      #objects.header(letter-spacing-capatalise-fallback-ruleset);
+    }
+    .output() when not (@headerTextTransform = uppercase) and (@static-variables-only = false) {
+      #objects.header(letter-spacing-capatalise-staticVarsOnly-ruleset);
+    }    
+    .output() when (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+      #objects.header(letter-spacing-capatalise-ruleset);
+    }        
+    .output() when 
+    (@customPropFallback = true) and (@static-variables-only = false),
+    (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = true) {
+      #objects.header(letter-spacing-capatalise-fallback-ruleset);
+    }            
+    .output() when (@static-variables-only = true) {
+      #objects.header(letter-spacing-capatalise-staticVarsOnly-ruleset);
+    }                
+    .output();    
+  }
+
+
+  .header(uppercase) { 
+    #objects.header-variables(); // do i need?
+    .output() when (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+      #objects.header(letter-spacing-uppercase-ruleset);
+    }
+    .output() when 
+    (@customPropFallback = true) and (@static-variables-only = false),
+    (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = true) {
+      #objects.header(letter-spacing-uppercase-fallback-ruleset);
+    }    
+    .output() when (@static-variables-only = true) {
+      #objects.header(letter-spacing-uppercase-staticVarsOnly-ruleset);
+    }     
+    .output();
+  }
+
+  //-------------------
+  //  MASSIVE SIZE header ruleset
+  //  Mixin guard checking for @headerTextTransform
+  //--------------------     
+  .header(hMassive) { 
+    #objects.header-variables(); // do i need?
+    .output() when 
+    (@headerTextTransform = uppercase) and (@headerHMassive-textTransform = uppercase), 
+    (@headerHMassive-textTransform = uppercase) {
+      #objects.header(hMassive-letter-spacing-uppercase-ruleset);
+    }
+    .output() when not (@headerHMassive-textTransform = uppercase) {
+      #objects.header(hMassive-letter-spacing-noUppercase-ruleset);      
+    }    
+    .output();
+  }
+
+  //-------------------
+  //  HUGE SIZE header ruleset
+  //  Mixin guard checking for @headerTextTransform
+  //-------------------- 
+  .header(hHuge) { 
+    #objects.header-variables(); // do i need?
+    .output() when 
+    (@headerTextTransform = uppercase) and (@headerHHuge-textTransform = uppercase), 
+    (@headerHHuge-textTransform = uppercase) {
+      #objects.header(hHuge-letter-spacing-uppercase-ruleset);
+    }
+    .output() when not (@headerHHuge-textTransform = uppercase) {
+      #objects.header(hHuge-letter-spacing-noUppercase-ruleset);
+    }    
+    .output();
+  } 
+
+  //-------------------
+  //  BIG SIZE header ruleset
+  //  Mixin guard checking for @headerTextTransform
+  //--------------------   
+  .header(hBig) { 
+    #objects.header-variables(); // do i need?
+    .output() when 
+    (@headerTextTransform = uppercase) and (@headerHBig-textTransform = uppercase), 
+    (@headerHBig-textTransform = uppercase) {
+      #objects.header(hBig-letter-spacing-uppercase-ruleset);
+    }
+    .output() when not (@headerHBig-textTransform = uppercase) {
+      #objects.header(hBig-letter-spacing-noUppercase-ruleset);
+    }    
+    .output();
+  }
+        
+  //-------------------
+  //  LARGE SIZE header ruleset
+  //  Mixin guard checking for @headerTextTransform
+  //-------------------- 
+  .header(hLarge) { 
+    #objects.header-variables(); // do i need?
+    .output() when 
+    (@headerTextTransform = uppercase) and (@headerHLarge-textTransform = uppercase), 
+    (@headerHLarge-textTransform = uppercase)  {
+      #objects.header(hLarge-letter-spacing-uppercase-ruleset);
+    }
+    .output() when not (@headerHLarge-textTransform = uppercase) {
+      #objects.header(hLarge-letter-spacing-noUppercase-ruleset);
+    }    
+    .output();
+  }
+
+  //-------------------
+  //  MEDIUM SIZE header ruleset
+  //  Mixin guard checking for @headerTextTransform
+  //-------------------- 
+  .header(hMedium) { 
+    #objects.header-variables(); // do i need?
+    .output() when 
+    (@headerTextTransform = uppercase) and (@headerHMedium-textTransform = uppercase), 
+    (@headerHMedium-textTransform = uppercase)  {
+      #objects.header(hMedium-letter-spacing-uppercase-ruleset);
+    }
+    .output() when not (@headerHMedium-textTransform = uppercase) {
+      #objects.header(hMedium-letter-spacing-noUppercase-ruleset);
+    }    
+    .output();
+  }
+  
+  //-------------------
+  //  SMALL SIZE header ruleset
+  //  Mixin guard checking for @headerTextTransform
+  //--------------------   
+  .header(hSmall) { 
+    #objects.header-variables(); // do i need?
+    .output() when 
+    (@headerTextTransform = uppercase) and (@headerHSmall-textTransform = uppercase), 
+    (@headerHSmall-textTransform = uppercase)  {
+      #objects.header(hSmall-letter-spacing-uppercase-ruleset);
+    }
+    .output() when not (@headerHSmall-textTransform = uppercase) {
+      #objects.header(hSmall-letter-spacing-noUppercase-ruleset);
+    }    
+    .output();
+  }
+
+  //-------------------
+  //  TINY SIZE header ruleset
+  //  Mixin guard checking for @headerTextTransform
+  //-------------------- 
+  .header(hTiny) { 
+    #objects.header-variables(); // do i need?
+    .output() when 
+    (@headerTextTransform = uppercase) and (@headerHTiny-textTransform = uppercase), 
+    (@headerHTiny-textTransform = uppercase)  {
+      #objects.header(hTiny-letter-spacing-uppercase-ruleset);
+    }
+    .output() when not (@headerHTiny-textTransform = uppercase) {
+      #objects.header(hTiny-letter-spacing-noUppercase-ruleset);
+    }    
+    .output();
+  }  
+
+  //-------------------
+  //  HUGE TO MASSIVE SIZE minimum base size (=huge)
+  //  Mixin guard checking for TEXT-TRANSFORM
+  //-------------------- 
+
+  .header(hHuge-hMassive-min-font-size) { 
+    #objects.header-variables(); // do i need?
+    .output() when 
+    (@headerTextTransform = uppercase) and (@headerHMassive-textTransform = uppercase), 
+    (@headerHMassive-textTransform = uppercase)  {
+      .set-header-rules-letterSpacing(Huge; uppercase);
+      .set-header-rules-text-transform(Huge);
+    }
+    .output() when not (@headerHMassive-textTransform = uppercase)  {
+      .set-header-rules-letterSpacing(Huge; none);
+      .set-header-rules-text-transform(Huge);
+    }    
+    .output();
+  }
+
+  //-------------------
+  //  HUGE TO MASSIVE SIZE maximum font size (=massive)
+  //  Mixin guard checking for TEXT-TRANSFORM
+  //-------------------- 
+
+  .header(hHuge-hMassive-max-size) { 
+    #objects.header-variables(); // do i need?
+    .output() when 
+    (@headerTextTransform = uppercase) and (@headerHMassive-textTransform = uppercase), 
+    (@headerHMassive-textTransform = uppercase)  {
+      .set-header-rules-letterSpacing(Massive; uppercase);
+    }
+    .output() when not (@headerHMassive-textTransform = uppercase)  {
+      .set-header-rules-letterSpacing(Massive; none);
+    }    
+    .output();
+  }
+
+
+  //-------------------
+  //  BIG TO HUGE SIZE minimum base size (=big)
+  //  Mixin guard checking for TEXT-TRANSFORM
+  //-------------------- 
+
+  .header(hBig-hHuge-min-font-size) {
+    #objects.header-variables(); // do i need?
+    .output() when 
+    (@headerTextTransform = uppercase) and (@headerHHuge-textTransform = uppercase), 
+    (@headerHHuge-textTransform = uppercase)  {
+      .set-header-rules-letterSpacing(Big; uppercase);
+      .set-header-rules-text-transform(Big);
+    }
+    .output() when not (@headerHHuge-textTransform = uppercase)  {
+      .set-header-rules-letterSpacing(Big; none);
+      .set-header-rules-text-transform(Big);
+    }    
+    .output();
+  }
+
+  //-------------------
+  //  BIG TO HUGE SIZE maximum base size (=huge)
+  //  Mixin guard checking for TEXT-TRANSFORM
+  //-------------------- 
+
+  .header(hBig-hHuge-max-size) {
+    #objects.header-variables(); // do i need?
+    .output() when 
+    (@headerTextTransform = uppercase) and (@headerHHuge-textTransform = uppercase), 
+    (@headerHHuge-textTransform = uppercase)  {
+      .set-header-rules-letterSpacing(Huge; uppercase);
+    }
+    .output() when not (@headerHHuge-textTransform = uppercase)  {
+      .set-header-rules-letterSpacing(Huge; none);
+    }    
+    .output();
+  }
+
+  //-------------------
+  //  LARGE TO BIG SIZE minimum base size (=large)
+  //  Mixin guard checking for TEXT-TRANSFORM
+  //--------------------   
+
+  .header(hLarge-hBig-min-font-size) {
+    #objects.header-variables(); // do i need?
+    .output() when 
+    (@headerTextTransform = uppercase) and (@headerHBig-textTransform = uppercase), 
+    (@headerHBig-textTransform = uppercase)  {
+      .set-header-rules-letterSpacing(Large; uppercase);
+      .set-header-rules-text-transform(Large);
+    }
+    .output() when not (@headerHBig-textTransform = uppercase)  {
+      .set-header-rules-letterSpacing(Large; none);
+      .set-header-rules-text-transform(Large);
+    }    
+    .output();
+  }
+
+  //-------------------
+  //  LARGE TO BIG SIZE maximum base size (=big)
+  //  Mixin guard checking for TEXT-TRANSFORM
+  //--------------------   
+  
+  .header(hLarge-hBig-max-size) { 
+    #objects.header-variables(); // do i need?
+    .output() when 
+    (@headerTextTransform = uppercase) and (@headerHBig-textTransform = uppercase), 
+    (@headerHBig-textTransform = uppercase)  {
+      .set-header-rules-letterSpacing(Big; uppercase);
+    }
+    .output() when not (@headerHBig-textTransform = uppercase)  {
+      .set-header-rules-letterSpacing(Big; none);
+    }    
+    .output();
+  }
+
+  //-------------------
+  //  MEDIUM TO LARGE SIZE minimum base size (=medium)
+  //  Mixin guard checking for TEXT-TRANSFORM
+  //--------------------   
+
+  .header(hMedium-hLarge-min-font-size) { 
+    #objects.header-variables(); // do i need?
+    .output() when 
+    (@headerTextTransform = uppercase) and (@headerHLarge-textTransform = uppercase), 
+    (@headerHLarge-textTransform = uppercase)  {
+      .set-header-rules-letterSpacing(Medium; uppercase);
+      .set-header-rules-text-transform(Medium);
+    }
+    .output() when not (@headerHLarge-textTransform = uppercase)  {
+      .set-header-rules-letterSpacing(Medium; none);
+      .set-header-rules-text-transform(Medium);
+    }    
+    .output();
+  }
+
+  //-------------------
+  //  MEDIUM TO LARGE SIZE maximum base size (=large)
+  //  Mixin guard checking for TEXT-TRANSFORM
+  //--------------------   
+  
+  .header(hMedium-hLarge-max-size) { 
+    #objects.header-variables(); // do i need?
+    .output() when 
+    (@headerTextTransform = uppercase) and (@headerHLarge-textTransform = uppercase), 
+    (@headerHLarge-textTransform = uppercase)  {
+      .set-header-rules-letterSpacing(Large; uppercase);
+    }
+    .output() when not (@headerHLarge-textTransform = uppercase)  {
+      .set-header-rules-letterSpacing(Large; none);
+    }    
+    .output();
+  }
+  
+  //-------------------
+  //  SMALL TO MEDIUM SIZE minimum base size (=small)
+  //  Mixin guard checking for TEXT-TRANSFORM
+  //--------------------   
+
+  .header(hSmall-hMedium-min-font-size) { 
+    #objects.header-variables(); // do i need?
+    .output() when 
+    (@headerTextTransform = uppercase) and (@headerHMedium-textTransform = uppercase), 
+    (@headerHMedium-textTransform = uppercase)  {
+      .set-header-rules-letterSpacing(Small; uppercase);
+      .set-header-rules-text-transform(Small);
+    }
+    .output() when not (@headerHMedium-textTransform = uppercase)  {
+      .set-header-rules-letterSpacing(Small; none);
+      .set-header-rules-text-transform(Small);
+    }    
+    .output();
+  }
+
+  //-------------------
+  //  SMALL TO MEDIUM SIZE maximum base size (=medium)
+  //  Mixin guard checking for TEXT-TRANSFORM
+  //--------------------   
+
+  .header(hSmall-hMedium-max-size) { 
+    #objects.header-variables(); // do i need?
+    .output() when 
+    (@headerTextTransform = uppercase) and (@headerHMedium-textTransform = uppercase), 
+    (@headerHMedium-textTransform = uppercase)  {
+      .set-header-rules-letterSpacing(Medium; uppercase);
+    }
+    .output() when not (@headerHMedium-textTransform = uppercase)  {
+      .set-header-rules-letterSpacing(Medium; none);
+    }    
+    .output();
+  }
+
+}
+
+//-------------------
+//  OVERRIDE core ruleset
+//  If you need to override / extend any core framework rulesets
+//--------------------
+
+@import "overrides/config.less";
+
+
+#objects {
+  .header(@item) {
+      #objects.header();
+      #objects.header-variables();
+      @rules: @@item;
+      @rules();
+  }
+  .header-variables(@item) {
+    #objects.header-variables();
+    @rules: @@item;
+    @rules();
+  }    
+}

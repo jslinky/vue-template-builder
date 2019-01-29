@@ -1,0 +1,51 @@
+
+
+
+//*******************************
+//    Ruleset calls
+//*******************************
+
+//-------------------
+//  CORE section rules
+//--------------------
+
+#objects {
+  .section() {    
+    // Initial section rules
+    @element: { 
+      #objects.section(element-ruleset);
+    };
+    @element-tabletBreakpoint: { 
+      #objects.section(element-tabletBreakpoint-ruleset);
+    };              
+  }
+}
+
+
+//-------------------
+//  EXTEND(ED) core ruleset
+//--------------------
+
+#objects {
+  .section(element) {
+    .output-rules(element; section);
+  }  
+  .section(element-tabletBreakpoint) {
+    .output-rules(element-tabletBreakpoint; section);
+  }     
+}
+
+#objects {
+  .section(@ruleset) {
+    #objects.section();
+    #objects.section-variables();
+    #objects.divider-variables();
+    @rules: @@ruleset;
+    @rules();
+  }
+  .section-variables(@ruleset) {
+    #objects.section-variables();
+    @rules: @@ruleset;
+    @rules();
+  }  
+}

@@ -1,0 +1,110 @@
+
+/*******************************
+            Masthead
+*******************************/
+
+
+#objects {
+  .masthead-variables() {
+    @static-variables-only                : false; // turn off custom prop on a module level - define on a per site basis in overrides
+    @local-scoped-custom-prop-fallback    : false; // not sure this works! local scoped variable - should be moved to overrides    
+    // Static LESS VARS
+    //**********************
+    //  Breakpoint Height Values
+    //  Variables (interger) for every breakpoint. 
+    //  Used to change value of [mh-height, mh-minHeight, mh-maxHeight]
+    //********************************************        
+    //-------------------
+    //   Masthead Height Values
+    //--------------------            
+    @mh-hVal-vh                               : 100;
+
+    @mh-hVal-m                                : auto;
+    @mh-hVal-m-fallback                       : auto;
+
+    @mh-hVal-lmb                              : auto;
+    @mh-hVal-lmb-fallback                     : auto;
+
+    @mh-hVal-tb                               : ~"calc((var(--mh-hVal-vh) * 1vh) - var(--mh-subtract))";
+    @mh-hVal-tb-fallback                      : ~"calc((@{mh-hVal-vh} * 1vh) - @{mh-subtract-fallback})"; // finish this off by adding - subtract
+
+    @mh-hVal-cb                               : ~"calc((var(--mh-hVal-vh) * 1vh) - var(--mh-subtract))";
+    @mh-hVal-cb-fallback                      : ~"calc((@{mh-hVal-vh} * 1vh) - @{mh-subtract-fallback})"; // finish this off  
+
+    //-------------------
+    //   Masthead Min Height Values
+    //--------------------        
+    @mh-minHVal-m                             : 400;
+    @mh-minHVal-lmb                           : 450;
+    @mh-minHVal-tb                            : 600;
+    @mh-minHVal-cb                            : 600;
+    //-------------------
+    //   Masthead Max Height Values
+    //--------------------         
+    @mh-maxHVal-m                             : inherit;
+    @mh-maxHVal-lmb                           : inherit;
+    @mh-maxHVal-tb                            : 1500;
+    @mh-maxHVal-cb                            : 1500;
+    //-------------------
+    //   Masthead Adjacent Content Height Values
+    //--------------------      
+    @mh-adjContent                            : 150;
+
+    @mh-subtract                              : ~"calc((var(--mh-adjContent)) * ((1 / var(--fontSizeRoot)) * 1rem))";
+    @mh-subtract-fallback                     : ~"calc((@{mh-adjContent}) * ((1 / @{fontSizeRoot}) * 1rem))";
+    @mSafariChrome                            : 75;
+
+    
+
+    //**********************
+    //  Masthead Heights
+    //********************************************   
+    // Masthead (min) height, (max) height, height - changed over breakpoints - Values shouldn't change, but might
+    @mh-minH-fallback-m                       : ~"calc(@{mh-hVal-m} * ((1 / @{fontSizeRoot}) * 1rem))";
+    @mh-minH-fallback-lmb                     : ~"calc(@{mh-hVal-lmb} * ((1 / @{fontSizeRoot}) * 1rem))";
+    @mh-minH-fallback-tb                      : ~"calc(@{mh-hVal-tb} * ((1 / @{fontSizeRoot}) * 1rem))";
+    @mh-minH-fallback-cb                      : ~"calc(@{mh-hVal-cb} * ((1 / @{fontSizeRoot}) * 1rem))";  
+
+    @mh-maxH-fallback-m                       : @mh-minHVal-m;
+    @mh-maxH-fallback-lmb                     : @mh-minHVal-lmb;
+    @mh-maxH-fallback-tb                      : @mh-minHVal-tb;
+    @mh-maxH-fallback-cb                      : @mh-minHVal-cb;
+
+    @mh-h-fallback-m                          : @mh-hVal-m-fallback;
+    @mh-h-fallback-lmb                        : @mh-hVal-lmb-fallback;
+    @mh-h-fallback-tb                         : @mh-hVal-tb-fallback;
+    @mh-h-fallback-cb                         : @mh-hVal-cb-fallback;
+
+    @mh-prop-ratio-w-val-m-fallback           : 4;
+    @mh-prop-ratio-h-val-m-fallback           : 3;
+    
+    @mh-prop-ratio-w-val-lmb-fallback         : 4;
+    @mh-prop-ratio-h-val-lmb-fallback         : 3;
+
+    @mh-prop-ratio-w-val-tb-fallback          : 4;
+    @mh-prop-ratio-h-val-tb-fallback          : 3;
+
+    @mh-prop-ratio-w-val-cb-fallback          : 16; 
+    @mh-prop-ratio-h-val-cb-fallback          : 9;
+
+    @mh-prop-ratio-w-val-lcb-fallback         : 16; 
+    @mh-prop-ratio-h-val-lcb-fallback         : 7;    
+
+    // Artwork (SVG)
+    @artwork-ratio-width                      : 16;
+    @artwork-ratio-height                     : 9;  
+
+    @banner-bf-header-height                  : 46;
+    @hdrHVal-m                                : 48;
+    @hdrHVal-lmb                              : 73;
+    @hdrHVal-tb                               : 73;
+    @hdrHVal-cb                               : 73;
+
+    @mh-pt-fH-m                               : ~"calc( ( (@{banner-bf-header-height} + @{hdrHVal-m}) * (1 / @{fontSizeRoot}) ) * 1rem )";
+    @mh-pt-fH-lmb                             : ~"calc( ( (@{banner-bf-header-height} + @{hdrHVal-lmb}) * (1 / @{fontSizeRoot}) ) * 1rem )";
+
+    @mh-pt-fH-transparent                     : ~"calc( ( (@{banner-bf-header-height}) * (1 / @{fontSizeRoot}) ) * 1rem )";
+  
+  }
+}
+

@@ -1,0 +1,277 @@
+//**********************
+//  Stock Availability
+//**********************
+
+// Stock availability popup
+#product {
+  .detail-page() {
+    @stockAvailability-container: {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,.95);
+      display: none;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      border-top: 1px solid @borderColor;
+      z-index:99;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    };
+    @stockAvailability-searchContainer: {
+      width:100%;
+      max-width:380*@rem;
+      text-align: center;
+      padding:0 @gutterX;
+    };
+    @stockAvailability-close: {
+      // extend modal close
+      &:extend(.close-modal);      
+    };
+    @stockAvailability-close-margin: {
+      margin:@12px!important;
+    };
+    @stockAvailability-searchButton: {
+    //   &:extend([class*="o-btn"].o-btn--primary all);
+      width:100%;
+    };
+    @stockAvailability-containerInner: {
+      width:100%;
+      max-width:1184*@em;     
+      text-align: center;
+    };
+    @stockAvailability-containerInner-largestTabletScreen: {
+      min-width:~"calc(100% - @{gutterX-computerBreak})";
+    };
+    @stockAvailability-googleMap: {
+      flex:1;
+      margin-bottom:@spacing * 2;
+      padding:0 @spacing;
+    };
+    @stockAvailability-noResults-container: {
+      text-align: center;
+      padding:0 @spacing;
+    };
+    @stockAvailability-noResults-text: {
+      max-width:@max-width-10col;
+      font-family:@primaryFontLight;
+      font-size:1rem;
+    };
+    @stockAvailability-noResults-buttons: {
+      display:flex;
+      width: 100%;
+      max-width:@max-width-8col;
+      margin:@verticalMargin auto 0;
+      justify-content: space-between;
+      flex-direction: column;
+    };
+    @stockAvailability-noResults-buttonsInner: {
+      width: 100%;      
+    };
+    @stockAvailability-noResults-buttonNewLocation: {
+    //   &:extend([class*="o-btn"].o-btn--primary all);
+    };
+    @stockAvailability-noResults-buttonAddToBag: {
+    //   &:extend([class*="o-btn"].o-btn--basic all);
+      margin-top:@spacing / 2;
+    };
+    @stockAvailability-storeContainer: {
+      width: 100%;
+      justify-content: stretch;
+      padding-top: 0;
+      flex-direction: column;
+      border-bottom:0;
+    };
+    @stockAvailability-storeColumn: {
+      display: flex;
+      flex-direction: column;
+      flex:0 1 auto;
+    };
+    @stockAvailability-storeColumn-580Up: {
+      flex:1;
+    };
+    @stockAvailability-storeColumnSecond: {
+      display: flex;
+      flex-direction: column;
+      margin-top:@rowSpacing;
+    };
+    @stockAvailability-getInTouchContainer: {
+      height:100%;
+      margin-top:@rowSpacing;
+      margin-bottom:0;
+      padding-bottom:2.3rem;
+      background:#101A31;
+    };
+    @stockAvailability-storeAddress: {
+      color:@primaryColor;
+    };
+    @stockAvailability-inStoreContainer: {
+      flex:0 1 auto;
+      margin-top:@rowSpacing;
+    };
+    @stockAvailability-noOfItemsInStock: {
+      margin-left:@spacing / 2;
+      font-family: @primaryFontRegularStack;
+      font-size:@mini;
+      color:@primaryColor;
+    };
+    @stockAvailability-selectedSize: {
+      margin: 0;
+      border:2px solid @primaryColor;
+      position:relative;
+      border-radius:50%;
+    };
+    @stockAvailability-selectedSizeTick: {
+      content:'';
+      display:inline-block;
+      width:15*@rem;
+      height:15*@rem;
+      background:@primaryColor;
+      position: absolute;
+      border-radius: 50%;
+      right:-(@5px);
+      top:0;
+      .icon-fill('@{icon-ui-path}checked.svg', '#fff');
+      background-size: auto 50%;
+      background-repeat: no-repeat;
+      background-position: center;
+    };
+    @stockAvailability-getInTouch-linkIcon: {
+      content:'';
+      display: block;
+      width:@15px;
+      height:@15px;
+      background-repeat: no-repeat;
+      background-size:contain;
+      margin:0 auto;
+    };
+    @stockAvailability-getInTouch-legend: {
+      padding-left:@spacing;
+      padding-right:@spacing;
+    };
+    @stockAvailability-nearestStoreHeading: {
+      max-width:257*@rem;
+      width:100%;
+      margin-left:auto;
+      margin-right:auto;
+    };
+    @stockAvailability-openingTimes-table: {
+      width:100%;
+      font-size:@tiny;
+      max-width: 262px;
+      margin: 0 auto;
+      line-height: 2;
+      margin-top:12*@rem;
+    };
+    @stockAvailability-openingTimes-td: {
+      font-size:@tiny;
+      letter-spacing:@2px;
+    };
+    @stockAvailability-openingTimes-day: {
+      text-align: left;
+      color:@primaryColor;
+      font-weight:600;
+    };
+    @stockAvailability-listOfStores-alsoAvailble: {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      width:100%;
+      border-top:1px solid @borderColor;
+    };
+    @stockAvailability-listOfStores-title: {
+      padding-top:@rowSpacing / 4;
+      margin-bottom: @rowSpacing / 4;
+      margin-top:@spacing;
+    };
+    @stockAvailability-storeName-button: {
+    //   &:extend(.o-btn all);
+      white-space: nowrap;
+    };
+  }
+}
+
+  // Container
+  .stock-availability-container { #product.detail-page(stockAvailability-container); }
+  .stock-availability-container.opened { display: flex; }
+  // Search
+  .stock-availability-container .container-wrapper-search { #product.detail-page(stockAvailability-searchContainer); }
+  // Close button
+  .stock-availability-container .container-close { #product.detail-page(stockAvailability-close); }
+  .stock-availability-container div.container-close { #product.detail-page(stockAvailability-close-margin); }
+  .stock-availability-container div.container-close { background-size:35% auto; } /* for specifity */
+  // Search button
+  .container-wrapper-search .in-store-availability-search { #product.detail-page(stockAvailability-searchButton); }
+  // Inner container
+  .container-wrapper-list { #product.detail-page(stockAvailability-containerInner); }
+  .container-wrapper-list .container-content,
+  .container-content .list-of-stores,
+  .list-of-stores .storeContainer { display: flex; }
+  .container-wrapper-list .container-content { flex-direction:column; }
+  .container-content .list-of-stores { flex:2; }
+  .container-content .list-of-stores + .googleMap { #product.detail-page(stockAvailability-googleMap); }
+  // No results
+  .container-wrapper-no-results { #product.detail-page(stockAvailability-noResults-container); }
+  .container-wrapper-no-results .container-header { padding-top:@spacing * 2; }
+  .container-wrapper-no-results .container-content { max-width:@max-width-4col; }
+  .container-wrapper-no-results .no-result-text { #product.detail-page(stockAvailability-noResults-text); }
+  .container-content .no-result-text + .buttons { #product.detail-page(stockAvailability-noResults-buttons); }
+  .container-content .no-result-text + .buttons > div { #product.detail-page(stockAvailability-noResults-buttonsInner); }
+  .container-content .no-result-text + .buttons button { width:100%; }
+  .container-content .buttons button.search-new-location { #product.detail-page(stockAvailability-noResults-buttonNewLocation); }
+  .container-content .buttons button.add-to-bag { #product.detail-page(stockAvailability-noResults-buttonAddToBag); }
+  .stock-availability-container .map_canvas { height:95%!important; }
+  .list-of-stores .storeContainer { #product.detail-page(stockAvailability-storeContainer); }
+  .list-of-stores .storeContainer [class*="column"] { #product.detail-page(stockAvailability-storeColumn); }  
+  .list-of-stores .storeContainer .fist-column { 
+    justify-content: space-around; 
+    align-items:center;
+  }
+  // Out of stock
+  .stock-availability-container.out-of-stock .buttons { justify-content: center; }
+  .stock-availability-container.out-of-stock .search-new-location { max-width:350*@rem; }
+  .stock-availability-container.out-of-stock .add-to-bag { display:none; }
+  // Stores
+  .list-of-stores .storeContainer .fist-column .nearest-store-heading,
+  .list-of-stores .storeContainer .fist-column .nearest-store-heading ~ div { flex:0; }
+  .list-of-stores .storeContainer .second-column { #product.detail-page(stockAvailability-storeColumnSecond); }
+  .list-of-stores .get-in-touch-container { #product.detail-page(stockAvailability-getInTouchContainer); }  
+  .list-of-stores .store-name ~ div,
+  .get-in-touch-container a { font-size:@tiny; }
+  .get-in-touch-container a { letter-spacing: @2px; }
+  .list-of-stores .store-address { #product.detail-page(stockAvailability-storeAddress); }
+  .list-of-stores .in-stock-availability-container { #product.detail-page(stockAvailability-inStoreContainer); }
+  .list-of-stores .in-stock-availability-container .title { 
+    // letter-spacing: @2px; 
+    text-transform: capitalize;  
+  }
+  .list-of-stores .in-stock-availability-container .number-of-items { #product.detail-page(stockAvailability-noOfItemsInStock); }
+  .list-of-stores .container-availability { margin-top:@rowSpacing; }
+  .list-of-stores .container-availability .selected-size { #product.detail-page(stockAvailability-selectedSize); }
+  .list-of-stores .container-availability .selected-size:after { #product.detail-page(stockAvailability-selectedSizeTick); }
+  .list-of-stores .store-name-other:last-child { margin-bottom:@rowSpacing; }
+  .get-in-touch-container a:before { #product.detail-page(stockAvailability-getInTouch-linkIcon); }
+  .get-in-touch-container .container-git {
+    margin-top:(@spacing/2)*3;
+    color:#fff;
+  }  
+  .container-git a {color:#fff;}
+  .get-in-touch-container .phone { margin-bottom: @rowSpacing; }
+  .get-in-touch-container .phone a:before { .icon-fill('@{icon-ui-path}phone.svg', '#fff'); }
+  .get-in-touch-container .email a:before { .icon-fill('@{icon-ui-path}email.svg', '#fff'); }  
+  // Headings
+  .get-in-touch-container > legend { #product.detail-page(stockAvailability-getInTouch-legend); }  
+  .list-of-stores.list-of-stores .nearest-store-heading,
+  .opening-times-container > .title { margin-top:0; }
+  .list-of-stores .nearest-store-heading { #product.detail-page(stockAvailability-nearestStoreHeading); }
+  table.opening-times { #product.detail-page(stockAvailability-openingTimes-table); }
+  table.opening-times td { #product.detail-page(stockAvailability-openingTimes-td); }
+  table.opening-times td.day { #product.detail-page(stockAvailability-openingTimes-day); }
+  .list-of-stores .also-available-container { #product.detail-page(stockAvailability-listOfStores-alsoAvailble); }
+  .list-of-stores .also-available-container .title { #product.detail-page(stockAvailability-listOfStores-title); }
+  .also-available-container .store-name-other > span { #product.detail-page(stockAvailability-storeName-button); }
+  .stock-availability-container .container-wrapper-list .container-content .list-of-stores .storeContainer { display: none; }
+  .stock-availability-container .container-wrapper-list .container-content .list-of-stores .storeContainer.selected { display: flex; }

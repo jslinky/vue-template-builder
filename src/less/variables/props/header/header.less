@@ -1,0 +1,142 @@
+
+
+//*******************************
+//    HEADER: Custom Prop Rulesets
+//*******************************
+
+//-------------------
+//  Header props
+//--------------------
+
+#props {
+  .header() {
+    @default: {
+      --headerOffsetMultiplyer: @headerOffsetMultiplyer; 
+      --headerTextTransform: @headerTextTransform; // DARWIN NAV COMPAT - REMOVE WHEN CAN
+      --textTransform: @headerTextTransform; // create fallback mixin
+      // --headerLetterSpacing: @headerLetterSpacing;
+      --headerLetterSpacingMultiplyer: @headerLetterSpacingCaps;
+      --headerLetterSpacing: ~"calc((var(--headerLetterSpacingMultiplyer) / var(--fontSizeRoot)) * 1rem)";
+      --headerFontSize: var(~"--@{headerFontSizeVal}");
+      --headerLineHeight: @headerLineHeight;
+      --headerColor: @headerColor;  
+      --headerFontWeight: @headerFontWeight; 
+      --headerFontStyle: @headerFontStyle;
+      --headerFont: @headerFont;
+      --headerFontFamily: @headerFontFamily;  
+      --headerSecondaryFont: @headerSecondaryFont;
+      --headerSecondaryFontFamily: @headerSecondaryFontFamily;        
+      --fontSize: var(--fontSizeRoot);
+    };
+    @group: {
+      --headerGroupSubHeadingFontSize: @headerGroupSubHeadingFontSize;
+      --headerUnderlineVerticalRhythmMultiplyer: @headerUnderlineVerticalRhythmMultiplyer;  
+    };
+    @subHeader: {
+      --headerLetterSpacing: ~"calc(var(--headerLetterSpacingMultiplyer) * var(--headerGroupSubHeadingFontSize))";
+      --headerLetterSpacingMultiplyer: @headerGroupSubHeadingLetterSpacingMultiplyer;        
+    };
+    @underline: {
+      // Underline is extending o-btn underline code, hence use of o-btn props
+      --headerUnderlineHeight:      @headerUnderlineHeight;
+      --headerUnderlineWidthSubtractVal : ~"var(--@{headerUnderlineWidthSubtractVal})";
+      --headerUnderlineWidthSubtractMultiplyer: @headerUnderlineWidthSubtractMultiplyer;
+      --headerUnderlineWidth:       @headerUnderlineWidthCalc;
+      --headerUnderlineBackground:  @headerUnderlineBackground;
+      --headerUnderlineOpacity:     @headerUnderlineOpacity;
+      --headerUnderlineMaxWidthVal: @headerUnderlineMaxWidthVal;
+      --headerUnderlineMaxWidthCalc:@headerUnderlineMaxWidthCalc;
+      --headerUnderlineMaxWidth:    @headerUnderlineMaxWidth;
+      --headerUnderlineMargin:       @headerUnderlineMargin;
+      --headerUnderlineVerticalRhythmMultiplyer: @headerUnderlineVerticalRhythmMultiplyer;
+      // --o-btn-underlineTransition:  var(--o-btn-transition);
+      // --o-btn-underlineBoxShadow:   @invertedUnderlineShadow;  
+    };
+    @lineThrough: {
+      // Underline is extending o-btn underline code, hence use of o-btn props
+      --o-btn-underlineHeight:      @headerLineThroughHeight;
+      --o-btn-underlineWidth:       @headerLineThroughWidth;
+      --o-btn-underlineBackground:  @headerUnderlineBackground;
+      --o-btn-underlineOpacity:     @headerUnderlineOpacity;
+      --o-btn-underlineTopPos:      @headerLineThroughTopPos;
+      --o-btn-underlineLeftPos:     @headerLineThroughLeftPos;
+      --o-btn-underlineBottomPos:   @headerLineThroughBottomPos;
+      --headerUnderlineMaxWidth:    @headerLineThroughMaxWidth;
+      --headerUnderlineTransform:   @headerLineThroughTransform;
+      // --o-btn-underlineTransition:  var(--o-btn-transition);
+      // --o-btn-underlineBoxShadow:   @invertedUnderlineShadow;  
+    };
+    @extend-prop-classes: {
+        //*******************************
+        //   Classes used for extending properties
+        //*******************************
+        // Default
+        .o-header-props-default { #props.header(default); }
+        // Group
+        .o-headerGroup-props { #props.header(group); }
+        // Sub header
+        .o-headerGroup__sub-props { #props.header(subHeader); }
+        // Underlined
+        .o-header--underline-props { #props.header(underline); }
+        // Line Through
+        .o-header--linethrough-props { #props.header(lineThrough); }      
+    };
+    @extend-elements: {
+        //*******************************
+        //   Element classes that extend related properties
+        //*******************************  
+        [class*="-hdr"] { 
+          &:extend(
+            .o-header-props-default,
+            .root-props-spacing, 
+            .root-props-sizing    
+          ); 
+        }
+        .o-headerGroup { &:extend(.o-headerGroup-props); }
+        .o-headerGroup__sub {
+          .o-headerGroup__sub& { &:extend(.o-headerGroup__sub-props); }
+        }
+        .o-header--underline { &:extend(.o-header--underline-props); }
+        .o-header--linethrough { &:extend(.o-header--linethrough-props); }          
+    };
+    @output-custom-properties: {
+      #objects.header-variables();
+      .output-custom-properties() when 
+      (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false), 
+      (@customPropFallback = true) and (@static-variables-only = false),
+      (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = true) {
+        //*******************************
+        //   Classes used for extending properties
+        //*******************************
+        #props.header(extend-prop-classes);
+        //*******************************
+        //   Element classes that extend related properties
+        //*******************************        
+        #props.header(extend-elements);
+      }
+      .output-custom-properties();
+    };
+  }
+}
+
+//*******************************
+//   DEFINE MIXIN
+//*******************************
+
+#props {
+  .header(@item) {
+      #objects.header-variables();
+      #props.header();      
+      @rules: @@item;
+      @rules();
+  }
+}
+
+
+//*******************************
+//   Init module custom property output
+//*******************************
+#props.header(output-custom-properties);
+
+
+    

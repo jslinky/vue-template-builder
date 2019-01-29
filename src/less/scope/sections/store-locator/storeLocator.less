@@ -1,0 +1,42 @@
+.breadcrumb + .shopsData {
+  &:extend(.scoped-container-rules);
+}
+
+.search-location input[type="submit"] {
+  height:48*@rem;
+  width:30*@rem;
+  .icon-fill('../images/interface/search.svg', '@{primaryColor}');
+  background-repeat: no-repeat;
+  background-position: center left;
+  border: 0;
+  background-color: transparent;
+  position: absolute;
+  right: 0;
+  bottom: 0;  
+}
+
+.jspPane > h3,
+.storeName,
+.storeListName,
+.storeDetails h3,
+.getDirections,
+.storeHoursHeader,
+.moreDetailsHeader {
+  font-size:0.75rem;
+  margin-bottom: @spacing / 4;
+}
+
+.shopsData .mobileNavigation {
+  display: flex;
+  margin-bottom:0;
+  font-size:@tiny;
+  margin-left:@spacing;
+  margin-right:@spacing;
+  > div {
+    padding:1rem 0;
+    width:50%;
+    text-align: center;
+    text-transform: uppercase;
+    &.selected { border-bottom:2px solid @primaryColor; }
+  }
+}

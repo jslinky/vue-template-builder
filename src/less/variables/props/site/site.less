@@ -1,0 +1,128 @@
+
+
+//*******************************
+//    Link Custom Prop Rulesets
+//*******************************
+
+//-------------------
+//  Link props
+//--------------------
+
+#props {
+  .site() {
+    @body-props: {
+      --body-fontFamily           : @body-fontFamily;
+      --body-backgroundColor      : @body-backgroundColor;
+      --body-fontWeight           : @body-fontWeight;
+      --body-color                : @body-color;
+      --body-letterSpacingVal     : @body-letterSpacingVal;      
+      --body-letterSpacing        : @body-letterSpacing;
+    };
+    @link-props: {
+      --linkColor                 : ~"var(--@{linkColor}, @{linkColor})";
+      --linkDecoration            : @linkDecoration;
+      --linkShadow                : @linkShadow;      
+      // --linkTransition         : @linkTransition;
+      --link-hoverColor           : ~"var(--@{link-hoverColor}, @{link-hoverColor})";
+      --link-hoverDecoration      : @link-hoverDecoration;
+      --link-hoverShadow          : @link-hoverShadow;
+
+    };
+    @border-props: {
+      --borderColor               : @borderColor;
+      --strongBorderColor         : @strongBorderColor;
+      --internalBorderColor       : @internalBorderColor;
+      --selectedBorderColor       : @selectedBorderColor;
+      --strongSelectedBorderColor : @strongSelectedBorderColor;
+      --disabledBorderColor       : @disabledBorderColor;
+      // Add more if necessary
+    };
+    @list-props: {
+      --listFont                  : @listFont;
+      --listFontSize              : ~"var(--@{listFontSize})";    
+      --listIndent                : ~"var(--@{listIndent})";
+      --listMarginY               : ~"var(--@{listMarginY})";
+      --listMargin                : @listMargin;
+
+      --listLineHeight            : @listLineHeight;
+      --listStyleType             : @listStyleType;
+      --listStylePosition         : @listStylePosition;
+      
+      --listItem-letterSpacingVal : @listItem-letterSpacingVal;
+      --listItem-letterSpacing    : @listItem-letterSpacing;
+      --listItem-paddingY         : @listItem-paddingY;
+      --listItem-paddingX         : @listItem-paddingX;
+      --listItem-padding          : var(--listItem-paddingY) var(--listItem-paddingX);
+      --listItem-marginY          : @listItem-marginY;
+      --listItem-marginX          : @listItem-marginX;    
+      --listItem-margin           : var(--listItem-marginY) var(--listItem-marginX);      
+    };
+    @extend-prop-classes: {
+      //*******************************
+      //   Classes used for extending properties
+      //*******************************
+      .body-props { #props.site(body-props); }
+      .link-props { #props.site(link-props); }
+      .border-props { #props.site(border-props); }
+      .list-props { #props.site(list-props); }
+      // site-props includes all
+      .site-props { 
+        #props.site(body-props); 
+        #props.site(link-props); 
+        #props.site(border-props); 
+        #props.site(list-props); 
+      }      
+    };
+    @extend-elements: {
+      :root { 
+        &:extend(.site-props); 
+      }      
+    };
+    @output-custom-properties: {
+      #global.site-variables();
+      .output-custom-properties() when 
+      (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false), 
+      (@customPropFallback = true) and (@static-variables-only = false),
+      (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = true) {
+        //*******************************
+        //   Classes used for extending properties
+        //*******************************
+        #props.site(extend-prop-classes);
+        //*******************************
+        //   Element classes that extend related properties
+        //*******************************        
+        #props.site(extend-elements);
+      }
+      .output-custom-properties();
+    };    
+  }
+}
+
+
+
+
+
+//*******************************
+//   DEFINE MIXIN
+//*******************************
+
+#props {
+  .site(@item) {
+      #props.site();
+      #global.site-variables();
+      @rules: @@item;
+      @rules();
+  }
+}
+
+//*******************************
+//   Init module custom property output
+//*******************************
+#props.site(output-custom-properties);
+
+
+
+
+
+
+

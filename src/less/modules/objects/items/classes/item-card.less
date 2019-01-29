@@ -1,0 +1,40 @@
+
+.o-item--card {
+  --item-card-breakpoint: unit(@tabletBreakpointPixel);
+  --item-card-breakpoint-gutter: 0;
+  --item-card-image-percentage: 50;
+  --item-card-content-percentage: ~"(100 - var(--item-card-image-percentage))";
+  --item-card-content-flex-basis: ~"calc( ( ( (0.01 * var(--item-card-content-percentage)) * var(--item-card-breakpoint) ) - var(--item-card-breakpoint-gutter) ) *1px )";
+}
+
+.o-container .o-item--card:not(.o-item--100vw) {
+  --item-card-breakpoint-gutter: 24; // get var from container  
+}
+
+.o-item--card.reverse .o-item__image { flex-direction:row-reverse; }
+
+.o-item--card .o-item__image { 
+  display:flex; 
+  flex-wrap:wrap;
+  flex-direction:row;
+}
+
+.o-item--card .o-item__image > a:first-child,
+.o-item--card .o-item__image > img:first-child {
+  flex:~"1 1 calc(var(--item-card-image-percentage) * 1%)";
+}
+.o-item--card .o-item__image > img:first-child {
+  max-width:~"calc(var(--item-card-image-percentage) * 1%)";
+  align-self:center;
+}
+
+.o-item--card .o-item__image > a:first-child + .o-item__content,
+.o-item--card .o-item__image > img:first-child + .o-item__content {
+  flex:1 1 auto;
+  padding:var(--spacing);
+  flex-grow: 9999;
+  flex-basis: var(--item-card-content-flex-basis);
+}
+
+
+

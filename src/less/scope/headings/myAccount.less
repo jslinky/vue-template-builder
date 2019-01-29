@@ -1,0 +1,33 @@
+
+
+.login-columns > h1,
+.reg-columns > h1,
+.pt_account #addresses > h1,
+#orderlist-container > h1,
+.pt_account #cards > h1,
+#giftcard-container > h1,
+.wishlist-container > h1 {
+  &:extend([class*="-hdr"][class*="--lg"]);
+  text-align: center;
+  padding:@spacing;
+  // border-bottom:1px solid @borderColor;
+}
+
+.login-columns.login-columns > h1,
+.login-columns.login-columns h2,
+.reg-columns.reg-columns > h1,
+.pt_account.pt_account #addresses > h1,
+#orderlist-container#orderlist-container > h1,
+.pt_account.pt_account #cards > h1,
+#giftcard-container#giftcard-container > h1,
+.wishlist-container.wishlist-container > h1 {
+  margin-top:0;
+}
+
+.login-columns h2 {
+  &:extend([class*="-hdr"][class*="--t"]);
+}
+
+.login-columns .col-2 p strong {
+  &:extend([class*="-hdr"]);
+}

@@ -1,0 +1,78 @@
+  //*******************************
+  //    PDP Settings
+  //*******************************
+  // Settings for the new PDP page
+
+  //-------------------
+  //  Page Variables
+  //--------------------
+    // Page Section container
+    /////////////////////////
+    @pdp-sectionContainerWidth                                   : 1184;
+    // Top Section container subtract values - (@pdp-sectionContainerWidth - @pdp-topSectionContainerGutterX)
+    @pdp-topSectionContainerGutterX                              : 94;
+    // Product Image Carousel
+    /////////////////////////
+    @productImageMaxWidth                                        : 379;
+    @largestMobileScreen-productSliderBtnWidth                   : 52; 
+    // Product Image Zoom
+    /////////////////////////  
+    @productImageZoomWidth                                       : 1000;
+    @productImageZoom-buttonWidth                                : 70;
+    // Tablet Breakpoint
+    // @tabletBreakpoint-productImageMaxWidth                       : 401;
+    @tabletBreakpoint-productSliderBtnWidth                      : 57;  
+
+    @largestTabletScreen-productSliderBtnWidth                   : 45;
+    
+    // Tablet Portrait
+    @tabletPortrait-productImageMaxWidth                         : 401;
+    @tabletPortrait-productSliderBtnWidth                        : 92;
+    // Product Details Column
+    /////////////////////////
+    @pdp-productDetailsColumnPaddingRight-tabletBreakpoint       : 0;
+    @pdp-productDetailsColumnPaddingRight-largeMonitorBreakpoint : 0;
+    @pdp-productDetailsColumnHeadingPadding                      : @spacing @spacing @spacing 0; 
+
+    @pdp-linkedProductPaddingTop                                 : @spacing;
+    @pdp-linkedProductImageMaxWidth                              : 30.7%;
+    @pdp-linkedProductPaddingLeft                                : ~"calc(@{pdp-linkedProductImageMaxWidth} + (@{spacing} / 2))";
+    @pdp-linkedProductPaddingRight                               : 0;
+    @pdp-linkedProductPaddingRightTabletBreakpoint               : @spacing;
+    @pdp-linkedProductBorderTop                                  : 1px solid @borderColor;
+
+    @borderColor                                                 : @jw-navy-shade4;
+
+    @pdp-topSectionContainer-bgColor-transition-duration         : 1s;
+    @pdp-topSectionContainer-bgColor-transition-easing           : linear;
+
+
+  //-------------------
+  //  Legacy Page Variables
+  //--------------------    
+    #product {
+      .detail-page(@item) {
+        #product.detail-page();
+        @rules:@@item;
+        @rules();
+      }
+      .detail-page-variables(@item) {
+        #product.detail-page-variables();
+        @rules:@@item;
+        @rules();
+      }
+    }
+
+    #product {
+      .detail-page-variables() {
+        @580-breakpoint: unit((unit(580px) / unit(@fontSizeRoot)), em);
+        @1019-max-width: unit((unit(1019px) / unit(@fontSizeRoot)), em);
+        @1020-breakpoint: unit((unit(1020px) / unit(@fontSizeRoot)), em);
+        @prd-set-thmb-width: 96;
+        @prd-set-thmb-mrgRight: @verticalRhythm/2;
+        @button-gradiant-grey: #E9E6E5;
+        @icon-ui-path: '../../images/icons/UI/';
+      }
+    }  
+
+    #product.detail-page-variables();

@@ -1,0 +1,105 @@
+
+
+// //**********************
+// //  SITE PREFERENCES
+// //********************************************
+
+// //-------------------
+// //   CUSTOM PROP FALLBACK 
+// //   Provide fallback for custom properties
+// //--------------------
+
+// @customPropFallback         : false;  
+
+
+// //**********************
+// //  GLOBAL DEFAULT SETTINGS - do not amend
+// //********************************************
+
+// @import "globals/variable.less";
+//     // For variable customisation see the following (in order of importance)
+//     //// |_ variable/type.less - font sizes, line-height, offset values
+//     //// |_ variable/size.less - global sizing values, range from mini to massive
+// @import "globals/mixin.less";
+// @import "globals/reset.less";
+// @import "globals/site.less";
+// @import "globals/utility.less";
+// @import "globals/scope.less";
+
+// //-------------------
+// //   IMPORT MODULES CONFIG FILES
+// //   Make all module rulesets available in the global scope.
+// //--------------------
+// // Components
+// @import "modules/components/menu/config.less";
+// // Objects
+// @import "modules/objects/buttons/config.less"; 
+// @import "modules/objects/header/config.less"; 
+// @import "modules/objects/items/config.less";
+// @import "modules/objects/masthead/config.less";
+// @import "modules/objects/container/config.less";
+// @import "modules/objects/section/config.less";
+// @import "modules/objects/divider/config.less";
+// @import "modules/objects/icons/config.less";
+// // Collections
+// @import (reference) "modules/collections/animate.less";
+// @import "modules/collections/form/config.less";
+
+// //-------------------
+// //   IMPORT MODULES MIXIN
+// //   Performs import of classes for each module based on user settings
+// //--------------------
+
+// // Menu
+// .import-modules() when (@include_menu = true) { @import "modules/components/menu/menu.less"; }
+// // Grid
+// .import-modules() when (@include_grid = true) { @import "modules/collections/grid/grid.less"; }
+// // Form
+// .import-modules() when (@include_form = true) { @import "modules/collections/form/form.less"; }
+
+// // Buttons
+// .import-modules() when (@include_button = true) { @import "modules/objects/buttons/buttons.less"; }
+// // Header
+// .import-modules() when (@include_header = true) { @import "modules/objects/header/header.less"; }
+// // Items
+// .import-modules() when (@include_item = true) { @import "modules/objects/items/items.less"; }
+// // Masthead
+// .import-modules() when (@include_masthead = true) { @import "modules/objects/masthead/masthead.less"; }
+// // Container
+// .import-modules() when (@include_container = true) { @import "modules/objects/container/container.less"; }
+// // Section
+// .import-modules() when (@include_section = true) { 
+//     @import "modules/objects/section/section.less"; 
+//     @import "modules/objects/divider/divider.less"; 
+// }
+// // Container
+// .import-modules() when (@include_icon = true) { @import "modules/objects/icons/icons.less"; }
+
+// // Call import modules mixin 
+// .import-modules();
+
+
+// // @import "globals/site.less";
+
+
+// // @import "collections/grid.less";
+// // @import "collections/menu.less";
+// // @import "collections/form.less";
+// // @import "collections/fader.less";
+// // @import "elements/container.less";
+// // @import "elements/buttons/config.less";
+// // // @import "elements/button.less";
+// // // @import "elements/button-fallback.less";
+// // @import "elements/link.less";
+// // @import "elements/icon.less";
+// // // @import "elements/item.less";
+// // @import "elements/item-megadrop.less";
+// // // @import "elements/masthead.less";
+
+
+// // @import "elements/swatch.less";
+// // // @import "elements/carousel.less";
+// // @import "elements/banner.less";
+// // @import "elements/section.less";
+// // @import "elements/divider.less";
+

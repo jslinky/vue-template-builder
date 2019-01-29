@@ -1,0 +1,278 @@
+
+
+@include-width-specificity: false;
+
+@wide-values-default-non-specific-rules: {
+    [class*="one wide"] { width:@oneWide; }
+    [class*="two wide"] { width:@twoWide; }
+    [class*="three wide"] { width:@threeWide; }
+    [class*="four wide"] { width:@fourWide; }
+    [class*="five wide"] { width:@fiveWide; }
+    [class*="six wide"] { width:@sixWide; }
+    [class*="seven wide"] { width:@sevenWide; }
+    [class*="eight wide"] { width:@eightWide; }
+    [class*="nine wide"] { width:@nineWide; }
+    [class*="ten wide"] { width:@tenWide; }
+    [class*="eleven wide"] { width:@elevenWide; }
+    [class*="twelve wide"] { width:@twelveWide; }
+};
+
+@wide-values-default-rules: {
+    [class*="one wide"]:not(.column):not(.grid):not(.row) { width:@oneWide; }
+    [class*="two wide"]:not(.column):not(.grid):not(.row) { width:@twoWide; }
+    [class*="three wide"]:not(.column):not(.grid):not(.row) { width:@threeWide; }
+    [class*="four wide"]:not(.column):not(.grid):not(.row) { width:@fourWide; }
+    [class*="five wide"]:not(.column):not(.grid):not(.row) { width:@fiveWide; }
+    [class*="six wide"]:not(.column):not(.grid):not(.row) { width:@sixWide; }
+    [class*="seven wide"]:not(.column):not(.grid):not(.row) { width:@sevenWide; }
+    [class*="eight wide"]:not(.column):not(.grid):not(.row) { width:@eightWide; }
+    [class*="nine wide"]:not(.column):not(.grid):not(.row) { width:@nineWide; }
+    [class*="ten wide"]:not(.column):not(.grid):not(.row) { width:@tenWide; }
+    [class*="eleven wide"]:not(.column):not(.grid):not(.row) { width:@elevenWide; }
+    [class*="twelve wide"]:not(.column):not(.grid):not(.row) { width:@twelveWide; }
+};
+
+@wide-values-mobile-non-specific-rules: {
+    [class*="one wide mobile"] { width:@oneWide; }
+    [class*="two wide mobile"] { width:@twoWide; }
+    [class*="three wide mobile"] { width:@threeWide; }
+    [class*="four wide mobile"] { width:@fourWide; }
+    [class*="five wide mobile"] { width:@fiveWide; }
+    [class*="six wide mobile"] { width:@sixWide; }
+    [class*="seven wide mobile"] { width:@sevenWide; }
+    [class*="eight wide mobile"] { width:@eightWide; }
+    [class*="nine wide mobile"] { width:@nineWide; }
+    [class*="ten wide mobile"] { width:@tenWide; }
+    [class*="eleven wide mobile"] { width:@elevenWide; }
+    [class*="twelve wide mobile"] { width:@twelveWide; }
+};
+
+
+@wide-values-mobile-rules: {
+    [class*="one wide mobile"]:not(.column):not(.grid):not(.row) { width:@oneWide; }
+    [class*="two wide mobile"]:not(.column):not(.grid):not(.row) { width:@twoWide; }
+    [class*="three wide mobile"]:not(.column):not(.grid):not(.row) { width:@threeWide; }
+    [class*="four wide mobile"]:not(.column):not(.grid):not(.row) { width:@fourWide; }
+    [class*="five wide mobile"]:not(.column):not(.grid):not(.row) { width:@fiveWide; }
+    [class*="six wide mobile"]:not(.column):not(.grid):not(.row) { width:@sixWide; }
+    [class*="seven wide mobile"]:not(.column):not(.grid):not(.row) { width:@sevenWide; }
+    [class*="eight wide mobile"]:not(.column):not(.grid):not(.row) { width:@eightWide; }
+    [class*="nine wide mobile"]:not(.column):not(.grid):not(.row) { width:@nineWide; }
+    [class*="ten wide mobile"]:not(.column):not(.grid):not(.row) { width:@tenWide; }
+    [class*="eleven wide mobile"]:not(.column):not(.grid):not(.row) { width:@elevenWide; }
+    [class*="twelve wide mobile"]:not(.column):not(.grid):not(.row) { width:@twelveWide; }
+};
+
+@wide-values-tablet-non-specific-rules: {
+    [class*="one wide tablet"] { width:@oneWide; }
+    [class*="two wide tablet"] { width:@twoWide; }
+    [class*="three wide tablet"] { width:@threeWide; }
+    [class*="four wide tablet"] { width:@fourWide; }
+    [class*="five wide tablet"] { width:@fiveWide; }
+    [class*="six wide tablet"] { width:@sixWide; }
+    [class*="seven wide tablet"] { width:@sevenWide; }
+    [class*="eight wide tablet"] { width:@eightWide; }
+    [class*="nine wide tablet"] { width:@nineWide; }
+    [class*="ten wide tablet"] { width:@tenWide; }
+    [class*="eleven wide tablet"] { width:@elevenWide; }
+    [class*="twelve wide tablet"] { width:@twelveWide; }
+};
+
+@wide-values-tablet-rules: {
+    [class*="one wide tablet"]:not(.column):not(.grid):not(.row) { width:@oneWide; }
+    [class*="two wide tablet"]:not(.column):not(.grid):not(.row) { width:@twoWide; }
+    [class*="three wide tablet"]:not(.column):not(.grid):not(.row) { width:@threeWide; }
+    [class*="four wide tablet"]:not(.column):not(.grid):not(.row) { width:@fourWide; }
+    [class*="five wide tablet"]:not(.column):not(.grid):not(.row) { width:@fiveWide; }
+    [class*="six wide tablet"]:not(.column):not(.grid):not(.row) { width:@sixWide; }
+    [class*="seven wide tablet"]:not(.column):not(.grid):not(.row) { width:@sevenWide; }
+    [class*="eight wide tablet"]:not(.column):not(.grid):not(.row) { width:@eightWide; }
+    [class*="nine wide tablet"]:not(.column):not(.grid):not(.row) { width:@nineWide; }
+    [class*="ten wide tablet"]:not(.column):not(.grid):not(.row) { width:@tenWide; }
+    [class*="eleven wide tablet"]:not(.column):not(.grid):not(.row) { width:@elevenWide; }
+    [class*="twelve wide tablet"]:not(.column):not(.grid):not(.row) { width:@twelveWide; }
+};
+
+@wide-values-computer-non-specific-rules: {
+    [class*="one wide computer"] { width:@oneWide; }
+    [class*="two wide computer"] { width:@twoWide; }
+    [class*="three wide computer"] { width:@threeWide; }
+    [class*="four wide computer"] { width:@fourWide; }
+    [class*="five wide computer"] { width:@fiveWide; }
+    [class*="six wide computer"] { width:@sixWide; }
+    [class*="seven wide computer"] { width:@sevenWide; }
+    [class*="eight wide computer"] { width:@eightWide; }
+    [class*="nine wide computer"] { width:@nineWide; }
+    [class*="ten wide computer"] { width:@tenWide; }
+    [class*="eleven wide computer"] { width:@elevenWide; }
+    [class*="twelve wide computer"] { width:@twelveWide; }
+};
+
+@wide-values-computer-rules: {
+    [class*="one wide computer"]:not(.column):not(.grid):not(.row) { width:@oneWide; }
+    [class*="two wide computer"]:not(.column):not(.grid):not(.row) { width:@twoWide; }
+    [class*="three wide computer"]:not(.column):not(.grid):not(.row) { width:@threeWide; }
+    [class*="four wide computer"]:not(.column):not(.grid):not(.row) { width:@fourWide; }
+    [class*="five wide computer"]:not(.column):not(.grid):not(.row) { width:@fiveWide; }
+    [class*="six wide computer"]:not(.column):not(.grid):not(.row) { width:@sixWide; }
+    [class*="seven wide computer"]:not(.column):not(.grid):not(.row) { width:@sevenWide; }
+    [class*="eight wide computer"]:not(.column):not(.grid):not(.row) { width:@eightWide; }
+    [class*="nine wide computer"]:not(.column):not(.grid):not(.row) { width:@nineWide; }
+    [class*="ten wide computer"]:not(.column):not(.grid):not(.row) { width:@tenWide; }
+    [class*="eleven wide computer"]:not(.column):not(.grid):not(.row) { width:@elevenWide; }
+    [class*="twelve wide computer"]:not(.column):not(.grid):not(.row) { width:@twelveWide; }
+};
+
+@wide-values-computer-lg-non-specific-rules: {
+    [class*="one wide computer-lg"] { width:@oneWide; }
+    [class*="two wide computer-lg"] { width:@twoWide; }
+    [class*="three wide computer-lg"] { width:@threeWide; }
+    [class*="four wide computer-lg"] { width:@fourWide; }
+    [class*="five wide computer-lg"] { width:@fiveWide; }
+    [class*="six wide computer-lg"] { width:@sixWide; }
+    [class*="seven wide computer-lg"] { width:@sevenWide; }
+    [class*="eight wide computer-lg"] { width:@eightWide; }
+    [class*="nine wide computer-lg"] { width:@nineWide; }
+    [class*="ten wide computer-lg"] { width:@tenWide; }
+    [class*="eleven wide computer-lg"] { width:@elevenWide; }
+    [class*="twelve wide computer-lg"] { width:@twelveWide; }
+};
+
+@wide-values-computer-lg-rules: {
+    [class*="one wide computer-lg"]:not(.column):not(.grid):not(.row) { width:@oneWide; }
+    [class*="two wide computer-lg"]:not(.column):not(.grid):not(.row) { width:@twoWide; }
+    [class*="three wide computer-lg"]:not(.column):not(.grid):not(.row) { width:@threeWide; }
+    [class*="four wide computer-lg"]:not(.column):not(.grid):not(.row) { width:@fourWide; }
+    [class*="five wide computer-lg"]:not(.column):not(.grid):not(.row) { width:@fiveWide; }
+    [class*="six wide computer-lg"]:not(.column):not(.grid):not(.row) { width:@sixWide; }
+    [class*="seven wide computer-lg"]:not(.column):not(.grid):not(.row) { width:@sevenWide; }
+    [class*="eight wide computer-lg"]:not(.column):not(.grid):not(.row) { width:@eightWide; }
+    [class*="nine wide computer-lg"]:not(.column):not(.grid):not(.row) { width:@nineWide; }
+    [class*="ten wide computer-lg"]:not(.column):not(.grid):not(.row) { width:@tenWide; }
+    [class*="eleven wide computer-lg"]:not(.column):not(.grid):not(.row) { width:@elevenWide; }
+    [class*="twelve wide computer-lg"]:not(.column):not(.grid):not(.row) { width:@twelveWide; }
+};
+
+.wide-values-default() {    
+    @wide-values-default-non-specific-rules();    
+}
+
+.wide-values-default() when (@include-width-specificity = true) {
+    *:not(.grid):not(.column):not(.row) > {
+        @wide-values-default-rules();
+    }    
+}
+
+.wide-values-default();
+
+// Mobile sizing
+
+@media (min-width: @mobileBreakpoint) and (max-width:@largestMobileScreen) {
+
+    .wide-values-mobile() { 
+        @wide-values-mobile-non-specific-rules();
+    }
+
+    .wide-values-mobile() when (@include-width-specificity = true) { 
+        *:not(.grid):not(.column):not(.row) > {
+            @wide-values-mobile-rules();
+        }    
+    }
+
+    .wide-values-mobile();
+
+}
+
+// Tablet sizing
+
+@media (min-width: @tabletBreakpoint) {
+
+    .wide-values-tablet() { 
+        @wide-values-tablet-non-specific-rules();
+    }
+
+    .wide-values-tablet() when (@include-width-specificity = true) { 
+        *:not(.grid):not(.column):not(.row) > {
+            @wide-values-tablet-rules();
+        }    
+    }
+
+    .wide-values-tablet();
+
+}
+
+// Computer sizing
+
+@media (min-width: @computerBreakpoint) {
+
+    .wide-values-computer() { 
+        @wide-values-computer-non-specific-rules();
+    }
+
+    .wide-values-computer() when (@include-width-specificity = true) { 
+        *:not(.grid):not(.column):not(.row) > {
+            @wide-values-computer-rules();
+        }    
+    }
+
+    .wide-values-computer();
+
+}
+
+// Computer (Large) sizing
+
+@media (min-width: @largeMonitorBreakpoint) {
+
+    .wide-values-computer-lg() {
+        @wide-values-computer-lg-non-specific-rules();
+    }
+
+    .wide-values-computer-lg() when (@include-width-specificity = true) { 
+        *:not(.grid):not(.column):not(.row) > {
+            @wide-values-computer-lg-rules();
+        }    
+    }
+
+    .wide-values-computer-lg();
+
+}
+
+//*----------------------
+//     Only (Device)
+//-----------------------*/
+
+// Mobile Only Hide 
+@media only screen and (max-width: @largestMobileScreen) {
+  .tablet:not(.mobile) { display: none !important; }
+  [class*="computer only"]:not(.mobile) { display: none !important; }
+  [class*="large screen only"]:not(.mobile) { display: none !important; }
+  [class*="widescreen only"]:not(.mobile) { display: none !important; }
+}
+// Tablet Only Hide 
+@media only screen and (min-width: @tabletBreakpoint) and (max-width: @largestTabletScreen) {
+  [class*="mobile only"]:not(.tablet) { display: none !important; }
+  [class*="computer only"]:not(.tablet) { display: none !important; }
+  [class*="large screen only"]:not(.mobile) { display: none !important; }
+  [class*="widescreen only"]:not(.mobile) { display: none !important; }
+}
+
+// Computer Only Hide 
+@media only screen and (min-width: @computerBreakpoint) and (max-width: @largestSmallMonitor) {
+  [class*="mobile only"]:not(.computer) { display: none !important; }
+  [class*="tablet only"]:not(.computer) { display: none !important; }
+  [class*="large screen only"]:not(.mobile) { display: none !important; }
+  [class*="widescreen only"]:not(.mobile) { display: none !important; }
+}
+
+// Large Screen Only Hide
+@media only screen and (min-width: @largeMonitorBreakpoint) and (max-width: @largestLargeMonitor) {
+  [class*="mobile only"]:not(.computer) { display: none !important; }
+  [class*="tablet only"]:not(.computer) { display: none !important; }
+  [class*="widescreen only"]:not(.mobile) { display: none !important; }
+}
+
+// Widescreen Only Hide 
+@media only screen and (min-width: @widescreenMonitorBreakpoint) {
+  [class*="mobile only"]:not(.computer) { display: none !important; }
+  [class*="tablet only"]:not(.computer) { display: none !important; }
+}

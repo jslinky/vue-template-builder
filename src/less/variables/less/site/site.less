@@ -1,0 +1,79 @@
+/*******************************
+             Site vars
+*******************************/
+
+#global {
+  .site-variables() {   
+    @static-variables-only              : false; // turn off custom prop on a module level - define on a per site basis in overrides
+    @local-scoped-custom-prop-fallback  : false; // not sure this works! local scoped variable - should be moved to overrides
+    //-------------------
+    //  Body
+    //--------------------
+    @body-backgroundColor               : #fff;
+    @body-fontFamily                    : @bodyFont;
+    @body-fontWeight                    : normal;
+    @body-color                         : @textColor;
+    @body-letterSpacingVal              : 1;
+    @body-letterSpacing                 : ~"calc((var(--body-letterSpacingVal) / var(--fontSizeRoot)) * 1em)";
+    @body-letterSpacingFallback         : ~"calc((@{body-letterSpacingVal} / @{fontSizeRoot}) * 1em)";    
+    @body-minWidth                      : 320;
+    
+    @body-fontSmoothing                 : auto;
+    @body-fontSmoothing-webkit          : antialiased;
+    @body-fontSmoothing-moz             : auto;
+    //-------------------
+    //  Link
+    //--------------------
+    @linkColor                          : primaryColor;
+    @linkDecoration                     : none;
+    @link-hoverColor                    : primaryColor;
+    @link-hoverDecoration               : none;
+    @linkShadow                         : none;
+    @link-hoverShadow                   : none;
+    // @linkTransition                  : default trnasition value    
+
+    //-------------------
+    //  List
+    //--------------------
+    @listFont                           : inherit;    
+    @listFontSize                       : fontSize;    
+    @listIndent                         : spacing;
+    @listMarginY                        : spacing;
+    @listMargin                         : ~"var(--@{listMarginY}) 0 var(--@{listMarginY}) var(--@{listIndent})";
+    @listMarginFallback                 : @@listMarginY 0 @@listMarginY @@listIndent;
+    @listLineHeight                     : ~"calc(var(--@{listFontSize}) + 1vm)";
+    @listLineHeightFallback             : ~"calc(@{@{listFontSize}} + 1vm)";
+    @listStyleType                      : inherit;
+    @listStylePosition                  : initial;
+    
+    @listItem-letterSpacingVal          : 1;
+    @listItem-letterSpacing             : ~"calc((var(--listItem-letterSpacingVal) / var(--fontSizeRoot)) * 1em)";
+    @listItem-letterSpacingFallback     : ~"calc((@{listItem-letterSpacingVal} / @{fontSizeRoot}) * 1em)";      
+
+    @listItem-paddingY                  : 0;
+    @listItem-paddingX                  : 0;
+    @listItem-padding                   : @listItem-paddingY @listItem-paddingX;
+    @listItem-marginY                   : 0;
+    @listItem-marginX                   : 0;    
+    @listItem-margin                    : @listItem-marginY @listItem-marginX;
+  }
+}
+
+//-------------------
+//  Borders
+//--------------------
+@relativeBorderRadius               : 0; //@relative4px;
+@absoluteBorderRadius               : 0; //@4px;    
+@defaultBorderRadius                : @absoluteBorderRadius;    
+@circularRadius                     : 500rem;
+
+@borderColor                        : @tertiaryGrey;
+@strongBorderColor                  : @fuscousGrey;
+@internalBorderColor                : rgba(34, 36, 38, 0.1);
+@selectedBorderColor                : rgba(34, 36, 38, 0.35);
+@strongSelectedBorderColor          : rgba(34, 36, 38, 0.5);
+@disabledBorderColor                : rgba(34, 36, 38, 0.5);    
+
+@whiteBorderColor                   : rgba(255, 255, 255, 0.1);
+@selectedWhiteBorderColor           : rgba(255, 255, 255, 0.8);
+

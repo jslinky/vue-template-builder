@@ -1,0 +1,112 @@
+//*******************************
+//    PDP Sections
+//*******************************
+
+// Page Container
+/////////////////////////
+.pt_product-details .wrapper_content {
+  width:auto; // reset - remove orginal styles in prod
+}
+
+//*******************************
+//    Top Section
+//*******************************
+
+// Container
+/////////////////////////
+#product-top-content-section {
+  display: block;
+  width:100%;
+}
+
+.product-top-content-section-wrapp {
+  display: flex;
+  justify-content: center;
+  padding:0;
+}
+
+.product-top-content-section-wrapp { &:extend(*[class*="o-container"], .o-container); }
+
+// Container with background colour - requires transparent nav
+/////////////////////////
+.pdp-main [data-bckcolor] {
+  position: relative;
+}
+.pdp-main [data-bckcolor]:before,
+.pdp-main [data-bckcolor] .product-col-1.product-image-container:before {
+  content:'';
+  position: absolute;
+  background:transparent;
+  width:100%;
+  height:~"calc(100% + 120px)";
+  top:-120px;
+  transition: background-color @pdp-topSectionContainer-bgColor-transition-duration @pdp-topSectionContainer-bgColor-transition-easing;
+  display: block;
+}     
+
+.pdp-main [data-bckcolor] .product-col-1.product-image-container:before {    
+  height:~"calc(100% + 97px)";
+  top:-97px;    
+}
+
+.pdp-main [data-bckcolor] {
+  @media (max-width:@largestMobileScreen) {
+    &:before {
+      display: none;
+    }
+  }
+  @media (min-width:@tabletBreakpoint) {
+    .product-col-1.product-image-container:before {
+      display: none;
+    }      
+    .product-detail .value .swatches {
+      transition:background-color @pdp-topSectionContainer-bgColor-transition-duration @pdp-topSectionContainer-bgColor-transition-easing;
+    }        
+  }
+} 
+
+// Make a mixin?
+.pdp-main [data-bckcolor].with-background {
+  // Gray colour - temp
+  &.gray-background { 
+    @color:#eceeeb;
+    &:before { background-color:@color; }
+    .product-col-1.product-image-container:before { background-color:@color; }      
+    @media (min-width:@tabletBreakpoint) {
+      .value .swatches.Color li:not(.selected) a:hover {
+        box-shadow:0 0 0 1px @jw-navy-shade4, 0 0 0 5px @color, 0 0 0 6px @jw-navy-digital;
+      }    
+      .value .size li.low-in-stock {
+        background-image: ~"linear-gradient(to right bottom, transparent, transparent 50%", darken(@color, 10%) ~"50%)";
+      }             
+      .product-add-to-cart a.notification:before,
+      .product-add-to-cart button.notification:before,
+      button[type="submit"].please-select-size:before {
+        background:@color;
+      }             
+    }
+  }
+} 
+
+// Mixin below - finishh off when needed
+// .pdp-top-content-bg(@colorName; @colorValue) {
+//   .pdp-main [data-bckcolor].with-background {
+//     &.@{colorName}-background {
+//       &:before { background-color:@colorValue; }
+//       .product-col-1.product-image-container:before { background-color:@colorValue; }
+//       @media (min-width:@tabletBreakpoint) {
+//         .value .swatches.Color li:not(.selected) a:hover {
+//           box-shadow:0 0 0 1px @jw-navy-shade4, 0 0 0 5px @color, 0 0 0 6px @jw-navy-digital;
+//         }    
+//         .value .size li.low-in-stock {
+//           background-image: ~"linear-gradient(to right bottom, transparent, transparent 50%", darken(@colorValue, 10%) ~"50%)";
+//         }             
+//         .product-add-to-cart a.notification:before,
+//         .product-add-to-cart button.notification:before,
+//         button[type="submit"].please-select-size:before {
+//           background:@colorValue;
+//         }             
+//       }
+//     }
+//   }
+// }

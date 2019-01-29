@@ -1,0 +1,29 @@
+//*******************************
+//    PDP - Stock Availibility
+//*******************************
+
+.container-content .buttons button.search-new-location {  
+  &:extend(.s-btn all, .s-btn-primary all);
+}
+.container-content .buttons button.add-to-bag {  
+  &:extend(.s-btn all, .s-btn-basic all);
+}
+
+.also-available-container {
+  display: flex;
+  align-items: center;
+  margin-top:@spacing;
+}
+
+.also-available-container .store-name-other {
+  &:extend(.o-link all);
+}
+.also-available-container .store-name-other.store-name-other {
+  text-transform: capitalize;
+}
+.also-available-container > .title + .store-name-other {
+  margin-top:@spacing;
+}
+.also-available-container .store-name-other:not(:last-of-type) {
+  margin-bottom:@spacing;
+}

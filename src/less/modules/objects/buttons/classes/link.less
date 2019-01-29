@@ -1,0 +1,18 @@
+
+.o-link { #objects.button-type(link-btn-type); }
+// Extends o-btn inverted
+.o-link.inverted { #objects.button-type(link-btn-type-inverted); }
+
+//-------------------
+//   Links
+//--------------------
+
+// MOVE THESE STYLES INTO A RULESET
+
+.o-link:after {
+  #objects.button-type(link-btn-type-underline);  
+}
+
+.o-link:hover:after {
+  &:extend(.o-btn:hover:after);
+}

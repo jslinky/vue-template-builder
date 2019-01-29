@@ -1,0 +1,152 @@
+
+// Update this with latest owl-carousel code
+
+.owl-carousel .owl-wrapper:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+.owl-carousel {
+  display: none;
+  position: relative;
+  width: 100%;
+  -ms-touch-action: pan-y;
+}
+
+.owl-carousel .owl-wrapper {
+  display: none;
+  position: relative;
+  transform: translate3d(0, 0, 0);
+}
+
+#carousel-orderedItems,
+#carousel-lastvisited {
+  &.owl-carousel .owl-wrapper { width:100%; } //temp?
+}
+
+.owl-carousel .owl-wrapper-outer {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.owl-carousel .owl-wrapper-outer.autoHeight {
+  transition: height 500ms ease-in-out;
+}
+
+.owl-carousel .owl-item { float:left; }
+
+.owl-carousel .owl-item > div { width:100%; }
+
+// Order history carousel
+#carousel-orderedItems.owl-carousel .owl-item {
+  // &:extend(.c-carousel .c-carousel__item:nth-child(-n+3));
+}
+
+#carousel-orderedItems,
+#carousel-lastvisited {
+  &.owl-carousel { width:100%; }
+}
+
+#carousel-orderedItems,
+#carousel-lastvisited {
+  &.owl-carousel .owl-item {
+    display: inline-flex;
+    float:none;
+  }
+}
+
+
+#carousel-orderedItems,
+#carousel-lastvisited {
+  &.owl-carousel .owl-wrapper {
+    width:100%;
+    white-space: nowrap;
+  }
+  // .owl-item > div { padding:0 @6px; }
+}
+
+.owl-controls .owl-page,
+.owl-controls .owl-buttons div { cursor: pointer; }
+
+.owl-controls {
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.grabbing { cursor: url(grabbing.png) 8 8, move; }
+
+.owl-carousel .owl-wrapper,
+.owl-carousel .owl-item {
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.owl-carousel .owl-item .product-name { 
+  white-space: normal; 
+  margin-top:18*@rem;  
+  text-transform: capitalize;
+  font:1em @primaryFontRegular;
+}
+
+#pdpMain [data-bv-show="inline_rating"] + .product-name {
+  margin-top:0;
+}
+
+// Move this to owl carousel file? - extend own carousel rules
+.owl-carousel { position: relative; }
+
+// Store locator carousel
+.owl-carousel#carousel-storeImages .owl-prev {
+  left:0;
+  .icon-fill('../images/icons/UI/chevronleft.svg', '#fff');
+}
+.owl-carousel#carousel-storeImages .owl-next {
+  right:0;
+  .icon-fill('../images/icons/UI/chevronright.svg', '#fff');
+}
+
+.owl-carousel#carousel-storeImages .owl-buttons [class^="owl"] { top:50%; }
+
+.owl-wrapper-outer { overflow: hidden; }
+
+
+// use new square button ruleset - to be created
+.owl-buttons.disabled { display:none; }
+.owl-buttons > div.disabled { opacity:.5; cursor:default; }
+
+.owl-buttons [class^="owl"] {
+  width:45*@rem!important;
+  height:45*@rem!important;
+  display: block;
+  cursor: pointer;
+  position: absolute;
+  top:42%;
+  transform: translate(0, -50%);
+  text-indent:-999em;
+  background-size:30% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  // #modules.carousel(btn__o-btn);
+  &.disabled { 
+    // &:extend(.o-btn.disabled); 
+  }
+}
+
+.owl-buttons [class^="owl"].owl-prev {
+  left:-(unit(45*@rem, rem));
+  .icon-fill('../images/icons/UI/chevronleft.svg', '@{linkColor}');
+}
+
+.owl-buttons [class^="owl"].owl-next {
+  right:-(unit(45*@rem, rem));
+  .icon-fill('../images/icons/UI/chevronright.svg', '@{linkColor}');
+}
+
+// PDP owl instance
+
+// .product-image-container .owl-carousel .owl-stage { touch-manipulation: pan-x }

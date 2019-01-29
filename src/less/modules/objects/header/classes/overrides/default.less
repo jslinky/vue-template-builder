@@ -1,0 +1,12 @@
+
+// EM based size
+[class*="-hdr"][class*="-hdr--relative"] {
+  #objects.header-variables();
+  &[class*="--msv"] { font-size:@massiveSizeVal*@em }
+  &[class*="--hg"] { font-size:@hugeSizeVal*@em }
+  &[class*="--big"] { font-size:@bigSizeVal*@em }
+  &[class*="--lg"] { font-size:@largeSizeVal*@em }
+  &[class*="--md"] { font-size:@mediumSizeVal*@em }
+  &[class*="--sm"] { font-size:@smallSizeVal*@em }
+  &[class*="--t"] { font-size:@tinySizeVal*@em }
+}

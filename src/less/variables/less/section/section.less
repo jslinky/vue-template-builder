@@ -1,0 +1,22 @@
+
+
+/*******************************
+            Section
+*******************************/
+
+
+#objects {
+  .section-variables() {
+    @static-variables-only                            : false; // turn off custom prop on a module level - define on a per site basis in overrides
+    @local-scoped-custom-prop-fallback                : false; // not sure this works! local scoped variable - should be moved to overrides    
+    // Unlock divider variables as spacing is shared by default
+    #objects.divider-variables();
+    @section-spacing-top                              : @divider-spacing-top;
+    @section-spacing-bottom                           : @divider-spacing-bottom;
+    @section-spacing-top-tabletBreakpoint             : @divider-spacing-top-tabletBreakpoint;
+    @section-spacing-bottom-tabletBreakpoint          : @divider-spacing-bottom-tabletBreakpoint;
+    // Fixed or dynamic spacing values 
+    @offsetFixed                                      : false;  
+  }
+}
+

@@ -1,0 +1,56 @@
+
+
+
+//*******************************
+//    Ruleset calls
+//*******************************
+
+//-------------------
+//  CORE divider rules
+//--------------------
+
+#objects {
+  .divider() {    
+    // Initial rules
+    @element: { 
+      #objects.divider(element-ruleset);
+    };
+    // Offset spacing rules
+    @offset: { 
+      #objects.divider(offset-ruleset);
+    };   
+    // Offset spacing rules - tablet Breakpoint
+    @offset-tabletBreakpoint: { 
+      #objects.divider(offset-tabletBreakpoint-ruleset);
+    };   
+    // Section diviver rules          
+    @section: {
+      #objects.divider(section-ruleset);
+    };
+  }
+}
+
+
+//-------------------
+//  EXTEND(ED) core ruleset
+//--------------------
+
+#objects {
+  .divider(element) when (@customPropFallback = true) {
+    #objects.divider(element-fallback-ruleset);
+  }   
+}
+
+#objects {
+  .divider(@ruleset) {
+    #objects.divider();
+    #objects.divider-variables();
+    @rules: @@ruleset;
+    @rules();
+  }
+  .divider-variables(@ruleset) {
+    #objects.divider-variables();
+    @rules: @@ruleset;
+    @rules();
+  }  
+}

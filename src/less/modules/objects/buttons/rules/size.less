@@ -1,0 +1,70 @@
+
+// CORE button related rulesets
+#objects {
+  .button-type() {
+    // Small size ruleset
+    @small-size-ruleset: {
+      .output() when (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+          // just custom props
+          #objects.button-type(small-size-customPropOnly-ruleset);
+        }
+        .output() when (@customPropFallback = true) and (@static-variables-only = false) {
+          // fallback
+          #objects.button-type(small-size-fallback-ruleset);
+        }    
+        .output() when (@static-variables-only = true) {
+          // just static vars
+          #objects.button-type(small-size-staticVarsOnly-ruleset);
+        }        
+        .output(); 
+    };
+    @small-size-staticVarsOnly-ruleset: {
+      font-size: @smallFontSize;
+      letter-spacing: @smallFontSizeLetterSpacing;
+    };        
+    @small-size-customPropOnly-ruleset: {
+      --fontSize: @smallFontSize;
+      --letterSpacing: @smallFontSizeLetterSpacing;
+    };        
+    @small-size-fallback-ruleset: {
+      #objects.button-type(small-size-customPropOnly-ruleset);
+      #objects.button-type(small-size-staticVarsOnly-ruleset);
+      font-size:var(--fontSize);
+      letter-spacing:var(--letterSpacing);
+    };
+
+    // Large size ruleset
+    @large-size-ruleset: {
+      .output() when (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+          // just custom props
+          #objects.button-type(large-size-customPropOnly-ruleset);
+        }
+        .output() when (@customPropFallback = true) and (@static-variables-only = false) {
+          // fallback
+          #objects.button-type(large-size-fallback-ruleset);
+        }    
+        .output() when (@static-variables-only = true) {
+          // just static vars
+          #objects.button-type(large-size-staticVarsOnly-ruleset);
+        }        
+        .output(); 
+    };
+    @large-size-staticVarsOnly-ruleset: {
+      font-size: @largeFontSize;
+      letter-spacing: @largeFontSizeLetterSpacing;
+    };        
+    @large-size-customPropOnly-ruleset: {
+      --fontSize: @largeFontSize;
+      --letterSpacing: @largeFontSizeLetterSpacing;     
+    };        
+    @large-size-fallback-ruleset: {
+      #objects.button-type(large-size-customPropOnly-ruleset);
+      #objects.button-type(large-size-staticVarsOnly-ruleset);
+      font-size:var(--fontSize);
+      letter-spacing:var(--letterSpacing);
+    };
+
+      
+       
+  }
+}

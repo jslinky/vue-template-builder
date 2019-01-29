@@ -1,0 +1,283 @@
+
+//*******************************
+//  Menu component
+//*******************************
+
+
+.o-menu { #components.menu(element); }
+
+//-------------------
+//   Piped menu
+//--------------------
+
+.o-menu[class*="piped"] .o-menu__item { #components.menu(pipe-item); }
+.o-menu[class*="piped"] .o-menu__item:not(:last-child):after { #components.menu(pipe-item-after); }
+.o-menu.o-menu--pipedFullHeight .o-menu__item:not(:last-child):after { #components.menu(pipe-fullHeight-item-after); }
+// .o-menu.o-menu--pipedBorderColor .o-menu__item:not(:last-child):after { background:@borderColor; }
+
+//-------------------
+//   Text Menu
+//--------------------
+
+.o-menu.o-menu--text .o-menu__item { #components.menu(text); }
+
+//-------------------
+//   Vertical direction
+//--------------------
+
+[class*="o-menu"].o-menu--vertical { #components.menu(menu-vertical); }
+[class*="o-menu"].o-menu--vertical .o-menu__item {
+  #components {
+    .menu(item) {
+      #components.menu(menu-vertical-item);
+    }   
+  }  
+  #components.menu(item);
+}
+
+[class*="o-menu"].o-menu--vertical .o-menu { 
+  #components {
+    .menu(sub-menu) {
+      #components.menu(sub-menu-vertical);      
+    }   
+  }  
+  #components.menu(sub-menu);
+}
+
+//////////////// WIP
+
+
+// Menu header
+.o-menu.o-menu--headerAbove { flex-wrap:wrap; }
+.o-menu.o-menu--headerAbove .o-menu__header { width:100%; }
+.o-menu__header {
+  &:extend(.o-menu__item);
+}
+
+//////////// END WIP
+
+
+//*******************************
+//  Menu item
+//*******************************
+
+.o-menu__item { #components.menu(item); }
+
+//-------------------
+//   Hover state
+//--------------------
+
+.o-menu__item:hover,
+.o-menu__item.hover { #components.menu(item-hover); }
+
+//-------------------
+//   Active state
+//--------------------
+
+.o-menu__item:active,
+.o-menu__item:focus,
+.o-menu__item.active { #components.menu(item-active); }
+
+//-------------------
+//   Selected state
+//--------------------
+
+.o-menu__item.selected { #components.menu(item-selected); }
+
+//-------------------
+//   Underline
+//--------------------
+
+.o-menu__item:not(:hover) .o-menu__underline:after { #components.menu(item-notHover-underline); }
+.o-menu__underline { #components.menu(item-underline); }
+.o-menu__underline:after { #components.menu(item-underline-after); }
+
+
+//*******************************
+//  Sub Menu
+//*******************************
+
+// Hover / active state which enables sub-menu
+
+.o-menu > .o-menu__item:hover > .o-menu,
+.o-menu > .o-menu__item.hover > .o-menu,
+.o-menu > .o-menu__item.active > .o-menu { display:inline-flex; }
+// Disable sub-menu appearing on :hover for touch devices - set active class for sub-menu to appear
+@media (hover: none) {
+  .o-menu > .o-menu__item:hover > .o-menu,
+  .o-menu > .o-menu__item.hover > .o-menu { display:none; }
+}
+
+// Sub menu element
+.o-menu .o-menu { #components.menu(sub-menu); }
+// Sub menu item
+.o-menu .o-menu > .o-menu__item { #components.menu(sub-menu-item); }
+
+//-------------------
+//   Hover state
+//--------------------
+
+.o-menu .o-menu > .o-menu__item:hover,
+.o-menu .o-menu > .o-menu__item.hover { #components.menu(sub-menu-item-hover); }
+
+//-------------------
+//   Active state
+//--------------------
+
+.o-menu .o-menu > .o-menu__item:active,
+.o-menu .o-menu > .o-menu__item:focus,
+.o-menu .o-menu > .o-menu__item.active { #components.menu(sub-menu-item-active); }
+
+//-------------------
+//   Selected state
+//--------------------
+
+.o-menu .o-menu > .o-menu__item.selected { #components.menu(sub-menu-item-selected); }
+
+
+
+// Move this to media 
+
+@media (min-width:@tabletBreakpoint) {
+
+  .o-menu > .o-menu__item:hover > .o-menu {
+    #components.menu(sub-menu-tabletBreakpoint);
+  }
+
+}
+
+//-------------------
+//   Vertical direction
+//--------------------
+
+.o-menu.o-menu--subVertical .o-menu {
+  #components {
+    .menu(sub-menu) {
+      #components.menu(sub-menu-vertical);      
+    }   
+  }  
+  #components.menu(sub-menu);
+}
+
+//-------------------
+//   100wv
+//--------------------
+
+.o-menu.o-menu--sub100vw .o-menu {
+  #components {
+    .menu(sub-menu) {
+      #components.menu(sub-menu-100vw);
+    }   
+  }  
+  #components.menu(sub-menu);
+}
+
+//*******************************
+//  Variations
+//*******************************
+
+//-------------------
+//   Tiny
+//--------------------
+
+.o-menu.o-menu--tiny {
+  #components {
+    .menu(element) {
+      #components.menu(element-tiny);
+    }   
+  }  
+  #components.menu(element);
+}
+
+//-------------------
+//   Small
+//--------------------
+
+.o-menu.o-menu--sm {
+  #components {
+    .menu(element) {
+      #components.menu(element-sm);
+    }   
+  }  
+  #components.menu(element);
+}
+
+//-------------------
+//   Large
+//--------------------
+
+.o-menu.o-menu--lg {
+  #components {
+    .menu(element) {
+      #components.menu(element-lg);
+    }   
+  }  
+  #components.menu(element);
+}
+
+//-------------------
+//   Equal Width
+//--------------------
+
+.o-menu.o-menu--equal {
+  #components {
+    .menu(element) {
+      justify-content: space-around;
+    }   
+  }  
+  #components.menu(element);
+}
+
+.o-menu.o-menu--equal .o-menu__item {
+  #components {
+    .menu(item) {
+      flex:1;
+    }   
+  }  
+  #components.menu(item);
+}
+
+//-------------------
+//   Compact
+//--------------------
+
+.o-menu.o-menu--compact .o-menu__item {
+  #components {
+    .menu(item) {
+      #components.menu(menu-compact-item);
+    }   
+  }  
+  #components.menu(item);
+}
+
+// REFACTOR BELOW
+
+
+/*--------------
+    Tabs
+---------------*/
+
+// .o-menu.o-menu--tabs {
+//   border:1px solid @borderColor;
+// }
+
+// .o-menu.o-menu--tabs .o-menu__item.active {
+//   #collections.menu-variables();
+//   // redefine hover state as active state - shared styles normally
+//   @hoverBackground: @primaryColor;
+//   @hoverColor: @white;
+//   #collections.menu.item.hover();
+// }
+
+// .o-menu.o-menu--tabs .o-menu__item:not(:last-child):after {
+//   &:extend(.o-menu.o-menu--piped .o-menu__item:not(:last-child):after);
+//   height:100%!important;
+// }
+
+// // Tabs related content
+// .o-tabContent { display:none; }
+// .o-tabContent.active { display:block; }
+
+
+
+

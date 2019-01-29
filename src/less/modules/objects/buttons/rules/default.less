@@ -1,0 +1,266 @@
+// //*******************************
+// //  Button type specific rulesets
+// //*******************************
+
+//-------------------
+//   Default type
+//--------------------
+
+// Core ruleset
+/////////////////////////
+#objects {
+    .button-type() {    
+      // Ruleset
+      // @default-btn-type-ruleset: {
+      //   // Set up custom prop values
+      //   --color: @color;   
+      // };
+
+      // Custom property ruleset
+      @default-btn-type-props-ruleset: {
+        --color: @colorVal;      
+      };
+      // Static LESS var ruleset
+      @default-btn-type-vars-ruleset: {
+        color: @colorVal;
+      };
+      // Custom property ruleset - fallback
+      @default-btn-type-propsFallback-ruleset: {        
+        #objects.button-type(default-btn-type-vars-ruleset);
+        #objects.button-type(default-btn-type-props-ruleset);
+        color:var(--color);
+      };     
+
+      // @default-btn-type-hover-ruleset: {
+      //   &:hover,
+      //   &:focus,
+      //   &:active,
+      //   &.active:active,
+      //   &.active,
+      //   &.active:hover  {
+      //       --color: @color;
+      //   }        
+      // };  
+      
+      
+      // Custom property ruleset
+      @default-btn-type-hover-props-ruleset: {
+        &:hover,
+        &:focus,
+        &:active,
+        &.active:active,
+        &.active,
+        &.active:hover  {
+          --color: @colorVal;
+        }       
+      };
+      // Static LESS var ruleset
+      @default-btn-type-hover-vars-ruleset: {
+        &:hover,
+        &:focus,
+        &:active,
+        &.active:active,
+        &.active,
+        &.active:hover  {
+          color: @colorVal;
+        }   
+      };
+      // Custom property ruleset - fallback
+      @default-btn-type-hover-propsFallback-ruleset: {        
+        &:hover,
+        &:focus,
+        &:active,
+        &.active:active,
+        &.active,
+        &.active:hover  {
+          --color: @colorVal;
+          color: @colorVal;
+          color:var(--color);
+        }   
+      };    
+
+      // No border
+      @default-btn-type-noBorder-customPropOnly-ruleset: {        
+        --borderWidth:0;
+      };
+      @default-btn-type-noBorder-fallback-ruleset: {
+        --borderWidth:0;
+        border-width:0;
+      };
+      @default-btn-type-noBorder-staticVarsOnly-ruleset: {
+        border-width:0;
+      };      
+
+      // Inverted ruleset
+      // @default-btn-type-inverted-ruleset: {  
+      //   --color: @invertedTextColor;
+      //   &:hover,
+      //   &:focus,
+      //   &:active,
+      //   &.active:active,
+      //   &.active,
+      //   &.active:hover  {
+      //       --color: @invertedTextColor;
+      //   }         
+      // };   
+      @default-btn-type-inverted-customPropOnly-ruleset: {                
+        --color: @invertedTextColor;
+        &:hover,
+        &:focus,
+        &:active,
+        &.active:active,
+        &.active,
+        &.active:hover  {
+          --color: @invertedTextColor;
+        }
+      };
+      @default-btn-type-inverted-staticVarsOnly-ruleset: {
+        color: @invertedTextColor;
+        &:hover,
+        &:focus,
+        &:active,
+        &.active:active,
+        &.active,
+        &.active:hover  {
+          color: @invertedTextColor; 
+        }
+      };       
+      @default-btn-type-inverted-fallback-ruleset: {
+        --color: @invertedTextColor;        
+        color: @invertedTextColor; 
+        color: var(--color);
+        &:hover,
+        &:focus,
+        &:active,
+        &.active:active,
+        &.active,
+        &.active:hover  {
+          color: @invertedTextColor; 
+          color: var(--color);
+        }
+      };
+
+
+
+      // Fallback ruleset
+      // @default-btn-type-ruleset-fallback: {
+      //   color: @color;        
+      //   color: var(--color);        
+      // };
+
+
+      @disabled-ruleset: {
+        cursor: default;
+        opacity: @disabledOpacity!important;
+        pointer-events: none;
+      };
+    }
+  }
+  
+
+
+
+// #objects {
+//   .button() {
+//     @default-btn-type: {
+//       #objects.button-variables();
+//       --color: @color;
+//       &:hover,
+//       &:focus,
+//       &:active,
+//       &.active:active,
+//       &.active,
+//       &.active:hover {
+//         --color: @color;
+//       }
+//     };
+//     @default-btn-type-shadow: {
+//       --textShadow: @invertedTextShadow;
+//       &:after,
+//       .o-btn__underline:after {
+//         --underlineBoxShadow: @invertedUnderlineShadow;
+//       }
+//     };
+//     @default-btn-type-inverted: {
+//       #objects.button-variables();
+//       --color:@invertedTextColor;
+//     };
+//   }
+// }
+
+
+
+
+// // Core ruleset
+// /////////////////////////
+// #objects {
+//   .button-type() {    
+//     // Ruleset
+//     @default-btn-type: {
+//       #objects.button-variables(); // import button less variables
+//       --color: @color;
+//       &:hover,
+//       &:focus,
+//       &:active,
+//       &.active:active,
+//       &.active,
+//       &.active:hover  {
+//         --color: @color;      
+//       }
+//     };   
+//     @default-btn-type-shadow: {
+//       --textShadow: @invertedTextShadow;
+//       &:after,
+//       .o-btn__underline:after {
+//         --underlineBoxShadow: @invertedUnderlineShadow;
+//       }
+//     };
+//     @default-btn-type-inverted: {
+//       #objects.button-variables();
+//       --color:@invertedTextColor;
+//     };    
+//   }
+// }
+
+// // Extended core rulset with fallbacks
+// /////////////////////////
+// #objects when (@customPropFallback = true) {
+//   // Extend ruleset
+//   .button-type(default-btn-type) {
+//     color: @color;        
+//     color: var(--color);
+//     &:hover,
+//     &:focus,
+//     &:active,
+//     &.active:active,
+//     &.active,
+//     &.active:hover  {
+//       color: @color;
+//       color: var(--color);
+//     }  
+//   }
+//   .button-type(default-btn-type-shadow) {
+//     text-shadow: @invertedTextShadow;
+//     text-shadow: var(--textShadow);
+//     &:after,
+//     .o-btn__underline:after {
+//       box-shadow: @invertedUnderlineShadow;
+//       box-shadow: var(--underlineBoxShadow);
+//     }
+//   }  
+//   .button-type(default-btn-type-inverted) {
+//     #objects.button-variables();
+//     color: @invertedTextColor;
+//     color: var(--color);
+//   }  
+
+
+// }
+
+// #objects {
+//   .button-type(@item) {
+//       #objects.button-type();
+//       @rules: @@item;
+//       @rules();
+//   }
+// }

@@ -1,0 +1,31 @@
+//**********************
+//  Pagination
+//**********************
+
+// DO I need .pagination:not(.search-result-options)?
+.pagination li:not(.first-last):not(.next) { text-indent: 2.5*@rem; }
+.pagination li.first-last.previous span { .icon-replace-fill('@{icon-ui-path}chevronLeft.svg', '#222', @linkColor); }
+.pagination li.first-last.next span { .icon-replace-fill('@{icon-ui-path}chevronRight.svg', '#222', @linkColor); }
+// .pagination li.current-page { &:extend(.o-swatch .o-swatch__item.selected); }
+.pagination li.first-last {
+  display:flex;
+  align-items:center;
+  margin:0 @spacing;
+}
+.pagination li.first-last.unselectable { 
+  #objects.button-variables();
+  opacity:@disabledOpacity; 
+}
+.pagination li.current-page, 
+.pagination li.first-last.unselectable {
+  cursor:default!important;
+  pointer-events:none;    
+}  
+.pagination span {
+  display:block;
+  height:15*@rem;
+  width:15*@rem;
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}

@@ -1,0 +1,67 @@
+
+// CORE button related rulesets
+#objects {
+    .button-type() {
+      @underline-ruleset: {
+        content: '';
+        display: inline-block;
+        position: absolute;   
+
+        .define-module-prop(button; height; underlineHeight);               
+        .define-module-prop(button; width; underlineWidth; underlineWidthFallback);               
+        .define-module-prop(button; background; underlineBackground);               
+        .define-module-prop(button; left; underlineLeftPos; underlineLeftPosFallback);               
+        .define-module-prop(button; bottom; underlineBottomPos);               
+        .define-module-prop(button; transition; underlineTransition; underlineTransitionFallback);               
+        .define-module-prop(button; box-shadow; underlineBoxShadow; invertedUnderlineShadow);               
+      };
+      // Custom property ruleset
+      @underline-customPropOnly-ruleset: {
+        opacity: var(--underlineOpacity);
+      };
+      // Static LESS var ruleset
+      @underline-staticVarsOnly-ruleset: {
+        opacity: @underlineColorOpacity;
+      };
+      // Custom property ruleset - fallback
+      @underline-fallback-ruleset: {        
+        #objects.button-type(underline-staticVarsOnly-ruleset);
+        #objects.button-type(underline-customPropOnly-ruleset);
+      };  
+      // Custom property ruleset
+      @underline-hover-customPropOnly-ruleset: {
+        --underlineOpacity: @hoverUnderlineColorOpacity;
+      };
+      // Static LESS var ruleset
+      @underline-hover-staticVarsOnly-ruleset: {
+        opacity: @hoverUnderlineColorOpacity;
+      };
+      // Custom property ruleset - fallback
+      @underline-hover-fallback-ruleset: {        
+        #objects.button-type(underline-hover-staticVarsOnly-ruleset);
+        #objects.button-type(underline-hover-customPropOnly-ruleset);
+        opacity: var(--underlineOpacity);
+      };       
+      
+      // Custom property ruleset
+      @underline-element-customPropOnly-ruleset: {
+        --underlineWidth: @underlineWidth-element;
+        --underlineLeftPos: @underlineLeftPos-element;
+        --underlineBottomPos: @underlineBottomPos-element;
+      };
+      // Static LESS var ruleset
+      @underline-element-staticVarsOnly-ruleset: {
+        width:@underlineWidth-element;
+        left:@underlineLeftPos-element;
+        bottom:@underlineBottomPos-element;
+      };
+      // Custom property ruleset - fallback
+      @underline-element-fallback-ruleset: {        
+        #objects.button-type(underline-element-staticVarsOnly-ruleset);
+        #objects.button-type(underline-element-customPropOnly-ruleset);
+        width:var(--underlineWidth);
+        left:var(--underlineLeftPos);
+        bottom:var(--underlineBottomPos);        
+      };        
+    } 
+  }  

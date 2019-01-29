@@ -1,0 +1,39 @@
+
+.pt_account .section-header,
+.pt_giftcard .section-header, 
+.pt_wish-list .section-header {
+  display: flex;
+  align-items: center;  
+}
+
+.mini-address-title,
+.mini-address-name,
+.mini-address-location address,
+.order-display-text,
+.order-history-table,
+.order-history-header {
+  &:extend(p);
+}
+
+.order-display-text.order-display-text {
+  margin-bottom:0;
+}
+
+.mini-address-location address {
+  font-style:normal;
+}
+
+.address-form-right-column .qas-options {
+  text-align:left;
+}
+
+#orderlist-container .search-result-items { margin-top:0; }
+
+@media (min-width:@tabletBreakpoint) {
+
+  .address-form-right-column + .form-row {
+    margin-bottom:6rem;
+  }
+
+}
+

@@ -1,0 +1,32 @@
+// Override 
+// #namespace { 
+//     .module() {
+//         @element: {
+//             // override code
+//         };
+//     } 
+// } 
+
+// Extend
+// #namespace {
+//     .module(element) {
+//         // extend code
+//     }
+// }
+
+
+
+//*******************************
+//    SITE: Custom Prop Rulesets
+//*******************************
+
+//-------------------
+//  Site props
+//--------------------
+
+// Extend
+#props {
+  .site(list-props) {
+    --listFontSize: @paragraphFontSize;
+  }
+}

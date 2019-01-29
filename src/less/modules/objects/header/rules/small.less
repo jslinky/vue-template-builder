@@ -1,0 +1,17 @@
+
+
+#objects {
+  .header() {
+    @hSmall-ruleset: {
+      .set-header-rules(Small);
+    };
+    @hSmall-letter-spacing-uppercase-ruleset: {
+      .set-header-rules-text-transform-inc-letterSpacing(Small; uppercase);
+    };
+    @hSmall-letter-spacing-noUppercase-ruleset: {
+      .set-header-rules-text-transform-inc-letterSpacing(Small; none);
+    };       
+  }
+}
+
+

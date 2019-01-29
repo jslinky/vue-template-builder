@@ -1,0 +1,22 @@
+
+
+#objects {
+  .header() {
+    @header-group-ruleset: {
+      text-align: @headerGroupTextAlign;
+      > [class*="o-header"]:not(.o-headerGroup__sub) { font-size:inherit; }
+      > [class*="o-header"]:not(.o-headerGroup__sub).o-header--underline + .o-header { margin-top: @headerUnderlineVerticalRhythm; }      
+      > [class*="o-header"].o-headerGroup__sub { 
+        .cust-prop(letter-spacing, headerLetterSpacing, headerGroupSubHeadingLetterSpacing);
+        .size(font-size, headerGroupSubHeadingFontSize, headerGroupSubHeadingFontSize); 
+      }
+      > [class*="o-header"]:last-child:not(.o-headerGroup__sub),
+      > [class*="o-header"].o-headerGroup__sub:not(:first-child) { 
+          --headerOffsetMultiplyer: @headerGroupSubHeadingOffsetMultiplyer; 
+          .offset(margin-top, headerOffsetMultiplyer, @headerGroupSubHeadingOffsetMultiplyer);        
+       }
+    };
+  }
+}
+
+

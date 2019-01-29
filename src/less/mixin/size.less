@@ -1,0 +1,81 @@
+// Size mixins 
+// Use sizing custom props / less vars to define a prop
+
+.size(@prop, @size, @definedAlternativeFallback:false) when (@definedAlternativeFallback = false) {       
+    @rules: @@size;
+    .size-fallback(@prop, @rules);
+    @{prop}: ~"var(--@{size}"~")";
+}
+
+.size(@prop, @size, @definedAlternativeFallback) when not (@definedAlternativeFallback = false) {       
+    @rules: @@definedAlternativeFallback;
+    .size-fallback(@prop, @rules);
+    @{prop}: ~"var(--@{size}"~")";    
+}
+
+.size-fallback(@prop, @size) when (@customPropFallback = true) {   
+    @{prop}: @rules;
+}
+
+
+// @prop is the CSS property
+// @scale is the multiplyer value [integer] i.e. 2 = 2x
+// @fallbackVal is ....
+// @offsetFixed [boolean] decides whether property is a fixed value or a dynamic offset value - set to false by default
+
+// If @fallbackVal is false & offset is dynamic 
+.offset(@prop, @scale, @fallbackVal:false, @offsetFixed:@offsetFixed) when not (@fallbackVal = false) and (@offsetFixed = false) {
+    .offset-fallback(@prop, @scale, @fallbackVal);
+}
+
+// If @fallbackVal is true & offset is fixed
+.offset(@prop, @scale, @fallbackVal:false, @offsetFixed:@offsetFixed) when not (@fallbackVal = false) and (@offsetFixed = true) {
+    .offset-fallback(@prop, @scale, @fallbackVal);
+}
+
+// Fallback mixin fires only if customPropFallback is true
+.offset-fallback(@prop, @scale, @fallbackVal:false) when (@customPropFallback = true) {
+    @{prop}: ~"calc(("@fallbackVal ~"/ ("@lineHeight ~"+ (@{fallbackVal} * 0.1))) *" @offset~")";
+}
+
+// offset mixin declares offset value through --offsetCalc var
+.offset(@prop, @scale, @fallbackVal:false, @offsetFixed:@offsetFixed) {
+    // Dynamic offset val
+    --dynamicOffsetCalc: ~"calc( ( var(--@{scale}) / ( var(--lineHeight) + ( var(--@{scale}) * 0.1) ) ) * var(--offset) )";
+    // --dynamicOffsetCalcOneUnder: ~"calc( (( var(--@{scale}) / ( var(--lineHeight) + ( var(--@{scale}) * 0.1) ) ) / 2) * var(--offset) )";
+    --dynamicOffsetCalcOneUnder: var(--fixedOffsetCalc);
+    // Fixed offset calc val
+    --fixedOffsetCalc: ~"calc(var(--@{scale}) * var(--lineHeightRem))";    
+    @{prop}: var(--offsetCalc);
+}
+
+// If offset is dynamic [false] then --offsetCalc var is (@scale / (--lineHeight + (--scale * 0.1))) to determine its value
+.offset(@prop, @scale, @fallbackVal:false, @offsetFixed:@offsetFixed) when (@offsetFixed = false) and (@@scale > 1) {
+    --offsetCalc: var(--dynamicOffsetCalc);
+}
+
+.offset(@prop, @scale, @fallbackVal:false, @offsetFixed:@offsetFixed) when (@offsetFixed = false) and (@@scale =< 1) {
+    --offsetCalc: var(--dynamicOffsetCalcOneUnder);
+}
+
+// If offset is fixed [true] then --offsetCalc var is is calculated using --lineHeightRem value
+.offset(@prop, @scale, @fallbackVal:false, @offsetFixed:@offsetFixed) when (@offsetFixed = true) {
+    --offsetCalc: var(--fixedOffsetCalc);
+}
+
+
+// do fallback
+.spacing(@prop, @multiplyer:@verticalRhythmMultiplyer, @fallbackVal:false) when (@fallbackVal = false) {
+    --verticalRhythmMultiplyer: @multiplyer;
+    @{prop}: calc(var(--verticalRhythmMultiplyer) ~"*" var(--lineHeightRem));
+}
+
+.spacing(@prop, @multiplyer:@verticalRhythmMultiplyer, @fallbackVal:false) when not (@fallbackVal = false) {    
+    --verticalRhythmMultiplyer: @multiplyer;
+    .spacing-fallback(@prop, @multiplyer, @fallbackVal);
+    @{prop}: calc(var(--verticalRhythmMultiplyer) ~"*" var(--lineHeightRem));
+}
+
+.spacing-fallback(@prop, @multiplyer:@verticalRhythmMultiplyer, @fallbackVal:false) when (@customPropFallback = true) {
+    @{prop}: calc(@fallbackVal ~"*" @lineHeightRem);
+}

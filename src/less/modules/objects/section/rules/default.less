@@ -1,0 +1,38 @@
+
+
+#objects {
+  .section() {   
+    // Initial section rules 
+    @element-ruleset: {
+      // Offset varation needs reworking (.offset())
+      position: relative;
+    };
+    @element-staticVarsOnly-ruleset: {
+      padding-top: (@section-spacing-top*@fontSizeRoot)*@rem;
+      padding-bottom: (@section-spacing-bottom*@fontSizeRoot)*@rem;
+    };
+    @element-customPropOnly-ruleset: {
+      padding-top:var(--section-spacing-top, (@section-spacing-top*@fontSizeRoot))*@rem;
+      padding-bottom:var(--section-spacing-bottom, (@section-spacing-bottom*@fontSizeRoot))*@rem;
+    };
+    @element-fallback-ruleset: {
+      #objects.section(element-staticVarsOnly-ruleset);
+      #objects.section(element-customPropOnly-ruleset);
+    };                
+    @element-tabletBreakpoint-ruleset: {      
+    
+    };     
+    @element-tabletBreakpoint-staticVarsOnly-ruleset: {
+      padding-top: (@section-spacing-top-tabletBreakpoint*@fontSizeRoot)*@rem;
+      padding-bottom: (@section-spacing-bottom-tabletBreakpoint*@fontSizeRoot)*@rem;
+    };
+    @element-tabletBreakpoint-customPropOnly-ruleset: {
+      padding-top:var(--section-spacing-top-tabletBreakpoint, (@section-spacing-top-tabletBreakpoint*@fontSizeRoot)*@rem);
+      padding-bottom:var(--section-spacing-bottom-tabletBreakpoint, (@section-spacing-bottom-tabletBreakpoint*@fontSizeRoot)*@rem);
+    }; 
+    @element-tabletBreakpoint-fallback-ruleset: {
+      #objects.section(element-staticVarsOnly-tablet-ruleset);
+      #objects.section(element-customPropOnly-tablet-ruleset);
+    };        
+  }
+}

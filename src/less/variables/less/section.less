@@ -1,0 +1,12 @@
+#objects {
+.section-variables() {
+    // Unlock divider variables as spacing is shared by default
+    #objects.divider-variables();
+    @section-spacing-top                              : @divider-spacing-top;
+    @section-spacing-bottom                           : @divider-spacing-bottom;
+    @section-spacing-top-tabletBreakpoint             : @divider-spacing-top-tabletBreakpoint;
+    @section-spacing-bottom-tabletBreakpoint          : @divider-spacing-bottom-tabletBreakpoint;
+    // Fixed or dynamic spacing values 
+    @offsetFixed                                      : false;
+  }
+}

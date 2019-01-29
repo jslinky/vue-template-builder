@@ -1,0 +1,16 @@
+//-------------------
+//    Alpha Mixin - Move to mixins
+//--------------------
+
+.create-alpha-color(@hex, @alpha) {
+  @red: red(@hex);
+  @green: green(@hex);
+  @blue: blue(@hex);
+  @rgbValue:~"@{red}, @{green}, @{blue}, @{alpha}";
+}
+
+//-------------------
+//    Example usage
+
+// .create-alpha-color(@primaryColor, 0.5);
+// background:~"rgba(@{rgbValue})";

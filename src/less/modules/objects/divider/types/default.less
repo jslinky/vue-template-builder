@@ -1,0 +1,63 @@
+
+
+.o-divider,
+[class*="u-"].o-divider { 
+  #objects.divider(element); 
+  #objects.divider(offset); 
+}
+
+// Top, bottom and default divider
+.o-section--divider:before,
+.o-section--divider:after,
+.o-section--divider-top:before,
+.o-section--divider-bottom:after,
+.o-section + .o-section:before {
+  #objects.divider(element);
+  #objects.divider(section);
+}
+
+.o-section + .o-section:before,
+.o-section--divider:before,
+.o-section--divider-top:before { top:0; }
+
+.o-section--divider:after,
+.o-section--divider-bottom:after { bottom:0; }
+
+// No divider
+.o-section--divider-none:before,
+.o-section--divider-none-top:before,
+.o-section--divider-none-bottom:after { 
+  display:none!important; 
+  .u-clearfix& { display:none!important; }
+}
+
+  // BELOW IS TO DO /////////////////////////////////////
+
+
+// // Divider max width
+// .o-section--divider--max-width-1:before,
+// .o-section--divider--max-width-1:after,
+// .o-section--divider-top--max-width-1:before,
+// .o-section--divider-bottom--max-width-1:after {
+//   max-width:@max-width-1;
+// }
+// .o-section--divider--max-width-2:before,
+// .o-section--divider--max-width-2:after,
+// .o-section--divider-top--max-width-2:before,
+// .o-section--divider-bottom--max-width-2:after {
+//   max-width:@max-width-2;
+// }
+
+// .o-section--divider-max-width-3:before,
+// .o-section--divider-max-width-3:after,
+// .o-section--divider-top-max-width-3:before,
+// .o-section--divider-bottom-max-width-3:after {
+//   max-width:@max-width-3;
+// }
+
+// .o-section--divider-max-width-4:before,
+// .o-section--divider-max-width-4:after,
+// .o-section--divider-top-max-width-4:before,
+// .o-section--divider-bottom-max-width-4:after {
+//   max-width:@max-width-4;
+// }

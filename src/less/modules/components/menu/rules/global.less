@@ -1,0 +1,193 @@
+
+
+
+
+//*******************************
+//    Ruleset calls
+//*******************************
+
+//-------------------
+//  CORE menu rules
+//--------------------
+
+#components {
+  .menu() {    
+    // Initial menu rules
+    @element: { 
+      #components.menu(element-ruleset);
+    };     
+    @element-tiny: {
+      #components.menu(element-tiny-ruleset);
+    };
+    @element-sm: {
+      #components.menu(element-sm-ruleset);
+    };    
+    @element-lg: {
+      #components.menu(element-lg-ruleset);
+    };    
+    @menu-compact-item: {
+      #components.menu(menu-compact-item-ruleset);
+    };        
+    @menu-vertical: {
+      #components.menu(menu-vertical-ruleset);
+    };    
+    @item: { 
+      #components.menu(item-ruleset);
+    };    
+    @menu-vertical-item: {
+      #components.menu(menu-vertical-item-ruleset);
+    };    
+    @item-computerBreakpoint: {  
+      #components.menu(item-computerBreakpoint-ruleset);      
+    };    
+    @item-hover: {
+      #components.menu(item-hover-ruleset);
+    };  
+    @item-notHover-underline: {
+      #components.menu(item-notHover-underline-ruleset);
+    };
+    @item-active: {
+      #components.menu(item-active-ruleset);
+    }; 
+    @item-selected: {
+      #components.menu(item-selected-ruleset);
+    };
+    @item-underline: {
+      #components.menu(item-underline-ruleset);
+    };    
+    @item-underline-after: {
+      #components.menu(item-underline-after-ruleset);
+    };
+    @pipe-item: {
+      #components.menu(pipe-item-ruleset);
+    };
+    @pipe-item-after: {
+      #components.menu(pipe-item-after-ruleset);
+    };    
+    @pipe-fullHeight-item-after: {
+      #components.menu(pipe-fullHeight-item-after-ruleset);
+    };
+    @text: {
+      #components.menu(text-ruleset);
+    };
+    @sub-menu: {
+      #components.menu(sub-menu-ruleset);
+    };
+    @sub-menu-vertical: {
+      #components.menu(sub-menu-vertical-ruleset);
+    };    
+    @sub-menu-tabletBreakpoint: {
+      #components.menu(sub-menu-tabletBreakpoint-ruleset);
+    };
+    @sub-menu-100vw: {
+      #components.menu(sub-menu-100vw-ruleset);
+    };
+    @sub-menu-item: {
+      #components.menu(sub-menu-item-ruleset);
+    };    
+    @sub-menu-item-hover: {
+      #components.menu(sub-menu-item-hover-ruleset);
+    };
+    @sub-menu-item-active: {
+      #components.menu(sub-menu-item-active-ruleset);
+    };
+    @sub-menu-item-selected: {
+      #components.menu(sub-menu-item-selected-ruleset);
+    };
+    @stackable-largestStackedScreen: {
+      #components.menu(stackable-largestStackedScreen-ruleset);
+    };
+    @stackable-largestStackedScreen-header: {
+      #components.menu(stackable-largestStackedScreen-header-ruleset);
+    };
+    @stackable-largestStackedScreen-header-not-active: {
+      #components.menu(stackable-largestStackedScreen-header-not-active-ruleset);
+    };
+    @stackable-largestStackedScreen-header-active: {
+      #components.menu(stackable-largestStackedScreen-header-active-ruleset);
+    };  
+    @stackable-largestStackedScreen-item: {
+      #components.menu(stackable-largestStackedScreen-item-ruleset);
+    };        
+    @stackable-largestStackedScreen-item-after: {
+      #components.menu(stackable-largestStackedScreen-item-after-ruleset);
+    };        
+    @stackable-largestStackedScreen-sub-menu: {
+      #components.menu(stackable-largestStackedScreen-sub-menu-ruleset);
+    };      
+    @stackable-largestStackedScreen-piped-item: {
+      #components.menu(stackable-largestStackedScreen-piped-item-ruleset);      
+    };                                        
+    @stackable-largestStackedScreen-piped-after: {
+      #components.menu(stackable-largestStackedScreen-piped-after-ruleset);      
+    };      
+  }
+}
+
+
+//-------------------
+//  EXTEND(ED) core ruleset
+//--------------------
+
+#components {
+  .menu(element) when (@customPropFallback = true) {
+    #components.menu(element-fallback-ruleset);
+  }  
+  .menu(element-tiny) when (@customPropFallback = true) {
+    #components.menu(element-tiny-fallback-ruleset);
+  }  
+  .menu(element-sm) when (@customPropFallback = true) {
+    #components.menu(element-sm-fallback-ruleset);
+  }  
+  .menu(element-lg) when (@customPropFallback = true) {
+    #components.menu(element-lg-fallback-ruleset);
+  }        
+  .menu(menu-compact-item) when (@customPropFallback = true) {
+    #components.menu(menu-compact-item-fallback-ruleset);
+  }  
+  .menu(item) when (@customPropFallback = true) {
+    #components.menu(item-fallback-ruleset);
+  }   
+  .menu(item-hover) when (@customPropFallback = true) {
+    #components.menu(item-hover-fallback-ruleset);
+  }     
+  .menu(item-active) when (@customPropFallback = true) {
+    #components.menu(item-active-fallback-ruleset);
+  }       
+  .menu(item-selected) when (@customPropFallback = true) {
+    #components.menu(item-selected-fallback-ruleset);
+  }      
+  .menu(text) when (@customPropFallback = true) {
+    #components.menu(text-fallback-ruleset);
+  }   
+  .menu(item-computerBreakpoint) when (@customPropFallback = true) {
+    #components.menu(item-computerBreakpoint-ruleset);
+  }        
+  // Sub menu
+  .menu(sub-menu-item) when (@customPropFallback = true) {
+    #components.menu(sub-menu-item-fallback-ruleset);
+  }              
+  .menu(sub-menu-item-hover) when (@customPropFallback = true) {
+    #components.menu(sub-menu-item-hover-fallback-ruleset);
+  }                
+  .menu(sub-menu-item-active) when (@customPropFallback = true) {
+    #components.menu(sub-menu-item-active-fallback-ruleset);
+  }                  
+  .menu(sub-menu-item-selected) when (@customPropFallback = true) {
+    #components.menu(sub-menu-item-selected-fallback-ruleset);
+  }                  
+}
+
+#components {
+  .menu(@ruleset) {
+    #components.menu();
+    #components.menu-variables();
+    @rules: @@ruleset;
+    @rules();
+  }
+  .menu-variables(@ruleset) {
+    #components.menu-variables();
+    @rules: @@ruleset;
+    @rules();
+  }  
+}

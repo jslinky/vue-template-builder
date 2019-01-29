@@ -1,0 +1,34 @@
+
+
+/*******************************
+            Section
+*******************************/
+
+
+#objects {
+  .container-variables() {
+    @static-variables-only                            : true; // turn off custom prop on a module level - define on a per site basis in overrides
+    @local-scoped-custom-prop-fallback                : false; // not sure this works! local scoped variable - should be moved to overrides    
+    /*-------------------
+          Element
+    --------------------*/
+
+    @container-maxWidth                       : 100%;    
+    @container-mobileWidthVal                 : inherit;
+    @container-mobileWidth                    : auto;
+    @container-mobileGutterMultiplyer         : 0.5;
+
+    @container-tabletWidthVal                 : inherit;
+    @container-tabletWidth                    : auto;
+    @container-tabletGutterMultiplyer         : 2;
+
+    @container-computerWidthVal               : inherit;
+    @container-computerWidth                  : auto;
+    @container-computerGutterMultiplyer       : 2;
+
+    @container-largeMonitorWidthVal           : unit(@site-max-widthPixel); 
+    @container-largeMonitorWidth              : ~"calc("@container-largeMonitorWidthVal*@rem ~"- ((@{gutter} * @{container-largeMonitorGutterMultiplyer}) * 2))";
+    @container-largeMonitorGutterMultiplyer   : 2;  
+  }
+}
+

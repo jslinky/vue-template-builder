@@ -1,0 +1,5 @@
+
+.o-section { #objects.section(element); }
+
+// Ajacent o-section element - apply divider
+.o-section + .o-section:before { &:extend(.o-divider-top:before); }

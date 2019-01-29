@@ -1,0 +1,66 @@
+
+
+#objects {
+  .masthead() {           
+     @artwork-ruleset: {
+        position:relative;
+     };
+     @artwork-fallback-ruleset: {
+      #objects.masthead(artwork-staticVarsOnly-ruleset);
+      #objects.masthead(artwork-customPropOnly-ruleset);
+     };                    
+     @artwork-staticVarsOnly-ruleset: {       
+        max-width:~"calc((@{artwork-ratio-height} / @{artwork-ratio-width}) * (@{mh-hVal-vh} * 1vh))";
+        &:before {
+          padding-top: ~"calc((9 / 16) * 100%)";
+        }
+     };
+     @artwork-customPropOnly-ruleset: {       
+        .aspect-ratio(@artwork-ratio-width, @artwork-ratio-height, mh-hVal-vh, vh);
+     };
+     // Proportional Artwork
+     @element-proportional-artwork-ruleset: {
+        max-width:inherit;
+     };     
+     @artwork-content-ruleset: {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        max-width: 100%;
+     };
+     @artwork-ratio-ruleset: {
+        display: block;
+        content: "";
+        width: 100%;                  
+     };
+     @artwork-tabletBreakpoint-maxHeight-ruleset: {
+        
+     };
+     @artwork-tabletBreakpoint-maxHeight-fallback-ruleset: {
+        #objects.masthead(artwork-tabletBreakpoint-maxHeight-staticVarsOnly-ruleset);
+        #objects.masthead(artwork-tabletBreakpoint-maxHeight-customPropOnly-ruleset);
+     };                    
+     @artwork-tabletBreakpoint-maxHeight-staticVarsOnly-ruleset: {       
+        max-width:~"calc((@{artwork-ratio-height} / @{artwork-ratio-width}) * 800px)";
+     };
+     @artwork-tabletBreakpoint-maxHeight-customPropOnly-ruleset: {
+        max-width:~"calc((var(--artwork-ratio-height) / var(--artwork-ratio-width)) * 800px)";
+     };
+
+     @artwork-tabletBreakpoint-minHeight-ruleset: {
+        
+     };
+     @artwork-tabletBreakpoint-minHeight-fallback-ruleset: {
+        #objects.masthead(artwork-tabletBreakpoint-minHeight-staticVarsOnly-ruleset);
+        #objects.masthead(artwork-tabletBreakpoint-minHeight-customPropOnly-ruleset);
+     };                    
+     @artwork-tabletBreakpoint-minHeight-staticVarsOnly-ruleset: {       
+        max-width:~"calc((@{artwork-ratio-height} / @{artwork-ratio-width}) * 1500px)";
+     };
+     @artwork-tabletBreakpoint-minHeight-customPropOnly-ruleset: {
+        max-width:~"calc((var(--artwork-ratio-height) / var(--artwork-ratio-width)) * 1500px)";
+     };         
+  }
+}

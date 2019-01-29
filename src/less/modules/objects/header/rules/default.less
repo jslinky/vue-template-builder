@@ -1,0 +1,87 @@
+
+
+#objects {
+  .header() {
+    @default-rules: {
+      .define-module-prop(header; text-transform; headerTextTransform);
+      .define-module-prop(header; line-height; headerLineHeight);
+      .define-module-prop(header; letter-spacing; headerLetterSpacing);
+      .define-module-prop(header; font-size; headerFontSize);
+      .define-module-prop(header; color; headerColor);
+      .define-module-prop(header; font-family; headerFontFamily);
+      .define-module-prop(header; font-weight; headerFontWeight);
+      .define-module-prop(header; font-style; headerFontStyle);
+      margin-bottom:0;
+      min-height:1rem;       
+      -webkit-text-size-adjust: 100%; 
+    };
+    @default-fallback-ruleset: {
+      margin-top: ~"calc( (@{spacing} * (@{lineHeight} / (@{lineHeight} /  @{headerOffsetMultiplyer}))) )";      
+      margin-top:~"calc((var(--spacing) * (var(--lineHeight) / (var(--lineHeight) / var(--headerOffsetMultiplyer)))))";
+    };
+    @default-staticVarsOnly-ruleset: {
+      margin-top: ~"calc( (@{spacing} * (@{lineHeight} / (@{lineHeight} /  @{headerOffsetMultiplyer}))) )";    
+    };    
+    @default-customPropOnly-ruleset: {
+      margin-top:~"calc((var(--spacing) * (var(--lineHeight) / (var(--lineHeight) / var(--headerOffsetMultiplyer)))))";
+    };
+    @secondaryFont-ruleset: {
+      --headerFontFamily: var(--headerSecondaryFontFamily);
+    };
+    @secondaryFont-fallback-ruleset: {
+      font-family:@headerSecondaryFontFamily;
+      font-family:var(--headerSecondaryFontFamily);
+    };   
+    @secondaryFont-staticVarsOnly-ruleset: {
+      font-family:@headerSecondaryFontFamily;
+    };        
+    @inverted-ruleset: {
+      
+    };
+    @inverted-fallback-ruleset: {
+      color: @invertedTextColor;
+      color: var(--headerColor);
+    }; 
+    @inverted-staticVarsOnly-ruleset: {
+      color: @invertedTextColor;
+    };           
+    @inverted-customPropOnly-ruleset: {
+      --headerColor: @invertedTextColor;
+    };               
+    @letter-spacing-uppercase-ruleset: {
+      --headerTextTransform: uppercase;      
+      --headerLetterSpacingMultiplyer: @headerLetterSpacingCaps;
+    };
+    @letter-spacing-uppercase-fallback-ruleset: {
+      letter-spacing: @headerLetterSpacingCaps*@em;
+      letter-spacing: var(--headerLetterSpacing); 
+      @headerTextTransform: uppercase;
+      text-transform: @headerTextTransform;  
+      --headerTextTransform: @headerTextTransform;        
+      text-transform: var(--headerTextTransform);      
+    };     
+    @letter-spacing-uppercase-staticVarsOnly-ruleset: {    
+      @headerTextTransform: uppercase;
+      text-transform: @headerTextTransform;         
+      letter-spacing: @headerLetterSpacingCaps*@em;
+    };          
+    @letter-spacing-capatalise-ruleset: {
+      --headerLetterSpacingMultiplyer: @headerLetterSpacingNoCaps;
+    };     
+    @letter-spacing-capatalise-fallback-ruleset: {
+      @headerTextTransform: none;
+      text-transform: @headerTextTransform;  
+      --headerTextTransform: @headerTextTransform;        
+      text-transform: var(--headerTextTransform);
+      letter-spacing: @headerLetterSpacingNoCaps*@em; 
+      letter-spacing: var(--headerLetterSpacing); 
+    };        
+    @letter-spacing-capatalise-staticVarsOnly-ruleset: {
+      @headerTextTransform: none;
+      text-transform: @headerTextTransform;  
+      letter-spacing: @headerLetterSpacingNoCaps*@em; 
+    };
+  }
+}
+
+

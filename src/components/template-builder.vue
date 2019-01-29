@@ -59,7 +59,7 @@ export default {
       this.joke = joke.data.joke      
     },
     newItem() {
-      let clone = JSON.parse(JSON.stringify(itemClass));
+      let clone = this.$stringObj(itemClass);
       clone.id = 'item-' + this.items.length;
       let itemsLength = this.items.push(clone);      
       itemsLength;

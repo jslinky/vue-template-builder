@@ -1,0 +1,26 @@
+
+.refinements-holder h3 {
+  text-transform: uppercase;
+}
+
+h1.category-name,
+.search-results-count .results-search-phrase,
+.articles-holder > .content-header { &:extend([class*="-hdr"][class*="--md"]); }
+
+.wrapper_content .primary-content {
+  h1.category-name,
+  .search-results-count .results-search-phrase,
+  .articles-holder > .content-header { margin-top:0; }
+}
+
+// Item heading
+.tile-footer .product-name h2 { &:extend([class*="-hdr"]); }
+// Item heading link
+.tile-footer .product-name h2 a { color:#222 }
+
+.product-pricing,
+.last-visited .product-name a,
+.last-visited .product-price {  
+  #objects.header-variables();
+  font-size:@hTiny;
+}

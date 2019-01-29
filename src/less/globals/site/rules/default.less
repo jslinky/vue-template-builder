@@ -1,0 +1,139 @@
+
+
+
+
+#global {
+  .site() {   
+    @html-body-ruleset: {
+        height: 100%;
+    };   
+    @html-ruleset: {
+        .define-module-prop(site; font-size; fontSizeRootPixel);
+        box-sizing: border-box;
+    };
+    @catch-all-inc-before-and-after-ruleset: {
+        box-sizing: inherit;
+    };
+    @body-ruleset: { 
+        margin:0;
+        padding:0;
+        min-width:~"calc(@{body-minWidth} * 1px)";
+        .define-module-prop(site; font-size; fontSize);
+        .define-module-prop(site; line-height; lineHeight);
+        .define-module-prop(site; font-family; body-fontFamily);
+        .define-module-prop(site; background; body-backgroundColor);
+        .define-module-prop(site; font-weight; body-fontWeight);
+        .define-module-prop(site; color; body-color);
+        .define-module-prop(site; letter-spacing; body-letterSpacing; body-letterSpacingFallback);
+        font-smooth: @body-fontSmoothing;
+        -webkit-font-smoothing: @body-fontSmoothing-webkit;
+        -moz-osx-font-smoothing: @body-fontSmoothing-moz;         
+    };
+    @paragraph-ruleset: {
+        .define-module-prop(site; font-size; paragraphFontSize);
+        .define-module-prop(site; letter-spacing; paragraphLetterSpacing);
+        .define-module-prop(site; margin-top; paragraphSpacing);
+        .define-module-prop(site; margin-bottom; paragraphSpacing);
+        .define-module-prop(site; line-height; paragraphLineHeight);
+        -webkit-text-size-adjust: 100%;
+    };
+    @main-element-ruleset: {
+        display:block!important; /*IE fix*/
+    };
+    @selection-highlight-ruleset: {
+        // background-color: @highlightBackground;
+        // color: @highlightColor;
+    };
+    @form-selection-highlight-ruleset: {
+        // background-color: @inputHighlightBackground;
+        // color: @inputHighlightColor;
+    };
+    @link-ruleset: {
+        cursor: pointer;  
+        .output() when (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+        // just custom props
+        #global.site(link-customPropOnly-ruleset);
+        }
+        .output() when (@customPropFallback = true) and (@static-variables-only = false) {
+        // fallback
+        #global.site(link-fallback-ruleset);
+        }    
+        .output() when (@static-variables-only = true) {
+        // just static vars
+        #global.site(link-staticVarsOnly-ruleset);
+        }        
+        .output();             
+    };
+    @link-fallback-ruleset: {
+        #global.site(link-staticVarsOnly-ruleset);
+        #global.site(link-customPropOnly-ruleset);
+    };    
+    @link-staticVarsOnly-ruleset: {
+        color: @@linkColor;
+        text-decoration: @linkDecoration;
+        box-shadow: @linkShadow;      
+    };
+    @link-customPropOnly-ruleset: {
+        color: var(--linkColor);
+        text-decoration: var(--linkDecoration);
+        box-shadow: var(--linkShadow); 
+    };
+
+    @link-hover-ruleset: {                     
+        .output() when (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+            // just custom props
+            #global.site(link-hover-customPropOnly-ruleset);
+        }
+        .output() when (@customPropFallback = true) and (@static-variables-only = false) {
+            // fallback
+            #global.site(link-hover-fallback-ruleset);
+        }    
+        .output() when (@static-variables-only = true) {
+            // just static vars
+            #global.site(link-hover-staticVarsOnly-ruleset);
+        }        
+        .output();
+    };
+    @link-hover-fallback-ruleset: {
+        #global.site(link-hover-staticVarsOnly-ruleset);
+        #global.site(link-hover-customPropOnly-ruleset);
+        #global.site(link-customPropOnly-ruleset);        
+        content:'fallback';
+    };    
+    @link-hover-staticVarsOnly-ruleset: {
+        color: @@link-hoverColor;
+        text-decoration: @link-hoverDecoration;
+        box-shadow: @link-hoverShadow;    
+        content:'static';  
+    };
+    @link-hover-customPropOnly-ruleset: {
+        --linkColor: var(--link-hoverColor);
+        --linkDecoration: var(--link-hoverDecoration);
+        --linkShadow:var(--link-hoverShadow); 
+        content:'props';
+    };
+    // Lists
+    @list-ruleset: {
+        .define-module-prop(site; font-family; listFont);
+        .define-module-prop(site; font-size; listFontSize; @listFontSize);
+        .define-module-prop(site; margin; listMargin; listMarginFallback);
+        .define-module-prop(site; line-height; listLineHeight; listLineHeightFallback);
+        .define-module-prop(site; list-style-type; listStyleType);
+        .define-module-prop(site; list-style-position; listStylePosition);
+        -webkit-text-size-adjust: 100%;
+    };
+    @list-customPropOnly-ruleset: { };
+    @list-fallback-ruleset: { };
+    @list-staticVarsOnly-ruleset: { };
+    // List Item
+    @listItem-ruleset: {
+        .define-module-prop(site; letter-spacing; listItem-letterSpacing; listItem-letterSpacingFallback);
+        .define-module-prop(site; padding; listItem-padding);
+        .define-module-prop(site; margin; listItem-margin);
+    };
+    @listItem-customPropOnly-ruleset: { };
+    @listItem-fallback-ruleset: { };
+    @listItem-staticVarsOnly-ruleset: { };    
+
+  }
+}

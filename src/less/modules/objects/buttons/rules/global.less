@@ -1,0 +1,297 @@
+//*******************************
+//    Ruleset calls
+//*******************************
+// These top level button type rulesets are called from the .create-button() mixin.
+// They call an inner ruleset which generate the styles for each button type.
+
+//-------------------
+//  CORE button type rulesets
+//--------------------
+
+#objects {
+  .button-type() {    
+    // Global button style / layout
+    /////////////////////////
+    @layout: { #objects.button-type(layout-ruleset); };
+    // Generate every button style for additional colours
+    /////////////////////////    
+    @every-btn-type: {
+      #objects.button-type(default-btn-type);
+      &.o-btn--primary { #objects.button-type(primary-btn-type); }
+      &.o-btn--primary.inverted { #objects.button-type(primary-btn-type-inverted); }
+      &.o-btn--basic { #objects.button-type(basic-btn-type); }
+    };
+    // Default button style
+    /////////////////////////
+    @default-btn-type: { 
+      // No default rules - only matching statement extends. Can redefine in overrides
+    };  
+    // Default button style - inverted
+    /////////////////////////    
+    @default-btn-type-inverted: {
+      // No default rules - only matching statement extends. Can redefine in overrides
+    };
+    // Remove default border
+    /////////////////////////
+    @default-btn-type-noBorder: { 
+      // No default rules - only matching statement extends. Can redefine in overrides
+    };        
+    // Disabled state
+    /////////////////////////    
+    @disabled: {
+      #objects.button-type(disabled-ruleset);
+    };
+    // Primary button style
+    /////////////////////////
+    @primary-btn-type: { 
+      // No default rules - only matching statement extends. Can redefine in overrides
+    };
+    // Inverted
+    @primary-btn-type-inverted: { 
+      // No default rules - only matching statement extends. Can redefine in overrides
+    };    
+    // Basic button style
+    /////////////////////////    
+    @basic-btn-type: { 
+      // No default rules - only matching statement extends. Can redefine in overrides
+    };
+    @basic-btn-type-inverted: { 
+      // No default rules - only matching statement extends. Can redefine in overrides
+    };
+    // Secondary button style
+    /////////////////////////     
+    @secondary-btn-type: { #objects.button-type(secondary-btn-type-ruleset); };  
+    // Link style
+    /////////////////////////     
+    @link-btn-type: { #objects.button-type(link-btn-type-ruleset); }; 
+    @link-btn-type-underline: { #objects.button-type(link-btn-type-underline-ruleset); };      
+    @link-btn-type-inverted: { 
+      #objects.button-type(link-btn-type-inverted-ruleset);       
+    };
+    // Button underline element
+    /////////////////////////     
+    @underline: { #objects.button-type(underline-ruleset); };
+    @underline-hover: { 
+      // No default rules - only matching statement extends. Can redefine in overrides
+    };
+    @underline-element: { 
+      &:extend(.o-btn:after); 
+    };    
+    // Button icon element
+    /////////////////////////         
+    @icon: { #objects.button-type(icon-ruleset); };
+    @icon-left-aligned: { #objects.button-type(icon-left-aligned-ruleset); };
+    @icon-right-aligned: { #objects.button-type(icon-right-aligned-ruleset); };
+    // Button size
+    /////////////////////////         
+    @small-size: { 
+      #objects.button-type(small-size-ruleset);
+    };    
+    @large-size: {  
+      #objects.button-type(large-size-ruleset);
+    };        
+  }
+}
+
+//-------------------
+//  EXTEND(ED) core button type ruleset with fallbacks
+//--------------------
+
+#objects {
+  // Global button style / layout
+  /////////////////////////  
+  .button-type(layout) { 
+    .output-rules(layout; button);
+  }
+
+  // Every button style
+  /////////////////////////    
+  // .button-type(every-btn-type) {
+  //   #objects.button-type(default-btn-type);
+  //   &.o-btn--primary { #objects.button-type(primary-btn-type-ruleset-fallback); }
+  //   &.o-btn--primary.inverted { #objects.button-type(primary-btn-type-inverted-ruleset-fallback); }
+  //   &.o-btn--basic { #objects.button-type(basic-btn-type-ruleset-fallback); }
+  // }
+  // Default button style
+  /////////////////////////    
+  
+  .button-type(default-btn-type) { 
+    #objects.button-variables();
+    .output() when (@customPropFallback = false), (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+      #objects.button-type(default-btn-type-props-ruleset);
+      #objects.button-type(default-btn-type-hover-props-ruleset);
+    }
+    .output() when 
+    (@customPropFallback = true) and (@static-variables-only = false),
+    (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = true) {
+      #objects.button-type(default-btn-type-propsFallback-ruleset);
+      #objects.button-type(default-btn-type-hover-propsFallback-ruleset);
+    }    
+    .output() when (@static-variables-only = true) {
+      #objects.button-type(default-btn-type-vars-ruleset);
+      #objects.button-type(default-btn-type-hover-vars-ruleset);
+    }        
+    .output();
+  }
+
+  // Default button - inverted
+  ///////////////////////// 
+  .button-type(default-btn-type-inverted) {    
+    .output-rules(default-btn-type-inverted; button);
+  }
+
+
+  // Default button - no border
+  /////////////////////////
+
+  .button-type(default-btn-type-noBorder) { 
+    .output-rules(default-btn-type-noBorder; button);
+  }
+
+  
+
+  // Primary button style
+  /////////////////////////    
+  
+  .button-type(primary-btn-type) { 
+    #objects.button-variables();
+    .output() when (@customPropFallback = false), (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+      #objects.button-type(primary-btn-type-props-ruleset);
+      #objects.button-type(primary-btn-type-hover-props-ruleset);    
+    }
+    .output() when 
+    (@customPropFallback = true) and (@static-variables-only = false),
+    (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = true) {
+      #objects.button-type(primary-btn-type-propsFallback-ruleset);
+      #objects.button-type(primary-btn-type-hover-propsFallback-ruleset);
+    }    
+    .output() when (@static-variables-only = true) {
+      #objects.button-type(primary-btn-type-vars-ruleset);
+      #objects.button-type(primary-btn-type-hover-vars-ruleset);    
+    }       
+    .output(); 
+  }
+
+
+
+  .button-type(primary-btn-type-inverted) { 
+    #objects.button-variables();
+    .output() when (@customPropFallback = false), (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+      #objects.button-type(primary-btn-type-inverted-props-ruleset);
+      #objects.button-type(primary-btn-type-inverted-hover-props-ruleset);    
+    }
+    .output() when 
+    (@customPropFallback = true) and (@static-variables-only = false),
+    (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = true) {
+      #objects.button-type(primary-btn-type-inverted-propsFallback-ruleset);
+      #objects.button-type(primary-btn-type-inverted-hover-propsFallback-ruleset);
+    }    
+    .output() when (@static-variables-only = true) {
+      #objects.button-type(primary-btn-type-inverted-vars-ruleset);
+      #objects.button-type(primary-btn-type-inverted-hover-vars-ruleset);    
+    }        
+    .output();
+  }
+
+  // Basic button style
+  /////////////////////////    
+
+  .button-type(basic-btn-type) { 
+    #objects.button-variables();
+    .output() when (@customPropFallback = false), (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
+      #objects.button-type(basic-btn-type-props-ruleset);
+      #objects.button-type(basic-btn-type-hover-props-ruleset);    
+    }
+    .output() when 
+    (@customPropFallback = true) and (@static-variables-only = false),
+    (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = true) {
+      #objects.button-type(basic-btn-type-propsFallback-ruleset);
+      #objects.button-type(basic-btn-type-hover-propsFallback-ruleset);
+    }    
+    .output() when (@static-variables-only = true) {
+      #objects.button-type(basic-btn-type-vars-ruleset);
+      #objects.button-type(basic-btn-type-hover-vars-ruleset);    
+    }    
+    .output();    
+  }
+
+
+  .button-type(basic-btn-type-inverted) {   
+    .output-rules(basic-btn-type-inverted; button);    
+  }
+
+  // Secondary button style
+  /////////////////////////    
+  // .button-type(secondary-btn-type) {
+  //   #objects.button-type(secondary-btn-type-ruleset-fallback);
+  // };  
+
+  // Link button style
+  /////////////////////////    
+  .button-type(link-btn-type) { 
+    .output-rules(link-btn-type; button);      
+  }
+
+  // Underline 
+  
+  .button-type(link-btn-type-underline) { 
+    .output-rules(link-btn-type-underline; button);
+  }
+
+
+  // Button underline element
+  /////////////////////////  
+  .button-type(underline) {  
+    .output-rules(underline; button); 
+  }
+  
+  .button-type(underline-hover) { 
+    .output-rules(underline-hover; button);
+  }
+
+  .button-type(underline-element) { 
+    .output-rules(underline-element; button);     
+  }
+
+
+}
+
+//-------------------
+//  OVERRIDE core ruleset
+//  If you need to override / extend any core framework rulesets
+//--------------------
+
+@import "overrides/config.less";
+
+
+#objects {
+  .button-type(@item) {
+    #objects.button-variables();
+    #objects.button-type();
+    @rules: @@item;
+    @rules();
+  }
+  .button-variables(@item) {
+    #objects.button-variables();
+    @rules: @@item;
+    @rules();
+  }  
+}
+
+
+
+
+
+
+
+// REFACTOR BELOW
+
+// CORE button related rulesets
+#objects {
+  .button() {
+    // This .text-shadow() is referenced in header.less - refactor
+    .text-shadow() {
+      text-shadow: @invertedTextShadow;
+    }
+  }
+}

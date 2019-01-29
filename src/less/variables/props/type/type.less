@@ -1,0 +1,77 @@
+
+//*******************************
+//    Font Custom Prop Rulesets
+//*******************************
+
+//-------------------
+//  Font props
+//--------------------
+
+#props {
+  .type() {
+    @font-size: {
+      // Set root font size in pixels for use in html element
+      --fontSizeRootPixel                           : unit(@fontSizeRoot, px);
+      // Var created for calc in determing body font size in REM [based on px value] - should match prop above
+      --fontSizeRoot                                : @fontSizeRoot; 
+      // Value of default body font size [based on px value]
+      --fontSizeBody                                : @fontSizeBody;
+      // calc for determining body font size in REM
+      --fontSize                                    : ~"calc("var(--fontSizeBody) ~"/" var(--fontSizeRoot) ~"* 1rem)";
+      // calc for determining body font size in EM
+      --fontSizeRelative                            : ~"calc("var(--fontSizeBody) ~"/" var(--fontSizeRoot) ~"* 1em)";
+    };    
+    @element-font-declarations: {
+      --textColor                                   : @textColor;
+      // Paragraph
+      --paragraphFontSize                           : @paragraphFontSize;
+      --paragraphLetterSpacingVal                   : @paragraphLetterSpacingVal;
+      --paragraphLetterSpacing                      : ~"calc((var(--paragraphLetterSpacingVal) / var(--fontSizeRoot)) * 1rem)";
+      --paragraphSpacingMultiplyer                  : @paragraphSpacingMultiplyer;
+      --paragraphSpacing                            : ~"calc(var(--paragraphSpacingMultiplyer) * var(--spacing))";
+      --paragraphLineHeight                         : @paragraphLineHeight;         
+    };
+
+  }
+}
+
+//*******************************
+//   Classes used for extending properties
+//*******************************
+
+//-------------------
+//  Type
+//--------------------
+#props {
+  .type-props-font-size { #props.type(font-size); }
+  .type-props-element-fonts { #props.type(element-font-declarations); }
+  .type-props-site {
+    #props.type-props-font-size;
+    #props.type-props-element-fonts;
+  }
+}
+
+.type-props-site { #props.type-props-site; }
+
+
+//*******************************
+//   DEFINE MIXIN
+//*******************************
+
+#props {
+  .type(@item) {
+      #props.type();
+      // #objects.type-variables();
+      @rules: @@item;
+      @rules();
+  }
+}
+
+
+
+
+
+
+
+
+

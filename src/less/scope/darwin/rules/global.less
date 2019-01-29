@@ -1,0 +1,1357 @@
+
+//*******************************
+//    Ruleset calls
+//*******************************
+
+//-------------------
+//  CORE item rules
+//--------------------
+
+#scope {
+    .darwin() {    
+      //*******************************
+      //  Functional states
+      //*******************************    
+      //-------------------
+      //   is-transparent
+      //--------------------      
+      @is-transparent-pageContainer: { 
+        #scope.darwin(is-transparent-pageContainer-ruleset);
+       };   
+      //-------------------
+      //   not: is-transparent
+      //--------------------                
+      @not-is-transparent-headerSizer: {
+          #scope.darwin(not-is-transparent-headerSizer-ruleset);
+      };
+      //-------------------
+      //   is-transparent && transparent
+      //--------------------                
+      @is-transparent-transparent-headerNotHover: {
+          #scope.darwin(is-transparent-transparent-headerNotHover-ruleset);
+      };
+      @is-transparent-transparent-navNotHover-headerItems: {
+          #scope.darwin(is-transparent-transparent-navNotHover-headerItems-ruleset);
+      };
+      @is-transparent-transparent-headerNotHover-primaryMenuBagSpan: {
+          #scope.darwin(is-transparent-transparent-headerNotHover-primaryMenuBagSpan-ruleset);
+      };
+      //-------------------
+      //   is-transparent && not:transparent
+      //--------------------     
+  
+      //-------------------
+      //   is-transparent && is-visible-bannerSlot-beforeHeader
+      //--------------------            
+      // Site Banner (after)
+      @is-transparent-is-visibleBannerBefore-bannerAfter: {
+          #scope.darwin(is-transparent-is-visibleBannerBefore-bannerAfter-ruleset);
+      };
+      //-------------------
+      //   not:is-transparent && is-visible-bannerSlot-beforeHeader
+      //--------------------  
+      @not-transparent-is-visibleBannerBefore-headerSizer: {
+          #scope.darwin(not-transparent-is-visibleBannerBefore-headerSizer-ruleset);
+      };
+  
+      //-------------------
+      //   is-transparent && not: is-visible-bannerSlot-beforeHeader
+      //--------------------       
+      // Site Banner (after) 
+      @is-transparent-not-is-visibleBannerBefore-bannerAfter: {
+          #scope.darwin(is-transparent-not-is-visibleBannerBefore-bannerAfter-ruleset);
+      };
+      //-------------------
+      //   is-transparent && is-primaryPanelActive
+      //--------------------    
+      // Site Header
+      @is-transparent-is-primaryPanelActive-headerNotHover: {
+          #scope.darwin(is-transparent-is-primaryPanelActive-headerNotHover-ruleset);
+      };
+      // Site Header Items
+      @is-transparent-is-primaryPanelActive-navNotHover-headerItems: {
+          #scope.darwin(is-transparent-is-primaryPanelActive-navNotHover-headerItems-ruleset);
+      };
+      //-------------------
+      //   is-visible-bannerSlot-beforeHeader
+      //--------------------        
+      // Site Banner (before)
+      @is-visible-bannerSlot-beforeHeader-bannerBefore: {
+          #scope.darwin(is-visible-bannerSlot-beforeHeader-bannerBefore-ruleset);
+      };
+      // Site Header
+      @is-visible-bannerSlot-beforeHeader-header: {
+         #scope.darwin(is-visible-bannerSlot-beforeHeader-header-ruleset);
+      };
+      // Site Banner (after)
+      @is-visible-bannerSlot-beforeHeader-bannerAfter: {
+          #scope.darwin(is-visible-bannerSlot-beforeHeader-bannerAfter-ruleset);
+      };
+      // Primary Menu Panel
+      @is-visible-bannerSlot-beforeHeader-primaryMenuPanel: {
+          #scope.darwin(is-visible-bannerSlot-beforeHeader-primaryMenuPanel-ruleset);
+      };
+      //-------------------
+      //   not: is-visible-bannerSlot-beforeHeader
+      //--------------------     
+      // Site Header
+      @not-visible-bannerSlot-beforeHeader-header: {
+          #scope.darwin(not-visible-bannerSlot-beforeHeader-header-ruleset);
+      };
+      // Site Banner (after)
+      @not-visible-bannerSlot-beforeHeader-bannerAfter: {
+          #scope.darwin(not-visible-bannerSlot-beforeHeader-bannerAfter-ruleset);
+      };
+      //-------------------
+      //   is-visible-bannerSlot-beforeHeader && .is-catNavTransIn
+      //--------------------         
+      // no default rules
+  
+      //-------------------
+      //   .is-catNavTransIn && is-primaryPanelActive
+      //--------------------         
+      // no default rules
+  
+      //-------------------
+      //   .is-catNavTransIn
+      //--------------------             
+      // no default rules
+  
+      //-------------------
+      //   .is-primaryPanelActive
+      //--------------------             
+      // no default rules
+  
+  
+      // is-noScrollTouch
+      ////////////////
+
+      //*******************************
+      //  Shared rulesets
+      //*******************************
+      @categoryMenuMaxWidth: {
+        #scope.darwin(categoryMenuMaxWidth-ruleset);
+      };      
+      @primaryMenuPanelMaxWidth: {
+        #scope.darwin(primaryMenuPanelMaxWidth-ruleset);
+      };      
+      //-------------------
+      //   BREAKPOINT - LARGE MOBILE BREAKPOINT
+      //--------------------  
+      //-------------------
+      //   not: is-transparent
+      //--------------------                
+      @not-is-transparent-headerSizer-largeMobileBreakpoint: {
+          #scope.darwin(not-is-transparent-headerSizer-largeMobileBreakpoint-ruleset);
+      };
+      //-------------------
+      //   is-visible-bannerSlot-beforeHeader
+      //--------------------        
+      // Primary Menu Panel
+      @is-visible-bannerSlot-beforeHeader-primaryMenuPanel-largeMobileBreakpoint: {
+          #scope.darwin(is-visible-bannerSlot-beforeHeader-primaryMenuPanel-largeMobileBreakpoint-ruleset);
+      };   
+
+      //-------------------
+      //   not: is-visible-bannerSlot-beforeHeader
+      //--------------------     
+      // Primary Menu Panel
+      @not-visible-bannerSlot-beforeHeader-primaryMenuPanel-largeMobileBreakpoint: {
+        #scope.darwin(not-visible-bannerSlot-beforeHeader-primaryMenuPanel-largeMobileBreakpoint-ruleset);
+    };        
+
+      //-------------------
+      //   BREAKPOINT - LARGEST STACKED SCREEN
+      //--------------------  
+  
+      //-------------------
+      //   not: is-visible-bannerSlot-beforeHeader
+      //--------------------     
+      // Primary Menu Panel
+      @not-visible-bannerSlot-beforeHeader-primaryMenuPanel-largestStackedScreen: {
+          #scope.darwin(not-visible-bannerSlot-beforeHeader-primaryMenuPanel-largestStackedScreen-ruleset);
+      };    
+      //-------------------
+      //   is-visible-bannerSlot-beforeHeader && .is-catNavTransIn
+      //--------------------         
+      // Page Container (Main)
+      @is-visible-bannerSlot-beforeHeader-is-catNavTransIn-pageContainer-largestStackedScreen: {
+          #scope.darwin(is-visible-bannerSlot-beforeHeader-is-catNavTransIn-pageContainer-largestStackedScreen-ruleset);
+      };    
+      @is-visible-bannerSlot-beforeHeader-is-catNavTransIn-categoryMenu-largestStackedScreen: {
+          #scope.darwin(is-visible-bannerSlot-beforeHeader-is-catNavTransIn-categoryMenu-largestStackedScreen-ruleset);
+      };
+      //-------------------
+      //   .is-catNavTransIn && is-primaryPanelActive
+      //--------------------         
+      // Category Menu
+      @is-catNavTransIn-is-primaryPanelActive-categoryMenu-largestStackedScreen: {
+          #scope.darwin(is-catNavTransIn-is-primaryPanelActive-categoryMenu-largestStackedScreen-ruleset);
+      };
+      // Category Menu Mobile Header Logo
+      @is-catNavTransIn-is-primaryPanelActive-catMenuHeaderLogo-largestStackedScreen: {
+          #scope.darwin(is-catNavTransIn-is-primaryPanelActive-catMenuHeaderLogo-largestStackedScreen-ruleset);
+      };
+      // Category Menu Mobile Header Close
+      @is-catNavTransIn-is-primaryPanelActive-catMenuHeaderClose-largestStackedScreen: {
+          #scope.darwin(is-catNavTransIn-is-primaryPanelActive-catMenuHeaderClose-largestStackedScreen-ruleset);
+      };   
+  
+      //-------------------
+      //   .is-catNavTransIn
+      //--------------------             
+      // Page container
+      @is-catNavTransIn-pageContainer-largestStackedScreen: {
+          #scope.darwin(is-catNavTransIn-pageContainer-largestStackedScreen-ruleset);
+      };
+      // Category Menu
+      @is-catNavTransIn-categoryMenu-largestStackedScreen: {
+          #scope.darwin(is-catNavTransIn-categoryMenu-largestStackedScreen-ruleset);
+      };
+      // Category Menu Active Header
+      @is-catNavTransIn-categoryMenuActiveHeader-largestStackedScreen: {
+          #scope.darwin(is-catNavTransIn-categoryMenuActiveHeader-largestStackedScreen-ruleset);
+      };
+      // Navigation:before
+      @is-catNavTransIn-navigationBefore-largestStackedScreen: {
+          #scope.darwin(is-catNavTransIn-navigationBefore-largestStackedScreen-ruleset);
+      };
+      // Category Menu Sub menu item
+      @is-catNavTransIn-subMenuItem-largestStackedScreen: {
+          #scope.darwin(is-catNavTransIn-subMenuItem-largestStackedScreen-ruleset);
+      };
+      // Primary Menu Panel (not visible)
+      @is-catNavTransIn-primaryMenuPanel-not-visible-largestStackedScreen: {
+          #scope.darwin(is-catNavTransIn-primaryMenuPanel-not-visible-largestStackedScreen-ruleset);
+      };
+      // Primary Menu Panel (visible)    
+      @is-catNavTransIn-primaryMenuPanel-is-visible-largestStackedScreen: {
+          #scope.darwin(is-catNavTransIn-primaryMenuPanel-is-visible-largestStackedScreen-ruleset);
+      };
+  
+      //-------------------
+      //   .is-primaryPanelActive
+      //--------------------             
+      // Navigation:before is shared with @is-catNavTransIn-navigationBefore-largestStackedScreen
+      // @is-primaryPanelActive-navigationBefore-largestStackedScreen: {
+      //     #scope.darwin(is-primaryPanelActive-navigationBefore-largestStackedScreen-ruleset);
+      // };    
+      @is-primaryPanelActive-navigationBefore-largestStackedScreen: {
+          #scope.darwin(is-primaryPanelActive-navigationBefore-largestStackedScreen-ruleset);        
+      };
+  
+      //-------------------
+      //   BREAKPOINT - TABLET
+      //--------------------  
+      
+      //-------------------
+      //   is-visible-bannerSlot-beforeHeader
+      //--------------------        
+      // Primary Menu Panel
+      @is-visible-bannerSlot-beforeHeader-primaryMenuPanel-tabletBreakpoint: {
+          #scope.darwin(is-visible-bannerSlot-beforeHeader-primaryMenuPanel-tabletBreakpoint-ruleset);
+      };    
+  
+      //*******************************
+      //  Elements
+      //*******************************
+      //-------------------
+      //   Darwin-related scoped modules
+      //--------------------    
+      @underlined-link: {
+          #scope.darwin(underlined-link-ruleset);
+      };
+      @underlined-linkAfter: {
+          #scope.darwin(underlined-linkAfter-ruleset);
+      };
+      @underlined-linkHoverAfter: {
+          #scope.darwin(underlined-linkHoverAfter-ruleset);
+      };    
+      //-------------------
+      //   Banner Slot
+      //--------------------       
+      @bannerSlot: {
+          #scope.darwin(bannerSlot-ruleset);
+      };
+      //-------------------
+      //   Banner Slot - Before Header
+      //--------------------  
+      @bannerSlotBefore: {
+          #scope.darwin(bannerSlotBefore-ruleset);
+      };
+      @bannerSlotBefore-article: {
+          #scope.darwin(bannerSlotBefore-article-ruleset);
+      };
+      @bannerSlotBefore-dismissButton: {
+          #scope.darwin(bannerSlotBefore-dismissButton-ruleset);
+      };    
+      //-------------------
+      //   Banner Slot - After Header
+      //--------------------      
+      @bannerSlotAfter: {
+          #scope.darwin(bannerSlotAfter-ruleset);
+      };
+      //-------------------
+      //   Site Header
+      //--------------------   
+      @site-header: {
+          #scope.darwin(site-header-ruleset);
+      };
+      //-------------------
+      //   Header Sizer
+      //--------------------      
+      @site-header-sizer: {
+          #scope.darwin(site-header-sizer-ruleset);
+      };
+      //-------------------
+      //   Logo SVG
+      //--------------------       
+      @logo-svg: {
+          #scope.darwin(logo-svg-ruleset);
+      };
+      //-------------------
+      //   Navigation Logo
+      //--------------------           
+      @navigation-logo: {
+          #scope.darwin(navigation-logo-ruleset);
+      };
+      //-------------------
+      //   Navigation
+      //--------------------       
+      @site-navigation: {
+          #scope.darwin(site-navigation-ruleset);
+      };
+      //-------------------
+      //   Category Menu
+      //--------------------    
+      @site-category-menu: {
+          #scope.darwin(site-category-menu-ruleset);
+      };
+      @site-category-menuInner: {
+          #scope.darwin(site-category-menuInner-ruleset);
+      };    
+      @site-category-menu-item: {
+          #scope.darwin(site-category-menu-item-ruleset);
+      };
+      @site-category-menu-itemHover: {
+          #scope.darwin(site-category-menu-itemHover-ruleset);
+      };
+      @site-category-menu-itemActive: {
+          #scope.darwin(site-category-menu-itemActive-ruleset);
+      };
+      @site-category-menu-itemSelected: {
+          #scope.darwin(site-category-menu-itemSelected-ruleset);
+      };
+      @site-category-menu-itemHoverSubMenu: {
+          #scope.darwin(site-category-menu-itemHoverSubMenu-ruleset);
+      };    
+      @site-category-menu-itemHoverTouchSubMenu: {
+          #scope.darwin(site-category-menu-itemHoverTouchSubMenu-ruleset);
+      };        
+      @site-category-menu-itemSVG: {
+          #scope.darwin(site-category-menu-itemSVG-ruleset);
+      };
+      @site-category-menu-itemLink: {
+          #scope.darwin(site-category-menu-itemLink-ruleset);
+      };
+      @site-category-menu-itemLinkSpan: {
+          #scope.darwin(site-category-menu-itemLinkSpan-ruleset);
+      };
+      @site-category-menu-itemLinkSpanAfter: {
+          #scope.darwin(site-category-menu-itemLinkSpanAfter-ruleset);
+      };    
+      @site-category-menu-itemNotHover-linkSpanAfter: {
+          #scope.darwin(site-category-menu-itemNotHover-linkSpanAfter-ruleset);
+      };
+      @site-category-subMenu: {
+          #scope.darwin(site-category-subMenu-ruleset);
+      };
+      @site-category-subMenuInner: {
+          #scope.darwin(site-category-subMenuInner-ruleset);
+      };
+      @site-category-subMenuLink: {
+          #scope.darwin(site-category-subMenuLink-ruleset);
+      };
+      @site-category-subMenuLinkSpan: {
+          #scope.darwin(site-category-subMenuLinkSpan-ruleset);
+      };    
+      @site-category-subMenuComputerLinkSpan: {
+          #scope.darwin(site-category-subMenuComputerLinkSpan-ruleset);
+      };       
+      @site-category-subMenuComputerLinkSpanAfter: {
+          #scope.darwin(site-category-subMenuComputerLinkSpanAfter-ruleset);
+      };
+      @site-category-subMenuComputerLinkHoverSpanAfter: {
+          #scope.darwin(site-category-subMenuComputerLinkHoverSpanAfter-ruleset);
+      };      
+      @site-category-subMenuHeader: {
+          #scope.darwin(site-category-subMenuHeader-ruleset);
+      };
+      @site-category-subMenuHeaderSize: {
+          #scope.darwin(site-category-subMenuHeaderSize-ruleset);
+      };
+      @site-category-subMenuLinkPlusHeader: {
+          #scope.darwin(site-category-subMenuLinkPlusHeader-ruleset);
+      };      
+      @site-category-subMenuHeaderGridSupport: {
+          #scope.darwin(site-category-subMenuHeaderGridSupport-ruleset);
+      };
+      @site-category-subMenuMobile: {
+          #scope.darwin(site-category-subMenuMobile-ruleset);
+      };
+      @site-category-subMenuMobileItem: {
+          #scope.darwin(site-category-subMenuMobileItem-ruleset);
+      };    
+      @site-category-subMenuMobileItemNotHeader: {
+        #scope.darwin(site-category-subMenuMobileItemNotHeader-ruleset);
+      };
+      @site-category-subMenuMobileItemNotHeaderLinkAfter: {
+        #scope.darwin(site-category-subMenuMobileItemNotHeaderLinkAfter-ruleset);
+      };          
+      @site-category-subMenuMobileItemActive: {
+          #scope.darwin(site-category-subMenuMobileItemActive-ruleset);
+      };            
+      @site-category-subMenuMobileItemNotActiveDiv: {
+          #scope.darwin(site-category-subMenuMobileItemNotActiveDiv-ruleset);
+      };        
+      @site-category-subMenuMobileItemDivDiv: {
+          #scope.darwin(site-category-subMenuMobileItemDivDiv-ruleset);
+      };        
+      @site-category-subMenuMobileItemDivDivLink: {
+          #scope.darwin(site-category-subMenuMobileItemDivDivLink-ruleset);
+      };
+      @site-category-subMenuMobile-header: {
+          #scope.darwin(site-category-subMenuMobile-header-ruleset);
+      };
+      @site-category-subMenuMobile-headerLink: {
+          #scope.darwin(site-category-subMenuMobile-headerLink-ruleset);
+      };
+      @site-category-subMenuMobile-headerLinkArrow: {
+          #scope.darwin(site-category-subMenuMobile-headerLinkArrow-ruleset);
+      };
+      @site-category-subMenuMobile-headerLinkFirstChildBefore: {
+          #scope.darwin(site-category-subMenuMobile-headerLinkFirstChildBefore-ruleset);
+      };
+      @site-category-subMenuMobile-headerLinkLastChildAfter: {
+          #scope.darwin(site-category-subMenuMobile-headerLinkLastChildAfter-ruleset);
+      };
+      @site-category-subMenuMobile-headerLinkLastChildNotOnly: {
+          #scope.darwin(site-category-subMenuMobile-headerLinkLastChildNotOnly-ruleset);
+      };
+      @site-category-subMenuMobile-header-heading: {
+          #scope.darwin(site-category-subMenuMobile-header-heading-ruleset);
+      };
+      @site-category-subMenuMobile-header-LinkPlusHeading: {
+          #scope.darwin(site-category-subMenuMobile-header-LinkPlusHeading-ruleset);
+      };
+      //-------------------
+      //   Category Menu Content Slot(s)
+      //--------------------        
+      @site-category-menuContentSlot: {
+          #scope.darwin(site-category-menuContentSlot-ruleset);
+      };
+      //-------------------
+      //   Category Menu Active Header (mobile)
+      //--------------------       
+      @catMenuActiveHeader-logo: {
+          #scope.darwin(catMenuActiveHeader-logo-ruleset);
+      };
+      @catMenuActiveHeader-logoSVG: {
+          #scope.darwin(catMenuActiveHeader-logoSVG-ruleset);
+      };    
+      @catMenuActiveHeader-searchInputBtn: {
+          #scope.darwin(catMenuActiveHeader-searchInputBtn-ruleset);
+      };        
+      @catMenuActiveHeader-head: {
+          #scope.darwin(catMenuActiveHeader-head-ruleset);
+      };
+      @catMenuActiveHeader-headClose: {
+          #scope.darwin(catMenuActiveHeader-headClose-ruleset);
+      };    
+      @catMenuActiveHeader-headCloseSVG: {
+          #scope.darwin(catMenuActiveHeader-headCloseSVG-ruleset);
+      };
+      @catMenuActiveHeader-items: {
+          #scope.darwin(catMenuActiveHeader-items-ruleset);
+      };
+      @catMenuActiveHeader-header: {
+          #scope.darwin(catMenuActiveHeader-header-ruleset);
+      };    
+      @catMenuActiveHeader-header-bannerSlot: {
+          #scope.darwin(catMenuActiveHeader-header-bannerSlot-ruleset);
+      };
+      //-------------------
+      //   Category Menu Footer Links
+      //--------------------            
+      @site-category-menuFooterLinks: {
+          #scope.darwin(site-category-menuFooterLinks-ruleset);
+      };
+      @site-category-menuFooterLinksUL: {
+          #scope.darwin(site-category-menuFooterLinksUL-ruleset);
+      };
+      @site-category-menuFooterLinksLI: {
+          #scope.darwin(site-category-menuFooterLinksLI-ruleset);
+      };
+      //-------------------
+      //   Currency Select
+      //--------------------           
+      @currencySelect: {
+          #scope.darwin(currencySelect-ruleset);
+      };
+      @currencySelectHeader: {
+          #scope.darwin(currencySelectHeader-ruleset);
+      };    
+      @currencySelectHeaderSVG: {
+          #scope.darwin(currencySelectHeaderSVG-ruleset);
+      };        
+      @currencySelectPadding: {
+          #scope.darwin(currencySelectPadding-ruleset);
+      };        
+      @currencySelectColor: {
+          #scope.darwin(currencySelectColor-ruleset);
+      };
+      @currencySelectItem: {
+          #scope.darwin(currencySelectItem-ruleset);
+      };    
+      @currencySelectItemAfter: {
+          #scope.darwin(currencySelectItemAfter-ruleset);
+      };        
+      @currencySelectItemActive: {
+          #scope.darwin(currencySelectItemActive-ruleset);
+      };        
+      @currencySelectNotActive-hide: {
+        #scope.darwin(currencySelectNotActive-hide-ruleset);
+      };
+      @currencySelectNotActive-show: {
+        #scope.darwin(currencySelectNotActive-hide-ruleset);
+      };      
+      //-------------------
+      //   Primary Menu 
+      //--------------------       
+      @primaryMenu: {
+        #scope.darwin(primaryMenu-ruleset);
+      };    
+      @primaryMenuItem: {
+        #scope.darwin(primaryMenuItem-ruleset);
+      };  
+      @primaryMenuItemSVG: {
+        #scope.darwin(primaryMenuItemSVG-ruleset);
+      };   
+      @primaryMenuItemAccountSVG: {
+        #scope.darwin(primaryMenuItemAccountSVG-ruleset);
+      };     
+      @primaryMenuItemBagSVG: {
+        #scope.darwin(primaryMenuItemBagSVG-ruleset);
+      };    
+      @primaryMenuItemBagLinkBefore: {
+        #scope.darwin(primaryMenuItemBagLinkBefore-ruleset);
+      };      
+      @primaryMenuItemBagLinkBeforePink: {
+        #scope.darwin(primaryMenuItemBagLinkBeforePink-ruleset);
+      };
+      @primaryMenuItemBagLinkSpan: {
+        #scope.darwin(primaryMenuItemBagLinkSpan-ruleset);
+      };      
+      @primaryMenuItemHover: {
+        #scope.darwin(primaryMenuItemHover-ruleset);
+      };
+      @primaryMenuItemActive: {
+        #scope.darwin(primaryMenuItemActive-ruleset);
+      };      
+      @primaryMenuItemSelected: {
+        #scope.darwin(primaryMenuItemSelected-ruleset);
+      };        
+      @primaryMenuItemLink: {
+        #scope.darwin(primaryMenuItemLink-ruleset);
+      };
+      @primaryMenuItemLinkAfter: {
+          #scope.darwin(primaryMenuItemLinkAfter-ruleset);
+      };
+      @primaryMenuItemLinkAfterTransparent: {
+        #scope.darwin(primaryMenuItemLinkAfterTransparent-ruleset);
+      };      
+      //-------------------
+      //   Active Menu Dimmer
+      //--------------------       
+      @active-menu-dimmer: {
+        #scope.darwin(active-menu-dimmer-ruleset);
+      };
+      //-------------------
+      //   Primary Menu Panel
+      //--------------------           
+      @primary-menu-panel: {
+        #scope.darwin(primary-menu-panel-ruleset);
+      };
+      @primary-menu-panel-is-visible: {
+        #scope.darwin(primary-menu-panel-is-visible-ruleset);
+      };
+      @primary-menu-panel-wrapper: {
+        #scope.darwin(primary-menu-panel-wrapper-ruleset);
+      };
+      @primary-menu-panel-SVG: {
+        #scope.darwin(primary-menu-panel-SVG-ruleset);
+      };    
+      @primary-menu-panel-select: {
+        #scope.darwin(primary-menu-panel-select-ruleset);
+      };
+      @primary-menu-panel-panel: {
+        #scope.darwin(primary-menu-panel-panel-ruleset);
+      };
+      @primary-menu-panel-header: {
+        #scope.darwin(primary-menu-panel-header-ruleset);
+      };
+      @primary-menu-panel-header-close: {
+        #scope.darwin(primary-menu-panel-header-close-ruleset);
+      };
+      @primary-menu-panel-h2: {
+        #scope.darwin(primary-menu-panel-h2-ruleset);
+      };
+      @primary-menu-panel-h2Sizing: {
+        #scope.darwin(primary-menu-panel-h2Sizing-ruleset);
+      };     
+      @primary-menu-panel-productContainer: {
+        #scope.darwin(primary-menu-panel-productContainer-ruleset);
+      };
+      @primary-menu-panel-productContainerLink: {
+        #scope.darwin(primary-menu-panel-productContainerLink-ruleset);
+      };
+      @primary-menu-panel-productContainerLinkSVG: {
+        #scope.darwin(primary-menu-panel-productContainerLinkSVG-ruleset);
+      };     
+      @primary-menu-panel-productContainerLinkFirstChild: {
+        #scope.darwin(primary-menu-panel-productContainerLinkFirstChild-ruleset);
+      };
+      @primary-menu-panel-productContainerLinkLastChild: {
+        #scope.darwin(primary-menu-panel-productContainerLinkLastChild-ruleset);
+      };  
+      @primary-menu-panel-productContainerInner: {
+        #scope.darwin(primary-menu-panel-productContainerInner-ruleset);
+      };            
+      @primary-menu-panel-productItem: {
+        #scope.darwin(primary-menu-panel-productItem-ruleset);
+      };
+      @primary-menu-panel-productItemFigure: {
+        #scope.darwin(primary-menu-panel-productItemFigure-ruleset);
+      };    
+      @primary-menu-panel-productItemImage: {
+        #scope.darwin(primary-menu-panel-productItemImage-ruleset);
+      };
+      @primary-menu-panel-productItemHeadings: {
+        #scope.darwin(primary-menu-panel-productItemHeadings-ruleset);
+      };
+      @primary-menu-panel-productItemHeadingsSize: {
+        #scope.darwin(primary-menu-panel-productItemHeadingsSize-ruleset);
+      };              
+      @primary-menu-panel-productItemHeadingH2: {
+        #scope.darwin(primary-menu-panel-productItemHeadingH2-ruleset);
+      }; 
+      @primary-menu-panel-productItemHeadingH3: {
+        #scope.darwin(primary-menu-panel-productItemHeadingH3-ruleset);
+      }; 
+      @primary-menu-panel-productItemFigcaption: {
+        #scope.darwin(primary-menu-panel-productItemFigcaption-ruleset);
+      };                    
+      @primary-menu-panel-stock: {
+        #scope.darwin(primary-menu-panel-stock-ruleset);
+      };
+      @primary-menu-panel-priceOriginal: {
+        #scope.darwin(primary-menu-panel-priceOriginal-ruleset);
+      };
+      @primary-menu-panel-priceSale: {
+        #scope.darwin(primary-menu-panel-priceSale-ruleset);
+      };      
+      @primary-menu-panel-productChildSiblingOffset: {
+        #scope.darwin(primary-menu-panel-productChildSiblingOffset-ruleset);
+      };
+      @primary-menu-panel-priceTotal: {
+        #scope.darwin(primary-menu-panel-priceTotal-ruleset);
+      };      
+      @primary-menu-panel-priceTotal-priceFooter: {
+        #scope.darwin(primary-menu-panel-priceTotal-priceFooter-ruleset);
+      };                        
+      @primary-menu-panel-priceFooter: {
+        #scope.darwin(primary-menu-panel-priceFooter-ruleset);
+      };       
+      @primary-menu-panel-priceFooterLink: {
+        #scope.darwin(primary-menu-panel-priceFooterLink-ruleset);
+      };                                    
+      @primary-menu-panel-priceFooterLinkAfter: {
+        #scope.darwin(primary-menu-panel-priceFooterLinkAfter-ruleset);
+      };
+      @primary-menu-panel-price: {
+        #scope.darwin(primary-menu-panel-price-ruleset);
+      };          
+      @primary-menu-panel-priceTotal-plus-cta: {
+        #scope.darwin(primary-menu-panel-priceTotal-plus-cta-ruleset);
+      };
+      @primary-menu-panel-cta: {
+        #scope.darwin(primary-menu-panel-cta-ruleset);
+      };                        
+      @primary-menu-panel-ctaLink: {
+        #scope.darwin(primary-menu-panel-ctaLink-ruleset);
+      };                                               
+      @primary-menu-panel-ctaLinkFirstChild: {
+        #scope.darwin(primary-menu-panel-ctaLinkFirstChild-ruleset);
+      };
+      @primary-menu-panel-ctaLinkLastChild: {
+        #scope.darwin(primary-menu-panel-ctaLinkLastChild-ruleset);
+      };            
+      @primary-menu-panel-cta-plus-bannerSlot: {
+        #scope.darwin(primary-menu-panel-cta-plus-bannerSlot-ruleset);
+      };                                                     
+      @primary-menu-panel-accountLoggedInCtaLink: {
+          #scope.darwin(primary-menu-panel-accountLoggedInCtaLink-ruleset);
+      };
+      @primary-menu-panel-accountLoggedInCtaLink-plus-link: {
+          #scope.darwin(primary-menu-panel-accountLoggedInCtaLink-plus-link-ruleset);
+      };      
+      @primary-menu-panel-accountLoggedInCtaLinkFirstChild-link: {
+          #scope.darwin(primary-menu-panel-accountLoggedInCtaLinkFirstChild-link-ruleset);
+      };           
+      @primary-menu-panel-accountLoggedInCtaLinkLastChild-link: {
+          #scope.darwin(primary-menu-panel-accountLoggedInCtaLinkLastChild-link-ruleset);
+      };                  
+      //-------------------
+      //   Site Footer
+      //--------------------           
+      @site-footer: {
+        #scope.darwin(site-footer-ruleset);
+      };
+      @site-footerInner: {
+        #scope.darwin(site-footerInner-ruleset);
+      };      
+      @site-footerFooter: {
+        #scope.darwin(site-footerFooter-ruleset);
+      };
+      @site-footerH2: {
+        #scope.darwin(site-footerH2-ruleset);
+      };
+      @site-footerH2Size: {
+        #scope.darwin(site-footerH2Size-ruleset);
+      };
+      @site-footerColumn: {
+        #scope.darwin(site-footerColumn-ruleset);
+      };      
+      @site-footerLink: {
+        #scope.darwin(site-footerLink-ruleset);
+      };    
+      @site-footerLink-plus-link: {
+        #scope.darwin(site-footerLink-plus-link-ruleset);
+      };                  
+      @site-footerColumn-h2: {
+        #scope.darwin(site-footerColumn-h2-ruleset);
+      };   
+      @site-footerColumn2: {
+        #scope.darwin(site-footerColumn2-ruleset);
+      };
+      @site-footerColumnForm: {
+        #scope.darwin(site-footerColumnForm-ruleset);
+      };                     
+      @site-footerColumn-button: {
+        #scope.darwin(site-footerColumn-button-ruleset);
+      };               
+      @siteFooter-sharedFlexContainer: {
+        #scope.darwin(siteFooter-sharedFlexContainer-ruleset);
+      };            
+      @siteFooter-social: {
+        #scope.darwin(siteFooter-social-ruleset);
+      };
+      @siteFooter-social-ul: {
+        #scope.darwin(siteFooter-social-ul-ruleset);
+      };
+      @siteFooter-social-h3: {
+        #scope.darwin(siteFooter-social-h3-ruleset);
+      };       
+      @siteFooter-social-h3Sizing: {
+        #scope.darwin(siteFooter-social-h3Sizing-ruleset);
+      };
+      @siteFooter-social-li: {
+        #scope.darwin(siteFooter-social-li-ruleset);
+      };               
+      @siteFooter-social-link: {
+        #scope.darwin(siteFooter-social-link-ruleset);
+      };        
+      @siteFooter-social-svg: {
+        #scope.darwin(siteFooter-social-svg-ruleset);
+      };                      
+
+      //-------------------
+      //   BREAKPOINT - LARGES MOBILE BREAKPOINT
+      //--------------------        
+      @site-header-largeMobileBreakpoint: {
+        #scope.darwin(site-header-largeMobileBreakpoint-ruleset);
+      };
+      //-------------------
+      //   BREAKPOINT - LARGEST STACKED SCREEN
+      //--------------------        
+      //-------------------
+      //   Navigation
+      //--------------------        
+      @site-navigation-largestStackedScreen: {
+        #scope.darwin(site-navigation-largestStackedScreen-ruleset);
+      };
+      @site-navigation-logo-primaryMenu-shared-fixed-largestStackedScreen: {
+        #scope.darwin(site-navigation-logo-primaryMenu-shared-fixed-largestStackedScreen-ruleset);
+      };
+      @site-navigation-logo-largestStackedScreen: {
+        #scope.darwin(site-navigation-logo-largestStackedScreen-ruleset);
+      };      
+      //-------------------
+      //   Category Menu
+      //--------------------        
+      @site-category-menu-largestStackedScreen: {
+        #scope.darwin(site-category-menu-largestStackedScreen-ruleset);
+      };    
+      @site-category-menu-catActiveHeader-transformOffScreen-largestStackedScreen: {
+        #scope.darwin(site-category-menu-catActiveHeader-transformOffScreen-largestStackedScreen-ruleset);
+      };
+      @site-category-menuInner-largestStackedScreen: {
+        #scope.darwin(site-category-menuInner-largestStackedScreen-ruleset);
+      };
+      @site-category-menuInner-not-is-index-largestStackedScreen: {
+        #scope.darwin(site-category-menuInner-not-is-index-largestStackedScreen-ruleset);
+      };      
+      @site-category-menuInner-is-index-largestStackedScreen: {
+        #scope.darwin(site-category-menuInner-is-index-largestStackedScreen-ruleset);
+      };            
+      @site-category-menuItem-largestStackedScreen: {
+        #scope.darwin(site-category-menuItem-largestStackedScreen-ruleset);
+      };
+      @site-category-menuItemLink-largestStackedScreen: {
+        #scope.darwin(site-category-menuItemLink-largestStackedScreen-ruleset);
+      };
+      @site-category-menuItemLinkSpan-largestStackedScreen: {
+        #scope.darwin(site-category-menuItemLinkSpan-largestStackedScreen-ruleset);
+      };      
+      @site-category-menuItemLinkSpanAfter-largestStackedScreen: {
+        #scope.darwin(site-category-menuItemLinkSpanAfter-largestStackedScreen-ruleset);
+      };      
+      @site-category-menuItemsColour-largestStackedScreen: {
+        #scope.darwin(site-category-menuItemsColour-largestStackedScreen-ruleset);
+      };      
+      @site-category-menuItemsHoverColour-largestStackedScreen: {
+        #scope.darwin(site-category-menuItemsHoverColour-largestStackedScreen-ruleset);
+      };            
+      @site-category-menuItemLinkSpan-largestStackedScreen: {
+        #scope.darwin(site-category-menuItemLinkSpan-largestStackedScreen-ruleset);
+      };           
+      @site-category-menuItemLinkSpan-largestStackedScreen: {
+        #scope.darwin(site-category-menuItemLinkSpan-largestStackedScreen-ruleset);
+      };       
+      @site-category-menuItemLinkSpanAfter-largestStackedScreen: {
+        #scope.darwin(site-category-menuItemLinkSpanAfter-largestStackedScreen-ruleset);
+      };             
+      @site-category-menuItem-signInAccount-largestStackedScreen: {
+        #scope.darwin(site-category-menuItem-signInAccount-largestStackedScreen-ruleset);
+      };
+      @site-category-menuItem-signInAccountSVG-largestStackedScreen: {
+        #scope.darwin(site-category-menuItem-signInAccountSVG-largestStackedScreen-ruleset);
+      };      
+      @site-category-menuItem-signInAccountLink-largestStackedScreen: {
+        #scope.darwin(site-category-menuItem-signInAccountLink-largestStackedScreen-ruleset);
+      };            
+      @site-category-menuItem-lastOfType2-largestStackedScreen: {
+        #scope.darwin(site-category-menuItem-lastOfType2-largestStackedScreen-ruleset);
+      };                  
+      @site-category-menuItem-hasSubMenu-largestStackedScreen: {
+        #scope.darwin(site-category-menuItem-hasSubMenu-largestStackedScreen-ruleset);
+      };
+      @site-category-menuItem-hasSubMenu-subMenuMenu-shared-largestStackedScreen: {
+        #scope.darwin(site-category-menuItem-hasSubMenu-subMenuMenu-shared-largestStackedScreen-ruleset);
+      };                   
+      @site-category-menu-subMenu-menu-largestStackedScreen: {
+        #scope.darwin(site-category-menu-subMenu-menu-largestStackedScreen-ruleset);
+      };        
+      @site-category-menu-mobileActive-header-search-largestStackedScreen: {
+        #scope.darwin(site-category-menu-mobileActive-header-search-largestStackedScreen-ruleset);
+      };
+      @site-category-menuItem-subMenu-largestStackedScreen: {
+        #scope.darwin(site-category-menuItem-subMenu-largestStackedScreen-ruleset);
+      };
+      @site-category-menuItemActive-subMenu-largestStackedScreen: {
+        #scope.darwin(site-category-menuItemActive-subMenu-largestStackedScreen-ruleset);
+      };
+      @site-category-menu-mobileActive-header-largestStackedScreen: {
+        #scope.darwin(site-category-menu-mobileActive-header-largestStackedScreen-ruleset);
+      };
+      @site-category-menu-mobileActive-header-head-largestStackedScreen: {
+        #scope.darwin(site-category-menu-mobileActive-header-head-largestStackedScreen-ruleset);
+      };      
+      @site-category-subMenuMobileItemNotHeader-largestStackedScreen: {
+        #scope.darwin(site-category-subMenuMobileItemNotHeader-largestStackedScreen-ruleset);
+      };
+      @site-category-subMenuMobileItemLink-largestStackedScreen: {
+        #scope.darwin(site-category-subMenuMobileItemLink-largestStackedScreen-ruleset);
+      };
+      //-------------------
+      //   Footer Links
+      //--------------------        
+      @site-category-menuFooterLinks-largestStackedScreen: {
+        #scope.darwin(site-category-menuFooterLinks-largestStackedScreen-ruleset);
+      };
+      @site-category-menuFooterLinksUL-largestStackedScreen: {
+        #scope.darwin(site-category-menuFooterLinksUL-largestStackedScreen-ruleset);
+      };      
+      //-------------------
+      //   Primary Menu
+      //--------------------              
+      @site-primaryMenu-largestStackedScreen: {
+        #scope.darwin(site-primaryMenu-largestStackedScreen-ruleset);
+      };
+      @site-primaryMenuItem-largestStackedScreen: {
+        #scope.darwin(site-primaryMenuItem-largestStackedScreen-ruleset);
+      };
+      @site-primaryMenuItemLocation-largestStackedScreen: {
+        #scope.darwin(site-primaryMenuItemLocation-largestStackedScreen-ruleset);
+      };              
+      //-------------------
+      //   Primary Menu Active Panel
+      //--------------------        
+      @site-primaryMenuPanel-largestStackedScreen: {
+        #scope.darwin(site-primaryMenuPanel-largestStackedScreen-ruleset);
+      };
+      @site-primaryMenuPanel-is-visible-largestStackedScreen: {
+        #scope.darwin(site-primaryMenuPanel-is-visible-largestStackedScreen-ruleset);
+      };      
+      @primary-menu-panel-cta-plus-bannerSlot-largestStackedScreen: {
+        #scope.darwin(primary-menu-panel-cta-plus-bannerSlot-largestStackedScreen-ruleset);
+      };   
+      //-------------------
+      //   Site Footer
+      //--------------------              
+      @site-footerInner-largestStackedScreen: {
+        #scope.darwin(site-footerInner-largestStackedScreen-ruleset);
+      };
+      @site-footerColumn-largestStackedScreen: {
+        #scope.darwin(site-footerColumn-largestStackedScreen-ruleset);
+      };      
+      @site-footerColumn1-largestStackedScreen: {
+        #scope.darwin(site-footerColumn1-largestStackedScreen-ruleset);
+      };            
+      @site-footerColumn2-largestStackedScreen: {
+        #scope.darwin(site-footerColumn2-largestStackedScreen-ruleset);
+      };                  
+      @site-footerColumn3-largestStackedScreen: {
+        #scope.darwin(site-footerColumn3-largestStackedScreen-ruleset);
+      };                  
+      @site-footer-shipping-largestStackedScreen: {
+        #scope.darwin(site-footer-shipping-largestStackedScreen-ruleset);
+      };
+      //-------------------
+      //   BREAKPOINT - LARGE MOBILE BREAKPOINT
+      //--------------------    
+      //-------------------
+      //   Primary Menu
+      //-------------------- 
+      @site-primaryMenuItem-largeMobileBreakpoint: {
+        #scope.darwin(site-primaryMenuItem-largeMobileBreakpoint-ruleset);
+      };
+      //-------------------
+      //   Primary Menu Active Panel
+      //--------------------       
+      @site-primaryMenuPanel-largeMobileBreakpoint: {
+        #scope.darwin(site-primaryMenuPanel-largeMobileBreakpoint-ruleset);
+      };
+      @site-primaryMenuPanel-bag-productContainerLink-largeMobileBreakpoint: {
+        #scope.darwin(site-primaryMenuPanel-bag-productContainerLink-largeMobileBreakpoint-ruleset);
+      };
+      @site-primaryMenuPanel-bag-productContainer-largeMobileBreakpoint: {
+        // missing
+      };
+      @site-primaryMenuPanel-bag-productContainerInner-largeMobileBreakpoint: {
+        #scope.darwin(site-primaryMenuPanel-bag-productContainerInner-largeMobileBreakpoint-ruleset);
+      };      
+      //-------------------
+      //   BREAKPOINT - TABLET BREAKPOINT
+      //--------------------          
+      @site-header-tabletBreakpoint: {
+        #scope.darwin(site-header-tabletBreakpoint-ruleset);
+      };
+      @site-header-logo-tabletBreakpoint: {
+        #scope.darwin(site-header-logo-tabletBreakpoint-ruleset);
+      };
+      //-------------------
+      //   Category Menu Active
+      //--------------------        
+      @site-category-menu-mobileActive-headerItems-tabletBreakpoint: {
+        #scope.darwin(site-category-menu-mobileActive-headerItems-tabletBreakpoint-ruleset);
+      };
+      //-------------------
+      //   Footer Links
+      //--------------------         
+      @site-category-menu-footerLinks-tabletBreakpoint: {
+        #scope.darwin(site-category-menu-footerLinks-tabletBreakpoint-ruleset);
+      };
+      //-------------------
+      //   Primary Menu 
+      //--------------------      
+      @site-primaryMenu-tabletBreakpoint: {
+        #scope.darwin(site-primaryMenu-tabletBreakpoint-ruleset);
+      };      
+      @site-primaryMenuAfter-tabletBreakpoint: {
+        #scope.darwin(site-primaryMenuAfter-tabletBreakpoint-ruleset);
+      };      
+      @site-categoryMenuHover-primaryMenuAfter-tabletBreakpoint: {
+        #scope.darwin(site-categoryMenuHover-primaryMenuAfter-tabletBreakpoint-ruleset);
+      };
+      @site-primaryMenuItemBagLinkBefore-tabletBreakpoint: {
+        #scope.darwin(site-primaryMenuItemBagLinkBefore-tabletBreakpoint-ruleset);
+      };        
+      //-------------------
+      //   Category Menu 
+      //--------------------       
+      @site-categoryMenu-tabletBreakpoint: {
+        #scope.darwin(site-categoryMenu-tabletBreakpoint-ruleset);
+      };
+      @site-categoryMenuItem-tabletBreakpoint: {
+        #scope.darwin(site-categoryMenuItem-tabletBreakpoint-ruleset);
+      };              
+      @site-categoryMenuItemActive-subMenu-tabletBreakpoint: {
+        #scope.darwin(site-categoryMenuItemActive-subMenu-tabletBreakpoint-ruleset);
+      };
+      @site-categoryMenuLink-tabletBreakpoint: {
+        #scope.darwin(site-categoryMenuLink-tabletBreakpoint-ruleset);
+      };
+      @site-categoryMenuInner-tabletBreakpoint: {
+        #scope.darwin(site-categoryMenuInner-tabletBreakpoint-ruleset);
+      };      
+      @site-categoryMenu-itemSubMenuInner-tabletBreakpoint: {
+        #scope.darwin(site-categoryMenu-itemSubMenuInner-tabletBreakpoint-ruleset);
+      };
+      @site-categoryMenu-itemSubMenu-tabletBreakpoint: {
+        #scope.darwin(site-categoryMenu-itemSubMenu-tabletBreakpoint-ruleset);
+      };      
+      @site-categoryMenu-itemNotHoverSubMenu-tabletBreakpoint: {
+        #scope.darwin(site-categoryMenu-itemNotHoverSubMenu-tabletBreakpoint-ruleset);
+      };        
+      @site-categoryMenu-itemHoverSubMenu-tabletBreakpoint: {
+        #scope.darwin(site-categoryMenu-itemHoverSubMenu-tabletBreakpoint-ruleset);
+      };                  
+      @site-header-hover-site-categoryMenu-not-hover-itemSubMenu-tabletBreakpoint: {
+        #scope.darwin(site-header-hover-site-categoryMenu-not-hover-itemSubMenu-tabletBreakpoint-ruleset);
+      };
+      @site-categoryMenu-itemSubMenu-contentSlot-tabletBreakpoint: {
+        #scope.darwin(site-categoryMenu-itemSubMenu-contentSlot-tabletBreakpoint-ruleset);
+      };
+      @site-categoryMenu-itemSubMenuMenu-tabletBreakpoint: {
+        #scope.darwin(site-categoryMenu-itemSubMenuMenu-tabletBreakpoint-ruleset);
+      };
+      @site-categoryMenu-itemSubMenuMenu-gridSupport-tabletBreakpoint: {
+        #scope.darwin(site-categoryMenu-itemSubMenuMenu-gridSupport-tabletBreakpoint-ruleset);
+      };      
+      //-------------------
+      //   Site Footer
+      //--------------------             
+      @site-footerInner-tabletBreakpoint: {
+        #scope.darwin(site-footerInner-tabletBreakpoint-ruleset);
+      };
+      @site-footerColumn-tabletBreakpoint: {
+        #scope.darwin(site-footerColumn-tabletBreakpoint-ruleset);
+      };      
+      @site-footerColumn2-tabletBreakpoint: {
+        #scope.darwin(site-footerColumn2-tabletBreakpoint-ruleset);
+      };           
+      @site-footerSocial-tabletBreakpoint: {
+        #scope.darwin(site-footerSocial-tabletBreakpoint-ruleset);
+      };                  
+    }
+  }
+  
+  //-------------------
+  //  EXTEND(ED) core ruleset
+  //--------------------
+  
+  #scope {
+    .darwin(not-is-transparent-headerSizer) when (@customPropFallback = true) {
+      #scope.darwin(not-is-transparent-headerSizer-fallback-ruleset);
+    } 
+    .darwin(not-is-transparent-headerSizer-largeMobileBreakpoint) when (@customPropFallback = true) {
+      #scope.darwin(not-is-transparent-headerSizer-largeMobileBreakpoint-fallback-ruleset);
+    }        
+    .darwin(is-transparent-transparent-navNotHover-headerItems) when (@customPropFallback = true) {
+      #scope.darwin(is-transparent-transparent-navNotHover-headerItems-fallback-ruleset);
+    }    
+    .darwin(is-transparent-transparent-headerNotHover-primaryMenuBagSpan) when (@customPropFallback = true) {
+      #scope.darwin(is-transparent-transparent-headerNotHover-primaryMenuBagSpan-fallback-ruleset);
+    }          
+    .darwin(is-transparent-is-visibleBannerBefore-bannerAfter) when (@customPropFallback = true) {
+      #scope.darwin(is-transparent-is-visibleBannerBefore-bannerAfter-fallback-ruleset);
+    }
+    .darwin(not-transparent-is-visibleBannerBefore-headerSizer) when (@customPropFallback = true) {
+      #scope.darwin(not-transparent-is-visibleBannerBefore-headerSizer-fallback-ruleset);
+    }              
+    .darwin(is-transparent-not-is-visibleBannerBefore-bannerAfter) when (@customPropFallback = true) {
+      #scope.darwin(is-transparent-not-is-visibleBannerBefore-bannerAfter-fallback-ruleset);
+    }                  
+    .darwin(is-transparent-is-primaryPanelActive-headerNotHover) when (@customPropFallback = true) {
+      #scope.darwin(is-transparent-is-primaryPanelActive-headerNotHover-fallback-ruleset);
+    }                      
+    .darwin(is-transparent-is-primaryPanelActive-navNotHover-headerItems) when (@customPropFallback = true) {
+      #scope.darwin(is-transparent-is-primaryPanelActive-navNotHover-headerItems-fallback-ruleset);
+    }                          
+    .darwin(is-visible-bannerSlot-beforeHeader-header) when (@customPropFallback = true) {
+      #scope.darwin(is-visible-bannerSlot-beforeHeader-header-fallback-ruleset);
+    }                              
+    .darwin(is-visible-bannerSlot-beforeHeader-bannerAfter) when (@customPropFallback = true) {
+      #scope.darwin(is-visible-bannerSlot-beforeHeader-bannerAfter-fallback-ruleset);
+    }                                  
+    .darwin(is-visible-bannerSlot-beforeHeader-primaryMenuPanel) when (@customPropFallback = true) {
+      #scope.darwin(is-visible-bannerSlot-beforeHeader-primaryMenuPanel-fallback-ruleset);
+    }
+    .darwin(is-visible-bannerSlot-beforeHeader-primaryMenuPanel-largeMobileBreakpoint) when (@customPropFallback = true) {
+      #scope.darwin(is-visible-bannerSlot-beforeHeader-primaryMenuPanel-largeMobileBreakpoint-fallback-ruleset);
+    }                                   
+    .darwin(is-visible-bannerSlot-beforeHeader-primaryMenuPanel-tabletBreakpoint) when (@customPropFallback = true) {
+      #scope.darwin(is-visible-bannerSlot-beforeHeader-primaryMenuPanel-tabletBreakpoint-fallback-ruleset);
+    }                              
+    .darwin(not-visible-bannerSlot-beforeHeader-bannerAfter) when (@customPropFallback = true) {
+      #scope.darwin(not-visible-bannerSlot-beforeHeader-bannerAfter-fallback-ruleset);
+    }                                
+    .darwin(not-visible-bannerSlot-beforeHeader-primaryMenuPanel-largestStackedScreen) when (@customPropFallback = true) {
+      #scope.darwin(not-visible-bannerSlot-beforeHeader-primaryMenuPanel-largestStackedScreen-fallback-ruleset);
+    }         
+    .darwin(not-visible-bannerSlot-beforeHeader-primaryMenuPanel-largeMobileBreakpoint) when (@customPropFallback = true) {
+      #scope.darwin(not-visible-bannerSlot-beforeHeader-primaryMenuPanel-largeMobileBreakpoint-fallback-ruleset);
+    }         
+    .darwin(is-visible-bannerSlot-beforeHeader-is-catNavTransIn-pageContainer-largestStackedScreen) when (@customPropFallback = true) {
+      #scope.darwin(is-visible-bannerSlot-beforeHeader-is-catNavTransIn-pageContainer-largestStackedScreen-fallback-ruleset);
+    }                                        
+    .darwin(is-visible-bannerSlot-beforeHeader-is-catNavTransIn-categoryMenu-largestStackedScreen) when (@customPropFallback = true) {
+      #scope.darwin(is-visible-bannerSlot-beforeHeader-is-catNavTransIn-categoryMenu-largestStackedScreen-fallback-ruleset);
+    }                                            
+    .darwin(is-catNavTransIn-is-primaryPanelActive-categoryMenu-largestStackedScreen) when (@customPropFallback = true) {
+      #scope.darwin(is-catNavTransIn-is-primaryPanelActive-categoryMenu-largestStackedScreen-fallback-ruleset);
+    }                                            
+    .darwin(is-catNavTransIn-is-primaryPanelActive-catMenuHeaderLogo-largestStackedScreen) when (@customPropFallback = true) {
+      #scope.darwin(is-catNavTransIn-is-primaryPanelActive-catMenuHeaderLogo-largestStackedScreen-fallback-ruleset);
+    }                                                
+    .darwin(is-catNavTransIn-categoryMenuActiveHeader-largestStackedScreen) when (@customPropFallback = true) {
+      #scope.darwin(is-catNavTransIn-categoryMenuActiveHeader-largestStackedScreen-fallback-ruleset);
+    }                                                    
+    .darwin(is-catNavTransIn-primaryMenuPanel-not-visible-largestStackedScreen) when (@customPropFallback = true) {
+      #scope.darwin(is-catNavTransIn-primaryMenuPanel-not-visible-largestStackedScreen-fallback-ruleset);
+    }                                                    
+    .darwin(is-primaryPanelActive-navigationBefore-largestStackedScreen) when (@customPropFallback = true) {
+      #scope.darwin(is-primaryPanelActive-navigationBefore-largestStackedScreen-fallback-ruleset);
+    }               
+    .darwin(categoryMenuMaxWidth) when (@customPropFallback = true) {
+      #scope.darwin(categoryMenuMaxWidth-fallback-ruleset);
+    }  
+    .darwin(primaryMenuPanelMaxWidth) when (@customPropFallback = true) {
+      #scope.darwin(primaryMenuPanelMaxWidth-fallback-ruleset);
+    }         
+    .darwin(bannerSlot) when (@customPropFallback = true) {
+      #scope.darwin(bannerSlot-fallback-ruleset);
+    }           
+    .darwin(bannerSlotBefore) when (@customPropFallback = true) {
+      #scope.darwin(bannerSlotBefore-fallback-ruleset);
+    }                         
+    .darwin(bannerSlotBefore-dismissButton) when (@customPropFallback = true) {
+      #scope.darwin(bannerSlotBefore-dismissButton-fallback-ruleset);
+    }
+    .darwin(site-header) when (@customPropFallback = true) {
+      #scope.darwin(site-header-fallback-ruleset);
+    }  
+    // no non-fallback ruleset
+    .darwin(site-header-largeMobileBreakpoint) when (@customPropFallback = true) {
+      #scope.darwin(site-header-largeMobileBreakpoint-fallback-ruleset);
+    }       
+    .darwin(site-header-tabletBreakpoint) when (@customPropFallback = true) {
+      #scope.darwin(site-header-tabletBreakpoint-fallback-ruleset);
+    }           
+    .darwin(logo-svg) when (@customPropFallback = true) {
+      #scope.darwin(logo-svg-fallback-ruleset);
+    }                   
+    .darwin(catMenuActiveHeader-logo) when (@customPropFallback = true) {
+      #scope.darwin(catMenuActiveHeader-logo-fallback-ruleset);
+    }        
+    .darwin(catMenuActiveHeader-searchInputBtn) when (@customPropFallback = true) {
+      #scope.darwin(catMenuActiveHeader-searchInputBtn-fallback-ruleset);
+    }                                                                                        
+    .darwin(catMenuActiveHeader-headClose) when (@customPropFallback = true) {
+      #scope.darwin(catMenuActiveHeader-headClose-fallback-ruleset);
+    }                        
+    .darwin(catMenuActiveHeader-headCloseSVG) when (@customPropFallback = true) {
+      #scope.darwin(catMenuActiveHeader-headCloseSVG-fallback-ruleset);
+    }                            
+    .darwin(catMenuActiveHeader-header) when (@customPropFallback = true) {
+      #scope.darwin(catMenuActiveHeader-header-fallback-ruleset);
+    }                     
+    .darwin(catMenuActiveHeader-header-bannerSlot) when (@customPropFallback = true) {
+      #scope.darwin(catMenuActiveHeader-header-bannerSlot-fallback-ruleset);
+    }       
+    .darwin(site-category-menu) when (@customPropFallback = true) {
+      #scope.darwin(site-category-menu-fallback-ruleset);
+    }       
+    .darwin(site-category-menu-itemSVG) when (@customPropFallback = true) {
+      #scope.darwin(site-category-menu-itemSVG-fallback-ruleset);
+    }           
+    .darwin(site-category-menu-itemLinkSpanAfter) when (@customPropFallback = true) {
+      #scope.darwin(site-category-menu-itemLinkSpanAfter-fallback-ruleset);
+    }        
+    .darwin(site-categoryMenu-itemSubMenu-tabletBreakpoint) when (@customPropFallback = true) {
+      #scope.darwin(site-categoryMenu-itemSubMenu-tabletBreakpoint-fallback-ruleset);
+    }    
+    .darwin(site-categoryMenu-itemSubMenuInner-tabletBreakpoint) when (@customPropFallback = true) {
+      #scope.darwin(site-categoryMenu-itemSubMenuInner-tabletBreakpoint-fallback-ruleset);
+    }        
+    .darwin(site-category-subMenuLinkSpan) when (@customPropFallback = true) {
+      #scope.darwin(site-category-subMenuLinkSpan-fallback-ruleset);
+    }               
+    .darwin(site-category-subMenuMobileItemDivDiv) when (@customPropFallback = true) {
+      #scope.darwin(site-category-subMenuMobileItemDivDiv-fallback-ruleset);
+    }                   
+    .darwin(site-category-subMenuMobileItemDivDivLink) when (@customPropFallback = true) {
+      #scope.darwin(site-category-subMenuMobileItemDivDivLink-fallback-ruleset);
+    }                       
+    .darwin(site-category-subMenuMobile-header) when (@customPropFallback = true) {
+      #scope.darwin(site-category-subMenuMobile-header-fallback-ruleset);
+    }                       
+    .darwin(site-category-subMenuMobile-headerLink) when (@customPropFallback = true) {
+      #scope.darwin(site-category-subMenuMobile-headerLink-fallback-ruleset);
+    }                           
+    .darwin(site-category-subMenuMobile-headerLinkArrow) when (@customPropFallback = true) {
+      #scope.darwin(site-category-subMenuMobile-headerLinkArrow-fallback-ruleset);
+    }                               
+    .darwin(site-category-subMenuMobile-headerLinkFirstChildBefore) when (@customPropFallback = true) {
+      #scope.darwin(site-category-subMenuMobile-headerLinkFirstChildBefore-fallback-ruleset);
+    }                                   
+    .darwin(site-category-subMenuMobile-headerLinkLastChildAfter) when (@customPropFallback = true) {
+      #scope.darwin(site-category-subMenuMobile-headerLinkLastChildAfter-fallback-ruleset);
+    }   
+    .darwin(site-category-subMenuHeaderSize) when (@customPropFallback = true) {
+      #scope.darwin(site-category-subMenuHeaderSize-fallback-ruleset);
+    }            
+    .darwin(site-category-subMenuMobile-header-heading) when (@customPropFallback = true) {
+      #scope.darwin(site-category-subMenuMobile-header-heading-fallback-ruleset);
+    }                        
+    .darwin(site-category-menuFooterLinks) when (@customPropFallback = true) {
+      #scope.darwin(site-category-menuFooterLinks-fallback-ruleset);
+    }                          
+    .darwin(site-category-menuFooterLinksLI) when (@customPropFallback = true) {
+      #scope.darwin(site-category-menuFooterLinksLI-fallback-ruleset);
+    }         
+    .darwin(currencySelect) when (@customPropFallback = true) {
+      #scope.darwin(currencySelect-fallback-ruleset);
+    }     
+    .darwin(currencySelectHeader) when (@customPropFallback = true) {
+      #scope.darwin(currencySelectHeader-fallback-ruleset);
+    }           
+    .darwin(currencySelectHeaderSVG) when (@customPropFallback = true) {
+      #scope.darwin(currencySelectHeaderSVG-fallback-ruleset);
+    }                
+    .darwin(currencySelectPadding) when (@customPropFallback = true) {
+      #scope.darwin(currencySelectPadding-fallback-ruleset);
+    }              
+    .darwin(currencySelectColor) when (@customPropFallback = true) {
+      #scope.darwin(currencySelectColor-fallback-ruleset);
+    }             
+    .darwin(currencySelectItem) when (@customPropFallback = true) {
+      #scope.darwin(currencySelectItem-fallback-ruleset);
+    }                   
+    .darwin(currencySelectItemActive) when (@customPropFallback = true) {
+      #scope.darwin(currencySelectItemActive-fallback-ruleset);
+    }          
+    .darwin(primaryMenuItem) when (@customPropFallback = true) {
+      #scope.darwin(primaryMenuItem-fallback-ruleset);
+    }             
+    .darwin(primaryMenuItemSVG) when (@customPropFallback = true) {
+      #scope.darwin(primaryMenuItemSVG-fallback-ruleset);
+    }                    
+    .darwin(primaryMenuItemAccountSVG) when (@customPropFallback = true) {
+      #scope.darwin(primaryMenuItemAccountSVG-fallback-ruleset);
+    }
+    .darwin(primaryMenuItemBagSVG) when (@customPropFallback = true) {
+      #scope.darwin(primaryMenuItemBagSVG-fallback-ruleset);
+    }                       
+    .darwin(primaryMenuItemBagLinkBefore) when (@customPropFallback = true) {
+      #scope.darwin(primaryMenuItemBagLinkBefore-fallback-ruleset);
+    }                           
+    .darwin(primaryMenuItemBagLinkBeforePink) when (@customPropFallback = true) {
+      #scope.darwin(primaryMenuItemBagLinkBeforePink-fallback-ruleset);
+    }                     
+    .darwin(primaryMenuItemBagLinkSpan) when (@customPropFallback = true) {
+      #scope.darwin(primaryMenuItemBagLinkSpan-fallback-ruleset);
+    }                                                                                                     
+    .darwin(primaryMenuItemLink) when (@customPropFallback = true) {
+      #scope.darwin(primaryMenuItemLink-fallback-ruleset);
+    }                   
+    .darwin(primaryMenuItemLinkAfter) when (@customPropFallback = true) {
+      #scope.darwin(primaryMenuItemLinkAfter-fallback-ruleset);
+    }                           
+    .darwin(primaryMenuItemLinkAfterTransparent) when (@customPropFallback = true) {
+      #scope.darwin(primaryMenuItemLinkAfterTransparent-fallback-ruleset);
+    }             
+    .darwin(active-menu-dimmer) when (@customPropFallback = true) {
+      #scope.darwin(active-menu-dimmer-fallback-ruleset);
+    }             
+    .darwin(primary-menu-panel) when (@customPropFallback = true) {
+      #scope.darwin(primary-menu-panel-fallback-ruleset);
+    }   
+    .darwin(primary-menu-panel-wrapper) when (@customPropFallback = true) {
+      #scope.darwin(primary-menu-panel-wrapper-fallback-ruleset);
+    }                    
+    .darwin(primary-menu-panel-select) when (@customPropFallback = true) {
+      #scope.darwin(primary-menu-panel-select-fallback-ruleset);
+    }                    
+    .darwin(primary-menu-panel-header-close) when (@customPropFallback = true) {
+      #scope.darwin(primary-menu-panel-header-close-fallback-ruleset);
+    }                      
+    .darwin(primary-menu-panel-h2Sizing) when (@customPropFallback = true) {
+      #scope.darwin(primary-menu-panel-h2Sizing-fallback-ruleset);
+    }                              
+    .darwin(primary-menu-panel-productContainer) when (@customPropFallback = true) {
+      #scope.darwin(primary-menu-panel-productContainer-fallback-ruleset);
+    }                                                       
+    .darwin(primary-menu-panel-productContainerLinkSVG) when (@customPropFallback = true) {
+      #scope.darwin(primary-menu-panel-productContainerLinkSVG-fallback-ruleset);
+    }                         
+    .darwin(primary-menu-panel-productItem) when (@customPropFallback = true) {
+      #scope.darwin(primary-menu-panel-productItem-fallback-ruleset);
+    }                                  
+    .darwin(primary-menu-panel-productItemHeadingH2) when (@customPropFallback = true) {
+      #scope.darwin(primary-menu-panel-productItemHeadingH2-fallback-ruleset);
+    }                                   
+    .darwin(primary-menu-panel-productItemFigcaption) when (@customPropFallback = true) {
+      #scope.darwin(primary-menu-panel-productItemFigcaption-fallback-ruleset);
+    }                       
+    .darwin(primary-menu-panel-priceSale) when (@customPropFallback = true) {
+      #scope.darwin(primary-menu-panel-priceSale-fallback-ruleset);
+    }                                                     
+    .darwin(primary-menu-panel-productChildSiblingOffset) when (@customPropFallback = true) {
+      #scope.darwin(primary-menu-panel-productChildSiblingOffset-fallback-ruleset);
+    }                                 
+    .darwin(primary-menu-panel-priceTotal-plus-cta) when (@customPropFallback = true) {
+      #scope.darwin(primary-menu-panel-priceTotal-plus-cta-fallback-ruleset);
+    }                                           
+    .darwin(primary-menu-panel-ctaLinkFirstChild) when (@customPropFallback = true) {
+      #scope.darwin(primary-menu-panel-ctaLinkFirstChild-fallback-ruleset);
+    }          
+    .darwin(primary-menu-panel-cta-plus-bannerSlot) when (@customPropFallback = true) {
+      #scope.darwin(primary-menu-panel-cta-plus-bannerSlot-fallback-ruleset);
+    }              
+    .darwin(primary-menu-panel-accountLoggedInCtaLink-plus-link) when (@customPropFallback = true) {
+      #scope.darwin(primary-menu-panel-accountLoggedInCtaLink-plus-link-fallback-ruleset);
+    }                  
+
+
+
+  }
+  
+  
+  
+  #scope {
+    .darwin(@item) {
+      #scope.darwin();
+      // #scope.darwin-variables();
+      #scope.site-header-variables();
+      @rules: @@item;
+      @rules();
+    }
+    .darwin-variables(@item) {
+      #scope.darwin-variables();
+      @rules: @@item;
+      @rules();
+    }  
+  }
+  

@@ -1,0 +1,125 @@
+
+
+/*******************************
+             Page
+*******************************/
+
+@import "site/config.less";
+
+// .loadFonts();
+
+html,
+body { #global.site(html-body); }
+
+html { #global.site(html); }
+
+*, *:before, *:after { #global.site(catch-all-inc-before-and-after); }
+
+body { #global.site(body); }
+
+// Single-direction margin declarations. Extend margin-bottom using global margin spacing
+hgroup,
+ul,ol,dd,
+p,figure,
+pre,table,fieldset,hr {
+  // Move into ruleset
+  .define-module-prop(site; margin-top; spacing);
+  .define-module-prop(site; margin-bottom; spacing);
+}
+
+p {
+ // Add other para styles here 
+ #global.site(paragraph);
+}
+
+main { #global.site(main-element); }
+
+/*******************************
+             Headers
+*******************************/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.header-extend {
+  &:extend([class*="-hdr"]);
+}
+
+// h1:not([class*="-hdr"]) { &:extend([class*="-hdr"][class*="--1"]); }
+// h2:not([class*="-hdr"]) { &:extend([class*="-hdr"][class*="--2"]); }
+// h3:not([class*="-hdr"]) { &:extend([class*="-hdr"][class*="--3"]); }
+// h4:not([class*="-hdr"]) { &:extend([class*="-hdr"][class*="--4"]); }
+// h5:not([class*="-hdr"]) { &:extend([class*="-hdr"][class*="--5"]); }
+// h6:not([class*="-hdr"]) { &:extend([class*="-hdr"][class*="--6"]); }
+
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child,
+h6:first-child {
+  margin-top: 0em;
+}
+
+h1:last-child,
+h2:last-child,
+h3:last-child,
+h4:last-child,
+h5:last-child,
+h6:last-child {
+  margin-bottom: 0em;
+}
+
+
+/*******************************
+             Text
+*******************************/
+
+p {
+  // font-size:  @pageFontSize;
+  // margin: @paragraphMargin;
+  // line-height: @paragraphLineHeight;
+  // &.inverted { color:@invertedTextColor; }
+}
+p:first-child {
+  margin-top: 0em;
+}
+p:last-child {
+  margin-bottom: 0em;
+}
+
+/*-------------------
+        Links
+--------------------*/
+
+a { #global.site(link); }
+
+a:hover { #global.site(link-hover); }
+
+a > img { border:0; } //IE 10 fix
+
+/*-------------------
+        Lists - move this from site to its own module
+--------------------*/
+.o-list { #global.site(list); }
+.o-list li { #global.site(listItem); }
+
+/*******************************
+          Highlighting
+*******************************/
+
+/* Site */
+::-webkit-selection,
+::-moz-selection,
+::selection { #global.site(selection-highlight); }
+
+/* Form */
+textarea::-webkit-selection,
+input::-webkit-selection,
+textarea::-moz-selection,
+input::-moz-selection,
+textarea::selection,
+input::selection { #global.site(form-selection-highlight); }

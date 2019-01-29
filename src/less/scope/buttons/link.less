@@ -1,0 +1,65 @@
+
+
+[class^="search-enhanced-options"] .view-all > span, 
+.print-page, 
+a.international-rates, 
+.coupon-title, 
+// .login-save-time>a, 
+.terms-message a, 
+.pt_cart_v2 #enter-address-manually.link, 
+.message-container a, 
+.terms-and-conditions a, 
+.thank-you-page-gdpr a.dialogify, 
+.c-select-size-text + a, 
+.messageModal + .close-trigger, 
+.forgot-password > a, 
+.gift-terms-link > a, 
+.remember-pass-box>.link, 
+.edit-delete-address a, 
+.reg-columns a.dialogify {
+    #scope.darwin(underlined-link);
+    position: relative;
+}
+
+[class^="search-enhanced-options"] .view-all > span:after, 
+.print-page:after, 
+a.international-rates:after, 
+.coupon-title:after, 
+// .login-save-time>a:after, 
+.terms-message a:after, 
+.pt_cart_v2 #enter-address-manually.link:after, 
+.message-container a:after, 
+.terms-and-conditions a:after, 
+.thank-you-page-gdpr a.dialogify:after, 
+.c-select-size-text + a:after, 
+.messageModal + .close-trigger:after, 
+.forgot-password > a:after, 
+.gift-terms-link > a:after, 
+.remember-pass-box>.link:after, 
+.edit-delete-address a:after, 
+.reg-columns a.dialogify:after {
+    #scope.darwin(underlined-linkAfter);
+    #objects.button-variables();
+    opacity: @underlineColorOpacity;
+    transition: @underlineTransitionFallback;    
+}
+
+[class^="search-enhanced-options"] .view-all > span:hover:after, 
+.print-page:hover:after, 
+a.international-rates:hover:after, 
+.coupon-title:hover:after, 
+// .login-save-time>a:hover:after, 
+.terms-message a:hover:after, 
+.pt_cart_v2 #enter-address-manually.link:hover:after, 
+.message-container a:hover:after, 
+.terms-and-conditions a:hover:after, 
+.thank-you-page-gdpr a.dialogify:hover:after, 
+.c-select-size-text + a:hover:after, 
+.messageModal + .close-trigger:hover:after, 
+.forgot-password > a:hover:after, 
+.gift-terms-link > a:hover:after, 
+.remember-pass-box>.link:hover:after, 
+.edit-delete-address a:hover:after, 
+.reg-columns a.dialogify:hover:after {
+    #scope.darwin(underlined-linkHoverAfter);
+}

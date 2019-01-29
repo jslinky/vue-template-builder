@@ -1,0 +1,68 @@
+
+
+.output-rules(@ruleset; @module) {
+  // Call the unlock module vars mixin
+  .unlock-module-scope(@module);
+  // Local scope the returned variables
+  @customFallback         : @customPropFallback;
+  @staticOnly             : @static-variables-only;
+  @localScopedFallback    : @local-scoped-custom-prop-fallback;
+  @rules                  : @ruleset;
+  @mod                    : @module;
+  // Define the rules mixin
+  /////////////////////////    
+  // (When global fallback = false) && (LESS vars only = false)
+  // Only custom property value
+  ._(@ruleset; @module) when (@customFallback = false) and (@localScopedFallback = false) and (@staticOnly = false) {
+    .unlock-module-scope(@module);
+    @rule:~"@{ruleset}-customPropOnly-ruleset";        
+    .namespace() when (@module = site) { #objects.site(@rule); }
+    .namespace() when (@module = button) { #objects.button-type(@rule); }
+    .namespace() when (@module = header) { #objects.header(@rule); }
+    .namespace() when (@module = item) { #objects.item(@rule); }
+    .namespace() when (@module = form) { #collections.form(@rule); }    
+    .namespace() when (@module = masthead) { #objects.masthead(@rule); }
+    .namespace() when (@module = icon) { #objects.icon(@rule); }
+    .namespace() when (@module = section) { #objects.section(@rule); }
+    .namespace() when (@module = container) { #objects.container(@rule); }    
+    .namespace();
+    // content:'props';
+  } 
+  // ((When global fallback = true) && (Module LESS vars only = false)) && (Module LESS fallback = true)
+  // Custom property value & LESS fallback
+  ._(@ruleset; @module) when (@customFallback = true) and (@staticOnly = false), (@customFallback = false) and (@localScopedFallback = true) {
+    .unlock-module-scope(@module);
+    @rule:~"@{ruleset}-fallback-ruleset";
+    .namespace() when (@module = site) { #objects.site(@rule); }
+    .namespace() when (@module = button) { #objects.button-type(@rule); }
+    .namespace() when (@module = header) { #objects.header(@rule); }
+    .namespace() when (@module = item) { #objects.item(@rule); }
+    .namespace() when (@module = form) { #collections.form(@rule); }    
+    .namespace() when (@module = masthead) { #objects.masthead(@rule); }
+    .namespace() when (@module = icon) { #objects.icon(@rule); }
+    .namespace() when (@module = section) { #objects.section(@rule); }
+    .namespace() when (@module = container) { #objects.container(@rule); }    
+    .namespace();
+    // content:'fallback';       
+  }
+  // (When global fallback = true) && (Module LESS vars only = true)
+  // LESS var only
+  ._(@ruleset; @module) when (@staticOnly = true) {
+    .unlock-module-scope(@module);
+    @rule:~"@{ruleset}-staticVarsOnly-ruleset";
+    .namespace() when (@module = site) { #objects.site(@rule); }
+    .namespace() when (@module = button) { #objects.button-type(@rule); }
+    .namespace() when (@module = header) { #objects.header(@rule); }
+    .namespace() when (@module = item) { #objects.item(@rule); }
+    .namespace() when (@module = form) { #collections.form(@rule); }    
+    .namespace() when (@module = masthead) { #objects.masthead(@rule); }
+    .namespace() when (@module = icon) { #objects.icon(@rule); }
+    .namespace() when (@module = section) { #objects.section(@rule); }
+    .namespace() when (@module = container) { #objects.container(@rule); }    
+    .namespace();      
+    // content:'static';    
+  }
+  // Call the rules mixin
+  ._(@rules; @mod);
+}
+

@@ -1,0 +1,193 @@
+//*******************************
+//    Button Custom Prop Rulesets
+//*******************************
+
+//-------------------
+//  Button props
+//--------------------
+
+#props {
+  .button() {
+    #objects.button-variables(); // required here to unlock vars 
+    @colours: {
+      --textColor                   : @textColor;
+      --backgroundColor             : @backgroundColor; 
+      --tapColor                    : @tapColor;  
+    };
+    @text: {      
+      --fontFamily                  : @fontFamily;
+      --fontSize                    : @fontSize;
+      --textTransform               : @textTransform;
+      --fontWeight                  : @fontWeight;
+      --lineHeight                  : @lineHeight;
+      --letterSpacing               : @letterSpacing;
+    };
+    @spacing: {
+      --verticalMargin              : @verticalMargin;
+      --horizontalMargin            : @horizontalMargin;
+      --margin                      : var(--verticalMargin) var(--horizontalMargin) var(--verticalMargin) 0em;
+      --horizontalPadding           : @horizontalPadding;
+      --verticalPadding             : @verticalPadding;
+      --padding                     : ~"calc(var(--verticalPadding) + 0.1em)" var(--horizontalPadding) var(--verticalPadding);
+      --verticalAlign               : @verticalAlign;
+    };
+    @border: {
+      --borderWidth                 : @borderWidth;
+      --borderStyle                 : @borderStyle;
+      --borderColor                 : @borderColor;
+      --borderRadius                : @borderRadius; 
+    };
+    @shadow: {
+      --textShadow                  : @textShadow;
+
+      --dropShadow                  : @dropShadow;  
+      --dropShadowOffsetX           : @dropShadowOffsetX;
+      --dropShadowOffsetY           : @dropShadowOffsetY;
+      --dropShadowBlur              : @dropShadowBlur;
+      --dropShadowSpread            : @dropShadowSpread;
+      --dropShadowColor             : var(--borderColor);
+    
+      --innerShadow                 : @innerShadow;  
+      --innerShadowOffsetX          : @innerShadowOffsetX;
+      --innerShadowOffsetY          : @innerShadowOffsetY;
+      --innerShadowBlur             : @innerShadowBlur;
+      --innerShadowSpread           : @innerShadowSpread;  
+      --innerShadowColor            : var(--borderColor);
+    };
+    @underline: {
+      --underlineHeight             : @underlineHeight;
+      --underlineWidth              : ~"calc(100% - ("@horizontalPadding ~"* 2))"; 
+      --underlineBackground         : @underlineBackground;
+      --underlineOpacity            : @underlineColorOpacity;
+      --underlineLeftPos            : @underlineLeftPos;
+      --underlineBottomPos          : @underlineBottomPos;
+      --underlineTransition         : var(--transition);
+      --underlineBoxShadow          : @invertedUnderlineShadow;  
+    };
+    @transition: {
+      --transition                  : all var(--duration) var(--easing);
+      --duration                    : @defaultDuration; 
+      --easing                      : @defaultEasing;   
+    };
+    @icon: {
+      --iconHeight                  : var(--relativeSmall);
+      --iconWidth                   : var(--relativeSmall);
+      --iconOpacity                 : @iconOpacity;
+      --iconMargin                  : @iconMargin;
+      --iconTransition              : var(--transition);
+      // --iconVerticalAlign:    @iconVerticalAlign;
+      --iconColor                   : @iconColor;  
+
+      --iconDistanceVal             : @iconDistanceVal;
+      --iconDistance                : @iconDistance;
+      --left-aligned-iconMargin     : @left-aligned-iconMargin;
+      --right-aligned-iconMargin    : @right-aligned-iconMargin;
+      
+    };
+    @extend-prop-classes: {
+      //*******************************
+      //   Classes used for extending properties
+      //*******************************
+      .o-btn-props-colors { #props.button(colours); }
+      .o-btn-props-text { #props.button(text); }
+      .o-btn-props-spacing { #props.button(spacing); }
+      .o-btn-props-border { #props.button(border); }
+      .o-btn-props-shadow { #props.button(shadow); }
+      .o-btn-props-underline { #props.button(underline); }
+      .o-btn-props-transition { #props.button(transition); }
+      .o-btn-props-icon { #props.button(icon); }
+    };
+    @extend-elements: {
+      .o-btn {
+        // Colours
+        &:extend(
+          .o-btn-props-colors,
+          .o-btn-props-text,
+          .o-btn-props-spacing,
+          .o-btn-props-border,
+          .o-btn-props-shadow,
+          .o-btn-props-underline,
+          .o-btn-props-transition,
+          .o-btn-props-icon);
+      }
+    };
+    @output-custom-properties: {
+      #objects.button-variables();
+      .output-custom-properties() when 
+      (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false), 
+      (@customPropFallback = true) and (@static-variables-only = false),
+      (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = true) {
+        //*******************************
+        //   Classes used for extending properties
+        //*******************************
+        #props.button(extend-prop-classes);
+        //*******************************
+        //   Element classes that extend related properties
+        //*******************************        
+        #props.button(extend-elements);
+      }
+      .output-custom-properties();
+    };
+  }
+  //-------------------
+  //  Button group props
+  //--------------------
+  .buttons() {
+    @default: {
+      --groupBtnMarginHorizontal:           ~"var(--horizontalMargin, @{horizontalMargin})";
+      --groupBtnMarginVertical:             @groupBtnMarginVertical;   
+      --groupBtnColumnCount:                2; 
+    };
+    @extend-prop-classes: {
+      .o-buttons-props { #props.buttons(default); }
+    };
+    @extend-elements: {
+      .o-buttons {
+        &:extend(.o-buttons-props, .o-btn-props-spacing);
+      }
+    };
+    @output-custom-properties: {
+      #objects.button-variables();
+      .output-custom-properties() /*when 
+      (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false), 
+      (@customPropFallback = true) and (@static-variables-only = false),
+      (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = true)*/ {
+        //*******************************
+        //   Classes used for extending properties
+        //*******************************
+        #props.buttons(extend-prop-classes);
+        //*******************************
+        //   Element classes that extend related properties
+        //*******************************        
+        #props.buttons(extend-elements);
+      }
+      .output-custom-properties();
+    }
+  }
+}
+
+
+//*******************************
+//   DEFINE MIXIN
+//*******************************
+
+#props {
+  .button(@item) {
+      #objects.button-variables();
+      #props.button();      
+      @rules: @@item;
+      @rules();
+  }
+  .buttons(@item) {
+    #objects.button-variables();
+    #props.buttons();    
+    @rules: @@item;
+    @rules();
+  }  
+}
+
+//*******************************
+//   Init module custom property output
+//*******************************
+#props.button(output-custom-properties);
+#props.buttons(output-custom-properties);

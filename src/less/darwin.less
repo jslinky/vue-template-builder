@@ -1,0 +1,93 @@
+
+
+//**********************
+//  SITE PREFERENCES
+//********************************************
+
+//-------------------
+//   CUSTOM PROP FALLBACK 
+//   Provide fallback for custom properties
+//--------------------
+
+@customPropFallback         : false; 
+
+//-------------------
+//   MODULE INCLUDES 
+//   Include modules on an individual basis 
+//--------------------
+
+@include_header             : true;
+@include_button             : true;
+@include_item               : false;
+@include_grid               : true;
+@include_container          : true;
+@include_masthead           : false;
+@include_section            : false;
+@include_menu               : false;
+@include_icon               : true;
+
+@include_form               : true;
+
+//**********************
+//  GLOBAL DEFAULT SETTINGS - do not amend
+//********************************************
+
+@import "globals/variable.less";
+    // For variable customisation see the following (in order of importance)
+    //// |_ variable/type.less - font sizes, line-height, offset values
+    //// |_ variable/size.less - global sizing values, range from mini to massive
+@import "globals/mixin.less";
+@import "globals/reset.less";
+@import "globals/site.less";
+// -- TODO -- UPDATE FULLY & REMOVE LEGACY VERSION BEFORE LOADING!
+// @import "globals/utility.less";
+// @import "globals/scope.less";
+
+//-------------------
+//   IMPORT MODULES CONFIG FILES
+//   Make all module rulesets available in the global scope.
+//--------------------
+// Components
+@import "modules/components/menu/config.less";
+// Objects
+@import "modules/objects/buttons/config.less"; 
+@import "modules/objects/header/config.less"; 
+@import "modules/objects/items/config.less";
+@import "modules/objects/masthead/config.less";
+@import "modules/objects/container/config.less";
+@import "modules/objects/section/config.less";
+@import "modules/objects/divider/config.less";
+@import "modules/objects/icons/config.less";
+// Collections
+@import (reference) "modules/collections/animate.less";
+@import "modules/collections/form/config.less";
+
+//-------------------
+//   IMPORT MODULES MIXIN
+//   Performs import of classes for each module based on user settings
+//--------------------
+
+@import "modules/objects/header/header.less";
+@import "modules/objects/buttons/buttons.less";
+@import "modules/objects/masthead/masthead.less";
+@import "modules/objects/items/items.less";
+@import "modules/collections/form/form.less";
+@import "modules/collections/grid/grid.less";
+@import "modules/objects/container/container.less";
+@import "modules/objects/icons/icons.less";
+@import "modules/objects/section/section.less";
+
+// @import "modules/components/carousel/carousel.less"; // This should come after grid collection
+
+// //-------------------
+// //   BESPOKE MODULES
+// //   Anything bespoke i.e. not framework related
+// //--------------------
+// @import "bespoke/modules/components/global-banner/global-banner.less";
+// @import "bespoke/modules/components/plp-slots.less";
+
+// //-------------------
+// //   PLUGINS
+// //   Third party modules / plugins
+// //--------------------
+// @import "scope/plugins/config.less";

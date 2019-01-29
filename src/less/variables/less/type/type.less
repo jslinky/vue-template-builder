@@ -1,0 +1,87 @@
+
+
+//*******************************
+//    Typograhic variables
+//*******************************
+
+//-------------------
+//  BASES SIZES
+//  Global font setting and spacing
+//--------------------
+
+// :root font size - used on html element
+@fontSizeRoot                       : 16; // also custom prop
+// value for body font size in px
+@fontSizeRootPixel                  : unit(@fontSizeRoot, px);
+// body font size
+@fontSizeBody                       : 16; // also custom prop
+// value for body font size in REM - used on body element
+@fontSize                           : (@fontSizeBody / @fontSizeRoot) * 1rem; // also custom prop
+// body font size in EM
+@fontSizeRelative                   : unit(@fontSize, em); // also custom prop
+
+//-------------------
+//  LINE HEIGHT
+//  Values to calculate line-height and offset spacing of elements
+//--------------------
+
+// Line height value - used as a basis for calculating vertical rhythm
+@lineHeight                         : 1.5; // also custom prop - shoud I chnage this to a unitless value - maybe this is being used in calcs elsewhere - offset mixin
+// Maybe swap these around - used in body ruleset
+@lineHeightRem                      : unit(@lineHeight, rem);
+// Vertical Rhythm gives us unitless px value for use with offset calculations
+@verticalRhythm                     : (@lineHeight * @fontSizeRoot); // ref by custom prop - 1.5 * 16 = 24
+// Multipler value for determining scale of offset / line height on elements
+@verticalRhythmMultiplyer           : 1; // also custom prop
+// Offset used as a dynamic width based spacing calc
+@offset                             : @lineHeightRem ~"+ 2vmin"; // less fallback
+// Global var (also optionally locally scoped with each module) for setting fixed or dynamic offset calcs
+@offsetFixed                        : false; // global setting for offset mixin - dymanic or fixed value. Can be locally scoped on module scope
+// Global default spacing value used as a basis for all spacing (margin/padding) values
+@spacing                            : unit((@verticalRhythm / @fontSizeRoot), rem);
+
+//-------------------
+//  TEXT COLOUR
+//--------------------
+@textColor                          : @grey;
+
+//-------------------
+//  FONT FAMILY DEFAULT VALUES
+//--------------------
+@headerFont                         : @primaryFontRegularStack;
+@bodyFont                           : @primaryFontLightStack;
+@menuFont                           : @primaryFontRegularStack;
+
+//-------------------
+//  PARAGRAPH
+//--------------------
+@paragraphFontSize                  : inherit; 
+// @pageFontWeight                  : lighter;
+@paragraphLetterSpacingVal          : 0.75;
+@paragraphLetterSpacing             : @paragraphLetterSpacingVal*@rem;
+@paragraphSpacingMultiplyer         : 1;
+@paragraphSpacing                   : ~"calc(@{paragraphSpacingMultiplyer} * @{spacing})";
+@paragraphLineHeight                : inherit;
+
+
+
+
+// /*-------------------
+//        Links
+// --------------------*/
+
+// @linkColor              : @grey;
+// @linkUnderline          : none;
+// @linkHoverColor         : @lightBlack;//darken(saturate(@linkColor, 20), 15, relative);
+// @linkHoverUnderline     : @linkUnderline;
+// @linkFocusColor         : @lightBlack;
+
+// /*-------------------
+//   Highlighted Text
+// --------------------*/
+
+// @highlightBackground      : #CCE2FF;
+// @highlightColor           : @textColor;
+
+// @inputHighlightBackground : rgba(100, 100, 100, 0.4);
+// @inputHighlightColor      : @textColor;

@@ -1,0 +1,19 @@
+// CORE button related rulesets
+#objects {
+  .button-type() {
+    @icon-ruleset: {
+      justify-content: space-between;
+      .define-module-prop(button; height; iconHeight; iconHeightFallback);
+      .define-module-prop(button; width; iconWidth; iconWidthFallback);
+      .define-module-prop(button; opacity; iconOpacity);
+      .define-module-prop(button; transition; iconTransition; iconTransitionFallback);
+      .define-module-prop(button; color; iconColor);
+    };
+    @icon-right-aligned-ruleset: {
+      .define-module-prop(button; margin; right-aligned-iconMargin; right-aligned-iconMarginFallback);
+    };
+    @icon-left-aligned-ruleset: {
+      .define-module-prop(button; margin; left-aligned-iconMargin; left-aligned-iconMarginFallback);
+    };       
+  }
+}

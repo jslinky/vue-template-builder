@@ -1,0 +1,83 @@
+
+
+//*******************************
+//    ITEM: Custom Prop Rulesets
+//*******************************
+
+//-------------------
+//  Item props
+//--------------------
+
+#props {
+  .item() {
+    @default: {
+      --itemContentOffset: @itemContentOffset;
+      --itemContentElementsGutter: @itemContentElementsGutter; 
+      --itemTintOpacity: @itemTintOpacity;
+      --itemOverlayHoverBackground: @itemOverlayHoverBackground;
+      // Do transition code for items...
+      // convert this from shorthand to longhand
+      --itemTransition: all var(--itemTransitionDuration) var(--itemTransitionEasing);
+      --itemTransitionDuration: @itemTransitionDuration;
+      --itemTransitionEasing: @itemTransitionEasing;
+    
+      --itemHeaderOffset: @itemHeaderOffset;  
+      --itemHeaderColor: @itemHeaderColor;
+
+      --itemColor: var(--body-color);
+    };
+    @extend-prop-classes: {
+        //*******************************
+        //   Classes used for extending properties
+        //*******************************
+        // Default
+        .o-item-props { #props.item(default); }
+    };
+    @extend-elements: {
+        //*******************************
+        //   Element classes that extend related properties
+        //*******************************          
+        .o-item { &:extend(.o-item-props); }
+        .o-item__artwork { &:extend(.root-props-spacing); }        
+
+    };
+    @output-custom-properties: {
+      #objects.item-variables();
+      .output-custom-properties() when 
+      (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false), 
+      (@customPropFallback = true) and (@static-variables-only = false),
+      (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = true) {
+        //*******************************
+        //   Classes used for extending properties
+        //*******************************
+        #props.item(extend-prop-classes);
+        //*******************************
+        //   Element classes that extend related properties
+        //*******************************        
+        #props.item(extend-elements);
+      }
+      .output-custom-properties();
+    };
+  }
+}
+
+//*******************************
+//   DEFINE MIXIN
+//*******************************
+
+#props {
+  .item(@item) {
+      #props.item();
+      #objects.item-variables();
+      @rules: @@item;
+      @rules();
+  }
+}
+
+//*******************************
+//   Init module custom property output
+//*******************************
+#props.item(output-custom-properties);
+
+
+    

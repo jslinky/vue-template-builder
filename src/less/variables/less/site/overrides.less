@@ -1,0 +1,15 @@
+
+#global {
+  .site-variables() {   
+    @static-variables-only              : false; // turn off custom prop on a module level - define on a per site basis in overrides
+    @local-scoped-custom-prop-fallback  : false; // 
+  }
+}
+
+
+@borderColor          : @jw-navy-shade5;
+@strongBorderColor    : @jw-navy-shade4;
+@listFontSize         : @paragraphFontSize;
+@listIndent           : 0;
+@listLineHeight       : ~"calc(var(--@{listFontSize}) + 1vm)";
+@listLineHeightFallback : ~"calc(@{listFontSize} + 1vm)";

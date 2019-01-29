@@ -1,0 +1,72 @@
+
+// Mixin for slideshow
+// Pass in: - number of images (integer) | duration (time in which each image is shown | timing-function | iteration-count | fade between images (booleon val)
+.slideshow(@container, @inner, @images, @duration:4.5s, @transition, @easing, @repeat, @fade) {
+  
+  .setKeyFrames(@i) when (@i <= @images) and (@fade = true) {
+    @totalDuration: @i * @duration;
+    @endEffect: 100% / @i;
+    @timeEffect: round((@transition * 100% / @totalDuration * 100) / 100);
+    @startEffect: @endEffect - @timeEffect;    
+    @keyframes ~"imageRotate@{i}" {
+      @timeEffectCalc: 100% - @timeEffect;
+      @{startEffect}, 100% { opacity:1; }
+      @{endEffect}, @{timeEffectCalc} { opacity:0; }  
+    }
+    .setKeyFrames((@i + 1));
+  }  
+
+  .setKeyFrames(@i) when (@i <= @images) and (@fade = false) {
+    @keyframes ~"imageRotate@{i}" {
+      0% { z-index:@images; }
+      100% { z-index:0; }  
+    }
+    .setKeyFrames((@i + 1));
+  }    
+
+  .setKeyFrames(2);
+
+    // new mixin
+
+  .inner-mix(@i: 1, @counter, @last: @i * @counter, @delayIndex:-1) when (@i =< @counter) {    
+    @animationName: @counter - 1;
+    @totalDuration: (@counter - 1) * @duration;
+    .@{container} .@{inner} img:first-of-type ~ img:nth-of-type(@{i}):nth-last-of-type(@{last}) {
+      z-index: @last;
+      animation-delay: @duration * @delayIndex;        
+      animation-name: ~"imageRotate@{animationName}";    
+      animation-duration: @totalDuration;
+    }
+    .inner-mix((@i + 1), @counter, (@last - 1), (@delayIndex + 1));
+  }    
+  
+  .outer-mix(@i: 1, @counter:2, @images) when (@counter <= @images) {
+    .inner-mix(@i, @counter, (@i * @counter), -1);
+    .outer-mix(1, (@counter + 1), @images);
+  }
+
+  .outer-mix(1, 2, @images);  
+
+
+  .@{container} .@{inner} img {
+    animation-iteration-count: @repeat;
+    animation-timing-function: @easing;
+  }
+
+  .@{container} .@{inner} img:first-of-type {
+    visibility: hidden;
+  }
+  
+  .@{container} .@{inner} img:not(:first-of-type) {
+    position : absolute;  
+    z-index  : @images; 
+    top      : 0;
+    left     : 0;    
+  }
+
+  .@{container} .@{inner}:hover img {
+    animation-play-state:paused;
+  }
+
+
+}

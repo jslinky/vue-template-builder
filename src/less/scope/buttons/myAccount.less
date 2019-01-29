@@ -1,0 +1,70 @@
+//-------------------
+//  My Account page
+//-------------------- 
+// Facebook login button
+.facebook-login-button {
+  background:@facebookColor;
+  text-align: center;
+  position:relative;
+  &:after {
+    &:extend(.o-btn);
+    content:'Or login with Facebook';
+    display:inline-block!important;
+    // .icon-replace-fill('../images/icons/social/facebook.svg', '#222', '#fff');
+    .icon-fill('../../images/icons/social/facebook.svg', '#fff');
+    background-repeat: no-repeat;
+    background-size: auto 15px;
+    color: #fff!important;
+    position: absolute!important;
+    top: 0;
+    left: 50%;
+    padding-right: 22*@rem;
+    background-position: right center;
+    margin-right: 0;
+    pointer-events: none;
+    transform: translate(-50%, 0);
+    white-space: pre;
+    border:none!important;
+  }
+}
+.facebook-login-button > input[type="submit"] {
+  text-indent:-999em;
+  &:extend(.o-btn);
+  @textColor: #fff;
+  @background: @facebookColor; // use var
+  color:@textColor;
+  background:@background; 
+  width:100%;
+  border:0!important;
+  // Hover
+  &:hover,
+  &:focus,
+  &:active,
+  &.active:active,
+  &.active,
+  &.active:hover  {
+    @hoverBackgroundColor:darken(@background, 10%); // use var
+    @hoverColor: #fff;
+    color:@hoverColor;
+    background:@hoverBackgroundColor;
+  }
+}
+
+// Create an account button
+.login-create-account .form-row-button > button {
+  &:extend(.s-btn all, .s-btn-basic all);
+}
+
+// Login to account button
+.login-account .form-row-button > button {
+  &:extend(.s-btn all, .s-btn-primary all);
+}
+
+// Create account button
+.reg-columns .form-row-button > button.create-account-btn {
+  &:extend(.s-btn all, .s-btn-primary all);
+}
+
+.reg-columns .form-row-button > button.create-account-btn.create-account-btn {
+  margin-bottom:@spacing;
+}

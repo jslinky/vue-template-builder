@@ -1,0 +1,64 @@
+.u-hide{
+  position:absolute !important;
+  height:1px!important;
+  width:1px!important;
+  overflow:hidden!important;
+  clip:rect(1px, 1px, 1px, 1px)!important;
+}
+
+.u-text-hide {
+  font: ~"0/0" a;
+  color: transparent!important;
+  text-shadow: none!important;
+  background-color: transparent!important;
+  border: 0!important;
+}
+
+.u-visibility-hidden {
+  visibility: hidden!important;
+}
+
+@media (max-width: 40em){
+  .u-xs-hide{ display:none !important }
+}
+
+@media (min-width: 40em) and (max-width: 52em){
+  .u-sm-hide{ display:none !important }
+}
+
+@media (min-width: 52em) and (max-width: 64em){
+  .u-md-hide{ display:none !important }
+}
+
+@media (min-width: 64em){
+  .u-lg-hide{ display:none !important }
+}
+
+.u-display-none{ display:none !important }
+
+
+
+/* Mobile Only Hide */
+@media only screen and (max-width: @largestMobileScreen) {
+  .u-mobile-hide { display:none!important }
+}
+
+/* Tablet Only Hide */
+@media only screen and (min-width: @tabletBreakpoint) and (max-width: @largestTabletScreen) {
+  .u-tablet-hide { display:none!important }
+}
+
+/* Computer Only Hide */
+@media only screen and (min-width: @computerBreakpoint) and (max-width: @largestSmallMonitor) {
+  .u-computer-hide { display:none!important }
+}
+
+/* Large Screen Only Hide */
+@media only screen and (min-width: @largeMonitorBreakpoint) and (max-width: @largestLargeMonitor) {
+  .u-large-hide { display:none!important }
+}
+
+/* Widescreen Only Hide */
+@media only screen and (min-width: @widescreenMonitorBreakpoint) {
+  .u-widescreen-hide { display:none!important }
+}

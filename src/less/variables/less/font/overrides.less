@@ -1,0 +1,44 @@
+
+
+
+/*-------------------
+      SITE FONTS
+--------------------*/
+
+@primaryFontRegularStack            : @framework-primaryRegularFontStack; 
+@primaryFontMediumStack             : @primaryFontRegularStack; // no medium 
+@primaryFontLightStack              : @framework-primaryLightFontStack; 
+@secondaryFontStack                 : @framework-secondaryFontStack;
+
+@primaryFontRegular                 : extract(@primaryFontRegularStack, 1); 
+@primaryFontMedium                  : extract(@primaryFontMediumStack, 1);
+@primaryFontLight                   : extract(@primaryFontLightStack, 1); 
+@secondaryFont                      : extract(@secondaryFontStack, 1);
+
+
+// /*-------------------
+//    Font stack options
+// --------------------*/
+
+@framework-primaryRegularFontStack: 
+'GillSans-Medium', 
+"Gill Sans MT",
+Lato,
+Arial,
+sans-serif;
+
+@framework-primaryLightFontStack: 
+'GillSans-Light', 
+"Gill Sans MT",
+Lato,
+Arial,
+sans-serif;
+
+@framework-secondaryFontStack:
+"BaskerVille",
+"Baskerville Old Face", 
+"Times New Roman",
+"Hoefler Text", 
+Garamond,  
+serif;
+

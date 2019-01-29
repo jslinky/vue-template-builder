@@ -1,0 +1,26 @@
+
+.pt_singlepagecheckout_v2 .order-summary, 
+.c-credit-cards.c-credit-cards--checkout, 
+.checkout-body .wrapper_content {
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.pt_cart_v2 .last-visited {
+  width: 100%;  
+}
+
+.pt_cart_v2 .last-visited > h2 {
+  margin-bottom:@spacing;
+}
+
+@media (min-width: (@pdp-sectionContainerWidth*@em)) {
+
+  .pt_cart_v2 .last-visited {
+    width: 100vw;
+    margin-left: ~"calc(50% - "(@pdp-sectionContainerWidth*@rem / 2 )~")";
+    margin-right: ~"calc(50% - "(@pdp-sectionContainerWidth*@rem / 2 )~")";
+    max-width: @pdp-sectionContainerWidth*@rem;  
+  }
+
+}

@@ -1,0 +1,36 @@
+
+
+#objects {
+  .divider() {   
+    // Initial divider rules 
+    @element-ruleset: { 
+      content:'';
+      display: block;
+      margin:auto;
+      width:var(--divider-width);
+      height:calc(~"("var(--divider-height) ~"/" var(--fontSizeRoot) ~"*" var(--divider-height-unit)~")" );
+      background-color:var(--divider-bgColor);        
+      position:relative;         
+    };
+    @element-fallback-ruleset: { 
+      width: @divider-width;
+      height: calc(~"("@divider-height ~"/" @fontSizeRoot ~"* @{divider-height-unit})" );
+      background-color: @divider-bgColor;        
+    };    
+    @offset: {
+      .offset(margin-top, divider-spacing-top, ~"@{divider-spacing-top}", @offsetFixed);      
+      .offset(margin-bottom, divider-spacing-bottom, ~"@{divider-spacing-bottom}", @offsetFixed);      
+    };
+    @offset-tabletBreakpoint-ruleset: {
+      --divider-spacing-top: var(--divider-spacing-top-tabletBreakpoint);
+      --divider-spacing-bottom: var(--divider-spacing-top-tabletBreakpoint);
+      .offset(margin-top, divider-spacing-top, ~"@{divider-spacing-top-tabletBreakpoint}", @offsetFixed);      
+      .offset(margin-bottom, divider-spacing-bottom, ~"@{divider-spacing-bottom-tabletBreakpoint}", @offsetFixed);      
+    };
+    @section-ruleset: {
+      position:absolute;
+      left:50%;
+      transform: translate(-50%, 0);
+    };
+  }
+}

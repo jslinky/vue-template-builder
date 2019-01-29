@@ -1,0 +1,27 @@
+
+// Fluid typography
+// http://codepen.io/MadeByMike/pen/RWJyML
+// https://www.smashingmagazine.com/2016/05/fluid-typography/
+.fluid-type(@property, @min-vw, @max-vw, @min-size, @max-size) {
+
+	@{property}: @min-size;
+
+	@media screen and (min-width: @min-vw) {
+		@{property}: calc( @min-size ~" + " unit(@max-size - @min-size) ~" * ((100vw - " @min-vw ~") /" unit(@max-vw - @min-vw) ~")" );
+	}
+
+	@media screen and (min-width: @max-vw) {
+		@{property}: @max-size;
+	}
+
+}
+
+
+
+
+// Gradient text
+.gradient-text(@from, @to) {
+  background: -webkit-linear-gradient(@from, @to);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}

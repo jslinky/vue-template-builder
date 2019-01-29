@@ -1,0 +1,59 @@
+// Dynamic heading sizes (mobile first)
+// Not working with custom props - see if can get to chance vals on the fly
+[class*="-hdr"] {
+  &[class*="--hg-msv"] {  
+    #objects.header(hHuge-hMassive-min-font-size);
+  }
+  &[class*="--big-hg"] {  
+    #objects.header(hBig-hHuge-min-font-size);
+  }
+  &[class*="--lg-big"] {  
+    #objects.header(hLarge-hBig-min-font-size);
+  }
+  &[class*="--md-lg"] {  
+    #objects.header(hMedium-hLarge-min-font-size);
+  } 
+  &[class*="--sm-md"] {  
+    #objects.header(hSmall-hMedium-min-font-size);
+  }        
+}
+
+@media (min-width:unit(@headerFluidMinVW, em)) and (max-width:( unit( (unit( (@headerFluidMaxWidthPixel - 1) ) / @fontSizeRoot), em))) { 
+  [class*="-hdr"] {
+    &[class*="--hg-msv"] {  
+      #objects.header(hHuge-hMassive-min-size);
+    }
+    &[class*="--big-hg"] {  
+      #objects.header(hBig-hHuge-min-size);
+    }
+    &[class*="--lg-big"] {  
+      #objects.header(hLarge-hBig-min-size);
+    }
+    &[class*="--md-lg"] {  
+      #objects.header(hMedium-hLarge-min-size);
+    }
+    &[class*="--sm-md"] {  
+      #objects.header(hSmall-hMedium-min-size);
+    }                
+  }  
+}
+
+@media (min-width:unit(@headerFluidMaxVW, em)) { 
+  [class*="-hdr"] {
+    &[class*="--hg-msv"] {  
+      #objects.header(hHuge-hMassive-max-size);
+    }
+    &[class*="--big-hg"] {  
+      #objects.header(hBig-hHuge-max-size);
+    }
+    &[class*="--lg-big"] {  
+      #objects.header(hLarge-hBig-max-size);
+    }
+    &[class*="--md-lg"] {  
+      #objects.header(hMedium-hLarge-max-size);
+    }
+    &[class*="--sm-md"] {  
+      #objects.header(hSmall-hMedium-max-size);
+    }                
+  }  
+}

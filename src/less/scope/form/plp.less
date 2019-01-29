@@ -1,0 +1,13 @@
+
+
+// Radio Button
+.refinement-body > ul > li .radio { &:extend(.o-form__radioCheckbox + label:before); }
+.refinement-body.refinement-body > ul > li .radio { 
+  border-radius:50%; 
+  width:23*@rem;
+  height:23*@rem;
+}
+// Radio Button - isSelected
+.refinement-body > ul > li.selected .radio { &:extend(.o-form__radio:checked + .o-form__label:before); }
+
+

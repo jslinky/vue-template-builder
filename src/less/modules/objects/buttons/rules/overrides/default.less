@@ -1,0 +1,43 @@
+// Override 
+// #namespace { 
+//     .module() {
+//         @element: {
+//             // override code
+//         };
+//     } 
+// } 
+
+// Extend
+// #namespace {
+//     .module(element) {
+//         // extend code
+//     }
+// }
+
+
+#objects {
+  .button-type(default-btn-type-noBorder-customPropOnly-ruleset) {
+    --fontFamily: var(--primaryFontLightStack);
+    --letterSpacing: @letterSpacing-defaultBtn;
+  }
+  .button-type(default-btn-type-noBorder-fallback-ruleset) {
+    --fontFamily: var(--primaryFontLightStack);
+    font-family:var(--fontFamily);
+    --letterSpacing: @letterSpacing-defaultBtn;
+    letter-spacing: @letterSpacing-defaultBtn;
+    letter-spacing: var(--letterSpacing);
+  }  
+  .button-type(default-btn-type-noBorder-staticVarsOnly-ruleset) {
+    font-family:@primaryFontLightStack;
+    letter-spacing: @letterSpacing-defaultBtn;
+  }    
+  .button-type() {
+    @default-btn-type-noBorder: {
+      text-transform:none;
+    };  
+  }  
+}
+
+
+    
+

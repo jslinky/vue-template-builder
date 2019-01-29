@@ -1,0 +1,409 @@
+
+
+#collections {
+  .form-variables() {
+    @static-variables-only                : false; // turn off custom prop on a module level - define on a per site basis in overrides
+    @local-scoped-custom-prop-fallback    : false; // not sure this works! local scoped variable - should be moved to overrides    
+    @apply-native-elements                : true;
+    //-------------------
+    //  Form element
+    //--------------------  
+    @gutter                     : gutter;
+    @rowDistance                : rowSpacing;
+    // Text
+    @paragraphMargin            : ~"var(--@{rowDistance}" 0; 
+    @paragraphMarginFallback    : @@rowDistance 0em;   
+
+    //-------------------
+    //  Global form vars         
+    //--------------------  
+    //  Used on inputs, textarea etc
+    @focusedFormBorderColor     : @selectedBorderColor;  
+    // Errored Input 
+    @formErrorColor             : @negativeTextColor; 
+    @formErrorBorder            : @negativeBorderColor;
+    @formErrorBackground        : @negativeBackgroundColor;    
+
+    //-------------------
+    //  Field
+    //--------------------  
+    @fieldMargin                : 0em 0em ~"var(--@{rowDistance})";
+    @fieldMarginFallback        : 0em 0em @@rowDistance; 
+    @fieldPadding               : spacing;
+    @fieldBorder                : 0;
+    //-------------------
+    //  Label
+    //--------------------      
+    @labelDistance              : 4; // px
+    @labelWidth                 : 100%;
+    @labelMaxWidth              : 20%;
+    @labelDisplay               : inline-block;
+    // Default position - left of input
+    @labelDistanceCalc          : ~"calc("var(--labelDistance) ~"/" var(--fontSizeRoot) ~"* 1rem)";
+    @labelDistanceCalcFallback  : ~"calc("@labelDistance ~"/" @fontSizeRoot ~"* 1rem)";
+    @labelMargin                : 0em var(--labelDistanceCalc) var(--labelDistanceCalc) 0em;
+    @labelMarginFallback        : 0em @labelDistanceCalcFallback @labelDistanceCalcFallback 0em;
+    // @label2nMarginLeft          : gutter;
+    // @labelTwonMarginLeft        : @gutter;
+    // Stacked - above input
+    @labelMarginStacked         : 0em 0em ~"calc("var(--labelDistance) ~"/" var(--fontSizeRoot) ~"* 1rem)" 0em;
+    @labelMarginStackedFallback : 0em 0em ~"calc("@labelDistance ~"/" @fontSizeRoot ~"* 1rem)" 0em;
+
+    @labelFont                  : primaryFontRegularStack;
+    @labelFontSize              : tiny;
+    @labelFontWeight            : normal;
+    @labelTextTransform         : none;
+    @labelColor                 : @black; 
+    @labelLetterSpacingVal      : 0.75;
+    @labelLetterSpacing         : ~"calc((var(--labelLetterSpacingVal) / var(--fontSizeRoot)) * 1em)";
+    @labelLetterSpacingFallback : ~"calc((@{labelLetterSpacingVal} / @{fontSizeRoot}) * 1em)";                   
+    //-------------------
+    //  Input
+    //--------------------  
+    @inputBackground            : #fff;
+    @inputVerticalPadding       : 1.32em; // uses scope of buttons module variable
+    @inputHorizontalPadding     : 1.2em; // uses scope of buttons module variable
+    @inputPadding               : ~"var(--inputVerticalPadding) var(--inputHorizontalPadding)";
+    @inputPaddingFallback       : @inputVerticalPadding @inputHorizontalPadding;
+    /* Line Height Default For Inputs in Browser */
+    @inputLineHeight            : 1.2142em;
+    @inputLetterSpacingVal      : 0.75;
+    @inputLetterSpacing         : ~"calc((var(--inputLetterSpacingVal) / var(--fontSizeRoot)) * 1rem)";
+    @inputLetterSpacingFallback : ~"calc((@{inputLetterSpacingVal} / @{fontSizeRoot}) * 1rem)";        
+
+    @inputFont                  : primaryFontRegularStack;
+    @inputWidth                 : 98%;
+    @inputMaxWidth              : ~"calc(((var(--inputWidth) - (var(--labelMaxWidth) * 2)) / 2) - (((var(--inputBorderWidth) + (@{labelDistanceCalc}) ) * 2) ))";
+    @inputMaxWidthFallback      : ~"calc(((@{inputWidth} - (@{labelMaxWidth} * 2)) / 2) - (((@{inputBorderWidth} + (@{labelDistanceCalcFallback}) ) * 2) ))";
+    @inputFontSize              : @small;
+    @inputBorderWidth           : 1px;
+    @inputBorderStyle           : solid;
+    @inputBorderColor           : @strongBorderColor;
+    @inputBorder                : @inputBorderWidth @inputBorderStyle @inputBorderColor;
+    @inputBorderRadius          : absoluteBorderRadius;
+    @inputColor                 : @lightBlack;
+    @inputTransition:
+      color @defaultDuration @defaultEasing,
+      border-color @defaultDuration @defaultEasing;
+    ;
+    @inputBoxShadow             : 0em 0em 0em 0em transparent inset;    
+
+    @inputErrorBackground       : @negativeBackgroundColor;
+    @inputErrorColor            : @negativeTextColor;
+    @inputErrorBorderWidth      : 1px;
+    @inputErrorBorderStyle      : solid;
+    @inputErrorBorderColor      : @negativeBorderColor;
+    @inputErrorBorder           : @inputErrorBorderWidth @inputErrorBorderStyle @inputErrorBorderColor;
+    @inputErrorBoxShadow        : none;
+    //-------------------
+    //  Inline Validation Prompt
+    //--------------------  
+    @promptTextColor            : @formErrorColor;
+    @promptFontSize             : @inputFontSize;
+    @promptBackground           : transparent;
+    @promptBorderColor          : @formErrorBorder;
+    @promptBorder               : 1px solid @promptBorderColor;
+    @promptTextColor            : @formErrorColor;
+    @promptMargin               : 0;
+    @promptPadding              : 0;
+    @inlinePromptMargin         : -0.25em 0em -0.5em 0.5em;
+    @inlinePromptBorderWidth    : 1px;
+
+    //-------------------
+    //  Text Area
+    //--------------------     
+
+    @textAreaPadding            : @inputVerticalPadding @inputHorizontalPadding;
+    @textAreaHeight             : 12em;
+    @textAreaResize             : vertical;
+    @textAreaLineHeight         : 1.2857;
+    @textAreaMinHeight          : 8em;
+    @textAreaMaxHeight          : 24em;
+    @textAreaBackground         : @inputBackground;
+    @textAreaBorder             : @inputBorder;
+    @textAreaFontSize           : @inputFontSize;
+    @textAreaTransition         : @inputTransition;    
+    
+    //-------------------
+    //  Select
+    //--------------------      
+    @selectBackground           : @white;
+    @selectBackgroundImage      : '';
+    @selectBackgroundImagePostion: ~"calc(100% - 1em)" center;
+    @selectBackgroundImageSize  : @small auto;
+    @selectBackgroundImageRepeat: no-repeat;
+    @selectBorder               : @inputBorder;
+    @selectBorderRadius         : @inputBorderRadius;
+    @selectBorderWidth          : 1;
+    @selectBorderStyle          : solid;
+    @selectBorderColor          : strongBorderColor;    
+    @selectPadding              : var(--inputPadding);
+    @selectPaddingFallback      : @inputPaddingFallback;
+    @selectBoxShadow            : @inputBoxShadow;
+    @selectTransition           : @inputTransition;
+    @selectColor                : @mutedTextColor;
+    @selectFontSize             : @small;
+    @selectFont                 : @inputFont;   
+    @selectLetterSpacingVal     : @inputLetterSpacingVal;
+    @selectLetterSpacing        : @inputLetterSpacing;
+    @selectLetterSpacingFallback: @inputLetterSpacingFallback;                 
+
+    //-------------------
+    //  Radio / Checkbox shared values
+    //-------------------- 
+    // Psuedo generated element values
+    @radioCheckboxSize          : @relativeLarge;    
+    @radioCheckboxBorder        : 1px solid @primaryColor;
+    @radioCheckboxBorderRadius  : @relative2px;    
+    @radioCheckboxTransition    : background 100ms ease-in;
+    @radioCheckboxVerticalAlign : middle;
+    // Label
+    @radioCheckboxLabelDistance : 6;
+    @radioCheckboxLabelMargin   : 0em ~"calc("var(--labelDistance) ~"/" var(--fontSizeRoot) ~"* 6rem)" 0 ~"calc("var(--labelDistance) ~"/" var(--fontSizeRoot) ~"* 1rem)";
+    @radioCheckboxLabelMarginFallback : 0em ~"calc("@radioCheckboxLabelDistance ~"/" @fontSizeRoot ~"* 6rem)" 0 ~"calc("@checkboxLabelDistance ~"/" @fontSizeRoot ~"* 1rem)";        
+    @radioCheckboxLabelMarginStacked : 0 0 ~"calc("var(--labelDistance) ~"/" var(--fontSizeRoot) ~"* 1rem)" 0 ;
+    @radioCheckboxLabelMarginStackedFallback: 0 0 ~"calc("@radioCheckboxLabelDistance ~"/" @fontSizeRoot ~"* 1rem)" 0;    
+    @radioCheckboxLabelFontSize      : @labelFontSize;
+    @radioCheckboxLabelTextTransform : @labelTextTransform;
+
+    //-------------------
+    //  Radio 
+    //-------------------- 
+    @radioBorderRadius          : 50%;
+    @radioSize                  : @radioCheckboxSize;
+    @radioBorder                : @radioCheckboxBorder;
+
+    //-------------------
+    //  Checkbox
+    //-------------------- 
+    @checkboxVerticalAlign      : @radioCheckboxVerticalAlign;
+    @checkboxBorderRadius       : @relative2px;
+    @checkboxTransition         : @radioCheckboxTransition;
+
+    @checkboxLabelFontSize      : @radioCheckboxLabelFontSize;
+    @checkboxLabelTextTransform : @radioCheckboxLabelTextTransform;
+    @checkboxLabelDistance      : @radioCheckboxLabelDistance;
+
+    @checkboxLabelMargin        : @radioCheckboxLabelMargin;
+    @checkboxLabelMarginFallback: @radioCheckboxLabelMarginFallback;    
+    
+    @checkboxLabelMarginStacked : @radioCheckboxLabelMarginStacked;
+    @checkboxLabelMarginStackedFallback: @radioCheckboxLabelMarginStackedFallback;        
+
+    //-------------------
+    //    States
+    //--------------------
+    // Input Focus 
+    //--------------------
+    @inputFocusPointerSize      : 0px;
+    @inputFocusBackground       : @inputBackground;
+    @inputFocusBorderColor      : @focusedFormBorderColor;
+    @inputFocusColor            : @selectedTextColor;
+    @inputFocusBoxShadow        : @inputFocusPointerSize 0em 0em 0em @selectedBorderColor inset;
+    @inputFocusBorderRadius     : @inputBorderRadius;
+    @inputFocusOutline          : none;
+
+    // Focused Error 
+    //--------------------
+    @inputErrorFocusBackground  : @negativeBackgroundColor;
+    @inputErrorFocusColor       : @negativeTextColor;
+    @inputErrorFocusBorderWidth : 1px;
+    @inputErrorFocusBorderStyle : solid;
+    @inputErrorFocusBorderColor : @negativeBorderColor;
+    @inputErrorFocusBorder      : @inputErrorFocusBorderWidth @inputErrorFocusBorderStyle @inputErrorFocusBorderColor;    
+    @inputErrorFocusBoxShadow   : none;
+
+    
+    // Placeholder 
+    //--------------------
+    @inputPlaceholderColor      : lighten(@inputColor, 55);
+    @inputPlaceholderFocusColor : lighten(@inputColor, 35);
+    
+    // Placeholder Error 
+    //--------------------
+    @inputErrorPlaceholderColor : lighten(@formErrorColor, 40);
+    @inputErrorPlaceholderFocusColor: lighten(@formErrorColor, 30);
+
+    // Select Menu
+    //--------------------
+    @selectFocusPointerSize     : 0px;
+    @selectFocusBackground      : @selectBackground;
+    @selectFocusBorderColor     : @focusedFormBorderColor;
+    @selectFocusColor           : @inputFocusColor;
+    @selectFocusBoxShadow       : @inputFocusPointerSize 0em 0em 0em @selectedBorderColor inset;
+    @selectFocusBorderRadius    : @selectBorderRadius;
+    @selectFocusOutline         : none;
+
+    // Checkbox: checked
+    //--------------------
+    @checkboxCheckedBackground  : @primaryColor;
+    @checkboxCheckedBackgroundImage: '';
+    @checkboxCheckedIconColor   : #fff;
+    @checkboxCheckedBoxShadow   : none;
+
+    @checkboxBackgroundImagePostion: center;
+    @checkboxBackgroundImageSize: @small auto;
+    @checkboxBackgroundImageRepeat: no-repeat;    
+
+    // Radio: checked
+    //--------------------    
+    @radioCheckedBackground     : @checkboxCheckedBackground;
+    @radioCheckedBackgroundImage: '';
+    @radioCheckedIconColor      : #fff;
+    @radioCheckedBoxShadow      : 0 0 0px 1px #fff inset;
+
+    @radioBackgroundImagePostion: center;
+    @radioBackgroundImageSize   : @small auto;
+    @radioBackgroundImageRepeat : no-repeat;       
+
+
+
+    // STUFF TO DO
+/* Input */
+
+
+
+
+
+
+
+
+/* Checkbox / terms */
+@formRowCheckboxMarginTop: @verticalMargin;
+
+
+//
+/*-------------------
+        States
+--------------------*/
+
+
+
+// /* Text Area Focus */
+// @textAreaFocusBackground: @inputFocusBackground;
+// @textAreaFocusBorderColor: @inputFocusBorderColor;
+// @textAreaFocusColor: @inputFocusColor;
+// @textAreaFocusBoxShadow: @inputFocusBoxShadow;
+// @textAreaFocusBorderRadius: @inputFocusBorderRadius;
+//
+// /* Disabled */
+// @disabledLabelOpacity: @disabledOpacity;
+//
+
+//
+// /* AutoFill */
+// @inputAutoFillBackground: #FFFFF0;
+// @inputAutoFillBorder: #E5DFA1;
+// @inputAutoFillFocusBackground: @inputAutoFillBackground;
+// @inputAutoFillFocusBorder: #D5C315;
+// @inputAutoFillErrorBackground: #FFFAF0;
+// @inputAutoFillErrorBorder: #E0B4B4;
+//
+//
+// /* Input Error */
+// @inputErrorBorderRadius: '';
+// @inputErrorBoxShadow: none;
+//
+// /* Dropdown Error */
+// @dropdownErrorHoverBackground: #FBE7E7;
+// @dropdownErrorSelectedBackground: @dropdownErrorHoverBackground;
+// @dropdownErrorActiveBackground: #FDCFCF;
+// @dropdownErrorLabelBackground: #EACBCB;
+// @dropdownErrorLabelColor: @errorTextColor;
+//
+
+//
+// /* Loading Dimmer */
+// @loaderDimmerColor: rgba(255, 255, 255, 0.8);
+// @loaderDimmerZIndex: 100;
+//
+// /* Loading Spinner */
+// @loaderSize: 3em;
+// @loaderLineZIndex: 101;
+//
+// /*-------------------
+//         Types
+// --------------------*/
+//
+// /* Required */
+// @requiredContent: '*';
+// @requiredColor: @negativeColor;
+// @requiredVerticalOffset: -0.2em;
+// @requiredDistance: 0.2em;
+// @requiredMargin: @requiredVerticalOffset 0em 0em @requiredDistance;
+//
+// /* Inverted */
+// @invertedInputBackground: @inputBackground;
+// @invertedInputBorderColor: @whiteBorderColor;
+// @invertedInputBoxShadow: @inputBoxShadow;
+// @invertedInputColor: @inputColor;
+// @invertedLabelColor: @invertedTextColor;
+// @invertedInputBoxShadow: none;
+//
+// /*-------------------
+//       Variations
+// --------------------*/
+//
+// /* Grouped Fields */
+// @groupedMargin: @fieldMargin;
+// @groupedFieldMargin: 0.5em 0em;
+//
+// @groupedLabelDistance: @labelDistance;
+// @groupedLabelColor: @labelColor;
+// @groupedLabelMargin: @labelMargin;
+// @groupedLabelFontSize: @labelFontSize;
+// @groupedLabelFontWeight: @labelFontWeight;
+// @groupedLabelTextTransform: @labelTextTransform;
+//
+//
+// /* Inline */
+// @inlineInputSize: @relativeMedium;
+//
+// @inlineLabelDistance: @relativeTiny;
+// @inlineLabelColor: @labelColor;
+// @inlineLabelFontSize: @labelFontSize;
+// @inlineLabelFontWeight: @labelFontWeight;
+// @inlineLabelTextTransform: @labelTextTransform;
+//
+// @groupedInlineLabelMargin: 0.035714em 1em 0em 0em;
+//
+// /*-------------------
+//        Groups
+// --------------------*/
+//
+// @inlineFieldsMargin: 0em 1em 0em 0em;
+
+  }
+}
+
+
+
+
+
+
+
+
+
+
+    // @negativeBorderColor        : @negativeColor;
+    // /* Used on dropdowns, other larger blocks */
+    // @focusedFormMutedBorderColor: #96C8DA;
+
+
+
+/*******************************
+             Form
+*******************************/
+
+/*-------------------
+       Elements
+--------------------*/
+
+
+
+
+
+
+
+
+

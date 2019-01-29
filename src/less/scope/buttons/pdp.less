@@ -1,0 +1,73 @@
+
+a.in-store-availability-text {
+  &:extend(.o-link all);
+}
+
+.in-store-availability a.in-store-availability-text:before {
+  left:-20px;
+}
+
+.product-add-to-cart a.notification,
+.product-add-to-cart button.notification,
+button[type="submit"].please-select-size {
+  &:extend(.s-btn all, .s-btn-basic all);
+  // #objects.button-type(disabled);
+}
+
+.pdp-checkout-button {
+  margin:(@spacing/2) auto 0 auto;
+}
+
+.checkout-button-pdp > a {
+  &:extend(.s-btn all, .s-btn-primary all);
+  width:100%;
+  margin-right:0;
+}
+
+.pdp-main .add-to-cart,
+.pdp-main .add-to-cart a,
+.pdp-main .add-to-cart button,
+.product-add-to-cart .notification,
+.please-select-size {
+  margin-right:0!important;
+}
+
+.product-add-to-cart .notification,
+.please-select-size {
+  pointer-events: none;
+  cursor: default;
+}
+
+.product-add-to-cart .notification:hover,
+button[type="submit"].please-select-size:hover,
+button[type="submit"].please-select-size:focus {
+  box-shadow:none;
+}
+
+.product-add-to-cart a.notification:before,
+.product-add-to-cart button.notification:before,
+button[type="submit"].please-select-size:before {
+  content:'Please select a size';
+  position: absolute;
+  background:#fff;
+  width:~"calc(100% - 4px)";
+  height:~"calc(100% - 4px)";
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  border:1px solid #000;
+  top:2px;
+  left:2px;
+  line-height: 1;
+}
+
+// Hide wishlist button
+.product-add-to-cart .wl-action.wl-action {
+  display:none;
+}
+
+.pdp-main button#add-to-cart[type="submit"].is-added {
+  &:extend(.s-btn all, .s-btn-basic all);
+  background:transparent;
+  margin-right:0!important;
+}

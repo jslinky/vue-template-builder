@@ -1,0 +1,833 @@
+//
+// Modals
+// --------------------------------------------------
+// These are based on bootstrap classes. .o-modal extends these.
+// .modal-open      - body class for killing the scroll
+// .modal           - Dimmed background container
+// .modal-dialog    - positioning shell for the actual modal
+// .modal-content   - actual modal w/ bg and corners and shit
+
+#modules {
+  .modal(@item) {
+    #modules.modal();
+    @rules:@@item;
+    @rules();
+  }
+  .modal() {
+    @modal-close-size: 50px;
+    @dimmed-background: {
+      // display: none;
+      overflow: hidden;
+      position: fixed!important;
+      height:100%!important;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      // z-index: @zindex-modal;
+      outline: 0;
+      z-index: @zindex-modal-background!important;
+      background-color: @modal-backdrop-bg;
+      // Fade for backdrop
+      &.fade { opacity: 0; }
+      &.in { opacity:@modal-backdrop-opacity; }
+    };
+    @content-container: {
+      position:absolute;
+      left:0!important;
+      // top:0!important;
+      width: 100%!important;
+      margin: 0!important;
+      background: #fff;
+      max-width: @largestTabletScreen;
+      backface-visibility: hidden;
+      text-rendering: optimizeLegibility;
+      // max-height:90vh!important;
+      // z-index:@zindex-modal!important;
+      // display: flex;
+      // flex-direction: column;
+      // justify-content: center;
+      @media (max-width:@largestMobileScreen) {
+        margin:0!important;
+        top:0!important;
+      }
+      @media (min-width:@largeMobileBreakpoint) and (max-width:@largestMobileScreen) {
+        width:75%!important;
+      }
+      @media (min-width:@largeMobileBreakpoint) {
+        width: 90%!important;
+        left: 45%!important;
+        // top: 50%!important;
+        transform: translateZ(0) translateX(-45%) translateY(0) scale(1.0, 1.0);
+        width: auto;
+      }
+      @media (min-width:@largeMobileBreakpoint) and (max-height:@computerBreakpoint) {
+        top:0!important;
+        transform:translate3d(-45%, 0, 0);
+        min-height:90vh;
+        max-height:100vh!important;
+        position:fixed;
+      }
+    };
+    @content: {
+      position: relative;
+      background-color: @modal-content-bg;
+      border: 1px solid @modal-content-fallback-border-color; //old browsers fallback (ie8 etc)
+      border: 1px solid @modal-content-border-color;
+      border-radius: 0;
+      box-shadow:0 3px 9px rgba(0,0,0,.5);
+      background-clip: padding-box;
+      // Remove focus outline from opened modal
+      outline: 0;
+      box-shadow: 0 0 20px 5px fade(@black, 10%);
+      border:0;
+      // height:100%!important;
+      
+    };
+    @close-button: {
+      line-height: @inputLineHeight;
+      padding: 0!important;
+      font-size: @inputFontSize;
+      cursor:pointer;
+      top:0!important;
+      margin: 0!important;
+      height:3rem!important;
+      width:3rem!important;
+      z-index:11;
+      .icon-fill('../../images/interface/close.svg', '@{primaryColor}');
+      background-repeat: no-repeat;
+      background-size: 50% auto;
+      background-position: center;
+      position: absolute;
+      right:0;
+      &:after { display:none!important; }
+    };
+    @close-button-icon: {
+      width:28*@rem;
+      height:28*@rem;
+      transform: rotate(45deg);
+    };
+    @header: {
+      padding: @spacing/2 @spacing/2 0!important;
+      width:100%;
+      min-height:3rem; // height of close button - make var
+      position: initial!important;
+      // .u-clearfix;
+      display: flex;
+      justify-content: center;
+    };
+    @header-title: {
+      // #elements.header(default-rules);
+      // #elements.header.header-4();
+      #objects.header(hLarge);
+      text-transform:uppercase;
+      margin:1rem 0 1rem 2.5rem!important; // use vars
+      display: inline-block;
+      text-align: center;
+      width:~"calc(100% - 5rem)"; // use vars
+    };
+    @content-body: {
+      position: relative;
+      padding: @modal-inner-padding;
+      height:100%!important;
+      max-height:inherit!important;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      p + div { .rem-unit(margin-top, @verticalRhythm / 2); }
+      iframe { margin-bottom:-7px; }
+      @media (max-width:@largestMediumMobileScreen) {
+        padding-bottom:(@spacing * 2)!important;
+        iframe { max-height:185px; }
+      }
+    };
+  }
+}
+
+
+// Kill the scroll on the body
+body.no-scroll,
+.modal-open { overflow: hidden; }
+
+
+// Dimmed background container for modal
+.modal-open .modal { overflow-x: hidden; overflow-y: auto; }
+.modal-backdrop {
+  #modules.modal-variables(); // unlock variables
+  #modules.modal(dimmed-background);
+}
+
+// When fading in the modal, animate it to slide down
+/*.modal.fade .modal-dialog { transform:translate(-50%, -75%); transition: 0.3a ease-out; }
+.modal.in .modal-dialog { transform:translate(-50%, -60%); }
+*/
+
+// Extend base (bootstrap) class
+.o-modal-backdrop, // JW BEM class
+.ui-widget-overlay // tryzens class
+{ &:extend(.modal-backdrop); }
+
+.modal {
+  display:none;
+  position:fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index:1000;
+}
+
+// Shell div to position the modal
+.modal-dialog {
+  #modules.modal-variables(); // unlock variables
+  #modules.modal(content-container);
+}
+
+.o-modal__dialog, // JW BEM class
+.ui-dialog:not(.click-and-collect), // tryzens class
+.custom-modal-box // tryzens class
+{ &:extend(.modal-dialog); }
+
+.modal-dialog .add-to-cart { margin-top:@verticalMargin; }
+
+// Custom modal box - used in My Account > My Cards > Delete card
+.custom-modal-box {
+  padding:@verticalPadding 0;
+  text-align: center;
+  z-index:@zindex-modal!important;
+}
+// .custom-modal-box > h2 { &:extend(.o-header--h4); }
+
+
+// Modal content
+.modal-content {
+  #modules.modal-variables(); // unlock variables
+  #modules.modal(content);
+}
+.o-modal__content { &:extend(.modal-content); }
+
+
+// Close button
+.close-modal {
+  #modules.modal-variables(); // unlock variables
+  #modules.modal(close-button);
+}
+// Close button icon
+.close-modal .o-icon {
+  #modules.modal-variables(); // unlock variables
+  #modules.modal(close-button-icon);
+}
+
+
+.o-modal__content-header .close, // JW BEM class
+.modal-header .close, // Bootstrap
+/*.ui-icon-closethick,*/
+.ui-dialog-titlebar-close // tryzens
+{ &:extend(.close-modal all); }
+
+// Modal header
+// Top section of the modal w/ title and dismiss
+.modal-header {
+  #modules.modal-variables(); // unlock variables
+  #modules.modal(header);
+}
+.modal-header:before,
+.modal-header:after {
+  content:'';
+  display: table;
+}
+
+.modal-header:after { clear:both; }
+
+.o-modal__content-header, // JW BEM class
+.ui-dialog-titlebar.ui-widget-header // tryzens
+{ &:extend(.modal-header); }
+.ui-dialog-titlebar.ui-widget-header.empty-title {
+  position: absolute!important; // fix for ipad
+}
+
+// Header element - extend this to bootstrap class and BEM
+.ui-dialog-title {
+  #modules.modal-variables(); // unlock variables
+  // #modules.modal(header-title);
+}
+
+// Title text within header
+.modal-title {
+  margin: 0;
+  line-height: @modal-title-line-height;
+  // &:extend(.o-header--h4);
+}
+
+// Modal body
+// Where all modal content resides (sibling of .modal-header and .modal-footer)
+.modal-body {
+  #modules.modal-variables(); // unlock variables
+  #modules.modal(content-body);
+}
+.o-modal__content-body, // JW BEM class
+.ui-dialog-content // tryzens class
+{ &:extend(.modal-body all); }
+
+// Hide close button - see 'modal-notification-content' content asset
+.close-trigger {
+  text-align: center;
+  display: block;
+  margin: 1.5rem 0 2.5rem;
+}
+
+.ui-dialog-content h1 { margin-top:0!important; }
+
+
+
+// Footer (for actions)
+.modal-footer {
+  display:none;
+  padding: @modal-inner-padding;
+  text-align: right; // right align buttons
+  border-top: 1px solid @modal-footer-border-color;
+  &:extend(.clearfix all); // clear it in case folks use .pull-* classes on buttons
+  &:extend(.o-modal .o-modal__content-footer all);
+
+  // Properly space out buttons
+  .btn + .btn {
+    margin-left: 5px;
+    margin-bottom: 0; // account for input[type="submit"] which gets the bottom margin like all other inputs
+  }
+  // but override that for button groups
+  .btn-group .btn + .btn {
+    margin-left: -1px;
+  }
+  // and override it for block buttons as well
+  .btn-block + .btn-block {
+    margin-left: 0;
+  }
+}
+
+// Measure scrollbar width for padding body during modal show/hide
+.modal-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
+}
+
+// Scale up the modal
+@media (min-width: @largeMobileBreakpoint) {
+  // Automatically set modal's width for larger viewports
+  .modal-dialog {
+    width: @modal-md;
+    margin: 30px auto;
+  }
+  .modal-content {
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+  }
+
+  // Modal sizes
+  .modal-sm { width: @modal-sm; }
+}
+
+@media (min-width: @tabletBreakpoint) {
+  .modal-lg { width: @modal-lg; }
+}
+
+// end bootstrap styles
+
+
+
+
+.modal-backdrop, 
+.o-modal-backdrop, 
+.ui-widget-overlay {
+  background:~"rgba(@{jw-navy-digital-rgb-val}, .9)";
+}
+
+.ui-dialog .tile-footer .product-price {
+  font-size:@hSmall;
+  .set-header-rules-text-transform-inc-letterSpacing(Small; none);
+}
+
+// My Account - Register gift card 
+
+.ui-dialog-content #add-giftcard fieldset {
+  text-align: center;
+}
+
+.ui-dialog-content #add-giftcard fieldset span.error {
+  text-aling:left;
+}
+
+.ui-dialog-content .gift-voucher-agreeterms,
+.ui-dialog-content #add-giftcard .label-inline.checkbox {
+  float:none;
+}
+
+.ui-dialog-content #add-giftcard .label-inline.checkbox { 
+  display:inline-block;
+}
+
+.ui-dialog-content .gift-voucher-agreeterms { 
+  &:extend(.o-link all);
+}
+
+.ui-dialog-content .gift-voucher-agreeterms.gift-voucher-agreeterms {
+  margin-left:0;
+  font-size:@tiny;
+}
+
+@media (min-width:@tabletBreakpoint) {
+
+  .ui-dialog-content .giftcard-form-column {
+    align-items:center!important;
+    flex-direction: column!important;
+  }
+
+  .ui-dialog-content .giftcard-form-column > .form-row:first-of-type {
+    width:50%;
+    margin-right:0;
+  }
+
+}
+
+
+///////////////////////////////////////////////////////////////////
+@storeDetails-column-width: 390; // this was in store locator in v1 - here for sake of compiling - to sort
+
+/************************
+************************
+  MODAL - scoped styles
+************************
+************************/
+
+
+// Close modal
+.close-trigger:focus { outline:none; }
+
+// Modal headings
+
+/************************
+  Forgot password
+************************/
+
+.ui-dialog.resetpassword .ui-dialog-content form,
+.ui-dialog.resetpassword .ui-dialog-content p {
+  margin:0 auto;
+  max-width:@max-width-5col;
+}
+
+.ui-dialog.resetpassword .form-row {
+  display:inline-block;
+  width:~"calc(100% - 5rem)";
+}
+
+.ui-dialog.resetpassword button[type="submit"] {
+  // &:extend([class*="o-btn"].o-btn--basic all);
+  top:.6rem;
+}
+
+/************************
+  Newsletter Notification
+************************/
+
+.ui-dialog.newsletter-notification-popup { min-height: inherit!important; }
+
+/************************
+  Add to cart
+************************/
+
+// Store Locator model
+.ui-dialog .shopsData .storesContainer
+.ui-dialog .shopsData .jspContainer,
+.ui-dialog .shopsData .jspPane {
+  width:100%!important;
+}
+
+// Add to bag (no size selected)
+.c-select-size-text + a,
+.messageModal + .close-trigger {
+  display:table;
+  margin:0 auto @spacing*2;
+  // &:extend(.o-link all);
+}
+
+/************************
+  My account
+************************/
+
+// Send to a friend modal
+#send-to-friend-main > fieldset > div { width:100%; }
+#send-to-friend-main > fieldset > div:last-child { 
+  display:flex;
+  flex-direction: row-reverse; 
+}
+
+// Add address modal
+.add-edit-address fieldset > .form-row { text-align:center; }
+
+// Shared button styles
+.add-edit-address .form-row > .apply-button,
+#send-to-friend-main .preview-button { 
+  // &:extend(.o-btn.o-btn--basic all); 
+}
+
+// Previous orders modal
+.ui-dialog .order-info-left,
+.ui-dialog .order-info-right {
+  width:100%;
+  padding:0 @spacing 0 0;
+}
+.ui-dialog .item-list .order-information [class*="order-"] {
+  display:flex;
+  justify-content: space-between;
+}
+
+
+@media (min-width:@tabletBreakpoint) {
+
+  // Previous orders modal
+  .ui-dialog .order-info-left,
+  .ui-dialog .order-info-right {
+    width:50%;
+    float:left;
+  }
+
+  // Shared modal columns
+  .address-form-left-column,
+  .address-form-right-column,
+  #send-to-friend-main > fieldset > div { width:50%; float:left; } // shared - move to global?
+
+  // Send to a friend modal
+  #send-to-friend-main > fieldset > div:last-child {
+    float: right;
+    text-align: right;
+  }
+
+  // Add address modal
+  .ui-dialog .add-edit-address { 
+    margin-left:@spacing;
+    margin-right:@spacing;
+  }
+  .address-form-left-column,
+  .address-form-right-column { 
+    padding-left:@spacing;
+    padding-right:@spacing;    
+  }
+
+}
+
+/************************
+  Checkout
+************************/
+
+.ui-dialog-content {
+  .checkout-login-account,
+  .login-button {
+    max-width:400*@rem;
+    margin:auto;
+  }
+  .forgot-password {
+    text-align: center;
+    margin-bottom:@spacing;
+  }
+  .forgot-password > a {
+    // &:extend(.o-link all);
+    font-size:@small;
+  }
+  .checkout-login-button {
+    // &:extend([class*="o-btn"].o-btn--primary all);
+    width:100%;
+  }
+}
+
+.or-loggin {
+  display: block;
+  // .o-header--h6;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: @spacing / 2;
+}
+
+
+// International rates header
+// .ui-dialog.international-rates h1 { &:extend(.o-header--h4); }
+
+// Terms & Conditions
+.ui-dialog.terms-and-conditions .dialog-content {
+  padding-bottom:100px!important; //hack
+}
+
+
+
+/************************
+  Checkout - Store Locator - click and collect
+************************/
+
+// override
+.click-and-collect-model() {
+  #modules {
+    .modal() {
+      @content-container: {
+        width:100%!important;
+        background:#fff;
+        padding:0;
+        max-height: ~"calc(100vh - 100px)"!important;
+        overflow:hidden;
+      };
+      @header: {
+        border-bottom:1px solid @borderColor;
+      };
+      @content-body: {
+        padding:0!important;
+      };
+    }
+  }
+}
+
+// Content container
+.ui-dialog.click-and-collect {
+  // .click-and-collect-model();
+  // #modules.modal-variables(); // unlock variables
+  // #modules.modal(content-container);
+  width:100%!important;
+  background:#fff;
+  padding:0;
+  max-height: ~"calc(100vh - 100px)"!important;
+  overflow:hidden;  
+  padding:0;
+  overflow: visible!important;
+}
+
+
+.ui-dialog.click-and-collect .ui-dialog-title {
+  margin: 0;
+  line-height: 2.5;  
+  font-size:18*@rem;  
+}
+
+// Title bar
+.ui-dialog.click-and-collect .ui-dialog-titlebar {
+  // .click-and-collect-model();
+  // #modules.modal-variables(); // unlock variables
+  // #modules.modal(header);
+  border-bottom:1px solid @borderColor;  
+}
+
+// Modal content
+.ui-dialog.click-and-collect .ui-dialog-content {
+  // .click-and-collect-model();
+  // #modules.modal-variables(); // unlock variables
+  // #modules.modal(content-body);
+  padding:0!important;  
+}
+
+.pt_newstorepickup:before,
+.pt_newstorepickup:after {
+  content:'';
+  display:table;
+}
+
+.pt_newstorepickup:after {
+  clear:both;
+}
+
+// Search location
+.pt_newstorepickup .search-location { padding-top:@rowSpacing; }
+// Enter address msg
+.geo-default-store {
+  padding:@rowSpacing @spacing 0;
+  font-size:@small;
+}
+// Store detail wrapper
+.ui-dialog .pt_newstorepickup .stores-wrapper { border-top:1px solid @borderColor; }
+// Store Radio
+.ui-dialog .pt_newstorepickup .select-store-option { left:@spacing; }
+.ui-dialog .pt_newstorepickup .store-address,
+.ui-dialog .store-phone {
+  font-size:12*@rem;
+}
+// Last store
+.pt_newstorepickup .storeContainer.last { margin-bottom:40*@rem; } // create space for fixed confirm button at bottom - use var;
+
+
+.ui-dialog .store-image,
+.ui-dialog .store-image img { width: 100%; }
+
+.ui-dialog .storesContainer { width:100%; } // Store locator containr model
+// .ui-dialog .storesContainer > h3 { &:extend(.o-header, .o-header--h6); margin:@verticalMargin 0 @verticalMarginSmall; }
+.ui-dialog .store-name { float:left; }
+
+
+.ui-dialog .shopsData { margin-bottom:@rowSpacing; }
+
+// Modal - collect from store
+.ui-dialog .storeContainer {
+  position: relative;
+  padding-left:5.5rem; // width of radio button - use var
+}
+
+// Select store - modal collect from store
+.ui-dialog .select-store-option {
+  position: absolute;
+  left:0;
+  top:56*@rem;
+  transform: translate(0, -50%);
+}
+
+
+.pt_newstorepickup .select-collect-store {
+  position:absolute;
+  bottom:0;
+  left:0;
+  width: @storeDetails-column-width*@rem;
+  padding:@spacing;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top:1px solid @borderColor;
+}
+
+.pt_newstorepickup .select-collect-store > form,
+.pt_newstorepickup .select-collect-store button { width:100%; }
+
+.pt_newstorepickup .select-collect-store button { 
+  // &:extend(.o-btn.o-btn--primary all); 
+}
+
+
+.ui-dialog.click-and-collect .ui-dialog-titlebar-close {
+  position: fixed;
+  top:0;
+  right:0;
+}
+
+@media (max-width:@largestMobileScreen) {
+  .ui-dialog.click-and-collect {
+    left:0!important;
+    top:0!important;
+  }
+  // Title bar
+  .ui-dialog.click-and-collect .ui-dialog-titlebar {
+    border-bottom:1px solid @borderColor;
+    position:fixed;
+    top:0;
+    left:0;
+    padding-top:0!important;
+    // .ui-dialog-title { .o-header--h6; }
+    margin-bottom:1rem;
+  }
+  .pt_newstorepickup .select-collect-store {
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+  }
+  .ui-dialog.click-and-collect .ui-dialog-titlebar-close {
+    height:2rem!important;
+    width:2rem!important;
+    top:.5rem!important;
+    right:.5rem;
+  }
+
+  .ui-dialog.click-and-collect .ui-dialog-content {
+    padding-bottom:10rem!important;
+  }
+
+}
+
+@media (min-width:@largeMobileBreakpoint) {
+
+  .ui-dialog .store-image {
+    float:right;
+    width:50%;
+  }
+
+}
+
+
+@media (max-width:@largestTabletScreen) {
+  .pt_newstorepickup .locationSearch {
+    display:flex;
+    align-items:center;
+    padding-top:@rowSpacing 0;
+  }
+  .ui-dialog .pt_newstorepickup .locationSearch .geoLocation { margin-right:0; }
+  .pt_newstorepickup .locationSearch .search-location {
+    flex:1 1 auto;
+    padding-top:0;
+  }
+}
+
+
+@media (min-width:@tabletBreakpoint) {
+  // Modal - click and collect
+  .ui-dialog.click-and-collect .ui-dialog-content { overflow: hidden; }
+  // Shops detail column | Map
+  .ui-dialog.click-and-collect .shopsData,
+  .ui-dialog.click-and-collect .googleMap {
+      float:left;
+      padding:0;
+    }
+    // Shop Details
+  .ui-dialog.click-and-collect .shopsData {
+    width:@storeDetails-column-width*@rem;
+    padding-left: 0;
+    height:auto!important;
+  }
+    // Map
+  .ui-dialog.click-and-collect .map_canvas {
+    padding-bottom:0;
+    margin:0;
+    // height:~"calc(100% + "@verticalPadding*2~")"!important;
+    // height:100%!important;
+    height:100vh!important;
+  }
+  .ui-dialog.click-and-collect .googleMap {
+    display: block;
+    width:~"calc(100% - "@storeDetails-column-width*@rem~")";
+    padding-right:0;
+  }
+  // Commented out for Hub Box
+  // .ui-dialog .pt_newstorepickup .locationSearch { padding-bottom:@verticalPadding; }
+  .ui-dialog .pt_newstorepickup .locationSearch .geoLocation { display:none!important; }
+  .ui-dialog.click-and-collect .ui-dialog-titlebar-close { .icon-fill('../../images/interface/close.svg', '@{white}'); }
+
+  // Title bar
+  .ui-dialog.click-and-collect .ui-dialog-titlebar {
+    min-height: inherit;
+    padding: 0!important;
+    border-bottom:0;
+  }
+
+  // Hide mobile elements
+  .ui-dialog.click-and-collect {
+    .locationSearch .geoLocation,
+    .mobileHeading,
+    .mobileNavigation { display: none!important; }
+  }
+
+}
+
+@media (min-width:@tabletBreakpoint) and (max-width:@largestSmallMonitor) {
+  .ui-dialog.click-and-collect {
+    width:96%!important;
+  }
+}
+
+// @media (min-width: @computerBreakpoint) {
+
+
+// }
+
+@media (min-width:@largeMonitorBreakpoint) {
+
+  .ui-dialog.click-and-collect {
+    width:80%!important;
+  }
+
+}
+
+
+////////////////
+
+

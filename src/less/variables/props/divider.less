@@ -1,0 +1,56 @@
+
+//*******************************
+//    DIVIDER: Custom Prop Rulesets
+//*******************************
+
+//-------------------
+//  Divider props
+//--------------------
+
+#props {
+    .divider() {
+        @default: {
+            --divider-width : @divider-width;
+            --divider-height : @divider-height;
+            --divider-bgColor : @divider-bgColor;
+            --divider-height-unit: @divider-height-unit; 
+        };        
+        @spacing: {
+            --divider-spacing-top : @divider-spacing-top;
+            --divider-spacing-bottom : @divider-spacing-bottom;
+            --divider-spacing-top-tabletBreakpoint: @divider-spacing-top-tabletBreakpoint;
+            --divider-spacing-bottom-tabletBreakpoint: @divider-spacing-bottom-tabletBreakpoint;            
+        };
+    }
+}
+
+//*******************************
+//   DEFINE MIXIN
+//*******************************
+
+#props {
+    .divider(@item) {
+        #props.divider();
+        #objects.divider-variables();
+        @rules: @@item;
+        @rules();
+    }
+}
+
+//*******************************
+//   Classes used for extending properties
+//*******************************
+
+.o-divider-props-default() { #props.divider(default); }
+.o-divider-props-spacing() { #props.divider(spacing); }
+
+//*******************************
+//   Element classes that extend related properties
+//*******************************
+
+.o-section { 
+    &:extend(
+    .o-divider-props-default, 
+    .o-divider-props-spacing
+    ); 
+}

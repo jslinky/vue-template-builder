@@ -1,0 +1,52 @@
+
+
+#objects {
+  .item() {    
+    @image-ruleset: { 
+      width:100%;
+      max-width:100%;
+      border:0;
+    };    
+    // create a utility class for this
+    @image100vw-ruleset: {
+      margin-left: ~"calc(50% - 50vw)";
+      margin-right: ~"calc(50% - 50vw)";
+      width: 100vw;
+      max-width: inherit;      
+    };
+    @image-100Height-objectFitCover-ruleset: {
+      height:100%;
+      object-fit: cover;
+    };
+    @image-fit-screenHeight-ruleset: {
+      max-height:70vh;
+      margin-left: auto;
+      margin-right: auto;
+      object-fit:cover;
+      object-position: top;
+    };  
+    @imageSwap-ruleset: {
+      > img:nth-child(1) {
+        position:relative;
+        z-index:1;        
+        transition: @itemTransitionFallback; // move this to fallback
+      }
+      > img:nth-child(2) {
+        position:absolute;
+        top:0;
+        left:0;
+        z-index:0;
+      }
+    };
+    @imageSwap-fallback-ruleset: {
+      > img:nth-child(1) {  
+        transition: @itemTransitionFallback; 
+        transition: var(--itemTransition);
+      }
+    };    
+    @imageSwap-hover-ruleset: {
+      cursor:pointer;
+      > img:nth-child(1) { opacity:0; }
+    };     
+  }
+}        

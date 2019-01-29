@@ -1,0 +1,20 @@
+//*******************************
+//    Last Visited / Recently Viewed Sections
+//*******************************  
+
+// .pt_product-details-darwin #product-recommendation-section,
+// .pt_product-details-darwin .last-visited { &:extend(*[class*="o-container"], .o-container); }
+
+.pt_product-details-darwin #product-recommendation-section { &:extend(*[class*="o-container"], .o-container); }
+
+//*******************************
+//    Content Slot - before recom
+//*******************************     
+
+.before-product-recomendation-wrapper + #product-recommendation-section { margin-top:@spacing; }
+
+//*******************************
+//    Back to top
+//*******************************   
+
+.pdp-main .static-back-to-top { margin-top:@spacing }

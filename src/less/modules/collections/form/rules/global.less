@@ -1,0 +1,163 @@
+ 
+#collections {
+  .form() {
+    @default: {
+      #collections.form(default-ruleset);
+    };
+    @fieldset: {
+      #collections.form(fieldset-ruleset);
+    };
+    @label: {
+      #collections.form(label-ruleset);
+    };    
+    @radio-label: {
+      #collections.form(radio-label-ruleset);
+    };       
+    @input-text: {
+      #collections.form(input-text-ruleset);
+    };
+    @input-placeholder: {
+      #collections.form(input-placeholder-ruleset);
+    };
+    @input-text-focus: {
+      #collections.form(input-text-focus-ruleset);
+    };
+    @input-placeholder-focus: {
+      #collections.form(input-placeholder-focus-ruleset);
+    };        
+    @prompt-error: {
+      #collections.form(prompt-error-ruleset);
+    };
+    @input-text-error: {
+      #collections.form(input-text-error-ruleset);
+    };
+    @input-placeholder-error: {
+      #collections.form(input-placeholder-error-ruleset);
+    };
+    @input-textArea: {
+      #collections.form(input-textArea-ruleset);
+      #collections.form(input-text);
+    };
+    @input-textArea-notRows: {
+      #collections.form(input-textArea-notRows-ruleset);
+    };    
+    @select: {
+      #collections.form(select-ruleset);
+    };     
+    @select-bgImage: {
+      #collections.form(select-bgImage-ruleset);
+    };
+    @select-focus: {
+      #collections.form(select-focus-ruleset);
+    };  
+    @radio-checkbox: {
+      #collections.form(radio-checkbox-ruleset);
+    };
+    @radio-checkbox-focus: {
+      #collections.form(radio-checkbox-focus-ruleset);
+    };    
+    @radio: {
+      #collections.form(radio-ruleset);
+    };
+    @radio-checked: {
+      #collections.form(radio-checked-ruleset);
+    };    
+    @checkbox: {
+      #collections.form(checkbox-ruleset);
+    }; 
+    @checkbox-checked: {
+      #collections.form(checkbox-checked-ruleset);
+    };                   
+  }
+}
+
+
+//-------------------
+//  EXTEND(ED) core ruleset
+//--------------------
+
+#collections {
+  // .form(fieldset) { 
+  //   .output-rules(fieldset; form);
+  // }
+  .form(label) { 
+    .output-rules(label; form);
+  }  
+  .form(radio-label) { 
+    .output-rules(radio-label; form);
+  }   
+  .form(input-text) { 
+    .output-rules(input-text; form);
+  }      
+  .form(input-placeholder) { 
+    .output-rules(input-placeholder; form);
+  }  
+  .form(input-text-focus) { 
+    .output-rules(input-text-focus; form);
+  }          
+  .form(input-placeholder-focus) { 
+    .output-rules(input-placeholder-focus; form);
+  } 
+  .form(prompt-error) { 
+    .output-rules(prompt-error; form);
+  } 
+  .form(input-text-error) { 
+    .output-rules(input-text-error; form);
+  } 
+  .form(input-placeholder-error) { 
+    .output-rules(input-placeholder-error; form);
+  }
+  .form(input-textArea) { 
+    .output-rules(input-textArea; form);
+  } 
+  .form(input-textArea-notRows) { 
+    .output-rules(input-textArea-notRows; form);
+  }   
+  .form(select) { 
+    .output-rules(select; form);
+  } 
+  .form(select-focus) { 
+    .output-rules(select-focus; form);
+  } 
+  .form(radio-checkbox) { 
+    .output-rules(radio-checkbox; form);
+  }
+  .form(radio-checkbox-focus) { 
+    .output-rules(radio-checkbox-focus; form);
+  }  
+  .form(radio) { 
+    .output-rules(radio; form);
+  }
+  .form(radio-checked) { 
+    .output-rules(radio-checked; form);
+  }  
+  .form(checkbox) { 
+    .output-rules(checkbox; form);
+  }
+  .form(checkbox-checked) { 
+    .output-rules(checkbox-checked; form);
+  }                            
+}
+
+
+//-------------------
+//  OVERRIDE core ruleset
+//  If you need to override / extend any core framework rulesets
+//--------------------
+
+@import "overrides/config.less";
+
+
+#collections {
+  .form(@item) {
+      #collections.form();
+      #collections.form-variables();
+      @rules: @@item;
+      @rules();
+  }
+  .form-variables(@item) {
+    #collections.form-variables();
+    @rules: @@item;
+    @rules();
+  }    
+}
