@@ -14,7 +14,7 @@
         :id="toogleInvert"
         :checked="invert"
         :value="invert"
-        @click="invertItem()"
+        @click="invertItem($event.target.id)"
       >
       <label :for="toogleInvert">Inverted</label>
     </DebugToggle>
@@ -139,22 +139,36 @@ export default {
     }
   },
   methods: {
-    invertItem() {
+    invertItem(targetId) {
       for (let key in this.modules) {
-        // reference to actual element
-        let ref = this.$refs[key].$refs[key];
-        if (!this.invert) {
-          ref.dataset.theme = "inverted";
-          this.invert = true;
-        } else {
-          ref.removeAttribute("data-theme");
-          this.invert = false;
-        }
-        setTimeout(() => {
-          this.$refs[key].updateHtmlToCopy();
-        });
+        this.setInvert(key, targetId);
       }
-      // this.toogleInvert();
+    },
+    setInvert(key, targetId) {
+      if (targetId) {
+        ////// IF CLICKED FROM INVERTED RADIO
+        console.log(targetId);
+      }
+      let elRef = this.$refs[key].$refs[key];
+      this.invert = !this.invert;
+      // if (!this.invert && this.$refs[key].module.inverted) {
+      //   elRef.dataset.theme = "inverted";
+      //   // this.invert = true;
+      // } else {
+      //   elRef.removeAttribute("data-theme");
+      //   // this.invert = false;
+      // }
+      this.toggleDataTheme(elRef, this.invert);
+      setTimeout(() => {
+        this.$refs[key].updateHtmlToCopy();
+      });
+    },
+    toggleDataTheme(el, bool) {
+      if (bool) {
+        el.dataset.theme = "inverted";
+      } else {
+        el.removeAttribute("data-theme");
+      }
     },
     editItem(name) {
       this.$refs[name].editPanel.state = !this.$refs[name].editPanel.state;
@@ -237,10 +251,14 @@ export default {
   mounted() {
     editBus.$on("itemTypeUpdate", (type, index) => {
       let entry = Object.keys(this.modules)[index];
-      if (type == "overlay") {
+      if (type == "overlay" || type == "imageSwap" || type == "headerSwap") {
+        this.invert = true;
         this.modules[entry]["inverted"] = true;
+        this.toggleDataTheme(this.$refs[entry].$refs[entry], true);
       } else {
+        this.invert = false;
         this.modules[entry]["inverted"] = false;
+        this.toggleDataTheme(this.$refs[entry].$refs[entry], false);
       }
     });
   },
