@@ -44,7 +44,19 @@
       --inputLetterSpacingVal         : @inputLetterSpacingVal;
       --inputTransition               : @inputTransition;
     };
-   
+    @radio-checkbox: {
+      --radioCheckboxSize             : ~"var(--@{radioCheckboxSize})";
+      --radioCheckboxBorderRadius     : @radioCheckboxBorderRadius;  
+      --radioCheckboxBorder           : @radioCheckboxBorder;
+      --radioCheckboxTransition       : @radioCheckboxTransition;  
+    };   
+    @checkbox: {
+      --checkboxCheckedBackground     : @checkboxCheckedBackground;
+      --checkboxCheckedBackgroundImage: @checkboxCheckedBackgroundImage;
+      --checkboxCheckedIconColor      : @checkboxCheckedIconColor;
+      --checkboxBackgroundImageSize   : @checkboxBackgroundImageSize;
+
+    };
     @extend-prop-classes: {
       //*******************************
       //   Classes used for extending properties
@@ -52,6 +64,8 @@
       .form-props-fieldset { #props.form(fieldset); }
       .form-props-label { #props.form(label); }
       .form-props-inputText { #props.form(inputText); }
+      .form-props-radioCheck { #props.form(radio-checkbox); }
+      .form-props-checkbox { #props.form(checkbox); }
     };
     @extend-elements: {
       .o-form__fieldset {
@@ -59,7 +73,9 @@
       }
       .o-form__label {
         &:extend(
-          .form-props-label
+          .form-props-label,
+          .form-props-radioCheck,
+          .form-props-checkbox
         );
       }
       .o-form__select,
@@ -73,6 +89,9 @@
       .o-form__errorMsg {
         &:extend(.form-props-label);
       }
+      // .o-form__checkbox {
+      //   &:extend(.form-props-checkbox);
+      // }
     };
     @output-custom-properties: {
       #collections.form-variables();

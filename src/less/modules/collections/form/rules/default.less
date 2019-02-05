@@ -174,27 +174,19 @@
     // Input Radio / Checkbox
     //--------------------    
     @radio-checkbox-ruleset: {
-
-    };
-    @radio-checkbox-customPropOnly-ruleset: { 
-      // to do
-    };
-    @radio-checkbox-fallback-ruleset: { 
-      #collections.form(radio-checkbox-staticVarsOnly-ruleset);
-      #collections.form(radio-checkbox-customPropOnly-ruleset);            
-    };
-    @radio-checkbox-staticVarsOnly-ruleset: { 
-      // replace with vars
       -webkit-appearance: none;
-      border: @radioCheckboxBorder;
-      width: @radioCheckboxSize;
-      height: @radioCheckboxSize;
-      min-width: @radioCheckboxSize;
-      min-height: @radioCheckboxSize;      
-      border-radius: @radioCheckboxBorderRadius;
       vertical-align: @radioCheckboxVerticalAlign;
-      transition:@radioCheckboxTransition;
-    };  
+      .define-module-prop(form; width; radioCheckboxSize; @radioCheckboxSize);  
+      .define-module-prop(form; height; radioCheckboxSize; @radioCheckboxSize);  
+      .define-module-prop(form; min-width; radioCheckboxSize; @radioCheckboxSize);  
+      .define-module-prop(form; min-height; radioCheckboxSize; @radioCheckboxSize);        
+      .define-module-prop(form; border-radius; radioCheckboxBorderRadius); 
+      .define-module-prop(form; border; radioCheckboxBorder);
+      .define-module-prop(form; transition; radioCheckboxTransition);        
+    };
+    @radio-checkbox-customPropOnly-ruleset: { };
+    @radio-checkbox-fallback-ruleset: { };
+    @radio-checkbox-staticVarsOnly-ruleset: { };  
     
     //-------------------
     // Input Radio
@@ -368,7 +360,11 @@
     //--------------------    
     // Checkbox
     @checkbox-checked-ruleset: {
-
+      background-position:@checkboxBackgroundImagePostion;
+      background-repeat:@checkboxBackgroundImageRepeat;
+      .icon-fill('@{checkboxCheckedBackgroundImage}', '@{checkboxCheckedIconColor}');
+      .define-module-prop(form; background-color; checkboxCheckedBackground);
+      .define-module-prop(form; background-size; checkboxBackgroundImageSize);
     };
     @checkbox-checked-customPropOnly-ruleset: { 
       // to do
@@ -378,11 +374,9 @@
       #collections.form(checkbox-checked-customPropOnly-ruleset);            
     };
     @checkbox-checked-staticVarsOnly-ruleset: { 
-      background-color:@checkboxCheckedBackground;
-      .icon-fill('@{checkboxCheckedBackgroundImage}', '@{checkboxCheckedIconColor}');
-      background-repeat:@checkboxBackgroundImageRepeat;
-      background-size: @checkboxBackgroundImageSize;
-      background-position:@checkboxBackgroundImagePostion;
+      // background-color:@checkboxCheckedBackground;      
+      
+      // background-size: @checkboxBackgroundImageSize;      
     }; 
 
     // Radio
