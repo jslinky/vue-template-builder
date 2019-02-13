@@ -3,9 +3,9 @@ export const itemClass = {
   spanAcross: 3,
   classes: {
     applied: [],
-    available: [  
-      { class: ['o-item__imageSwap', "Image swaps on hover", true] },
+    available: [
       { class: ['o-item__headerSwap', 'Header content swaps on hover', true] },
+      { class: ['o-item__imageSwap', "Image swaps on hover", true] },
       { class: ['o-item__imageRotation', 'For multiple image rotation', true] },
       { class: ['o-item--card', 'Card layout', true] },
       { class: ['o-item--100vw', 'Makes item 100% width of window', true] },
@@ -29,18 +29,18 @@ export const itemClass = {
       { class: ['nine wide', "Nine column width", true] },
       { class: ['ten wide', "Ten column width", true] },
       { class: ['eleven wide', "Eleven column width", true] },
-      { class: ['twelve wide', "Twelve column width", true] }      
-    ]    
+      { class: ['twelve wide', "Twelve column width", true] }
+    ]
   },
   image: {
     responsive: {
-      status:false,
+      status: false,
       sizes: {
         mobile: {
           status: true,
           label: 'Mobile',
           url: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw12b627f5/2018/WK39/03_GIFT_GUIDE/3.jpg'
-        },    
+        },
         largeMobile: {
           status: true,
           label: 'Large Mobile',
@@ -50,7 +50,7 @@ export const itemClass = {
           status: true,
           label: 'Tablet',
           url: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw5f63672b/2018/WK39/03_GIFT_GUIDE/5.jpg'
-        },        
+        },
         computer: {
           status: true,
           label: 'Computer',
@@ -72,19 +72,19 @@ export const itemClass = {
     tablet: {
       status: false,
       url: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw5f63672b/2018/WK39/03_GIFT_GUIDE/5.jpg'
-    },        
+    },
     computer: {
       status: false,
       url: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw8458cadd/2018/WK39/03_GIFT_GUIDE/6.jpg'
-    },        
-    classes: {    
-      applied: [],  
+    },
+    classes: {
+      applied: [],
       available: [
         { class: ['o-item__image--100vw', "Image 100vw", true] }
       ],
       alignment: [],
-      fullWidth: 'o-item__image--100vw',      
-    }          
+      fullWidth: 'o-item__image--100vw',
+    }
   },
   content: {
     heading: {
@@ -105,7 +105,7 @@ export const itemClass = {
           linkUrl: '',
           type: 'sm',
           classes: {
-            applied: ['o-hdr', 'o-hdr--sm', 'o-item__hdr']          
+            applied: ['o-hdr', 'o-hdr--sm', 'o-item__hdr']
           },
           edit: false,
           artwork: {
@@ -127,7 +127,7 @@ export const itemClass = {
             default: false,
             assetUrl: 'https://www.jackwills.com/on/demandware.static/-/Sites/default/dw619cb11c/2018/WK42/01_HOMEPAGE/30_lock_up_ff.svg'
           }
-        }         
+        }
       ]
     },
     subCopy: `This is some sub copy`,
@@ -146,29 +146,28 @@ export const itemClass = {
           classes: {
             applied: ['o-btn', 'o-btn--basic']
           }
-        }            
+        }
       ],
       classes: {
         applied: [],
         available: [
           { class: ['o-buttons--stacked', "Stack at mobile", true] },
           { class: ['o-buttons--stacked-md', "Stack at tablet", true] },
-          { class: ['two column grid-layout', "2 column buttons", true] },                                      
+          { class: ['two column grid-layout', "2 column buttons", true] },
           { class: ['three column grid-layout', "3 column buttons", true] },
           { class: ['four column grid-layout', "4 column buttons", true] },
-          { class: ['o-buttons--grouped', "Grouped buttons", true] }                                                                            
+          { class: ['o-buttons--grouped', "Grouped buttons", true] }
         ]
       }
     },
     classes: {
       applied: [],
-      available: [  
-        { class: ['o-item__content--overlay', "Content overlays image", true] },
-        { class: ['o-item__content--overlay', "Content overlays image", true] }        
+      available: [
+        { class: ['o-item__content--overlay', "Content overlays image", true] }
       ],
-      alignment:[]
-    }          
-  }                 
+      alignment: []
+    }
+  }
 }
 
 

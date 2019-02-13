@@ -8,7 +8,7 @@
     {{ CssClass }}    
     </custom-button>
     
-    <hr>
+
 
     <custom-button button plain small 
       class="c-btn-tag"
@@ -37,8 +37,9 @@
     </select>                      
 
     <div v-for="(button, index) in buttonsButton">
-      <h3 class="o-hdr o-hdr--t u-mt-t">Button {{index + 1}}</h3>              
-      <custom-button button plain small @click.native="removeButton(index)">remove</custom-button>       
+      <h3 class="o-hdr">Button {{index + 1}}</h3>              
+      <button class="o-link o-link--sm" @click.native="removeButton(index)">Remove</button>
+      <!-- <custom-button button plain small @click.native="removeButton(index)">remove</custom-button>        -->
       <select v-model="buttonEdit" class="minimal">
         <option selected>Select property to edit</option>
         <option 

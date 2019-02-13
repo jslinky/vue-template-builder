@@ -42,7 +42,9 @@
       </symbol>
     </svg>
 
-    <CustomHeader bg center aligned :class="{'inverted': invert}">Buttons</CustomHeader>
+    <header class="c-header-group">
+      <CustomHeader bg center aligned :class="{'inverted': invert}">Buttons</CustomHeader>
+    </header>
 
     <div class="o-container">
       <input
@@ -77,30 +79,30 @@
     </div>
 
     <div class="c-container-buttons o-container" style="text-align:center">
-      <p :ref="`${modules.plain.name}-desc`" :class="{'inverted': invert}">A plain button type</p>
+      <p :ref="`${modules.plain.name}-desc`" :class="{'inverted': invert}" class="o-hdr">A plain button type</p>
       <ModuleComponent :el="'a'" :ref="modules.plain.name" :module="modules.plain">Button
         <!-- <CustomButton plain :class="{'inverted': invert}">Button</CustomButton>       -->
       </ModuleComponent>
 
-      <p :ref="`${modules.standard.name}-desc`" :class="{'inverted': invert}">A standard button type</p>
+      <p :ref="`${modules.standard.name}-desc`" :class="{'inverted': invert}" class="o-hdr">A standard button type</p>
       <ModuleComponent :el="'a'" :ref="modules.standard.name" :module="modules.standard">Button
         <!-- <CustomButton :class="{'inverted': invert}">Button</CustomButton>       -->
       </ModuleComponent>
 
       <p
         :ref="`${modules.secondary.name}-desc`"
-        :class="{'inverted': invert}"
+        :class="{'inverted': invert}" class="o-hdr"
       >A secondary button type</p>
       <ModuleComponent :el="'a'" :ref="modules.secondary.name" :module="modules.secondary">Button
         <!-- <CustomButton secondary :class="{'inverted': invert}">Button</CustomButton>       -->
       </ModuleComponent>
 
-      <p :ref="`${modules.basic.name}-desc`" :class="{'inverted': invert}">A basic button type</p>
+      <p :ref="`${modules.basic.name}-desc`" :class="{'inverted': invert}" class="o-hdr">A basic button type</p>
       <ModuleComponent :el="'a'" :ref="modules.basic.name" :module="modules.basic">Button
         <!-- <CustomButton basic :class="{'inverted': invert}" style="margin-bottom:1rem">Button</CustomButton>       -->
       </ModuleComponent>
 
-      <p :ref="`${modules.primary.name}-desc`" :class="{'inverted': invert}">A primary button type</p>
+      <p :ref="`${modules.primary.name}-desc`" :class="{'inverted': invert}" class="o-hdr">A primary button type</p>
       <ModuleComponent
         :el="'a'"
         :ref="modules.primary.name"
@@ -428,7 +430,8 @@ export default {
 
 <style scoped lang="less">
 // body is outside scope of this component
-.invert {
+.invert,
+.invert .c-header-group {
   background-color: #101a31;
 }
 

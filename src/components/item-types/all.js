@@ -1,13 +1,13 @@
 const itemDefault = [
-    {
-      ref: "classes",
-      classes: []
-    },
-    {
-      ref: "content.classes",
-      classes: []
-    }
-  ],
+  {
+    ref: "classes",
+    classes: []
+  },
+  {
+    ref: "content.classes",
+    classes: []
+  }
+],
   itemCard = [
     {
       ref: "classes",
@@ -31,13 +31,17 @@ const itemDefault = [
   itemImageSwap = [
     {
       ref: "classes",
-      classes: ["o-item--imageSwap"]
+      classes: ["o-item--imageSwap", "o-item--tintHover"]
+    },
+    {
+      ref: "content.classes",
+      classes: ["middle aligned", "center aligned", "o-item__content--overlay"]
     }
   ],
   itemOverlay = [
     {
       ref: "classes",
-      classes: []
+      classes: ['o-item--tintHover']
     },
     {
       ref: "content.classes",

@@ -87,6 +87,7 @@ export default {
     },
     itemType: function(newVal, oldVal) {
       this.applyType(this.types[newVal], this.items[this.editPanel.itemIndex]);
+      // CALL applyClass || setClassTo function???!!!
       editBus.$emit("itemTypeUpdate", newVal, this.editPanel.itemIndex);
     }
   },

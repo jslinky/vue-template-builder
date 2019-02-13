@@ -43,8 +43,9 @@
           plain
           class="c-btn-tag active"
           v-for="(item, index) in classesApplied"
-          @click.native.prevent="applyClass(index, module.classes, 'remove')"
+          @click.native.prevent="removeClass([index, module.classes, 'remove', item])"
         >{{item}}</CustomButton>
+        <!-- @click.native.prevent="applyClass(index, module.classes, 'remove')" -->
         <!-- Available Classes -->
         <CustomButton
           small
@@ -52,8 +53,9 @@
           class="c-btn-tag"
           v-for="(item, index) in classesAvailable"
           v-if="item.class[2] == true"
-          @click.native.prevent="applyClass(index, module.classes, 'apply')"
+          @click.native.prevent="addClass([index, module.classes, 'apply', item])"
         >{{item.class[0]}}</CustomButton>
+        <!-- @click.native.prevent="applyClass(index, module.classes, 'apply')" -->
       </div>
     </div>
   </div>
@@ -87,6 +89,16 @@ export default {
     };
   },
   methods: {
+    addClass(arr) {
+      let [index, classes, action, item] = arr;
+      this.applyClass(index, classes, action);
+      editBus.$emit("addClass", index, classes, action, item);
+    },
+    removeClass(arr) {
+      let [index, classes, action, item] = arr;
+      this.applyClass(index, classes, action);
+      editBus.$emit("removeClass", index, classes, action, item);
+    },
     getHtml() {
       let htmlContent;
       htmlContent =

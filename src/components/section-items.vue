@@ -1,12 +1,39 @@
 <template>
-  <div class="c-section-items o-container" :class="{edit: editPanel.state}">
-    <CustomHeader
-      bg
-      center
-      aligned
-      style="margin:1.5rem 0"
-      @click.native.prevent="editItem(modules.itemOne.name + '-panel')"
-    >Items</CustomHeader>
+  <div
+    class="c-section-items"
+    style="margin-bottom:5rem"
+    :class="{edit: editPanel.state}"
+  >
+    <header class="c-header-group">
+      <CustomHeader
+        bg
+        center
+        aligned        
+        @click.native.prevent="editItem(modules.itemOne.name + '-panel')"
+      >Items</CustomHeader>      
+      <div class="c-icon-settings" :class="{'spin': !editPanel.state}">
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEASURBVEhL5ZXLCQIxFEXHvR+0DAuwD/GztQPbsAB1bwUWYRMuBQU70J2fe2AGwpsXx4EJCB44m+S9G0liJvsblvJlZKwxdtIuwFgjDOVJ2gUYY64WLXmQezmXW/mUNryQOWqopYdeMqIspBdURzJc2vIqvaY6kkFWiZX0GvAsJ7KTO5ZH6dUiWSVouktbTPhAWvryIm09GWS5jORNhg388hhTGdbSS8ZH7ALufuZ0ZVhLbyVJF/C2KLqfgvsf1tIb3aLYIXNbOFALB1/rkKuuKQfKlvTkTHrhhe41Tf5Hg6RPBdjHbiMf0gtC5tby68fOo9HnOkbSDw4k/2T+Kln2Bs4A2GHKR2iEAAAAAElFTkSuQmCC"
+          class="c-icon-settings__cog"
+        >
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACHSURBVEhL7Y5RCoAgEES9RHcs6rjdp3aohU1Ex9XADx8smuy8KUyGZZVZnisFdpGh2GUumVOGKcEOdpFBtogNlEpqdj8wQbdcyQma5UpK1E2uxMKucsWWdJeDXwusHKe9N5fEcnyn3lzkRM0ljMBdUhN0lRwyNQFbgizFJkP9zQt2kZkMRwg3JsJK5RshxGkAAAAASUVORK5CYII="
+          class="c-icon-settings__close"
+        >
+      </div>
+    </header>
+
+    <div class="o-container">
+
+    <p class="c-module-intro" :class="{'show': moduleDetailsShow}">Items are the building blocks of the site. There use is ideally suited to a image and related content. 
+      <button class="o-link" @click="moduleDetailsShow = !moduleDetailsShow">{{moduleDetailsShow ? 'Hide details': 'More details' }}</button>
+    </p>
+    <div>
+      <div>
+        <p>The container class for an item is 'o-item', in which contains a image container 'o-item__image'.</p>
+        <p>The associated content sits within a container 'o-item__content'</p>
+    </div>
+    </div>
 
     <DebugToggle :module="modules.itemOne" class="u-fixed">
       <input
@@ -21,7 +48,7 @@
 
     <section class="c-section-items__moduleContainer">
       <div class="c-section-items__modulePanel">
-        <editItem :items="moduleArray" :editPanel="editPanel"></editItem>
+        <editItem :items="moduleArray" :editPanel="editPanel" ref="editItemType"></editItem>
         <editPanel
           :items="moduleArray"
           :editPanel="editPanel"
@@ -30,13 +57,19 @@
       </div>
       <div class="c-section-items__module">
         <ModuleComponent :module="modules.itemOne" :ref="modules.itemOne.name">
-          <itemImage :img="modules.itemOne.image" :content="modules.itemOne.content"/>
+          <itemImage
+            :img="modules.itemOne.image"
+            :content="modules.itemOne.content"
+            :headerSwap="modules.itemOne.headerSwap"
+            :imageSwap="modules.itemOne.imageSwap"
+          />
           <!-- <div class="o-item" :class="classesApplied" :id="itemInfo.id">
                 <itemImage :img="itemInfo.image" :content="itemInfo.content" /> 
           </div>-->
         </ModuleComponent>
       </div>
     </section>
+    </div>
   </div>
 </template>
 
@@ -46,7 +79,7 @@ import { editBus } from "../main";
 import { itemClass } from "./itemClass";
 import {
   itemCard,
-  itemHeaderSwap,
+  // itemHeaderSwap,
   itemImageSwap,
   itemOverlay
 } from "./item-types/all";
@@ -55,6 +88,7 @@ import itemImage from "./itemImage.vue";
 import itemContent from "./itemContent.vue";
 import ModuleComponent from "./modules/module.vue";
 import { moduleSectionMixins } from "../mixins/module-section";
+import { editPanelMixins } from "../mixins/editPanel-applyClass";
 import CustomHeader from "./heading.vue";
 import editItem from "./editItem.vue";
 import editPanel from "./editPanel.vue";
@@ -76,6 +110,7 @@ export default {
   data() {
     return {
       invert: false,
+      moduleDetailsShow: false,
       editPanel: {
         state: false,
         itemIndex: 0
@@ -84,11 +119,14 @@ export default {
       moduleNames: [],
       moduleArray: [],
       modulePath: "",
+      lastAppliedIndex: [],
       modules: {
         itemOne: {
           name: "itemOne",
+          imageSwap: false,
+          headerSwap: false,
           html: {
-            show: true,
+            show: false,
             content: ""
           },
           edit: true,
@@ -139,14 +177,13 @@ export default {
     }
   },
   methods: {
-    invertItem(targetId) {
+    invertItem() {
       for (let key in this.modules) {
-        this.setInvert(key, targetId);
+        this.setInvert(key);
       }
     },
     setInvert(key, targetId) {
       if (targetId) {
-        ////// IF CLICKED FROM INVERTED RADIO
         console.log(targetId);
       }
       let elRef = this.$refs[key].$refs[key];
@@ -187,7 +224,9 @@ export default {
         // Gets classes from itemClass
         let itemClassPath = this.returnAssociatedClasses(itemClass, path);
         // Destructures them to scoped vars
-        let { applied, available, alignment } = this.$stringObj(itemClassPath);
+        let { applied, available, alignment, width } = this.$stringObj(
+          itemClassPath
+        );
         // Sets the classes on each module instance
         for (let key in modules) {
           this.setAssociatedClasses(modules[key], `${path}.applied`, applied);
@@ -196,6 +235,12 @@ export default {
             `${path}.available`,
             available
           );
+          this.setAssociatedClasses(
+            modules[key],
+            `${path}.alignment`,
+            alignment
+          );
+          this.setAssociatedClasses(modules[key], `${path}.width`, width);
         }
       } else {
         let contentPath = this.returnAssociatedClasses(itemClass, path);
@@ -237,6 +282,9 @@ export default {
       },
       {});
       this.moduleArray.push(moduleArray);
+    },
+    setClassToAvailable(index) {
+      this.modules.itemOne.classes.available[index].class[2] = true;
     }
   },
   beforeMount() {
@@ -251,18 +299,49 @@ export default {
   mounted() {
     editBus.$on("itemTypeUpdate", (type, index) => {
       let entry = Object.keys(this.modules)[index];
-      if (type == "overlay" || type == "imageSwap" || type == "headerSwap") {
+      type == "imageSwap"
+        ? (this.modules[entry].imageSwap = true)
+        : (this.modules[entry].imageSwap = false);
+      if (type == "overlay" || type == "imageSwap") {
         this.invert = true;
         this.modules[entry]["inverted"] = true;
         this.toggleDataTheme(this.$refs[entry].$refs[entry], true);
+        this.modules[entry].classes.available.forEach(
+          element => (element.class[2] = true)
+        );
       } else {
         this.invert = false;
         this.modules[entry]["inverted"] = false;
         this.toggleDataTheme(this.$refs[entry].$refs[entry], false);
+        if (type == "default") {
+          this.modules[entry].classes.available.forEach(
+            element => (element.class[2] = true)
+          );
+        }
+      }
+    });
+    editBus.$on("addClass", (index, classes, action, item) => {
+      this.lastAppliedIndex.push(item.class);
+      if (item.class[0] == "o-item__imageSwap") {
+        // hardcoded but fuck it
+        this.modules.itemOne.imageSwap = true;
+        this.$refs.editItemType.itemType = "imageSwap";
+      }
+    });
+    editBus.$on("removeClass", (index, classes, action, item) => {
+      classes.available.forEach((element, i) => {
+        if (element.class[0].indexOf(item)) {
+          element.class[2] = true;
+        }
+      });
+      if (item == "o-item--imageSwap") {
+        // hardcoded but fuck it
+        this.modules.itemOne.imageSwap = false;
+        this.$refs.editItemType.itemType = "default";
       }
     });
   },
-  mixins: [moduleSectionMixins]
+  mixins: [moduleSectionMixins, editPanelMixins]
 };
 </script>
 
@@ -316,4 +395,92 @@ export default {
 code {
   max-width: 70vw;
 }
+
+.c-header-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position:sticky;
+  top:0;
+  z-index:2;
+  background:rgba(255,255,255,.95);
+  border-bottom: 1px solid #d2d4da;
+}
+
+.c-header-group .o-hdr {
+  margin:var(--spacing) 0;
+}
+
+.c-header-group:hover {
+  cursor: pointer;
+}
+
+.c-icon-settings {
+  width: 16px;
+  height: 16px;
+  transform: translateY(-12px);
+}
+
+.c-icon-settings img {
+  width: 100%;
+  display: none;
+}
+
+.c-icon-settings.spin .c-icon-settings__cog {
+  display: block;
+  animation: spin-cog 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) 250ms infinite;
+}
+
+.c-icon-settings:not(.spin) .c-icon-settings__close {
+  display: block;
+  animation: spin-cog 1.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+@keyframes spin-cog {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.c-module-intro {
+  --paragraphFontSize: var(--medium);
+  text-align: center;
+  display:flex;
+  flex-direction:column;
+  margin-top:var(--spacing)!important;
+}
+
+.c-module-intro .o-link {
+  align-self:center;
+  margin:var(--tiny) 0;
+}
+
+.c-module-intro + div {
+  max-height:0;
+  overflow: hidden;
+  transition: max-height 200ms cubic-bezier(0.075, 0.82, 0.165, 1);  
+  background: #EFF0F2;
+  border-radius: 3px;  
+  opacity:0;  
+}
+
+.c-module-intro.show + div {
+  max-height:2000px;
+  opacity:1;
+}
+
+.c-module-intro + div > div {
+  padding: var(--spacing);
+}
+
+.c-module-intro + div p {
+  text-align:center;
+  --paragraphSpacing: 0;
+  --paragraphFontSize: var(--small);
+}
+
+
 </style>

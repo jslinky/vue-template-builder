@@ -71,25 +71,25 @@ export const editPanelMixins = {
       getObjRef(itemType, applyClasses);
 
       // If first time init push object type, else reset and apply
-      if (!this.types.current.state) {
-        this.types.current.alias.push(objRef);
-      } else if (this.types.current.state) {
-        for (let value of this.types.current.alias) {
-          for (let entry of value) {
-            // create copy of applied classes
-            let appliedCopy = entry.itemClassAlias.applied.map(
-              appliedClass => appliedClass
-            );
-            // reset / clear array of applied classes
-            entry.itemClassAlias.applied = [];
-            for (let applied in appliedCopy) {
-              setClassTo(true, entry, applied);
-            }
-            // apply new item type
-            getObjRef(itemType, applyClasses);
+      // if (!this.types.current.state) {
+      //   this.types.current.alias.push(objRef);
+      // } else if (this.types.current.state) {
+      for (let value of this.types.current.alias) {
+        for (let entry of value) {
+          // create copy of applied classes
+          let appliedCopy = entry.itemClassAlias.applied.map(
+            appliedClass => appliedClass
+          );
+          // reset / clear array of applied classes
+          entry.itemClassAlias.applied = [];
+          for (let applied in appliedCopy) {
+            setClassTo(true, entry, applied);
           }
+          // apply new item type
+          getObjRef(itemType, applyClasses);
         }
       }
+      // }
 
       // Set to true after init
       this.types.current.state = true;

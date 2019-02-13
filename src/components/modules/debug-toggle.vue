@@ -63,7 +63,7 @@ code {
 
 .c-debug-toggle {
   position: absolute;
-  z-index: 1;
+  z-index: 3;
   width: auto;
   padding: 1rem 1.5rem;
   top: 0;

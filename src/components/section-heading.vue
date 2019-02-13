@@ -11,26 +11,39 @@
           >          
         <label :for="toogleInvert">Inverted</label> 
     </DebugToggle>
+
+    <header class="c-header-group">
+      <CustomHeader bg center aligned :class="{'inverted': invert}">Headings</CustomHeader>
+    </header>
+
+    <p class="c-module-intro" :class="{'show': moduleDetailsShow}">Headings intro copy 
+      <button class="o-link" @click="moduleDetailsShow = !moduleDetailsShow">{{moduleDetailsShow ? 'Hide details': 'More details' }}</button>
+    </p>
+    <div class="o-container">
+      <div>
+        <p>Headings more info copy</p>
+    </div>
+    </div>    
     
     <div class="c-header-container o-container">
       <ModuleComponent :ref="modules.headingMsv.name" :module="modules.headingMsv">
-      <CustomHeader :el="'h1'" msv :class="{'inverted': invert}" style="margin-bottom:1rem">Massive Heading</CustomHeader>      
+      <CustomHeader :el="'h1'" msv :class="{'inverted': invert}" style="margin-bottom:1rem">I'm massive</CustomHeader>      
       </ModuleComponent>      
       <!-- <p :ref="`${modules.headingMsv.name}-desc`">Descriptive text here</p> -->
       <ModuleComponent :ref="modules.headingHuge.name" :module="modules.headingHuge">
-        <CustomHeader hg :class="{'inverted': invert}" style="margin-bottom:1rem">Huge Heading</CustomHeader>
+        <CustomHeader hg :class="{'inverted': invert}" style="margin-bottom:1rem">I'm huge</CustomHeader>
       </ModuleComponent>  
       <ModuleComponent :ref="modules.headingBig.name" :module="modules.headingBig">
-        <CustomHeader bg :class="{'inverted': invert}" style="margin-bottom:1rem">Big Heading</CustomHeader>
+        <CustomHeader bg :class="{'inverted': invert}" style="margin-bottom:1rem">I'm big</CustomHeader>
       </ModuleComponent> 
       <ModuleComponent :ref="modules.headingLarge.name" :module="modules.headingLarge">
-        <CustomHeader lg :class="{'inverted': invert}" style="margin-bottom:1rem">Large Heading</CustomHeader>
+        <CustomHeader lg :class="{'inverted': invert}" style="margin-bottom:1rem">I'm large</CustomHeader>
       </ModuleComponent>    
       <ModuleComponent :ref="modules.headingMedium.name" :module="modules.headingMedium">
-        <CustomHeader md :class="{'inverted': invert}" style="margin-bottom:1rem">Medium Heading</CustomHeader>
+        <CustomHeader md :class="{'inverted': invert}" style="margin-bottom:1rem">I'm medium</CustomHeader>
       </ModuleComponent>         
       <ModuleComponent :ref="modules.headingSmall.name" :module="modules.headingSmall">
-        <CustomHeader sm :class="{'inverted': invert}" style="margin-bottom:1rem">Small Heading</CustomHeader>
+        <CustomHeader sm :class="{'inverted': invert}" style="margin-bottom:1rem">Hey! I'm small</CustomHeader>
       </ModuleComponent>       
     </div>
   </div>
@@ -59,6 +72,7 @@ export default {
   data() {
     return {
       invert: false,
+      moduleDetailsShow: false,
       moduleNames: [],
       modules: {
         headingMsv: {
@@ -205,7 +219,8 @@ export default {
 <style scoped lang="less">
 
 // body is outside scope of this component 
-.invert {
+.invert,
+.invert .c-header-group {
   background-color:#101A31;
 }
 
