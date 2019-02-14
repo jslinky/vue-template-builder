@@ -10,6 +10,7 @@
         center
         aligned        
         @click.native.prevent="editItem(modules.itemOne.name + '-panel')"
+        class="o-link"
       >Items</CustomHeader>      
       <div class="c-icon-settings" :class="{'spin': !editPanel.state}">
         <img
@@ -409,6 +410,11 @@ code {
 
 .c-header-group .o-hdr {
   margin:var(--spacing) 0;
+}
+
+.c-header-group .o-hdr.o-link {
+  --fontSize: var(--headerFontSize);
+  --fontFamily: var(--headerFontFamily);
 }
 
 .c-header-group:hover {
