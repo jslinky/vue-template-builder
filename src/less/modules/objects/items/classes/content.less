@@ -31,19 +31,19 @@
 
 // Overlayed Item Content
 /////////////////////////
-.o-item__content[class*="--overlay"] {
+.o-item__content--overlay {
   #objects { .item(content) { #objects.item(content-overlay-ruleset); } }
   #objects.item(content); 
 }
 
 // Overlayed Child Elements - not o-buttons
 /////////////////////////
-.o-item__content[class*="--overlay"] > *:not(a):not(.o-buttons) { #objects.item(content-overlay-child-elements-not-links-or-buttons); }
+.o-item__content--overlay > *:not(a):not(.o-buttons) { #objects.item(content-overlay-child-elements-not-links-or-buttons); }
 
 //-------------------
 //   Header 
 //--------------------
-.o-item__content[class*="--overlay"] > .o-item__hdr {
+.o-item__content--overlay > .o-item__hdr {
   #objects { .item(content-header) { #objects.item(content-overlay-header-ruleset); } }
   #objects.item(content-header);  
 }
@@ -51,7 +51,7 @@
 //-------------------
 //   Button Group 
 //--------------------
-.o-item__content[class*="--overlay"] > .o-buttons { #objects.item(content-buttons); }
+.o-item__content--overlay > .o-buttons { #objects.item(content-buttons); }
 
 //-------------------
 //   Default Button
@@ -64,16 +64,16 @@
 //-------------------
 //   Overlayed Link
 //--------------------
-.o-item__content[class*="--overlay"] > a { #objects.item(content-overlay-link); }
+.o-item__content--overlay > a { #objects.item(content-overlay-link); }
 // Single link
 /////////////////////////
-.o-item__content[class*="--overlay"] > a:only-of-type { #objects.item(content-overlay-link-hoverTint-onlyChild); }
+.o-item__content--overlay > a:only-of-type { #objects.item(content-overlay-link-hoverTint-onlyChild); }
 // Link 1 of 2
 /////////////////////////
-.o-item__content[class*="--overlay"] > a:first-of-type:not(:only-of-type) { #objects.item(content-overlay-link-oneOfTwo); }
+.o-item__content--overlay > a:first-of-type:not(:only-of-type) { #objects.item(content-overlay-link-oneOfTwo); }
 // Link 2 of 2
 /////////////////////////
-.o-item__content[class*="--overlay"] > a:last-of-type:not(:only-of-type) { #objects.item(content-overlay-link-twoOfTwo); }
+.o-item__content--overlay > a:last-of-type:not(:only-of-type) { #objects.item(content-overlay-link-twoOfTwo); }
 
 
 //-------------------
@@ -81,25 +81,25 @@
 //--------------------
 // Default setting
 /////////////////////////
-.o-item__content[class*="--overlay"]:before { background-color:transparent; }
+.o-item__content--overlay:before { background-color:transparent; }
 
-.o-item[class*="--tint"] .o-item__content[class*="--overlay"]:before { #objects.item(tint-pseudo); }
+.o-item[class*="--tint"] .o-item__content--overlay:before { #objects.item(tint-pseudo); }
 
 // Tint without :HOVER
 /////////////////////////
-.o-item--tint .o-item__content[class*="--overlay"]:before { opacity:1; --itemTintOpacity:1; }
+.o-item--tint .o-item__content--overlay:before { opacity:1; --itemTintOpacity:1; }
 
 // Light tint 
 /////////////////////////
-.o-item--tintLight .o-item__content[class*="--overlay"]:not(:hover):before { opacity:.25; --itemTintOpacity:.25; }
+.o-item--tintLight .o-item__content--overlay:not(:hover):before { opacity:.25; --itemTintOpacity:.25; }
 
 // :HOVER tint
 /////////////////////////
-.o-item--tintHover .o-item__content[class*="--overlay"]:hover:before { #objects.item(content-overlay-link-hoverTint); }
+.o-item--tintHover .o-item__content--overlay:hover:before { #objects.item(content-overlay-link-hoverTint); }
 
 // Hide :HOVER tint for touch devices
 /////////////////////////
-.o-item--tintHover .o-item__content[class*="--overlay"]:before {  
+.o-item--tintHover .o-item__content--overlay:before {  
   @media (hover:none), (hover:on-demand) {
     display: none;
   }
@@ -107,7 +107,7 @@
 
 // Tint covers 100% of item canvas regardless of content dimensions
 /////////////////////////
-.o-item[class*="item--tint"].cover .o-item__content[class*="--overlay"]:before {
+.o-item[class*="item--tint"].cover .o-item__content--overlay:before {
   top:auto;
   left:auto;
   width:100vw;
@@ -174,3 +174,17 @@
 .o-item__content[class*="bottom aligned"] {
   justify-content:flex-end;
 }
+
+
+//*******************************
+//  Breakpoints (move to breakpoints folder)
+//*******************************
+// Overlayed Item Content (for medium breakpoint)
+/////////////////////////
+@media (min-width:@tabletBreakpoint) {
+  .o-item__content--overlay-md {
+    #objects { .item(content) { #objects.item(content-overlay-ruleset); } }
+    #objects.item(content); 
+  }
+}
+

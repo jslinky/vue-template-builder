@@ -36,7 +36,7 @@
       font-family:@headerSecondaryFontFamily;
     };        
     @inverted-ruleset: {
-      
+      --headerColor: @invertedTextColor;
     };
     @inverted-fallback-ruleset: {
       color: @invertedTextColor;
@@ -44,10 +44,10 @@
     }; 
     @inverted-staticVarsOnly-ruleset: {
       color: @invertedTextColor;
-    };           
+    };    
     @inverted-customPropOnly-ruleset: {
       --headerColor: @invertedTextColor;
-    };               
+    };             
     @letter-spacing-uppercase-ruleset: {
       --headerTextTransform: uppercase;      
       --headerLetterSpacingMultiplyer: @headerLetterSpacingCaps;

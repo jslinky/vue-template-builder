@@ -464,7 +464,7 @@
           width:83.33333%;  
           margin:0 auto;
           // max-width: calc(var(--mobile-nav-search-inputWidth));
-          .icon-fill('../images/interface/search.svg', '@{primaryColor}');
+          // .icon-fill('../images/interface/search.svg', '@{primaryColor}');
           background-repeat: no-repeat;
           background-size:auto 32%;
           background-position:right 25px center; 
@@ -857,16 +857,16 @@
           width: @@site-catSubMenuHeader-arrowSize;
           height: @@site-catSubMenuHeader-arrowSize;
       };      
-      @site-category-subMenuMobile-headerLinkFirstChildBefore-ruleset: {
-          // margin-right: var(--relativeSmall); 
-          .icon-fill('../../images/interface/chevronleft.svg', '#fff');  
+      @site-category-subMenuMobile-headerLinkFirstChildBefore-ruleset: {        
+          // .icon-fill('../../images/interface/chevronleft.svg', '#fff');  
+          // background-image:url('../../images/interface/chevronleft-white.svg');
       };
       @site-category-subMenuMobile-headerLinkFirstChildBefore-fallback-ruleset: {
           margin-right: @relativeSmall;   
       };      
       @site-category-subMenuMobile-headerLinkLastChildAfter-ruleset: {
-          // margin-left: var(--relativeSmall); 
-          .icon-fill('../../images/interface/chevronright.svg', '#fff');  
+          // .icon-fill('../../images/interface/chevronright.svg', '#fff');  
+          // background-image:url('../../images/interface/chevronright-white.svg');
       }; 
       @site-category-subMenuMobile-headerLinkLastChildAfter-fallback-ruleset: {
           margin-left: @relativeSmall; 
@@ -1258,7 +1258,8 @@
         font-size:@mini;
         letter-spacing: 0.68*@rem;
         height:29*@rem;
-        .icon-fill('../images/icons/UI/chevronDownLight.svg', '#101A31');
+        // .icon-fill('../images/icons/UI/chevronDownLight.svg', '#101A31');
+        // background-image: url('../images/icons/UI/chevronDownLight.svg');
       };
       @primary-menu-panel-select-fallback-ruleset: {
         width: ~"calc(98 * ((1 / @{fontSizeRoot}) * 1rem))";
@@ -1753,7 +1754,8 @@
         // --o-btn-underlineOpacity: 1;
         // --o-btn-underlineBoxShadow: none;
         // --o-btn-underlineBackground: transparent;
-        .icon-fill('../../images/interface/chevronright.svg', '#fff');  
+        // .icon-fill('../../images/interface/chevronright.svg', '#fff');  
+        // background-image:url('../../images/interface/chevronright-white.svg');
         right: 0;    
         left:auto;
         background-repeat: no-repeat;
@@ -2020,7 +2022,7 @@
         width:~"calc(100% - (@{spacing} * 4))";        
       };      
       @site-categoryMenu-itemSubMenu-tabletBreakpoint-ruleset: {        
-        left:~"calc(50% + "21*@rem~")";         
+        left:~"calc(50% + "22*@rem~")";         
         // background:var(--site-catMenu-subMenu-bg);
         flex-direction:column;
         align-items: center;

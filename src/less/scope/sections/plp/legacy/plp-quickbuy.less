@@ -1,0 +1,143 @@
+/* BEGIN TRYZENS CODE */
+
+
+/**
+ * selectize.css (v0.12.4)
+ * Copyright (c) 2013–2015 Brian Reavis & contributors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+ * file except in compliance with the License. You may obtain a copy of the License at:
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
+ * ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ *
+ * @author Brian Reavis <brian@thirdroute.com>
+ */
+
+// OVERRIDES
+.selectize-input {
+  box-shadow: none!important;
+  border-radius: 0px!important;
+  padding: @selectPadding!important;
+  color: @selectColor!important;
+  transition: @selectTransition!important;
+  font-size: 12*@rem!important;
+  font-family:@selectFont!important;
+}
+
+// Arrow
+
+.selectize-control.single .selectize-input:after {
+  width:10px!important;
+  height:10px!important;
+  border-width:0px 1px 1px 0px!important;
+  border-color:#777!important;
+  top:40%!important;
+  transform:rotate(45deg) translateY(-50%)!important;
+  margin:0!important;
+  transition:transform 250ms ease-in-out;
+}
+
+.selectize-control.single .selectize-input.dropdown-active:after {
+	margin-top:5px!important;
+	border-width:1px 0px 0px 1px!important;
+}
+
+// Height of content
+.selectize-dropdown-content {
+  max-height: 330px!important; // set this here
+}
+
+// Container for dropdown
+.wrapSelectSize .selectize-dropdown {
+	bottom:auto!important;
+	top:0!important;
+	transform:translateY(calc(-100%))!important;
+	border-top-width:1px!important;
+	border-bottom-width:0px!important;
+	border-style:solid;
+	border-color:#d0d0d0;
+	font-family:@primaryFontRegularStack!important;
+}
+
+.wrapSelectSize .selectize-dropdown,
+.selectize-input {
+	text-align:left!important;
+}
+
+// End arrow
+
+
+// end plugin css
+
+.itemOutOfStock { 
+	pointer-events: none; 
+
+}
+
+.quickadditem { 
+	position: absolute;
+	left: 0px; 
+	bottom: 0px;
+	width: 100%;
+}
+
+.quickadditem { 
+	position: absolute;
+	left: 0px; 
+	bottom: 0px;
+	width: 100%;
+}
+
+.quickadditem button { 
+	width: 100%;
+	border:1px solid red;
+}
+
+.form-row-hidden {
+	display: none;
+}
+
+.wrapSelectSize { 
+  padding:10px 0;
+  background: white;
+//   font-family:@primaryFont!important;
+	letter-spacing:0!important;
+}
+
+.wrapSelectSize select { 
+  opacity: 1;
+  filter: alpha(opacity=100); 
+  background: white;
+}
+
+.wrapSelectSize select option { 
+  opacity: 1;
+  filter: alpha(opacity=100); 
+  background: white;
+}
+
+// Disable select size option
+.selectize-dropdown-content > div:first-child {
+	// pointer-events:none;
+	// cursor: pointer;
+	display: none;
+} 
+
+.selectize-dropdown [data-selectable],
+.selectize-dropdown .optgroup-header {
+padding-left:12*@rem!important;
+font-family:@primaryFontRegularStack!important;
+}
+
+.itemOutOfStock { 
+	pointer-events: none; 
+	opacity: 0.5;
+    filter: alpha(opacity=50); 
+}
+
+
+// End

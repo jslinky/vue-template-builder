@@ -1,0 +1,44 @@
+
+#checkout-process {
+  .bag() {
+    @cart-actions: {
+      border-top-width:0;
+    };
+    @cart-actions-button: {
+      width:100%;
+    };
+    @cart-actions-continue-shopping-container: {
+      width:83%;
+      margin:0 auto (@rowSpacing / 2);
+      text-align: center;
+    };
+    @cart-actions-continue-shopping-button: {
+      width:100%;
+      max-width:@cart-button-max-width*@rem;
+    };
+    @cart-empty-msg-container: {
+      border-top:1px solid @borderColor;
+      padding-top:@rowSpacing;
+    };
+  }
+}
+
+// Cart actions - container for proceed or continue shopping
+.cart-actions { #checkout-process.bag(cart-actions); }
+/* << get rid of .pt_cart_v2 specify, used to override checkout a */
+.pt_cart_v2 {
+  // No items in shopping bag - cart empty
+  .cart-empty  { #checkout-process.bag(cart-empty-msg-container); }
+  .cart-empty.cart-empty {
+    font-family:@primaryFontRegularStack; // override from checkout a
+  }
+  // Cart actions - continue shopping button
+  .cart-action-checkout,
+  .cart-actions .cart-action-continue-shopping { #checkout-process.bag(cart-actions-continue-shopping-container); }
+  .cart-actions .cart-action-continue-shopping .button { #checkout-process.bag(cart-actions-continue-shopping-button); }
+  // Cart actions - checkout button
+  .cart-action-checkout,
+  .cart-actions .button[value="Checkout"] { #checkout-process.bag(cart-actions-button); }
+  // Continue shopping button
+  // .button[title="Continue Shopping"] { &:extend([class*="o-btn"].o-btn--basic all); }
+}

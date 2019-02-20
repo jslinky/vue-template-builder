@@ -1,0 +1,47 @@
+.cart-coupon-code {
+  border-bottom-color:transparent;
+}
+
+
+// CVS input
+.cvn.required {
+  display:block!important;
+  width:auto;
+}
+
+.cvn.required,
+.input-text.cvn-number { max-width:180*@rem; }
+
+// Out of stock products
+.out-of-stock-products {
+  overflow: hidden;
+  margin-bottom:@verticalMargin;
+}
+.out-of-stock-products .product-list { 
+    // &:extend(.grid); 
+    display: flex;
+}
+.out-of-stock-products .cart-row {
+//   &:extend(.grid  > .row > .column);
+  width:25%;
+}
+.out-of-stock-products .item-image { 
+    // &:extend(.o-item__image all); 
+    
+}
+
+.out-of-stock-products .product-list-item { text-align: center; }
+.out-of-stock-products .product-list-item .attribute,
+.out-of-stock-products .product-list-item .attributes,
+.out-of-stock-products .product-list-item .name { 
+    // &:extend(.o-header--h7); 
+}
+.out-of-stock-products .product-availability-list { font-size:@small; }
+
+// Shipping buttons
+.shipping-buttons-container button { 
+    // &:extend([class*="o-btn"].o-btn--basic all); 
+}
+.shipping-buttons-container button:not(.inactive) { 
+    // &:extend(.o-btn.o-btn--basic:active); 
+}

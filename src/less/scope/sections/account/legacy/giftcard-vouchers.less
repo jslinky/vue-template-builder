@@ -1,0 +1,32 @@
+
+.pt_giftcard .giftcard-container .registered-gift-cards,
+.pt_giftcard .giftcard-container .purchased-gift-cards {
+  width:100%;
+}
+
+.pt_giftcard .giftcard-container > div ul { padding-left:@spacing/2; }
+
+.pt_giftcard .giftcard-container > div li {
+  border-bottom:1px solid @borderColor;
+  padding:@spacing/2;
+}
+
+@media (max-width:@largestMobileScreen) {
+
+  .pt_giftcard .giftcard-container .registered-gift-cards { padding-bottom:@rowSpacing; }
+  .pt_giftcard .giftcard-container .purchased-gift-cards {
+    padding-top:@rowSpacing;
+    border-top:1px solid @borderColor;
+  }
+
+}
+
+@media (min-width:@tabletBreakpoint) {
+
+  .pt_giftcard .giftcard-container .registered-gift-cards,
+  .pt_giftcard .giftcard-container .purchased-gift-cards {
+    float:left;
+    width:50%;
+  }
+
+}

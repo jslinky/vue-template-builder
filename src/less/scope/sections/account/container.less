@@ -1,12 +1,24 @@
+@import (reference) "../../global-rules.less";
 
 .reg-columns,
 .login-columns,
 .account-options,
 [class*="pt_"]:not(.pt_account) .section-header,
 [class*="pt_"]:not(.pt_account) .section-header + div,
-.pt_account .primary-content { &:extend(.scoped-container-rules); }
+.pt_account .primary-content { 
+    // &:extend(.scoped-container-rules); 
+    .scoped-container-rules;   
+}
 
-[class*="pt_"] .section-header { overflow: hidden; }
+[class*="pt_"] .section-header:before,
+[class*="pt_"] .section-header:after { 
+    content: ""; 
+    display:table;    
+}
+
+[class*="pt_"] .section-header:after {
+    clear:both;
+}
 
 .reg-columns > form > fieldset { 
     max-width:700*@rem; 

@@ -1,0 +1,20 @@
+
+// Shipping select
+// Select shipping menu
+.pt_cart_v2 .select-shipping-method { width:75%; }
+
+.select-shipping-method {
+  max-width:450*@rem;
+  float:left;
+}
+// Shipping price
+.cart-shipping-methods .shipping-price { float:right; }
+// International rates button container
+.order-totals-table .international-rates { clear:left; }
+// International rates button
+a.international-rates {
+  // &:extend(.o-link all);
+  text-transform: none;
+}
+
+.order-shipping-discount .label.label { &:extend(.pt_cart_v2 .order-totals-table .order-subtotal .label); }

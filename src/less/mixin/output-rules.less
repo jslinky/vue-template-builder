@@ -24,7 +24,8 @@
     .namespace() when (@module = masthead) { #objects.masthead(@rule); }
     .namespace() when (@module = icon) { #objects.icon(@rule); }
     .namespace() when (@module = section) { #objects.section(@rule); }
-    .namespace() when (@module = container) { #objects.container(@rule); }    
+    .namespace() when (@module = container) { #objects.container(@rule); }
+    .namespace() when (@module = divider) { #objects.divider(@rule); }    
     .namespace();
     // content:'props';
   } 
@@ -41,7 +42,8 @@
     .namespace() when (@module = masthead) { #objects.masthead(@rule); }
     .namespace() when (@module = icon) { #objects.icon(@rule); }
     .namespace() when (@module = section) { #objects.section(@rule); }
-    .namespace() when (@module = container) { #objects.container(@rule); }    
+    .namespace() when (@module = container) { #objects.container(@rule); }   
+    .namespace() when (@module = divider) { #objects.divider(@rule); }     
     .namespace();
     // content:'fallback';       
   }
@@ -59,6 +61,7 @@
     .namespace() when (@module = icon) { #objects.icon(@rule); }
     .namespace() when (@module = section) { #objects.section(@rule); }
     .namespace() when (@module = container) { #objects.container(@rule); }    
+    .namespace() when (@module = divider) { #objects.divider(@rule); }    
     .namespace();      
     // content:'static';    
   }

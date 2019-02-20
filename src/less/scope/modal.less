@@ -94,7 +94,8 @@
       height:3rem!important;
       width:3rem!important;
       z-index:11;
-      .icon-fill('../../images/interface/close.svg', '@{primaryColor}');
+      // .icon-fill('../../images/interface/close.svg', '@{primaryColor}');
+      background-image:url('../../images/interface/close.svg');
       background-repeat: no-repeat;
       background-size: 50% auto;
       background-position: center;
@@ -790,7 +791,10 @@ body.no-scroll,
   // Commented out for Hub Box
   // .ui-dialog .pt_newstorepickup .locationSearch { padding-bottom:@verticalPadding; }
   .ui-dialog .pt_newstorepickup .locationSearch .geoLocation { display:none!important; }
-  .ui-dialog.click-and-collect .ui-dialog-titlebar-close { .icon-fill('../../images/interface/close.svg', '@{white}'); }
+  .ui-dialog.click-and-collect .ui-dialog-titlebar-close { 
+    // .icon-fill('../../images/interface/close.svg', '@{white}'); 
+    background-image:url('../../images/interface/close-white.svg');
+  }
 
   // Title bar
   .ui-dialog.click-and-collect .ui-dialog-titlebar {

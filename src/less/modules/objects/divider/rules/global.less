@@ -15,6 +15,12 @@
     @element: { 
       #objects.divider(element-ruleset);
     };
+    @spacing: {
+      #objects.divider(spacing-ruleset);
+    };
+    @spacing-tabletBreakpoint: {
+      #objects.divider(spacing-tabletBreakpoint-ruleset);
+    };    
     // Offset spacing rules
     @offset: { 
       #objects.divider(offset-ruleset);
@@ -36,9 +42,15 @@
 //--------------------
 
 #objects {
-  .divider(element) when (@customPropFallback = true) {
-    #objects.divider(element-fallback-ruleset);
-  }   
+  .divider(element) { 
+    .output-rules(element; divider);  
+  }  
+  .divider(spacing) { 
+    .output-rules(spacing; divider);  
+  } 
+  .divider(spacing-tabletBreakpoint) { 
+    .output-rules(spacing-tabletBreakpoint; divider);  
+  }          
 }
 
 #objects {

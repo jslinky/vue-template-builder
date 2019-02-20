@@ -11,12 +11,14 @@
   --item-card-breakpoint-gutter: 24; // get var from container  
 }
 
+.o-mh .o-item--card.reverse .o-item__image,
 .o-item--card.reverse .o-item__image { flex-direction:row-reverse; }
 
+.o-mh .o-item--card .o-item__image,
 .o-item--card .o-item__image { 
   display:flex; 
   flex-wrap:wrap;
-  flex-direction:row;
+  flex-direction:row; 
 }
 
 .o-item--card .o-item__image > a:first-child,

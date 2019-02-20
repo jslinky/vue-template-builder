@@ -1,0 +1,77 @@
+
+.account-options { 
+  // &:extend(.grid); 
+  display: flex;
+}
+
+.account-options > div {
+  // &:extend(.grid > .row > .column);
+  width:100%;
+  border:(@gutter / 4) solid #fff;
+  background:@lightGrey;
+  text-align: center;
+  position: relative;
+}
+
+.account-options > div > a {
+  text-transform: uppercase;
+  // &:extend(.u-flex, .u-items-center, .u-justify-center, .u-flex-column, .o-header--h5);
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  flex-direction: column;
+  padding:10% 0;
+  height:100%;
+  color:@primaryColor;
+  &:after {
+    content:'';
+    width:@large;
+    height:@large;
+    display: inline-block;
+    background-repeat: no-repeat;    
+    background-position:center;
+  }
+}
+
+.my-details-block > a:after  { 
+  .icon-fill('../images/icons/UI/myAccount.svg', '@{primaryColor}'); 
+  background-size:94% auto;
+}
+.order-history-block > a:after  { 
+  .icon-fill('../images/icons/UI/bag.svg', '@{primaryColor}'); 
+  background-size:85% auto;
+}
+.whistlist-block > a:after  { 
+  .icon-fill('../images/icons/UI/wishlist.svg', '@{primaryColor}'); 
+  background-size:94% auto;
+}
+.my-address-block > a:after  { 
+  .icon-fill('../images/icons/UI/home.svg', '@{primaryColor}'); 
+  background-size:100% auto;
+} 
+.payment-cards > a:after { 
+  .icon-fill('../images/icons/UI/paymentCard.svg', '@{primaryColor}'); 
+  background-size:94% auto;
+}
+.gift-vaucher-block > a:after { 
+  .icon-fill('../images/icons/UI/giftCard.svg', '@{primaryColor}'); 
+  background-size:100% auto;
+}
+
+// Back to my account button
+.back-myaccount {
+  // &:extend(.o-btnBack all);
+  float: left;
+}
+
+
+@media (min-width:@tabletBreakpoint) {
+
+.account-options > div {
+  width:@threeColumn;
+  border:(@gutter / 2) solid #fff;
+}
+
+.account-options > div > a { padding:35% 0; }
+
+}

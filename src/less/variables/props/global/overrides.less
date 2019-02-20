@@ -1,0 +1,56 @@
+
+
+
+// //*******************************
+// //    ROOT: Custom Prop Rulesets
+// //*******************************
+
+// //-------------------
+// //  Root props
+// //--------------------
+
+// #props {
+//   .root() {
+// //-------------------
+// //  Global spacing props:- line height --->> vertical rhythm --->> offset / spacing
+// //  LESS var path:- /less/type.less
+// //--------------------
+//     @spacing: { };
+//   }
+// }
+
+// //*******************************
+// //   DEFINE MIXIN
+// //*******************************
+
+// #props {
+//   .root(@item) {
+//       #props.root();
+//       // #objects.root-variables();
+//       @rules: @@item;
+//       @rules();
+//   }
+// }
+
+// //*******************************
+// //   Classes used for extending properties
+// //*******************************
+
+// .root-props-spacing { #props.root(spacing); }
+// .root-props-sizing { #props.root(sizing); }
+
+// //*******************************
+// //   Element classes that extend related properties
+// //*******************************
+
+// :root { 
+//   &:extend(
+//     .type-props-site,
+//     .root-props-sizing,
+//     .root-props-spacing,    
+//     .font-props-site,
+//     // .site-props,
+//     .icon-props,
+//     .color-props-site
+//   ); 
+// }

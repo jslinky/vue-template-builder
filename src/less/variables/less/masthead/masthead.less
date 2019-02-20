@@ -48,13 +48,11 @@
     //-------------------
     //   Masthead Adjacent Content Height Values
     //--------------------      
-    @mh-adjContent                            : 150;
+    @mh-adjContent                            : 250;
 
     @mh-subtract                              : ~"calc((var(--mh-adjContent)) * ((1 / var(--fontSizeRoot)) * 1rem))";
     @mh-subtract-fallback                     : ~"calc((@{mh-adjContent}) * ((1 / @{fontSizeRoot}) * 1rem))";
     @mSafariChrome                            : 75;
-
-    
 
     //**********************
     //  Masthead Heights
@@ -94,6 +92,18 @@
     @artwork-ratio-width                      : 16;
     @artwork-ratio-height                     : 9;  
 
+    // Article Image
+    @mh-item-image-position                   : absolute;
+    @mh-item-image-position-lmb               : @mh-item-image-position;
+    @mh-item-image-position-tb                : @mh-item-image-position;
+    @mh-item-image-position-cb                : @mh-item-image-position;
+
+    @mh-item-image-object-fit                 : cover;
+    @mh-item-image-object-position            : center;
+    
+    @mh-item-card-image-position              : relative;
+
+    // Header (to be moved?)
     @banner-bf-header-height                  : 46;
     @hdrHVal-m                                : 48;
     @hdrHVal-lmb                              : 73;

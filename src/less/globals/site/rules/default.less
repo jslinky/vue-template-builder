@@ -67,19 +67,22 @@
     @link-fallback-ruleset: {
         #global.site(link-staticVarsOnly-ruleset);
         #global.site(link-customPropOnly-ruleset);
+        content:'fallback';
     };    
     @link-staticVarsOnly-ruleset: {
         color: @@linkColor;
         text-decoration: @linkDecoration;
         box-shadow: @linkShadow;      
+        content:'static';  
     };
     @link-customPropOnly-ruleset: {
         color: var(--linkColor);
         text-decoration: var(--linkDecoration);
         box-shadow: var(--linkShadow); 
+        content:'props';
     };
 
-    @link-hover-ruleset: {                     
+    @link-hover-ruleset: {             
         .output() when (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
             // just custom props
             #global.site(link-hover-customPropOnly-ruleset);

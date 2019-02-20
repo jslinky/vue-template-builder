@@ -1,15 +1,34 @@
-/*! Basscss | http://basscss.com | MIT License */
-/* http://csswizardry.com/2016/05/the-importance-of-important/ */
-
-// Margin
-.import-modules() when (@include_ult-margin = true) { @import "../utility/margin.less"; }
-// Padding
-.import-modules() when (@include_ult-padding = true) { @import "../utility/padding.less"; }
-// Layout
-// .import-modules() when (@include_ult-layout = true) { @import "../utility/layout.less"; }
-// Color
-.import-modules() when (@include_ult-color = true) { @import "../utility/color.less"; }
-
-.import-modules() when (@include_ult-flex = true) { @import "../utility/flex.less"; }
-
-.import-modules() when (@include_ult-layout = true) { @import "../utility/layout.less"; }
+//-------------------
+//   UTILITIES
+//   Ultility classes for rapid prototyping and overrides
+//--------------------
+.import-modules() when (@include_ult-border = true) {
+    @import "../utility/border.less";
+}
+.import-modules() when (@include_ult-color = true) {
+    @import "../utility/color.less";
+}
+.import-modules() when (@include_ult-flex = true) {
+    @import "../utility/flex.less";
+}
+.import-modules() when (@include_ult-hide = true) {
+    @import "../utility/hide.less";
+}
+.import-modules() when (@include_ult-layout = true) {
+    @import "../utility/layout.less";
+}
+.import-modules() when (@include_ult-list = true) {
+    @import "../utility/list.less";
+}
+.import-modules() when (@include_ult-margin = true) {
+    @import "../utility/margin.less";
+}
+.import-modules() when (@include_ult-padding = true) {
+    @import "../utility/padding.less";
+}
+.import-modules() when (@include_ult-type = true) {
+    @import "../utility/type.less";
+}
+.import-modules() when (@include_ult-z-index = true) {
+    @import "../utility/z-index.less";
+}

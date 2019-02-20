@@ -1,0 +1,25 @@
+
+.payment-methods-wrapper {
+  text-align: center;
+  margin-top:@rowSpacing;
+  > div {
+    background-repeat: no-repeat;
+    background-position: center;
+    height:24*@rem;
+    line-height: 24*@rem;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  > div:not(:last-child) { margin-right:@spacing; }
+  > .returns {
+    width:122*@rem;
+    background-position: left center;
+    padding-left:25*@rem;
+    font-size:@tiny;
+    margin-right:0;
+    font-family:@primaryFontRegularStack
+  }
+  .mastercard-img { width:42*@rem; }
+  .visa-img { width:60*@rem; }
+  .paypal-img { width:80*@rem; }
+}

@@ -1,0 +1,430 @@
+
+@storeDetails-column-width: 390;
+
+.pt_newstorelocator .page-content {
+  height:auto;
+  .clearfix();
+}
+
+// .ui-dialog .shopsData,
+.shopsData { width:100%; }
+
+
+.link-container,
+.topBackToResultsContainer { 
+  // &:extend(.s-hide); 
+  display:none;
+}
+
+.mobileStorePage .storePage { padding: @gutter; }
+
+// Map
+.pt_newstorelocator .googleMap {
+  padding-left:@gutter;
+  padding-right:@gutter;
+}
+
+.pt_newstorelocator .googleMap.mobileStoreMap {
+  padding-left:0;
+  padding-right:0;
+}
+
+.map_canvas {
+  padding-bottom:75%;
+  .mobileStoreMap & {
+    margin:0;
+    padding-bottom:46%;
+  }
+}
+
+// find a store page
+.pt_storepickup > h1,
+// checkout find a store model
+.pt_storelocator .page-content  > h2 {
+  // &:extend(.o-header--h4);
+  text-align: center;
+ }
+
+.pt_storelocator {
+  .page-content {
+    // &:extend(.container-extend);
+    > .link-container { 
+      // &:extend(.s-hide); 
+      display:none;
+    }
+  }
+}
+
+.location-error {
+  &:extend(.error);
+  margin-top:@spacing / 2;
+}
+
+.search-location {
+  padding:0 @verticalPadding;
+  > form { 
+    // &:extend(.u-flex, .u-justify-end); 
+    display:flex;
+    justify-content: flex-end;
+  }
+  input[type="text"] {  
+    margin:0;
+    .ui-dialog & {
+      border-right:@inputBorder;
+    }
+    &:focus { border-color:@borderColor; }
+  }
+  input[type="submit"] {
+    // line-height: @inputLineHeight;
+    // font-size: @inputFontSize;
+    cursor:pointer;
+    border:1px solid #ccc;
+    border-left:0;
+    margin-right:0;
+    margin:0;
+    border-radius:0;
+    background-color:transparent;
+    align-self: flex-end;
+    background-size:60% auto;
+    &:extend(.search-bg);
+  }
+  .form-row {
+    width:100%;
+    margin-bottom:0;
+  }
+}
+
+.mobileHeading + .locationSearch { 
+  // &:extend(.u-flex); 
+  display: flex;
+}
+
+.locationSearch .geoLocation {
+  margin:0 @gutter;
+  border-radius: 50%;
+  width:unit(45*@rem, rem);
+  height:unit(45*@rem, rem);
+  background-color:@primaryColor;
+  .icon-fill('../images/interface/my-location.svg', '#fff');
+  background-repeat: no-repeat;
+  background-size:60% auto;
+  background-position:center;
+  position: relative;
+}
+
+.geoLocationButton {
+  height:100%;
+  margin:0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  visibility: hidden;
+}
+
+.mobileHeading + .locationSearch .search-location {
+  flex-grow:1;
+  padding-left:0;
+}
+
+label[for="dwfrm_storefinder_location"] { 
+  // &:extend(.s-hide); 
+  display:none;
+}
+
+.storeContainer {
+  .storePage > & { padding:0; }
+  cursor: pointer;
+  padding:@rowSpacing;
+  border-bottom:1px solid @borderColor;
+}
+
+.mobileHeading {
+  // &:extend(.o-header, .o-header--h5);
+  padding-left:@gutter;
+}
+
+.storePage .storeName,
+/*.jspPane > .owl-carousel + .storeName*/
+.storeData .storeName {
+  margin-bottom:@rowSpacing!important;
+  // &:extend(.o-header--h5);
+}
+
+.storePage .storeHours { margin-bottom:@rowSpacing; }
+
+.storeData .storeName,
+.storeData .storeName ~ div {
+  padding-left:@rowSpacing;
+  padding-right:@rowSpacing;
+}
+
+.mobileMapButton { display:none!important; }
+
+// Owl - move this
+.storeData .owl-item {
+  // check to see whether I need these overrides
+  padding-left:0!important;
+  padding-right: 0!important;
+}
+.owl-item img { width:100%; }
+
+
+.storeContainer .distance { float:right; }
+
+.stores-wrapper {
+  border-top:1px solid @tertiaryGrey;
+  .ui-dialog & { border:none; }
+}
+
+.getDirections,
+.storeHoursHeader,
+.moreDetailsHeader {
+  text-transform: uppercase;
+  margin-top:@rowSpacing;
+  display: block;
+}
+
+.moreDetails { margin-bottom:@rowSpacing; }
+
+.moreDetailsLink {
+  display: block;
+  margin-top:@rowSpacing / 2;
+}
+
+.storeDetails { margin-top:@rowSpacing; }
+
+// .jspPane > .owl-carousel ~ div,
+// .storeListName ~ p,
+// .storeListName ~ div,
+// .storeData .storeName ~ div,
+// .storeData p {
+//   font-size:@tiny;
+//   font-family:@primaryFont;
+// }
+
+.storeHours p { margin:0; }
+
+.storeListName {
+  display: inline-block;
+  text-transform: uppercase;
+  max-width:80%;
+  ~ p { margin:0; }
+}
+
+.storeAddress p { margin:0; }
+
+// .storeDetailsLink a {
+//   &:extend(.o-btn all, [class*="o-btn"].o-btn--sm);
+//   margin-left:-1em; // should be based on button padding var
+// }
+
+.jspDrag { background:@tertiaryGrey!important; }
+
+.jspVerticalBar {
+  margin-right:0!important;
+  margin-top: -2px !important;
+  padding: 0!important;
+  border: none!important;
+  width: unit(6*@rem, rem)!important;
+  background: none !important;
+}
+
+// .shopsData .mobileNavigation {
+//   &:extend(.o-menu);
+//   margin-bottom:0;
+//   font-size:@tiny;
+//   margin-left:@globalSpacing;
+//   margin-right:@globalSpacing;
+//   > div {
+//     &:extend(.o-menu__item all);
+//     width:50%;
+//     text-align: center;
+//     &.selected { border-bottom:2px solid @primaryColor; }
+//   }
+// }
+
+.backToResultsContainer {
+  padding:(@rowSpacing / 2) @rowSpacing;
+  margin-top:@rowSpacing;
+}
+
+.find-another-store,
+.backToResults { &:extend(.o-btnBack all); }
+
+.mobileStorePage .mobileHeading,
+.mobileStorePage .locationSearch,
+.mobileStorePage .mobileNavigation { 
+  // &:extend(.s-hide); 
+  display:none;
+}
+
+.mobileStoreMap + .mobileStorePage { margin-top:@rowSpacing; }
+
+// Store Locator Info - single page
+
+.store-info-main .storeContainer { border-bottom:0; }
+
+.pt_storelocatorinfo {
+
+  .page-content {
+    // &:extend(.container-extend);
+    padding-top:@rowSpacing;
+  }
+
+  .breadcrumb { display: none; }
+
+  .map-container-storeinfo { float:left; }
+
+  .map-container-storeinfo + .store-info { padding-top:@rowSpacing; }
+
+  .store-info { clear:both; }
+
+  .store-info,
+  .map-container-storeinfo,
+  .map-container-storeinfo .googleMap,
+  .image-container-storeinfo {
+    width:100%;
+  }
+
+  .map-container-storeinfo .googleMap,
+  .map-container-storeinfo .googleMap .map_canvas { height:auto!important; }
+
+  .map-container-storeinfo .googleMap .map_canvas { padding-bottom: 45%; }
+
+  .storeName {
+    // &:extend(.o-header--h5);
+    margin-bottom:@rowSpacing!important;
+    padding-bottom:1rem;
+    color:@primaryColor;
+  }
+
+  .shopsData {
+    float:none;
+    height:auto!important;
+    width:100%;
+    // &:extend(.container-extend);
+  }
+
+  .store-details { 
+    // &:extend(.u-flex, .u-justify-between); 
+    display:flex;
+    justify-content: space-between;
+  }
+
+  .store-details h2,
+  .storeHours h2,
+  .storeHours p,
+  .storeContacts h3,
+  .storeContacts h4 {
+    font-size:@tiny;
+    // font-family: @primaryFont;
+    letter-spacing: @1px;
+    text-transform: none;
+    margin:0;
+  }
+
+  // .storeHoursHeader h1 { &:extend(.o-header, .o-header--h6); }
+
+  .storeHours + .find-another-store-container {
+    margin:@rowSpacing 0;
+  }
+
+  .find-another-store-container { clear:both; }
+
+  // .find-another-store-container > a h1 { &:extend(.o-btnBack all); }
+
+}
+
+@media (min-width:@tabletBreakpoint) {
+
+  .stores-wrapper { margin-top:@rowSpacing; }  
+
+}
+
+@media (min-width:@computerBreakpoint) {
+
+  .pt_storelocatorinfo {
+
+    .store-info {
+      float:left;
+      width:50%;
+    }
+
+    .map-container-storeinfo,
+    .image-container-storeinfo {
+      float:right;
+      width:40%;
+      clear:both;
+    }
+
+    .shopsData { height:auto!important; }
+
+    .map-container-storeinfo .googleMap {
+      width:100%!important;
+      margin-bottom:@rowSpacing;
+    }
+
+    .map-container-storeinfo .googleMap .map_canvas { padding-bottom: 75%; }
+
+    .map-container-storeinfo .googleMap,
+    .map-container-storeinfo .googleMap .map_canvas { height:auto!important; }
+
+    .storeName {
+      border-bottom:1px solid @tertiaryGrey;
+      // #elements.header.header-3();
+    }
+
+    .store-info { clear:none; }
+
+  }
+
+}
+
+
+@media screen and (min-width:@computerBreakpoint) {
+
+  .shopsData,
+  .googleMap {
+    float:left;
+    padding:0;
+  }
+
+  .pt_newstorelocator .googleMap {
+    padding-left:0;
+    padding-right:0;
+  }
+
+  .map_canvas {
+    padding-bottom:0;
+    margin:0;
+    height:~"calc(100% + "@rowSpacing*2~")"!important;
+  }
+
+  .ui-dialog .shopsData,
+  .shopsData {
+    width:@storeDetails-column-width*@rem;
+    padding-left: 0;
+    height:auto!important;
+  }
+
+  .googleMap {
+    display: block;
+    width:~"calc(100% - "@storeDetails-column-width*@rem~")";
+    padding-right:0;
+  }
+
+  .mobileHeading + .locationSearch { display:block!important; }
+
+  .mobileHeading + .locationSearch .search-location {
+    padding-left:@rowSpacing;
+    margin-top:@rowSpacing;
+  }
+
+  .locationSearch .geoLocation,
+  .mobileHeading,
+  .mobileNavigation { display: none!important; }
+
+  .backToResultsContainer { border-top:1px solid @tertiaryGrey; }
+
+}

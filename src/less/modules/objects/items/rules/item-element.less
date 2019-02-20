@@ -15,28 +15,44 @@
     @element-bottom-aligned-ruleset: {
       bottom:0;
       top:auto;    
-    };         
+    };    
+    @element-left-aligned-relative-ruleset: {
+      margin-left:0;
+      margin-right:auto;       
+    };     
      @element-left-aligned-ruleset: {
        left:0;
      };
+    @element-right-aligned-relative-ruleset: {
+      margin-left:auto;
+      margin-right:0;      
+    };          
      @element-right-aligned-ruleset: {
       right:0;
       left:auto;
-    };     
+    };         
     @element-middle-aligned-ruleset: {
       top: 50%;
       transform: translate(0, -50%);
       height:auto;
     }; 
+    @element-center-aligned-relative-ruleset: {
+      margin-left:auto;
+      margin-right:auto;
+    };              
     @element-center-aligned-ruleset: {
       left:50%;
       transform: translate(-50%, 0);
     };
+    @element-center-middle-aligned-relative-ruleset: {
+      margin-left:auto;
+      margin-right:auto;
+    };                  
     @element-center-middle-aligned-ruleset: {
       left:50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      height:auto;
+      height:auto; 
     };             
   }
 }

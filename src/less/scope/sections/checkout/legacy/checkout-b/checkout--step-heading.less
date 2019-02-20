@@ -1,0 +1,39 @@
+#checkout-process {
+  .checkout() {
+    @step-header: {
+      // &:extend(.u-flex, .u-justify-between, .u-items-center);
+      display: flex;
+      justify-content: space-between;
+      align-items:center;
+      border-bottom:1px solid @borderColor;
+    };
+    @step-heading: {
+      // &:extend(.o-header, .o-header.o-header--h6-h5);
+      margin:@rowSpacing;
+    };
+    @step-indicator: {
+      margin-right:@spacing;
+      text-transform: uppercase;
+    };
+    @inactive: {
+      color:@lightTextColor;
+    };
+    @edit-button: {
+      text-transform: uppercase;
+      margin-right:@spacing;
+    };
+  }
+}
+
+
+/// STEP HEADING
+.step-header { #checkout-process.checkout(step-header); }
+.step-heading { #checkout-process.checkout(step-heading); }
+// Inactive
+.inactive {
+  .step-indicator,
+  .step-heading { #checkout-process.checkout(inactive); }
+}
+.step-indicator { #checkout-process.checkout(step-indicator); }
+// Edit address button
+.pt_singlepagecheckout_v2 .edit-delivery-address { #checkout-process.checkout(edit-button); }

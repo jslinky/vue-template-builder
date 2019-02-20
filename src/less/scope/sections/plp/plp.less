@@ -51,7 +51,8 @@
       width: 80*@rem;
       height: 80*@rem;
       margin: 0 auto;
-      .icon-replace-fill("../../images/icons/UI/chevronUp.svg", #111, #fff);
+      // .icon-replace-fill("../../images/icons/UI/chevronUp.svg", #111, #fff);
+      background-image:url("../../images/icons/UI/chevronUp-white.svg");
       background-color: @primaryColor;
       background-size: 20*@rem auto;
       background-repeat: no-repeat;
@@ -243,10 +244,12 @@
       background-position: ~"calc(100% - 1em)" center;
       background-size:@small auto;
       background-repeat: no-repeat;
-      .icon-replace-fill("../images/icons/UI/chevronDownLight.svg", #222, @linkColor);
+      // .icon-replace-fill("../images/icons/UI/chevronDownLight.svg", #222, @linkColor);
+      background-image:url("../images/icons/UI/chevronDownLight.svg");
     };
     @refineMenu-isOpen-arrow: {
-      .icon-replace-fill("../images/icons/UI/chevronUpLight.svg", #222, @linkColor);
+      // .icon-replace-fill("../images/icons/UI/chevronUpLight.svg", #222, @linkColor);
+      background-image:url("../images/icons/UI/chevronUpLight.svg");
     };
     @refineMenu-selectContainer: {
       max-width:250*@rem;
@@ -296,7 +299,8 @@
     @refineMenu-mobile-clearButton: {
       // &:extend(.o-btn--arrow all, .o-btn--arrow.back all);
       &:before {
-        .icon-fill('../images/interface/close.svg', '@{linkColor}');
+        // .icon-fill('../images/interface/close.svg', '@{linkColor}');
+        background-image:url('../images/interface/close.svg');
         margin-right:@2px;
       }
       &:after {
@@ -579,7 +583,8 @@
 .grid-view-contatiner > div { width:20*@rem; }
 
 .grid-view-contatiner .default-grid-view {  
-  .icon-replace-fill("../../images/icons/UI/view-2x2.svg", #fff, #fff);
+  // .icon-replace-fill("../../images/icons/UI/view-2x2.svg", #fff, #fff);
+  background-image:url('../../images/icons/UI/view-2x2.svg');
 }
 
 [class^="search-enhanced-options"] .style-results {
@@ -741,7 +746,8 @@
 
 .static-back-to-top .back-to-top-text,
 .static-back-to-top .back-to-top-text:hover {
-  .icon-replace-fill("../images/icons/UI/chevronUp.svg", #222, @linkColor);
+  // .icon-replace-fill("../images/icons/UI/chevronUp.svg", #222, @linkColor);
+  background-image:url('../images/icons/UI/chevronUp.svg');
 }
 
 // Sticky back to top
@@ -890,11 +896,13 @@
   .search-enhanced-options-mobile { display:none; }
 
   .grid-view-contatiner .default-grid-view {
-    .icon-replace-fill("../../images/icons/UI/view-3x3.svg", #fff, #fff);
+    // .icon-replace-fill("../../images/icons/UI/view-3x3.svg", #fff, #fff);
+    background-image:url("../../images/icons/UI/view-3x3.svg");
   }
 
   .grid-view-contatiner .large-grid-view {
-    .icon-replace-fill("../../images/icons/UI/view-2x2.svg", #fff, #fff);
+    // .icon-replace-fill("../../images/icons/UI/view-2x2.svg", #fff, #fff);
+    background-image:url("../../images/icons/UI/view-2x2.svg");
   }
 
 
@@ -1015,7 +1023,8 @@
 
   .grid-view-contatiner .default-grid-view {
     width:28*@rem;
-    .icon-replace-fill("../../images/icons/UI/view-4x4.svg", #fff, #fff);
+    // .icon-replace-fill("../../images/icons/UI/view-4x4.svg", #fff, #fff);
+    background-image:url("../../images/icons/UI/view-4x4.svg");
   }
   
 

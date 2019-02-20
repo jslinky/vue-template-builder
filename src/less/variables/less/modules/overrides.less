@@ -11,24 +11,53 @@
 @include_icon               : true;
 @include_masthead           : true;
 @include_section            : true;
+@include_divider            : true;
 // Item object extras 
-@include_item-imageSwap     : true;
-@include_item-contentSwap   : true;
-@include_item-headerSwap    : true;  
-@include_item-slideshow     : true;
+@include_item-imageSwap     : false;
+@include_item-contentSwap   : false;
+@include_item-headerSwap    : false;  
+@include_item-slideshow     : false;
 // Collections
+@include_grid-width         : true;
+@include_grid-layout        : false;
 @include_grid               : true;
 @include_form               : true;
 // Components
+@include_carousel           : true;
 @include_menu               : true;
 // Ultilities
-@include_ult-border         : false;
+@include_ult-border         : true;
 @include_ult-color          : true;
 @include_ult-flex           : true;
-@include_ult-hide           : false;
+@include_ult-hide           : true;
 @include_ult-layout         : true;
-@include_ult-list           : false;
+@include_ult-list           : true;
 @include_ult-margin         : true;
 @include_ult-padding        : true;
-@include_ult-type           : false;
-@include_ult-z-index        : false;
+@include_ult-type           : true;
+@include_ult-z-index        : true;
+
+// Used for ult margin / padding values
+@ult-spacing-size-1         : 6*@rem; // updated
+@include_ult-spacing-size-1 : true;
+
+@ult-spacing-size-2         : @tiny; // updated
+@include_ult-spacing-size-2 : true;
+
+@ult-spacing-size-3         : @large; // updated
+@include_ult-spacing-size-3 : true;
+
+@ult-spacing-size-4         : @huge; // updated
+@include_ult-spacing-size-4 : true;
+
+@ult-spacing-size-5         : @massive; // updated
+@include_ult-spacing-size-5 : true;
+
+@ult-spacing-size-6         : @big;
+@include_ult-spacing-size-6 : false; // updated
+
+@ult-spacing-size-7         : @huge;
+@include_ult-spacing-size-7 : false; // updated
+
+@ult-spacing-size-8         : @massive;
+@include_ult-spacing-size-8 : false; // updated

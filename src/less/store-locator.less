@@ -1,0 +1,34 @@
+//**********************
+//  SITE PREFERENCES
+//********************************************
+
+//-------------------
+//   CUSTOM PROP FALLBACK 
+//   Provide fallback for custom properties
+//--------------------
+
+@customPropFallback         : true; 
+
+
+//**********************
+//  GLOBAL DEFAULT SETTINGS - do not amend
+//********************************************
+
+@import (reference) "globals/variable.less";
+@import (reference) "scope/sections/pdp/variables.less";
+@import (reference) "globals/mixin.less";
+
+//-------------------
+//   IMPORT MODULES CONFIG FILES
+//   Make all module rulesets available in the global scope.
+//--------------------
+// Components
+@import (reference) "modules/objects/buttons/config.less";
+@import (reference) "modules/objects/header/config.less";
+
+//-------------------
+//   IMPORT MODULES MIXIN
+//   Performs import of classes for each module based on user settings
+//--------------------
+
+@import "scope/sections/store-locator/config.less";

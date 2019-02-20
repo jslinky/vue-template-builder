@@ -1,0 +1,176 @@
+
+#checkout-process {
+  .checkout(@item) {
+    #checkout-process.checkout();
+    @rules:@@item;
+    @rules();
+  }
+}
+
+#checkout-process {
+  .global() {
+    @radio: {
+      width:36*@rem; // make var
+      height:36*@rem; // make var
+      flex:0 0 36*@rem; // make var
+      margin-right:@spacing/2;
+      border-radius:50%;
+    };
+    @radio-checked: {
+      // &:extend(input[type="checkbox"]:checked + label:before);
+      // background-size:auto 40%;
+      box-shadow:none;
+    };
+    @link: {
+      // @o-link(); // Removed extend because if more styles then extend, doubling up on declarations
+      #checkout-process.global(cart-font-size);
+      padding:0;
+      text-transform: none;
+    };
+    @primaryButton: {
+      // &:extend([class*="o-btn"].o-btn--primary all);
+    };
+  }
+  .checkout() {
+
+  }
+}
+
+
+// Shared text size
+// .step-indicator,
+// .radio label,
+// .pt_singlepagecheckout_v2 .terms-and-conditions,
+// .checkout-login,
+// .shipment-details .title + div,
+// .pt_singlepagecheckout_v2 .payment-method-options label,
+// .pt_singlepagecheckout_v2 .expire-date,
+// .pt_singlepagecheckout_v2 .order-summary .newsletter-wrapper,
+// .pt_singlepagecheckout_v2 .customer-details,
+// .pt_singlepagecheckout_v2 .payment-method-options .credit-card-list > div:first-child,
+// .pt_singlepagecheckout_v2 .billing-address-title,
+// .pt_singlepagecheckout_v2 #paypal.payment-method-container .payment-method-body { #checkout-process.global(cart-font-size); }
+
+// Button styles
+// .pt_singlepagecheckout_v2 .light-button,
+// .pt_singlepagecheckout_v2 .button-fancy-large,
+// .pt_singlepagecheckout_v2 .order-submit > .button { #checkout-process.global(primaryButton); }
+
+.pt_singlepagecheckout_v2 .button,
+.pt_singlepagecheckout_v2 .button-fancy-large { width:100%; }
+
+// Link styles
+// .pt_singlepagecheckout_v2 .link,
+// .pt_singlepagecheckout_v2 .discount-link,
+// .pt_singlepagecheckout_v2 .terms-and-conditions > a { #checkout-process.global(link); }
+
+// .login-already-account,
+// .login-save-time { display:inline-block; }
+// .login-save-time > a,
+// .terms-message a { &:extend(.o-link all); }
+
+// Error message
+.pt_singlepagecheckout_v2 .generic-error { margin-bottom:@rowSpacing; }
+
+// CHECKOUT HEADING
+// .checkout-heading { &:extend(.o-header, .o-header--h4); }
+.checkout-heading,
+.checkout-login { text-align: center; }
+// Login heading
+// .checkout-login {
+//   margin-bottom:@verticalMargin;
+//   #checkout-process.global(cart-font);
+// }
+
+
+// RADIOs
+// Delivery options radio & other shared radios - do I need .pt_singlepagecheckout_v2 prefixed?
+/*.pt_singlepagecheckout_v2 input[type="checkbox"],*/
+.pt_singlepagecheckout_v2 .use-shipping-address input[type="checkbox"] + label:before,
+.pt_cart_v2 input[type="checkbox"] + label:before,
+.pt_singlepagecheckout_v2 input[type="radio"] + label:before,
+.pt_cart_v2 input[type="radio"] + label:before,
+.ui-dialog.click-and-collect input[type="radio"] + label:before { #checkout-process.global(radio); }
+
+// .pt_singlepagecheckout_v2 .use-shipping-address input[type="checkbox"]:checked + label:before,
+.pt_cart_v2 input[type="checkbox"]:checked + label:before,
+.pt_singlepagecheckout_v2 input[type="radio"]:checked + label:before,
+.pt_cart_v2 input[type="radio"]:checked + label:before,
+.ui-dialog.click-and-collect input[type="radio"]:checked + label:before { #checkout-process.global(radio-checked); }
+
+// Delivery headings
+// Payment method heading
+.pt_singlepagecheckout_v2 .shipment-details > div > .title,
+.pt_singlepagecheckout_v2 .payment-methods-heading {
+  // &:extend(.o-header, .o-header--h6);
+  #checkout-process.global(cart-font);
+}
+
+@import "checkout--step-heading.less";
+
+@import "checkout--address.less";
+
+@import "checkout--payment.less";
+
+@import "checkout--paymentApplePay.less";
+
+@import "checkout--confirmation.less";
+
+
+
+// Terms link
+.pt_singlepagecheckout_v2 .terms-and-conditions { text-align: center; }
+
+
+
+// Subscribtion message
+.pt_singlepagecheckout_v2 .order-summary .newsletter-wrapper { text-align:center; }
+.terms-message {
+  margin-top:@rowSpacing / 2;
+  font-size:@tiny;
+  line-height: 2.5;
+}
+
+
+// Footer (payment methods)
+.pt_singlepagecheckout_v2 .wrapper_footer footer { margin-top:@rowSpacing * 2; }
+.footer-content { margin:0 auto (@rowSpacing * 2); }
+
+@media (min-width:@tabletBreakpoint) {
+
+  // Delivery details confirmed
+  .pt_singlepagecheckout_v2 .shipment-details > div {
+    width:50%;
+    padding-bottom:(@rowSpacing * 2);
+  }
+
+  // Payment method containers
+  .pt_singlepagecheckout_v2 .payment-method-container { width:100%; }
+  .pt_singlepagecheckout_v2 .payment-method-body,
+  .pt_singlepagecheckout_v2 .billing-address {
+    padding:@spacing;
+    padding-bottom: 0;
+  }
+  .pt_singlepagecheckout_v2 .billing-address { padding-top:0; }
+
+  // Paypal radio
+  #paypal > .payment-method-radio {
+    position:absolute;
+    top:0;
+    right:0;
+  }
+
+  // Order summary
+  .pt_singlepagecheckout_v2 .payment-form .order-summary .item-wrapper > div { vertical-align: top; }
+  // Item total
+  .pt_singlepagecheckout_v2 .order-summary .item-wrapper > .item-total { padding-right:0; }
+
+  // In stock text
+  .pt_singlepagecheckout_v2 .order-summary .item-quantity-details {
+    position:absolute;
+    right:0;
+    bottom:0;
+    text-align:right;
+  }
+
+}

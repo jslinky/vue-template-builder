@@ -56,7 +56,7 @@
       --checkboxCheckedIconColor      : @checkboxCheckedIconColor;
       --checkboxBackgroundImageSize   : @checkboxBackgroundImageSize;
 
-    };
+    };   
     @extend-prop-classes: {
       //*******************************
       //   Classes used for extending properties
@@ -65,7 +65,7 @@
       .form-props-label { #props.form(label); }
       .form-props-inputText { #props.form(inputText); }
       .form-props-radioCheck { #props.form(radio-checkbox); }
-      .form-props-checkbox { #props.form(checkbox); }
+      .form-props-checkbox { #props.form(checkbox); }      
     };
     @extend-elements: {
       .o-form__fieldset {
@@ -89,9 +89,6 @@
       .o-form__errorMsg {
         &:extend(.form-props-label);
       }
-      // .o-form__checkbox {
-      //   &:extend(.form-props-checkbox);
-      // }
     };
     @output-custom-properties: {
       #collections.form-variables();

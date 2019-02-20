@@ -1,0 +1,160 @@
+
+/*-------------------
+      Base Sizes
+--------------------*/
+
+@em              : (1 / @fontSizeRoot) + 0em; // px to em conversion
+@rem             : (1 / @fontSizeRoot) + 0rem; // px to rem conversion
+
+
+/*-------------------
+        Sizes
+--------------------*/
+
+@miniSizeVal        : 10;
+@tinySizeVal        : 12;
+@smallSizeVal       : 14;
+@mediumSizeVal      : 18;
+@largeSizeVal       : 24;
+@bigSizeVal         : 36;
+@hugeSizeVal        : 48;
+@massiveSizeVal     : 60;
+
+/*
+  Sizes are all expressed in terms of 14px/em (default em)
+  This ensures these "ratios" remain constant despite changes in EM
+*/
+
+@miniSize        : (@miniSizeVal / @fontSizeRoot);
+@tinySize        : (@tinySizeVal / @fontSizeRoot);
+@smallSize       : (@smallSizeVal / @fontSizeRoot);
+@mediumSize      : (@mediumSizeVal / @fontSizeRoot);
+@largeSize       : (@largeSizeVal / @fontSizeRoot);
+@bigSize         : (@bigSizeVal / @fontSizeRoot);
+@hugeSize        : (@hugeSizeVal / @fontSizeRoot);
+@massiveSize     : (@massiveSizeVal / @fontSizeRoot);
+
+/*-------------------
+       Em Sizes
+--------------------*/
+
+/*
+  This rounds @size values to the closest pixel then expresses that value in (r)em.
+  This ensures all size values round to exact pixels
+*/
+@mini            : unit( round(@miniSize * @fontSizeRoot) / @fontSizeRoot, rem);
+@tiny            : unit( round(@tinySize * @fontSizeRoot) / @fontSizeRoot, rem);
+@small           : unit( round(@smallSize * @fontSizeRoot) / @fontSizeRoot, rem);
+@medium          : unit( round(@mediumSize * @fontSizeRoot) / @fontSizeRoot, rem);
+@large           : unit( round(@largeSize * @fontSizeRoot) / @fontSizeRoot, rem);
+@big             : unit( round(@bigSize * @fontSizeRoot) / @fontSizeRoot, rem);
+@huge            : unit( round(@hugeSize * @fontSizeRoot) / @fontSizeRoot, rem);
+@massive         : unit( round(@massiveSize * @fontSizeRoot) / @fontSizeRoot, rem);
+
+/* em */
+@relativeMini    : unit( round(@miniSize * @fontSizeRoot) / @fontSizeRoot, em);
+@relativeTiny    : unit( round(@tinySize * @fontSizeRoot) / @fontSizeRoot, em);
+@relativeSmall   : unit( round(@smallSize * @fontSizeRoot) / @fontSizeRoot, em);
+@relativeMedium  : unit( round(@mediumSize * @fontSizeRoot) / @fontSizeRoot, em);
+@relativeLarge   : unit( round(@largeSize * @fontSizeRoot) / @fontSizeRoot, em);
+@relativeBig     : unit( round(@bigSize * @fontSizeRoot) / @fontSizeRoot, em);
+@relativeHuge    : unit( round(@hugeSize * @fontSizeRoot) / @fontSizeRoot, em);
+@relativeMassive : unit( round(@massiveSize * @fontSizeRoot) / @fontSizeRoot, em);
+
+/* rem */
+@absoluteMini    : unit( round(@miniSize * @fontSizeRoot) / @fontSizeRoot, rem);
+@absoluteTiny    : unit( round(@tinySize * @fontSizeRoot) / @fontSizeRoot, rem);
+@absoluteSmall   : unit( round(@smallSize * @fontSizeRoot) / @fontSizeRoot, rem);
+@absoluteMedium  : unit( round(@mediumSize * @fontSizeRoot) / @fontSizeRoot, rem);
+@absoluteLarge   : unit( round(@largeSize * @fontSizeRoot) / @fontSizeRoot, rem);
+@absoluteBig     : unit( round(@bigSize * @fontSizeRoot) / @fontSizeRoot, rem);
+@absoluteHuge    : unit( round(@hugeSize * @fontSizeRoot) / @fontSizeRoot, rem);
+@absoluteMassive : unit( round(@massiveSize * @fontSizeRoot) / @fontSizeRoot, rem);
+
+
+/*-------------------
+  Exact Pixel Values
+--------------------*/
+/*
+  These are used to specify exact pixel values in em
+  for things like borders that remain constantly
+  sized as emSize adjusts
+
+  Since there are many more sizes than names for sizes,
+  these are named by their original pixel values.
+
+*/
+
+@1px          : unit( (1 / @fontSizeRoot), rem);
+@2px          : unit( (2 / @fontSizeRoot), rem);
+@3px          : unit( (3 / @fontSizeRoot), rem);
+@4px          : unit( (4 / @fontSizeRoot), rem);
+@5px          : unit( (5 / @fontSizeRoot), rem);
+@6px          : unit( (6 / @fontSizeRoot), rem);
+@7px          : unit( (7 / @fontSizeRoot), rem);
+@8px          : unit( (8 / @fontSizeRoot), rem);
+@9px          : unit( (9 / @fontSizeRoot), rem);
+@10px         : unit( (10 / @fontSizeRoot), rem);
+@11px         : unit( (11 / @fontSizeRoot), rem);
+@12px         : unit( (12 / @fontSizeRoot), rem);
+@13px         : unit( (13 / @fontSizeRoot), rem);
+@14px         : unit( (14 / @fontSizeRoot), rem);
+@15px         : unit( (15 / @fontSizeRoot), rem);
+@16px         : unit( (16 / @fontSizeRoot), rem);
+@17px         : unit( (17 / @fontSizeRoot), rem);
+@18px         : unit( (18 / @fontSizeRoot), rem);
+@19px         : unit( (19 / @fontSizeRoot), rem);
+@20px         : unit( (20 / @fontSizeRoot), rem);
+@21px         : unit( (21 / @fontSizeRoot), rem);
+@22px         : unit( (22 / @fontSizeRoot), rem);
+@23px         : unit( (23 / @fontSizeRoot), rem);
+@24px         : unit( (24 / @fontSizeRoot), rem);
+@25px         : unit( (25 / @fontSizeRoot), rem);
+@26px         : unit( (26 / @fontSizeRoot), rem);
+@27px         : unit( (27 / @fontSizeRoot), rem);
+@28px         : unit( (28 / @fontSizeRoot), rem);
+@29px         : unit( (29 / @fontSizeRoot), rem);
+@30px         : unit( (30 / @fontSizeRoot), rem);
+
+@relative1px  : unit( (1 / @fontSizeRoot), em);
+@relative2px  : unit( (2 / @fontSizeRoot), em);
+@relative3px  : unit( (3 / @fontSizeRoot), em);
+@relative4px  : unit( (4 / @fontSizeRoot), em);
+@relative5px  : unit( (5 / @fontSizeRoot), em);
+@relative6px  : unit( (6 / @fontSizeRoot), em);
+@relative7px  : unit( (7 / @fontSizeRoot), em);
+@relative8px  : unit( (8 / @fontSizeRoot), em);
+@relative9px  : unit( (9 / @fontSizeRoot), em);
+@relative10px : unit( (10 / @fontSizeRoot), em);
+@relative11px : unit( (11 / @fontSizeRoot), em);
+@relative12px : unit( (12 / @fontSizeRoot), em);
+@relative13px : unit( (13 / @fontSizeRoot), em);
+@relative14px : unit( (14 / @fontSizeRoot), em);
+@relative15px : unit( (15 / @fontSizeRoot), em);
+@relative16px : unit( (16 / @fontSizeRoot), em);
+@relative17px : unit( (17 / @fontSizeRoot), em);
+@relative18px : unit( (18 / @fontSizeRoot), em);
+@relative19px : unit( (19 / @fontSizeRoot), em);
+@relative20px : unit( (20 / @fontSizeRoot), em);
+@relative21px : unit( (21 / @fontSizeRoot), em);
+@relative22px : unit( (22 / @fontSizeRoot), em);
+@relative23px : unit( (23 / @fontSizeRoot), em);
+@relative24px : unit( (24 / @fontSizeRoot), em);
+@relative25px : unit( (25 / @fontSizeRoot), em);
+@relative26px : unit( (26 / @fontSizeRoot), em);
+@relative27px : unit( (27 / @fontSizeRoot), em);
+@relative28px : unit( (28 / @fontSizeRoot), em);
+@relative29px : unit( (29 / @fontSizeRoot), em);
+@relative30px : unit( (30 / @fontSizeRoot), em);
+
+
+// Spacing related sizes
+@spacingMultiplyer            : 1;
+@spacingMultiplyerMini        : @miniSizeVal / @verticalRhythm;
+@spacingMultiplyerTiny        : @tinySizeVal / @verticalRhythm;
+@spacingMultiplyerSmall       : @smallSizeVal / @verticalRhythm;
+@spacingMultiplyerMedium      : @mediumSizeVal / @verticalRhythm;
+@spacingMultiplyerLarge       : @largeSizeVal / @verticalRhythm;
+@spacingMultiplyerBig         : @bigSizeVal / @verticalRhythm;
+@spacingMultiplyerHuge        : @hugeSizeVal / @verticalRhythm;
+@spacingMultiplyerMassive     : @massiveSizeVal / @verticalRhythm;

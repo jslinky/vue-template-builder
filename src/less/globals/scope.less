@@ -1,15 +1,22 @@
 
-@import "../scope/darwin/config.less";
-@import "../scope/darwin/darwin.less";
+.import-darwin() {
+  // turn on fallback styles
+  @customPropFallback         : true; 
+  @import "../scope/darwin/config.less";
+  @import "../scope/darwin/darwin.less";
+}
 
-@import "../scope/global-rules.less";
-@import "../scope/buttons.less";
-@import "../scope/headings.less";
-@import "../scope/hidden.less";
-@import "../scope/form.less";
-@import "../scope/sections.less";
-@import "../scope/pagination.less";
-@import "../scope/modal.less";
-@import "../scope/loader.less";
-@import "../scope/sale.less";
+.import-darwin();
+
+
+// @import "../scope/global-rules.less";
+// @import "../scope/buttons.less";
+// @import "../scope/headings.less";
+// @import "../scope/hidden.less";
+// @import "../scope/form.less";
+// @import "../scope/sections.less";
+// @import "../scope/pagination.less";
+// @import "../scope/modal.less";
+// @import "../scope/loader.less";
+// @import "../scope/sale.less";
 @import "../scope/carousel.less";

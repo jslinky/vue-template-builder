@@ -1,0 +1,284 @@
+
+// Main content - move this?
+// .pt_wish-list .wrapper_content,
+// .pt_product-details .wrapper_content,
+// .search-result-container + .last-visited { &:extend(.container-extend); }
+// homepage
+.pt_storefront .last-visited { display:none; }
+
+// Checkout container
+.wrapper.pt_singlepagecheckout .primary-content,
+.pt_cart .primary-content,
+// checkout b
+// .checkout-body .wrapper_content { &:extend(.text.container); }
+
+.pt_product-details .pdp-main { padding-top:@1px; } // fix for border-collapse
+
+// .pt_product-details .wrapper_content {
+//   h1, h2 {
+//     &:extend(.o-header);
+//     font-family: @primaryFont;
+//   }
+// }
+
+// Visually hidden - move this?
+.visually-hidden,
+.sku,
+.product-number,
+// order summary attr
+.checkout_summary .attributes,
+.checkout_summary .item-quantity,
+.checkout_summary .shipping-method,
+// Remove empty header in bag
+.headings .title,
+.category-info .parent-category-name,
+.order-paymentmethod .card-icon,
+.order-paymentmethod .card-owner,
+.order-paymentmethod .card-expires,
+.out-of-stock-products .shipping-method,
+.pt_customer-service .secondary-navigation span,
+.item-option.option-update span,
+.out-of-stock-products,
+.promotional-message,
+#hidden-btn-ctnr,
+.no-orders-icon,
+.no-giftcard-icon,
+.no-wishlist-icon,
+.no-cards-icon,
+.no-address-icon {
+//   &:extend(.u-hide);
+display:none;
+}
+
+// Tryzens .hidden class
+.hidden { display:none!important; }
+.form-row-hidden { display: none; }
+
+// Terms & conditions
+.terms,
+.gift-voucher-agreeterms {
+  display: inline-block;
+  float:left;
+  margin-left:@6px;
+}
+.form-row.terms { width:auto!important; }
+
+// Checkbox form row
+.form-row.checkbox,
+.terms,
+.gift-voucher-agreeterms,
+.remember-pass-box > .link { margin-top: @rowSpacing!important; }
+
+.form-row.checkbox,
+.terms,
+.remember-pass-box > .link {
+  & + & { margin-top:0!important; }
+}
+
+
+// Accordian
+// .ui-accordion-header {
+//   .o-header--h6!important;
+//   padding:@verticalPaddingSmall!important;
+//   border-top:1px solid @borderColor!important;
+//   margin:0!important;
+//   .icon-replace-fill('../images/icons/UI/arrowDown.svg', '#222', @linkColor);
+//   background-repeat: no-repeat;
+//   background-position: right center;
+//   background-size:@6px auto;
+// }
+
+// .ui-accordion-header.ui-state-active {
+//   .icon-replace-fill('../images/icons/UI/arrowUp.svg', '#222', @linkColor);
+// }
+
+// // Button
+// .button { &:extend(.o-btn all); }
+// // Non clickable
+// .button.not-clickable,
+// button[type="submit"].not-clickable {
+//   &:extend(.o-btn.disabled all);
+// }
+// // Facebook login button
+// .facebook-login-button {
+//   background:@facebookColor;
+//   text-align: center;
+//   position:relative;
+//   &:after {
+//     &:extend(.o-btn);
+//     content:'Or login with Facebook';
+//     display:inline-block!important;
+//     .icon-replace-fill('../images/icons/social/facebook.svg', '#222', '#fff');
+//     background-repeat: no-repeat;
+//     background-size: auto 15px;
+//     color: #fff;
+//     position: absolute;
+//     top: 0;
+//     left: 50%;
+//     padding-right: 22*@rem;
+//     background-position: right center;
+//     margin-right: 0;
+//     pointer-events: none;
+//     transform: translate(-50%, 0);
+//     white-space: pre;
+//   }
+// }
+// .facebook-login-button > input[type="submit"] {
+//   text-indent:-999em;
+//   &:extend(.o-btn);
+//   @textColor: @invertedTextColor;
+//   @background: @facebookColor; // use var
+//   #elements.button-variables();
+//   #elements.button.default-state();
+//   width:100%;
+//   // Hover
+//   &:hover,
+//   &:focus,
+//   &:active,
+//   &.active:active,
+//   &.active,
+//   &.active:hover  {
+//     @hoverBackgroundColor:darken(@background, 10%); // use var
+//     @hoverColor: @invertedTextColor;
+//     #elements.button.default-state-hover();
+//   }
+// }
+
+// Tooltip
+
+.tooltip {
+  width:20*@rem;
+  height:20*@rem;
+  display: inline-block;
+  text-indent:-9999em;
+  border-radius: 50%;
+  // .icon-fill('../images/interface/help.svg', '@{grey}');
+  background-image:url('../images/interface/help.svg');
+  background-repeat: no-repeat;
+  transform:translateY(7*@rem);
+}
+
+.tooltip-content,
+.form-row span.form-caption,
+.social-actions-wrapper,
+#modal-popup,
+#modal-popup-wl,
+#newsletter-thankyou,
+#newsletter-error,
+// cookie law
+#js-law--alert {  
+   display:none; 
+}
+
+// Hide extend class for all scoped elements
+.s-hide { display:none; }
+
+// // Error validation
+// .error,
+// .error-message,
+// .search-error {
+//   color: @promptTextColor;
+//   font-size: @promptFontSize;
+// }
+// Show error msg on create acc
+.error span.form-caption { display:block!important; }
+
+// Out of stock text
+.out-of-stock-text { font-size:@tiny; }
+
+// Linethrough
+.line-through { text-decoration:line-through; }
+
+// Breadcrumb
+.breadcrumb {
+  // .pt_product-search-result & { &:extend(.container-extend); }
+  margin-top:0;
+  padding-top:@rowSpacing / 2;
+  padding-left:0;
+  text-align: center;
+}
+
+// .breadcrumb li {
+//   margin-right:0.25rem;
+//   letter-spacing: 2px;
+//   font-size:@mini;
+//   text-transform: uppercase;
+//   display: inline-block;
+// }
+
+// .breadcrumb li:last-child:not(:nth-child(2)) span.last.name {
+//   max-width: 80*@rem;
+//   text-overflow: ellipsis;
+//   overflow: hidden;
+//   white-space: nowrap;
+// }
+
+// .breadcrumb>li:first-child,
+// .breadcrumb>li:last-child:nth-child(2) span.last.name {
+//   display: none!important;
+// }
+
+
+// // Pagination
+// .pagination:not(.search-result-options) {
+//   // float:left;
+//   // width:100%;
+//   // margin-bottom:@verticalMargin;
+//   // ul {
+//   //   &:extend(.o-menu, .u-justify-center);
+//   // }
+//   li:not(.first-last):not(.next) {
+//     // #product.detail-page(stockAvailability-selectedSize);
+//     text-indent: 2.5*@rem;
+//   }
+//   // li:nth-last-child(2) { margin-right:0!important; }
+//   li.first-last {
+//     display:flex;
+//     align-items:center;
+//     margin:0 @globalSpacing;
+//   }
+//   li.first-last.previous span { .icon-replace-fill('../images/icons/UI/chevronLeft.svg', '#222', @linkColor); }
+//   li.first-last.next span { .icon-replace-fill('../images/icons/UI/chevronRight.svg', '#222', @linkColor); }
+//   li.current-page {
+//     &:extend(.o-swatch .o-swatch__item.selected);
+//   }
+//   li.first-last.unselectable {
+//     opacity:@disabledOpacity;
+//   }
+//   li.current-page,
+//   li.first-last.unselectable {
+//     cursor:default!important;
+//     pointer-events:none;    
+//   }  
+//   span {
+//     display:block;
+//     height:15*@rem;
+//     width:15*@rem;
+//     background-size:contain;
+//     background-repeat: no-repeat;
+//     background-position: center;
+//   }
+// }
+
+// PLP loader
+
+.pt_product-search-result .loader .loader-indicator {
+  position: fixed;
+  background: url(/on/demandware.static/Sites-jwus-Site/-/en_US/v1505233516611/images/sprint16/loading.gif) no-repeat;
+  background-size: 64px 64px;
+  left: 48%;
+  top: 48%;
+  opacity: 0.8;
+}
+.pt_product-search-result .loader .loader-bg {
+  position: fixed;
+  top: 0;
+  height: 150%
+}
+
+.js .pt_singlepagecheckout_v2 .loader {
+  position:fixed;
+}
+
+
+

@@ -3,6 +3,8 @@
 #collections {
   .form-variables() {
     #objects.button-variables();
+    @static-variables-only                : false; // turn off custom prop on a module level - define on a per site basis in overrides
+    @local-scoped-custom-prop-fallback    : false; // not sure this works! local scoped variable - should be moved to overrides        
     @rowSpacing                 : 1rem;
     @rowDistance                : rowSpacing;
     @fieldMargin                : 0em 0em ~"var(--@{rowDistance})";

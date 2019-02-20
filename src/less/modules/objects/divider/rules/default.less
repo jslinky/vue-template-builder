@@ -7,26 +7,50 @@
       content:'';
       display: block;
       margin:auto;
-      width:var(--divider-width);
-      height:calc(~"("var(--divider-height) ~"/" var(--fontSizeRoot) ~"*" var(--divider-height-unit)~")" );
-      background-color:var(--divider-bgColor);        
       position:relative;         
     };
-    @element-fallback-ruleset: { 
+    @element-staticVarsOnly-ruleset: {
       width: @divider-width;
+      max-width:@divider-max-width;
       height: calc(~"("@divider-height ~"/" @fontSizeRoot ~"* @{divider-height-unit})" );
-      background-color: @divider-bgColor;        
+      background-color: @divider-bgColor;
+    };
+    @element-customPropOnly-ruleset: {
+      width:var(--divider-width);
+      max-width:var(--divider-max-width);
+      height:calc(~"("var(--divider-height) ~"/" var(--fontSizeRoot) ~"*" var(--divider-height-unit)~")" );
+      background-color:var(--divider-bgColor);
+    };
+    @element-fallback-ruleset: { 
+      #objects.divider(element-staticVarsOnly-ruleset);
+      #objects.divider(element-customPropOnly-ruleset);
     };    
-    @offset: {
-      .offset(margin-top, divider-spacing-top, ~"@{divider-spacing-top}", @offsetFixed);      
-      .offset(margin-bottom, divider-spacing-bottom, ~"@{divider-spacing-bottom}", @offsetFixed);      
-    };
-    @offset-tabletBreakpoint-ruleset: {
-      --divider-spacing-top: var(--divider-spacing-top-tabletBreakpoint);
-      --divider-spacing-bottom: var(--divider-spacing-top-tabletBreakpoint);
-      .offset(margin-top, divider-spacing-top, ~"@{divider-spacing-top-tabletBreakpoint}", @offsetFixed);      
-      .offset(margin-bottom, divider-spacing-bottom, ~"@{divider-spacing-bottom-tabletBreakpoint}", @offsetFixed);      
-    };
+    @spacing-ruleset: { };
+    @spacing-staticVarsOnly-ruleset: {
+      margin-top: @@divider-spacing-top;
+      margin-bottom: @@divider-spacing-bottom;
+    };    
+    @spacing-customPropOnly-ruleset: {
+      margin-top: var(--divider-spacing-top);
+      margin-bottom: var(--divider-spacing-bottom);
+    };   
+    @spacing-fallback-ruleset: {
+      #objects.divider(spacing-staticVarsOnly-ruleset);
+      #objects.divider(spacing-customPropOnly-ruleset);
+    };  
+    @spacing-tabletBreakpoint-ruleset: { };
+    @spacing-tabletBreakpoint-staticVarsOnly-ruleset: {
+      margin-top: @@divider-spacing-top-tabletBreakpoint;
+      margin-bottom: @@divider-spacing-bottom-tabletBreakpoint;
+    };    
+    @spacing-tabletBreakpoint-customPropOnly-ruleset: {
+      margin-top: var(--divider-spacing-top-tabletBreakpoint);
+      margin-bottom: var(--divider-spacing-bottom-tabletBreakpoint);
+    };   
+    @spacing-tabletBreakpoint-fallback-ruleset: {
+      #objects.divider(spacing-tabletBreakpoint-staticVarsOnly-ruleset);
+      #objects.divider(spacing-tabletBreakpoint-customPropOnly-ruleset);
+    };  
     @section-ruleset: {
       position:absolute;
       left:50%;

@@ -1,0 +1,232 @@
+
+/* See if can remove / refactor these selectors */
+
+
+.reg-columns,
+.pt_account #addresses,
+#orderlist-container,
+.pt_account #cards,
+#giftcard-container,
+.wishlist-container  {
+  &:extend(.login-columns all);
+  text-align: left;
+}
+
+// Hidden labels
+.reg-columns .birth-date-label label,
+.reg-columns .birth-date-label label,
+.reg-columns .devider-holder { display:none; }
+
+// Options header
+.pt_account .section-header,
+.pt_order .section-header,
+.pt_giftcard .section-header,
+.pt_wish-list .section-header {
+  // &:extend(.u-clearfix all);
+  margin-bottom:@rowSpacing / 2;
+}
+// Options button create
+.section-header-note:last-child:not(:only-child) {
+  float:right;
+  // &:extend(.o-btn, [class*="o-btn"].o-btn--basic all, [class*="o-btn"].o-btn--sm);
+}
+.section-header-note:first-child,
+.section-header-note:first-child:only-child {
+  float:left;
+  // &:extend(.o-btn, [class*="o-btn"].o-btn--secondary all, [class*="o-btn"].o-btn--sm);
+}
+
+
+
+// .reg-columns {
+//   .birth-date,
+//   fieldset > div:not(.form-row-button),
+//   fieldset > div:not(.form-row-button) > .form-row { display: flex; }
+//   fieldset > div:not(.form-row-button) { flex-direction: column; }
+//   fieldset > div:not(.form-row-button) > .form-row {
+//     flex-direction: column;
+//     justify-content: flex-end;
+//   }
+// }
+
+
+.reg-columns .birth-date,
+.reg-columns fieldset > div:not(.form-row-button),
+.reg-columns fieldset > div:not(.form-row-button) > .form-row { display:flex; }
+
+.reg-columns fieldset > div:not(.form-row-button) { flex-direction: column; }
+.reg-columns fieldset > div:not(.form-row-button) > .form-row { 
+  justify-content:flex-end;
+  flex-direction:column;
+  }
+
+.reg-columns .form-row-button .checkbox:nth-child(3) {
+    width: auto;
+    float: left;
+    margin-top: 0;
+}
+
+// Select title
+.reg-columns .select-title select { width:~"calc("(100%/3)~" - 1.1rem)"; }
+
+// DOB row
+.reg-columns .birth-date-label { margin-top:@rowSpacing; }
+
+// Register gift card model content
+#add-giftcard fieldset { max-width:600*@rem; margin:0 auto; }
+.giftcard-form-column {
+  display:flex;
+  align-items:flex-end;
+  flex-direction: column;
+}
+.giftcard-form-column .form-row { width:100% }
+// Gift card model header
+#add-giftcard > h1 { 
+  // &:extend(.o-header, .o-header--h4); 
+  text-align: center; 
+}
+
+
+// .reg-columns fieldset > div {
+//   &:extend(.text.container);
+//   margin:auto;
+// }
+
+.reg-columns .form-row-button > .form-row,
+.reg-columns .form-row { width:100%; }
+
+// GDPR
+.reg-columns .form-row.form-row-long:not(.form-row-button) { width:100%; }
+
+.reg-columns .form-row-button { margin-top:0!important; }
+
+.reg-columns .form-row-button > button {
+  float:left;
+  clear:both;
+  margin-bottom:@rowSpacing;
+  // &:extend([class*="o-btn"].o-btn--basic all);   
+}
+
+// GDPR sprint
+.reg-columns .form-row-button > button.create-account-btn {
+  // &:extend([class*="o-btn"].o-btn--primary all); 
+  width:100%;
+  margin-top:@rowSpacing / 2;
+}
+
+/*.reg-columns .form-row-button .checkbox:nth-child(3)*/
+.label-inline.checkbox {
+  width:auto;
+  float:left;
+}
+
+.login-box .label-inline.checkbox {
+  width:auto;
+  float:left;
+  margin-top:0;
+  width: ~"calc(60% - 2.6rem)";
+  font-size:@small;
+}
+
+.reg-columns select { width:47.5%; }
+.reg-columns .birth-date select { width:~"calc(100% - 1.1rem)"; }
+
+.reg-columns .birth-date .form-row { width:33.33333%; }
+
+// My details / Edit Details
+.edit-account-buttons {
+  display:flex;
+  flex-direction:row-reverse;
+}
+
+.edit-account-buttons > button {
+  // &:extend(.o-btn.o-btn--basic all);
+}
+
+// Checkbox labels
+/*.reg-columns*/ label[for="gdpr-sendmehandbook-subscription"],
+/*.reg-columns*/ label[for="gdpr-newsletter-subscription"] {
+  // GDPR sprint
+  display: flex;
+  align-items:center;  
+}
+
+
+/*.reg-columns*/ label[for="gdpr-sendmehandbook-subscription"]:before,
+/*.reg-columns*/ label[for="gdpr-newsletter-subscription"]:before {
+  // GDPR sprint
+  flex:0 1 @radioSize;
+}
+
+// Terms & Conditions container
+.reg-columns .form-row.form-row-button:last-of-type { font-size:@tiny; }
+// .reg-columns a.dialogify { &:extend(.o-link all); }
+
+// Large checkbox on mobile - scoped local to this - move to global styles?? Maybe
+
+@media (max-width: @largestMobileScreen) {
+  // GDPR sprint
+  /*.reg-columns*/ input[type="checkbox"] + label[for="gdpr-sendmehandbook-subscription"]:before,
+  /*.reg-columns*/ input[type="checkbox"] + label[for="gdpr-newsletter-subscription"]:before {
+    @size: unit(unit((@inputVerticalPadding * 2)) + unit(@inputFontSize), rem);
+    min-width:@size;
+    min-height:@size;
+    background-size: auto 40%;
+    margin-right:@spacing / 2;
+  }
+
+}
+
+
+
+// Set new password page
+.reg-columns.reset-password .form-row + [class*="form-row"] { margin-top:@rowSpacing; }
+.reg-columns.reset-password .form-row-button { 
+  .clearfix();
+  &:extend(.reg-columns .form-row:not(.form-row-button)); 
+}
+.reg-columns.reset-password .form-row-button > button { margin-top:@rowSpacing; }
+
+
+@media (max-width:@largestMediumMobileScreen) {
+  .edit-account-buttons {
+    clear:both;
+    flex-direction: column-reverse;
+    }
+
+    .edit-account-buttons > button {
+      width:100%;
+      margin-top:@rowSpacing / 2;
+    }
+    .edit-account-buttons > .button {
+      align-self:center;
+    }
+}
+
+@media screen and (min-width:@tabletBreakpoint) {
+
+.reg-columns fieldset > div:not(.form-row-button) {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+// Select title
+.reg-columns .select-title select { width:~"calc("(100%/6)~" - 1.1rem)"; }
+
+.reg-columns .birth-date,
+.reg-columns .form-row:not(.form-row-button),
+// Register gift card model content
+.giftcard-form-column .form-row { width:50%; }
+.giftcard-form-column { flex-direction: row; }
+.giftcard-form-column > .form-row:first-of-type { width: ~"calc(50% - @{spacing})"; margin-right:@spacing; }
+.reg-columns .form-row.select-title { width:100%; }
+.reg-columns input[type="text"],
+.reg-columns input[type="password"] { width:95%; }
+
+// GDPR sprint
+.reg-columns .form-row-button > button.create-account-btn {  
+  width:~"calc(50% - 1rem)";
+}
+
+
+}

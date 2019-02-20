@@ -133,7 +133,8 @@
       border-radius: 50%;
       right:-(@5px);
       top:0;
-      .icon-fill('@{icon-ui-path}checked.svg', '#fff');
+      // .icon-fill('@{icon-ui-path}checked.svg', '#fff');
+      background-image:url('@{icon-ui-path}checked.svg');
       background-size: auto 50%;
       background-repeat: no-repeat;
       background-position: center;
@@ -260,8 +261,14 @@
   }  
   .container-git a {color:#fff;}
   .get-in-touch-container .phone { margin-bottom: @rowSpacing; }
-  .get-in-touch-container .phone a:before { .icon-fill('@{icon-ui-path}phone.svg', '#fff'); }
-  .get-in-touch-container .email a:before { .icon-fill('@{icon-ui-path}email.svg', '#fff'); }  
+  .get-in-touch-container .phone a:before { 
+    // .icon-fill('@{icon-ui-path}phone.svg', '#fff'); 
+    background-image:url('@{icon-ui-path}phone-white.svg');
+  }
+  .get-in-touch-container .email a:before { 
+    // .icon-fill('@{icon-ui-path}email.svg', '#fff'); 
+    background-image:url('@{icon-ui-path}email-white.svg');
+  }  
   // Headings
   .get-in-touch-container > legend { #product.detail-page(stockAvailability-getInTouch-legend); }  
   .list-of-stores.list-of-stores .nearest-store-heading,

@@ -1,0 +1,105 @@
+
+.order-confirmation-header,
+.order-confirmation-content {
+    max-width:@max-width-6col;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.order-confirmation-header {
+    text-align: center;
+    padding-top:@rowSpacing;
+}
+
+.order-confirmation-header .thank-you-message {
+    #objects.header(hBig);
+    text-align:center;
+}
+
+
+.order-confirmation-header .info-message {
+    text-align: center;
+}
+
+.order-confirmation-content .create-account {
+    margin:@rowSpacing 0;
+    padding:@rowSpacing 0;
+    border-top:1px solid @borderColor;
+    border-bottom:1px solid @borderColor;
+}
+
+.order-confirmation-content .create-account,
+.order-confirmation-content .order-confirmation-slot {
+    width:100%;
+    padding:0 (@rowSpacing / 2);
+}
+
+.create-account .create-account-heading { 
+    #objects.header(hTiny);
+    #objects.header-variables();
+    @headerLetterSpacingMultiplyer: @headerHTiny-secondaryLetterSpacingVal;
+    @headerFontFamily: @headerHTiny-secondaryFont;
+    @headerHTiny-secondaryLineHeightAddition: 6;
+    @headerLineHeight: (@@hTinyVal + (@headerHTiny-secondaryLineHeightAddition*@rem));    
+    letter-spacing: @headerLetterSpacingMultiplyer*@rem;
+    font-family:@headerFontFamily;
+    line-height:@headerLineHeight;    
+    margin-top:0;
+}
+
+.order-confirmation-content .create-account {
+    border-top:1px solid @borderColor;
+    border-bottom:1px solid @borderColor;
+    margin:@rowSpacing 0;
+    padding:@rowSpacing 0;
+}
+
+///////
+
+
+.create-account button[type="submit"] {
+    // &:extend([class*="o-btn"].o-btn--primary all);
+    width:100%;
+}
+
+.create-account .terms-and-conditions {
+    text-align: center;
+    margin-top:@rowSpacing;
+    font-size:@tiny;
+}
+
+.order-confirmation-slot .bg-img--text-box__white { 
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+}
+
+// .create-account .terms-and-conditions a { &:extend(.o-link all); }
+
+// GDPR sprint
+.thank-you-page-gdpr { margin-top:@rowSpacing; }
+.thank-you-page-gdpr label,
+.order-confirmation-content .create-account .label, 
+.thank-you-page-gdpr { font-size:@tiny; }
+.order-confirmation-content .create-account label:before {margin-right: (@spacing / 2); }
+.thank-you-page-gdpr a.dialogify { 
+    // &:extend(.o-link all); 
+    color: @labelColor;
+    font-family:@primaryFontRegularStack;
+}
+
+@media (min-width:@tabletBreakpoint) {
+
+  .order-confirmation-content .create-account,
+  .order-confirmation-content .order-confirmation-slot {
+      float:left;
+      width:100%;
+  }
+
+  .order-confirmation-content .order-confirmation-slot:not(.not-registered) {
+      width:100%;
+      float:left;
+  }
+
+}

@@ -1,0 +1,20 @@
+// Use default param to change default color value, also creates other element states (:hover) etc
+// .o-btn { 
+//   #objects.button-variables();
+//   #objects.create-button(@color; default);
+// }
+
+// By using 'all' as a param you can create additional colour sets which include all button types
+// You can also just create singular additional button types by specifiying the type ie: 'primary' 
+.o-btn.o-btn--redSale { #objects.create-button(#E30713, all); }
+// .o-btn.o-btn--blueSale { #objects.create-button(#143a75, primary); }
+
+<<<<<<< HEAD
+// .o-btn.o-btn--xmasRed { #objects.create-button(#b81d00, primary); }
+=======
+.o-btn.o-btn--xmasRed { #objects.create-button(#b81d00, all); }
+>>>>>>> masterToMerge
+
+// .o-btn.o-btn--yellow { #objects.create-button(#ffba3d, primary); }
+// .o-btn.o-btn--yellow { color:#000; }
+

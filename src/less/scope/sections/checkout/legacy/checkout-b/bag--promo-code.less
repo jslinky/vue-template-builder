@@ -1,0 +1,143 @@
+
+// Promo or student code
+
+// Coupon container
+.cart-coupon-code {
+  text-align:center;
+  border-width:0; // override
+}
+.cart-coupon-code > label { .text-hide(); }
+.coupon-form-container {
+  max-width:@cart-button-max-width*@rem;
+  margin-top:@rowSpacing;
+  margin-left:auto;
+  margin-right:auto;
+  display: none;
+}
+.coupon-form-container,
+.coupon-container,
+.coupon-submit-container {
+  width:100%; // override checkout a
+}
+
+.coupon-form-container.expanded,
+.expanded > .coupon-form-container {
+  display:flex;
+}
+.coupon-form-container.expanded #gift-cards-form {
+  margin-top:(@rowSpacing * 2);
+}
+
+.coupon-form-container.expanded .coupon-submit-container {
+  margin-bottom: @rowSpacing;
+}
+
+.coupon-form-container { 
+  // &:extend(.u-flex-column, .u-items-center); 
+  flex-direction:column;
+  align-items:center;
+}
+.coupon-form-container > form { width:100%; }
+// Coupon submit
+.coupon-submit-container > .button-text {
+  width:100%;
+  // &:extend(.o-btn.o-btn--basic all);
+  margin-top:@rowSpacing;
+}
+.coupon-form-container .form-row {
+  margin-bottom:1.5rem;
+}
+
+.gift-card > .form-row:first-of-type > .error,
+#gift-cards-form > fieldset > .gift-error {
+  position: relative;
+}
+
+.pt_singlepagecheckout_v2 .coupon-form-container span.error {
+  margin-top:-(20*@rem);
+}
+
+.gift-cert-used {
+  font-size:.75rem;
+  font-family: 'GillSans-Light',"Gill Sans MT",Lato,Arial,sans-serif;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;  
+}
+
+.payment-form .gift-cards {
+  display: flex;
+  align-items:center;
+}
+
+.gift-details {
+  font-size: .75rem;
+}
+
+.delete-gift-card {
+  display: flex;
+  margin-left:6*@rem;
+}
+
+// Coupon title (reveal link)
+// .coupon-title { &:extend(.o-link all); }
+
+// Coupon details when applied
+.payment-wrapper .promo-code .coupons {
+  width: 100%;
+  max-width: 500px;
+}
+
+.coupon-details {
+  font-size:@tiny;
+  text-align: left;
+  margin: (@rowSpacing * 2) 0;
+  float:left;
+  width:80%;
+}
+
+.coupon-details + .delete-coupon {
+  float:right;
+  margin-top:@rowSpacing;
+}
+
+.delete-coupon > button {
+  &:extend(.pt_cart_v2 .item-details .button-text);
+  font: ~"0/0" a;
+  color: transparent;
+}
+
+// Promo code expanded on checkout page
+// absolutely position link
+.payment-wrapper .promo-code:not(.expanded) > div {
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  padding-bottom:@verticalPadding;
+  flex-wrap: wrap;
+}
+.payment-wrapper .promo-code:not(.expanded) .cart-coupon-code label[for="dwfrm_cart_couponCode"] { display:none; }
+
+.promo-code.expanded { position:relative; }
+.promo-code.expanded form { position:static; }
+.promo-code.expanded .coupon-title.discount-link {
+  top:0;
+  position:absolute;
+}
+
+@media (max-width:@largestMediumMobileScreen) {
+
+  .payment-wrapper .promo-code:not(.expanded) .cart-coupon-code {
+    margin-top:(@rowSpacing / 2);
+  }
+
+}
+
+@media (min-width:@largeMobileBreakpoint) {
+
+  .payment-wrapper .promo-code:not(.expanded) .link.discount-link {  margin-right:@spacing/2; }
+  .payment-wrapper .promo-code:not(.expanded) .cart-coupon-code {  margin-left:@spacing/2; }
+
+}

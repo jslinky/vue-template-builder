@@ -95,9 +95,9 @@ p:last-child {
         Links
 --------------------*/
 
-a { #global.site(link); }
+a:not(.o-btn) { #global.site(link); }
 
-a:hover { #global.site(link-hover); }
+a:not(.o-btn):hover { #global.site(link-hover); }
 
 a > img { border:0; } //IE 10 fix
 

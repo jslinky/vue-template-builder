@@ -26,6 +26,7 @@
   .info-section-image { display:none; }
 
   .product-info-section-wrapp .breadcrumb { 
+    margin-top:@spacing;
     padding-top:(@spacing / 2);
     padding-bottom:(@spacing / 2);
   }
@@ -128,14 +129,16 @@
   // New accordion implementation!
 
   .pdp-main .prod-short-desc:first-of-type {
-    .icon-fill('../../images/interface/add.svg', '@{linkColor}');
+    // .icon-fill('../../images/interface/add.svg', '@{linkColor}');
+    background-image:url('../../images/interface/add.svg');
     background-repeat: no-repeat;
     background-position: right 1.5rem center;
     background-size:@6px auto;
   }    
 
   .pdp-main .prod-short-desc:first-of-type.is-active {
-    .icon-fill('../../images/interface/minus.svg', '@{linkColor}');
+    // .icon-fill('../../images/interface/minus.svg', '@{linkColor}');
+    background-image:url('../../images/interface/minus.svg');
   }      
 
   .pdp-main .prod-short-desc + div {

@@ -1,7 +1,4 @@
 
-// .o-mh { margin-top:75px; } // debug purposes - header height
-.o-mh ~ .o-mh { margin-top: 4rem; } // debug purposes
-
 //*******************************
 //  Masthead
 //*******************************
@@ -12,6 +9,9 @@
 //  Masthead Item
 //*******************************
 .o-mh .o-item > .o-item__image:only-of-type { #objects.masthead(image); }
+// .o-mh__cover-img is suited for use with cover images in .o-mh--fullScreen variations as a direct descendant of .o-mh
+.o-mh .o-mh__cover-img,
+.o-mh .o-mh__cover-img > img,
 .o-mh .o-item > .o-item__image:only-of-type > img,
 .o-mh .o-item > .o-item__image:only-of-type > a > img,
 .o-mh .o-item > .o-item__image:only-of-type picture,

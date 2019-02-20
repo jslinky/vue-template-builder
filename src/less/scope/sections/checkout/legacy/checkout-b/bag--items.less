@@ -1,0 +1,171 @@
+
+#checkout-process {
+  .bag() {
+    @cart-item-row: {
+      display: table;
+      table-layout: fixed;
+    };
+    @cart-item-out-of-stock-opacity: {
+      opacity:0.25;
+    };
+    @cart-item-image-container: {
+      width:@cart-item-image-column-width*@rem;
+      // @media (min-width:@tabletBreakpoint) {
+      //   width: (@cart-item-image-column-width+10)*@rem;
+      // }
+    };
+    @cart-item-image: {
+      max-width:70*@rem;
+    };
+    @cart-item-details-column: {
+      // max-width:~"calc(100% - "@cart-item-image-column-width*@rem~")";
+      padding-top:@cart-item-details-padding-top;
+    };
+    @cart-item-name-container: {
+      float:left;
+    };
+    @cart-item-price-container: {
+      float:right;
+    };
+    @cart-item-attribute-container: {
+      float:none;
+      clear:left;
+    };
+    @cart-item-is-in-stock: {
+      float:left;
+    };
+    @cart-item-remove-container: {
+      float:right;
+      overflow: hidden; //clearfix
+      // important used to override - #cart-container [class^="item"]
+      width:auto!important;
+      margin-top:(@rowSpacing / 4);
+    };
+    @cart-item-change-details: {
+      padding-left:0;
+      padding-right:0;
+      &:after {
+        width:100%;
+        left:0;
+      }
+    };
+    @cart-item-remove-button: {
+      background:url("/on/demandware.static/Sites-jwuk-Site/-/en_GB/v1484291812345/images/remove-basket.svg") center no-repeat;
+      width:18*@rem;
+      height:18*@rem; // create var
+      margin:0;
+      border:1px solid @borderColor;
+    };
+    @item-quantity-details: {
+      width:100%!important;
+      float:right;
+      text-align: right;
+    };
+  }
+}
+
+// // Out of stock - new
+// .checkout-body .out-of-stock .item-image img,
+// .checkout-body .out-of-stock .product-price,
+// .checkout-body .out-of-stock .item-total { #checkout-process.bag(cart-item-out-of-stock-opacity); }
+
+// Product items
+.pt_cart_v2 {
+  // Cart row
+  #cart-container .cart-row { #checkout-process.bag(cart-item-row); }
+  // Cart row
+  .cart-row { border-top-width:0; } // override
+  // Out of stock
+  #cart-container .out-of-stock .item-image img,
+  #cart-container .out-of-stock .product-price { #checkout-process.bag(cart-item-out-of-stock-opacity); }
+  // Item image
+  #cart-container .item-image { #checkout-process.bag(cart-item-image-container); }
+  #cart-container .item-image img { #checkout-process.bag(cart-item-image); }
+  // Item details
+  #cart-container .item-details { #checkout-process.bag(cart-item-details-column); }
+  // Item name
+  #cart-container .name-container { #checkout-process.bag(cart-item-name-container); }
+  // Item price
+  #cart-container .product-price { #checkout-process.bag(cart-item-price-container); }
+  // Item attributes
+  #cart-container .attributes { #checkout-process.bag(cart-item-attribute-container); }
+  // important used to override - #cart-container [class^="item"]
+  .item-quantity-details { #checkout-process.bag(item-quantity-details); }
+  // In stock text
+  .item-quantity-details .is-in-stock { #checkout-process.bag(cart-item-is-in-stock); }
+  // Remove item button container
+  .item-edit-details { #checkout-process.bag(cart-item-remove-container); }
+  // Change details button
+  .item-edit-details > .item-edit { #checkout-process.bag(cart-item-change-details); }
+  // Remove item button
+  .item-details .button-text { #checkout-process.bag(cart-item-remove-button); }
+}
+
+// Stuff moved from old checkout - to sort
+
+#cart-container [class^="item"],
+.cart-footer .coupon-container,
+.cart-footer .coupon-submit-container {
+  display:table-cell;
+  vertical-align: top;
+  width:80%;
+}
+
+// #cart-container .name,
+// #cart-container .product-price,
+// /*.cart-order-totals*/ .order-totals-table .order-total > span {
+//   &:extend(.o-header--h5);
+// }
+
+// #cart-container .name,
+// .order-totals-table .order-total > span { font-family:@primaryFontRegularStack }
+
+#cart-container .product-list-item .attributes,
+/*.cart-order-totals*/ .order-totals-table .label,
+/*.cart-order-totals*/ .order-totals-table .value {
+  // &:extend(.o-header--h6);
+}
+
+#cart-container { // do I need this?
+  .product-list-item .attributes {
+    text-transform: uppercase;
+    .attr-separator {
+      display: none;
+    }
+  }
+  .product-availability-list {
+    list-style: none;
+    padding-left:0;
+  }
+  .cart-row {
+    // display:table-row;
+    width:100%;
+  }
+  .item-image {
+    width:160px;
+    padding-right:@spacing;
+    img {
+      width: ~"calc(100% - @{rowSpacing})";
+    }
+  }
+  .item-edit-details {
+    display:block;
+  }
+  .name-container {
+    display: inline-block;
+    + .attribute {
+      width:auto;
+    }
+  }
+  // remove item button
+  .item-edit + button { margin-top:(@spacing / 2); }
+  .item-edit-details button {
+    text-transform: none;
+    font-size: inherit;
+    letter-spacing: inherit;
+    padding: 0;
+    color: inherit;
+    float:right;
+  }
+  .item-edit-details button:after { display:none; }
+}

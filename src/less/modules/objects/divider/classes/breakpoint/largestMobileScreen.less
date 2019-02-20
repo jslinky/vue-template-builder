@@ -1,0 +1,19 @@
+
+.o-divider-sm { 
+  #objects.divider(element); 
+  #objects.divider(spacing); 
+}
+
+// Top, bottom and default divider
+.o-section--divider-sm:before {
+  #objects.divider(element);
+  #objects.divider(section);
+}
+
+.o-section--divider-sm:before { top:0; }
+
+// No divider
+.o-section--divider-none-sm:before { 
+  display:none!important; 
+  .u-clearfix& { display:none!important; }
+}

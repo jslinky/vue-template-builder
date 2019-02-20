@@ -1,0 +1,558 @@
+
+// Hidden elements
+.pt_singlepagecheckout_v2 .hidden,
+.pt_singlepagecheckout_v2 .delivery-form .click-and-collect-button,
+.pt_singlepagecheckout_v2 .lookup-form .delivery-methods,
+.pt_singlepagecheckout_v2 .credit-card-type,
+.pt_singlepagecheckout_v2 .payment-method-options .required-indicator,
+.pt_singlepagecheckout_v2 .billing-expanded-edit { display:none!important; }
+// Borrowed from tyzens..
+.pt_singlepagecheckout_v2 .checkout-billing.use-shipping-address .billing-address-title,
+.pt_singlepagecheckout_v2 .checkout-billing.use-shipping-address .select-address,
+.pt_singlepagecheckout_v2 .checkout-billing.use-shipping-address .field-title,
+.pt_singlepagecheckout_v2 .checkout-billing.use-shipping-address .field-firstname,
+.pt_singlepagecheckout_v2 .checkout-billing.use-shipping-address .field-lastname,
+.pt_singlepagecheckout_v2 .checkout-billing.use-shipping-address .field-email,
+.pt_singlepagecheckout_v2 .checkout-billing.use-shipping-address .field-phone,
+.pt_singlepagecheckout_v2 .checkout-billing.use-shipping-address .field-country,
+.pt_singlepagecheckout_v2 .checkout-billing.use-shipping-address .field-address1,
+.pt_singlepagecheckout_v2 .checkout-billing.use-shipping-address .field-address2,
+.pt_singlepagecheckout_v2 .checkout-billing.use-shipping-address .field-city,
+.pt_singlepagecheckout_v2 .checkout-billing.use-shipping-address .field-state,
+.pt_singlepagecheckout_v2 .checkout-billing.use-shipping-address .field-postcode,
+.pt_singlepagecheckout_v2 .checkout-billing.use-shipping-address .field-housenumber,
+.pt_singlepagecheckout_v2 .checkout-billing.use-shipping-address .find-address-container,
+.pt_singlepagecheckout_v2 .checkout-billing.use-shipping-address .qas-options,
+.pt_singlepagecheckout_v2 .checkout-billing.use-shipping-address .address-lookup-container,
+.pt_singlepagecheckout_v2 .checkout-billing.use-shipping-address .add-to-address-book {
+  display:none!important;
+}
+// Borrowed from tyzens..
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.click-and-collect-form .select-address,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.click-and-collect-form .field-country,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.click-and-collect-form .field-address1,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.click-and-collect-form .field-address2,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.click-and-collect-form .field-city,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.click-and-collect-form .field-state,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.click-and-collect-form .field-postcode,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.click-and-collect-form .field-housenumber,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.click-and-collect-form .find-address-container,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.click-and-collect-form .qas-options,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.click-and-collect-form .address-lookup-container,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.click-and-collect-form .add-to-address-book,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.click-and-collect-form .delivery-methods,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.click-and-collect-form .delivery-submit {
+  display:none!important;
+}
+.pt_singlepagecheckout_v2 .payment-wrapper .checkout-billing .field-title,
+.pt_singlepagecheckout_v2 .payment-wrapper .checkout-billing .field-firstname,
+.pt_singlepagecheckout_v2 .payment-wrapper .checkout-billing .field-lastname,
+.pt_singlepagecheckout_v2 .payment-wrapper .checkout-billing .field-email,
+.pt_singlepagecheckout_v2 .payment-wrapper .checkout-billing .field-phone {
+  display:none!important;
+}
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.returning-customer .field-title,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.returning-customer .field-firstname,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.returning-customer .field-lastname,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.returning-customer .field-email,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.returning-customer .field-phone,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.returning-customer .field-country,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.returning-customer .field-address1,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.returning-customer .field-address2,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.returning-customer .field-city,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.returning-customer .field-state,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.returning-customer .field-postcode,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.returning-customer .field-housenumber,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.returning-customer .find-address-container,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.returning-customer .qas-options,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.returning-customer .address-lookup-container,
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.returning-customer .add-to-address-book {
+  display:none!important;
+}
+
+
+
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.lookup-form .delivery-submit {
+  display:none;
+}
+
+.pt_singlepagecheckout_v2 .item-details .product-list-item .item-quantity,
+.pt_singlepagecheckout_v2 .item-details .product-list-item .item-quantity-details,
+.pt_singlepagecheckout_v2 .item-details .product-list-item .color .label,
+.pt_singlepagecheckout_v2 .item-details .product-list-item .size .attr-separator,
+.pt_singlepagecheckout_v2 .item-details .product-list-item .sku,
+.pt_singlepagecheckout_v2 .item-details .product-list-item .shipping-method span {
+  display:none;
+}
+
+.pt_singlepagecheckout_v2 .wrapper_content .primary-content .delivery-wrapper .delivery-form.click-and-collect-form .click-and-collect-button {
+  display:block!important;
+}
+
+
+
+// Shared text size
+.step-indicator,
+.radio label,
+.pt_singlepagecheckout_v2 .terms-and-conditions,
+.checkout-login,
+.shipment-details .title + div,
+.pt_singlepagecheckout_v2 .payment-method-options label,
+.pt_singlepagecheckout_v2 .expire-date,
+.pt_singlepagecheckout_v2 .order-summary .newsletter-wrapper,
+.pt_singlepagecheckout_v2 .customer-details,
+.pt_singlepagecheckout_v2 .payment-method-options .credit-card-list > div:first-child { #checkout-process.global(cart-font-size); }
+
+// Button styles
+.pt_singlepagecheckout_v2 .light-button,
+.pt_singlepagecheckout_v2 .button-fancy-large,
+.pt_singlepagecheckout_v2 .order-submit > .button { &:extend([class*="o-btn"].o-btn--primary all); }
+.pt_singlepagecheckout_v2 .button,
+.pt_singlepagecheckout_v2 .button-fancy-large { width:100%; }
+.pt_singlepagecheckout_v2 .link,
+.pt_singlepagecheckout_v2 .discount-link,
+.pt_singlepagecheckout_v2 .terms-and-conditions > a {
+  // @o-link(); // Removed extend because if more styles then extend, doubling up on declarations
+  #checkout-process.global(cart-font-size);
+  padding:0;
+  text-transform: none;
+}
+
+.step-header { border-bottom:1px solid @borderColor; }
+
+.pt_singlepagecheckout_v2 {
+  // Delivery section
+  .delivery-form { padding:0 @spacing (@spacing * 2) @spacing; }
+  .checkout-shipping { margin:auto; }
+  // Form row extended bottom margin
+  .select-address .form-row,
+  .delivery-address .form-row { margin-bottom:@checkout-form-row-margin-bottom; }
+  // New error validation msg - absolute
+  span.error {
+    position:absolute;
+    margin-top:-(@delivery-addess-error-margin-top);
+  }
+}
+
+// Error message
+.pt_singlepagecheckout_v2 .generic-error { margin-bottom:@rowSpacing; }
+
+// Checkout heading
+// .checkout-heading { &:extend(.o-header, .o-header--h4); }
+.checkout-heading,
+.checkout-login { text-align: center; }
+// Login heading
+.checkout-login {
+  margin-bottom:@rowSpacing;
+  #checkout-process.global(cart-font);
+}
+.login-already-account,
+.login-save-time { display:inline-block; }
+// .login-save-time > a { &:extend(.o-link all); }
+// Step heading
+// .step-header { &:extend(.u-flex, .u-justify-between, .u-items-center); }
+.step-heading {
+  // &:extend(.o-header, .o-header.o-header--h6-h5);
+  margin:@rowSpacing;
+  font-family:@primaryFontRegularStack
+}
+
+// Inactive
+.inactive {
+  .step-indicator,
+  .step-heading { color:@lightTextColor; }
+}
+
+.step-indicator {
+  margin-right:@spacing;
+  text-transform: uppercase;
+}
+
+// Edit address button
+.pt_singlepagecheckout_v2 .edit-delivery-address {
+  text-transform: uppercase;
+  margin-right:@spacing;
+}
+
+// Enter address manaully
+.pt_cart_v2 {
+  // The selector is defined as below in checkout a
+  //.checkout-shipping.address fieldset:last-child button
+//  #enter-address-manually.link { &:extend(.o-link all); }
+}
+
+// Delivery options
+.delivery-options {
+  max-width:530*@rem;
+  margin:(@spacing * 2) auto;
+}
+.delivery-options > .form-row {
+  // &:extend(.u-flex, .u-justify-around, .u-items-center);
+  // &:extend(.u-flex);
+  display: flex;
+}
+
+@media (max-width:@largestMobileScreen) {
+
+  .delivery-options > .form-row { flex-wrap:wrap; }
+
+  .delivery-options .radio label {
+    width: ~"calc(100% - 3.2rem)"; // use var - width of radio + margin-right
+    align-self: center;
+  }
+
+  .delivery-options > .form-row > input:first-child ~ input,
+  .delivery-options > .form-row > label ~ label {
+    margin-top:@rowSpacing;
+  }
+
+}
+
+@media (min-width:@largeMobileBreakpoint) {
+
+  .pt_singlepagecheckout_v2 {
+
+    .delivery-address .form-row.field-title {
+      width:30%;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right:~"calc(2rem - 5px)";
+    }
+    .delivery-address .form-row.field-firstname {
+      width:~"calc(70% - 2rem)";
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+  }
+
+}
+
+@media (min-width:@tabletBreakpoint) {
+
+  .delivery-options > .form-row {
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .pt_singlepagecheckout_v2 {
+    .checkout-shipping.address {
+      width:auto!important; //override
+      .customer-details,
+      .select-address,
+      > [class^="delivery-"]:not(.delivery-options),
+      .terms-and-conditions {
+        max-width:450*@rem;
+        margin:auto;
+      }
+    }
+  }
+
+}
+
+
+// Customer details (logged in)
+.pt_singlepagecheckout_v2 .checkout-shipping.address .customer-details {
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:(@rowSpacing * 2);
+}
+
+// Delivery options radio & other shared radios - do I need .pt_singlepagecheckout_v2 prefixed?
+/*.delivery-options .radio input[type="radio"],
+.delivery-methods .radio input[type="radio"],
+.payment-method-radio input[type="radio"],
+.billing-address input[type="checkbox"]*/
+.pt_singlepagecheckout_v2 input[type="checkbox"],
+.pt_cart_v2 input[type="checkbox"],
+.pt_singlepagecheckout_v2 input[type="radio"],
+.pt_cart_v2 input[type="radio"],
+.ui-dialog.click-and-collect input[type="radio"] {
+  width:36*@rem; // make var
+  height:36*@rem; // make var
+  flex:0 0 36*@rem; // make var
+  margin-right:@spacing/2;
+  border-radius:50%;
+  &:checked {
+    &:extend(input[type="checkbox"]:checked);
+    background-size:auto 40%;
+    box-shadow:none;
+  }
+}
+
+// Delivery options label
+.delivery-options .radio label { flex:1 1 auto; }
+
+// Enter address manually
+.qas-options {
+  text-align: center;
+  padding:@rowSpacing 0;
+}
+
+// Address lookup
+.pt_singlepagecheckout_v2 .address-lookup ul {
+  height:180*@rem; // use var
+  border:1px solid @borderColor;
+  overflow-y: scroll;
+  color:@black;
+  list-style-type: none;
+  padding-left:@spacing/2;
+  margin:@rowSpacing 0 0;
+}
+.pt_singlepagecheckout_v2 .address-lookup ul li {
+  padding:3*@rem 0;
+  margin:3*@rem 0;
+}
+
+// Postcode and house number
+.pt_singlepagecheckout_v2 .field-postcode,
+.pt_singlepagecheckout_v2 .field-housenumber {
+  display:inline-block;
+  width:~"calc(50% - ((@{rowSpacing} * 2) / 2))";
+}
+.pt_singlepagecheckout_v2 .field-housenumber { float:right; }
+
+// Delivery method heading
+.pt_singlepagecheckout_v2 .delivery-method-heading {
+  // &:extend(.o-header, .o-header--h6);
+  text-align: center;
+  margin-top:0;
+  padding-top: @rowSpacing;
+  border-top:1px solid @borderColor;
+}
+
+// Delivery details confirmed
+.pt_singlepagecheckout_v2 .shipment-details { 
+  // &:extend(.u-flex, .u-flex-wrap); 
+  display: flex;
+  flex:wrap;
+}
+// Inactive
+.pt_singlepagecheckout_v2 .inactive + .shipment-details,
+.pt_singlepagecheckout_v2 .inactive + .shipment-details > div > .title { color:@lightTextColor; }
+.pt_singlepagecheckout_v2 .shipment-details > div {
+  flex:1 1 auto;
+  width:100%;
+  padding-left:@spacing;
+  padding-right:@spacing;
+}
+.pt_singlepagecheckout_v2 .shipment-details > div:last-child { padding-bottom:@rowSpacing * 2; }
+// Delivery headings
+// Payment method heading
+.pt_singlepagecheckout_v2 .shipment-details > div > .title,
+.pt_singlepagecheckout_v2 .payment-methods-heading {
+  // &:extend(.o-header, .o-header--h6);
+  #checkout-process.global(cart-font);
+}
+// Delivery headings
+.pt_singlepagecheckout_v2 .shipment-details > div > .title { color:@textColor; }
+
+// Terms link
+.pt_singlepagecheckout_v2 .terms-and-conditions { text-align: center; }
+
+// Payment method
+.pt_singlepagecheckout_v2 .payment-form { padding:0 @globalSpacing @rowSpacing * 2; }
+// Payment method heading
+.pt_singlepagecheckout_v2 .payment-methods-heading { text-align: center; }
+// Payment method form rows
+.pt_singlepagecheckout_v2 .payment-method .form-row {
+  position:relative; // needed for context as error msg uses top property
+  margin-bottom:@checkout-form-row-margin-bottom; // override default row spacing
+  }
+// Payment method error validation msg
+.pt_singlepagecheckout_v2 .payment-method span.error {
+  left:0;
+  margin-top:0;
+  top:@checkout-form-error-alignBelowInput-top;
+}
+
+// Payment method options
+// Labels
+.pt_singlepagecheckout_v2 .payment-method-options label { color:@cart-value-color-stronger; }
+// Billing address
+.pt_singlepagecheckout_v2 .payment-method-options,
+.pt_singlepagecheckout_v2 .billing-address,
+.pt_singlepagecheckout_v2 .generic-error {
+  position: relative;
+  max-width:@payment-method-options-max-width*@rem; // use var
+  margin:auto;
+}
+.pt_singlepagecheckout_v2 .payment-method-options { margin-bottom:@verticalMargin; }
+
+// Select stored card
+.pt_singlepagecheckout_v2 .payment-method-options .credit-card-list {
+  margin-bottom:0;
+  max-width:inherit!important;
+  width:100%;
+}
+.pt_singlepagecheckout_v2 .payment-method-options .credit-card-list > div:first-child { color:@cart-value-color-stronger; }
+// Name on card
+// Card number
+.pt_singlepagecheckout_v2 .payment-method .form-row:first-child,
+.pt_singlepagecheckout_v2 .payment-method .credit-card-type + .form-row { max-width:@payment-method-input-full-width*@rem; }
+// Name on card
+.pt_singlepagecheckout_v2 .payment-method .credit-card-type + .form-row {
+  display:inline-block;
+  float:left;
+  margin-right:@payment-method-input-gutter;
+}
+// Security code (cvn)
+.pt_singlepagecheckout_v2 .payment-method .cvn {
+  clear:none;
+  max-width:@payment-method-input-cvn-max-width*@rem;
+}
+// Expiry
+.pt_singlepagecheckout_v2 .payment-method .expire-date { clear:both; }
+// Month
+// Year
+.pt_singlepagecheckout_v2 .payment-method .month,
+.pt_singlepagecheckout_v2 .payment-method .year {
+  @width:(@payment-method-input-full-width/2)*@rem;
+  @gutter:@payment-method-input-gutter/2;
+  max-width:~"calc(@{width} - @{gutter})";
+  display:inline-block;
+  margin-bottom:0;
+}
+// Month
+.pt_singlepagecheckout_v2 .payment-method .month { margin-right: ~"calc(@{payment-method-input-gutter} - 4px)"; } // compensate for inline block white space
+// Year
+.pt_singlepagecheckout_v2 .payment-method .year { clear:none; }
+// Save my card details
+.pt_singlepagecheckout_v2 .payment-method .year ~ .label-inline.checkbox { float:none; }
+
+// Use delivery for billing checkbox
+.pt_singlepagecheckout_v2 .form-row.use-shipping-address { margin-top:0!important; }
+.pt_singlepagecheckout_v2 .form-row.use-shipping-address label { color:@cart-value-color-stronger; }
+// Expanded billing address
+.pt_singlepagecheckout_v2 .billing-address .billing-address-title { margin:(@rowSpacing * 2) 0 @rowSpacing; }
+
+
+// Order summary
+.pt_singlepagecheckout_v2 .order-summary { &:extend(.pt_cart_v2 #cart-container); } // get font styles
+.pt_singlepagecheckout_v2 .order-summary .item-wrapper {
+  &:extend(.pt_cart_v2 #cart-container .cart-row,
+    #cart-container .cart-row,
+    .cart-row, .pt_cart_v2 .cart-row);
+  position: relative;
+}
+.pt_singlepagecheckout_v2 .order-summary .item-wrapper:first-of-type { border-top:1px solid @borderColor; }
+.pt_singlepagecheckout_v2 .order-summary .item-wrapper > div {
+  &:extend(#cart-container [class^="item"],
+  #cart-container .cart-row > div);
+}
+// Use greater specifity to make align top
+// Item image column
+.pt_singlepagecheckout_v2 .order-summary .item-wrapper > .item-image { &:extend(.pt_cart_v2 #cart-container .item-image); }
+// Item image
+.order-summary .item-image img { &:extend(.pt_cart_v2 #cart-container .item-image img, #cart-container .item-image img); }
+// Item details column
+.pt_singlepagecheckout_v2 .order-summary .item-wrapper .item-details {
+  // &:extend(.pt_cart_v2 #cart-container .item-details);
+  max-width:~"calc(100% - "(@cart-item-image-column-width*2)*@rem~")";
+}
+// Item name
+.pt_singlepagecheckout_v2 .order-summary .name { &:extend(.pt_cart_v2 #cart-container .name, #cart-container .name); }
+.pt_singlepagecheckout_v2 .order-summary .name > a { &:extend(.pt_cart_v2 #cart-container .name > a); }
+// Item attributes
+.pt_singlepagecheckout_v2 .item-details .product-list-item .size:before {
+  content:'/';
+  display:inline-block;
+}
+
+// Item total column
+.pt_singlepagecheckout_v2 .order-summary .item-wrapper > .item-total {
+  &:extend(.pt_singlepagecheckout_v2 .order-summary .item-wrapper > .item-image, .pt_cart_v2 #price-standard-show);
+  text-align: right;
+}
+// In stock text
+.pt_singlepagecheckout_v2 .order-summary .item-quantity-details {
+  &:extend(.pt_cart_v2 .item-quantity-details);
+  font-size:@tiny;
+  position:relative;
+  text-align: left;
+  float:none;
+}
+// Use delivery for billing checkbox container
+.pt_singlepagecheckout_v2 .billing-address > .checkout-billing { width:100%!important; }
+// Order subtotal label
+// Order shippinh label
+.pt_singlepagecheckout_v2 .order-summary .label { &:extend(.pt_cart_v2 .order-totals-table .order-subtotal .label, .pt_cart_v2 .order-totals-table .label); }
+
+// .pt_singlepagecheckout_v2 .order-summary .item-wrapper > .item-total,
+// .pt_singlepagecheckout_v2 .order-summary .order-subtotal .value,
+// .pt_singlepagecheckout_v2 .order-summary .order-total .value,
+// .pt_singlepagecheckout_v2 .order-summary .shipping-price,
+// .pt_singlepagecheckout_v2 .order-summary .order-subtotal {
+//   &:extend(.pt_cart_v2 #cart-container .product-price);
+// }
+.pt_singlepagecheckout_v2 .order-summary .item-wrapper > .item-total,
+.pt_singlepagecheckout_v2 .order-summary .order-subtotal { float:none; }
+
+.pt_singlepagecheckout_v2 .order-summary .order-subtotal .value { &:extend(.pt_cart_v2 .cart-footer .value); }
+.pt_singlepagecheckout_v2 .order-summary .shipping-price { &:extend(.pt_cart_v2 .cart-shipping-methods .shipping-price, .pt_cart_v2 .shipping-price); }
+
+
+// Order total - custom styles - do I need to move this to cart page and extend. See if the same.
+.pt_singlepagecheckout_v2 .order-summary .order-total {
+  border-bottom-width:0;
+  border-color:@borderColor;
+  padding:@rowSpacing 0 (@rowSpacing * 2) 0;
+}
+.pt_singlepagecheckout_v2 .order-summary .order-total .label,
+.pt_singlepagecheckout_v2 .order-summary .order-total .value {
+  text-transform: uppercase;
+  color: @cart-value-color-stronger;
+}
+.pt_singlepagecheckout_v2 .order-summary .order-total .value { &:extend(.pt_cart_v2 .cart-footer .value, .pt_cart_v2 .order-totals-table .order-total > .value); }
+
+
+// Subscribtion message
+.pt_singlepagecheckout_v2 .order-summary .newsletter-wrapper { text-align:center; }
+.terms-message {
+  margin-top:(@rowSpacing / 2);
+  font-size:@tiny;
+}
+// .terms-message a { &:extend(.o-link all); }
+
+// Footer (payment methods)
+.pt_singlepagecheckout_v2 .wrapper_footer footer { margin-top:@rowSpacing * 4; }
+.footer-content { margin:0 auto (@rowSpacing * 2); }
+
+@media (min-width:@tabletBreakpoint) {
+
+  // Delivery details confirmed
+  .pt_singlepagecheckout_v2 .shipment-details > div {
+    width:50%;
+    padding-bottom:(@rowSpacing * 2);
+  }
+
+  // Payment method containers
+  .pt_singlepagecheckout_v2 .payment-method-container { width:100%; }
+  .pt_singlepagecheckout_v2 .payment-method-body,
+  .pt_singlepagecheckout_v2 .billing-address {
+    padding:@spacing;
+    padding-bottom: 0;
+  }
+  .pt_singlepagecheckout_v2 .billing-address { padding-top:0; }
+
+  // Paypal radio
+  #paypal > .payment-method-radio {
+    position:absolute;
+    top:0;
+    right:0;
+  }
+
+  // Order summary
+  .pt_singlepagecheckout_v2 .payment-form .order-summary .item-wrapper > div { vertical-align: middle; }
+  // Item total
+  .pt_singlepagecheckout_v2 .order-summary .item-wrapper > .item-total { padding-right:0; }
+
+  // In stock text
+  .pt_singlepagecheckout_v2 .order-summary .item-quantity-details {
+    position:absolute;
+    right:0;
+    // bottom:0;
+    text-align:right;
+  }
+
+}

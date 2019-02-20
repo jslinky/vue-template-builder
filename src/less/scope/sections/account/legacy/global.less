@@ -1,0 +1,25 @@
+
+// .reg-columns > h1,
+// .pt_account #addresses > h1,
+// #orderlist-container > h1,
+// .pt_account #cards > h1,
+// #giftcard-container > h1,
+// .wishlist-container > h1 { &:extend(.o-header--h4, .login-columns > h1); }
+
+.pt_order .wrapper_content [class^="no-"]
+.pt_giftcard .wrapper_content [class^="no-"],
+.pt_account .wrapper_content [class^="no-"],
+.order-display-text {
+  background:#fff;
+  padding:@spacing;
+  text-align: center;
+}
+.pt_order .wrapper_content [class^="no-"]
+.pt_giftcard .wrapper_content [class^="no-"],
+.pt_account .wrapper_content [class^="no-"] { margin-bottom:@rowSpacing; }
+.pt_order .wrapper_content [class^="no-"] h2,
+.pt_giftcard .wrapper_content [class^="no-"] h2,
+.pt_account .wrapper_content [class^="no-"] h2 {
+  // font-size:@pageFontSize;
+  text-align: center;
+}

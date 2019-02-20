@@ -1,0 +1,234 @@
+
+.gift-result-content {
+  // &:extend(.container-extend);
+  text-align: center;
+  padding-top:@rowSpacing;
+}
+// .gift-header { &:extend(.o-header, .o-header--h4); }
+#gift-voucher-card-area .product-description,
+.gift-description {
+  // &:extend(.o-header, .o-header--h5, .o-header.o-header--no-caps, .u-font-family-secondary);
+  letter-spacing: @1px;
+}
+.check-balance-btn { 
+  // &:extend(.o-btn, [class*="o-btn"].o-btn--primary, [class*="o-btn"].o-btn--primary.inverted); 
+}
+.pt_gift-result .grid-tile { width:100% }
+
+// Page Content
+.gift-result-content .tile-footer .visually-hidden {
+  position:relative!important;
+  height:auto!important;
+  clip: auto!important;
+  overflow: inherit!important;
+}
+
+.gift-result-content .tile-footer .visually-hidden:not(a) {
+  width:auto!important;
+}
+
+.gift-result-content .thumb-link { display:none!important; }
+
+.gift-result-content .product-tile { &:extend(#gift-voucher-card-block); }
+
+.gift-result-content .product-tile.product-tile {
+  margin-top:0;
+  margin-bottom:@rowSpacing;
+}
+
+.gift-result-content .tile-footer {
+  &:extend(#gift-voucher-card-area);
+  flex-direction: column;
+}
+
+.gift-result-content .tile-footer .product-name h2 {
+  &:extend(#gift-voucher-card-area h1.product-name all);
+}
+
+.product-name h2 b { font-weight:normal; }
+
+.gift-result-content .tile-footer .product-name + div > p {
+  &:extend(#gift-voucher-card-area .product-description);
+}
+
+.gift-result-content .gifthits-addtobag {
+  // &:extend(.o-btn, [class*="o-btn"].o-btn--basic all);
+  max-width:170*@em;
+  margin:0 auto;
+  width:100%!important;
+}
+
+.gift-result-content .gifthits-description {
+  max-width: @max-width-4col;
+  margin: 0 auto;
+}
+
+.gift-terms-link { margin-top:@rowSpacing; }
+.gift-terms-link > a {
+  // &:extend(.o-link all);
+  font-size:@tiny;
+}
+
+.gift-result-content .product-price { display:none; }
+
+
+// Gift Card
+
+#gift-voucher-card-block {
+  background:#f4f4f4;
+  margin-top:@rowSpacing * 2;
+  overflow: hidden;
+  .ui-dialog & { margin-top:0; }
+}
+
+#gift-voucher-card-block,
+#gift-voucher-card-area { padding:@spacing/2; }
+
+#gift-voucher-card-block .product-add-to-cart { border-top:none; }
+
+#gift-voucher-card-area {
+  display:flex;
+  justify-content: space-around;
+  border:1px solid @black;
+}
+#gift-voucher-card-area h1.product-name { white-space:nowrap;  }
+#gift-voucher-card-area h1.product-name {
+  position:relative;
+  display:block;
+  letter-spacing: @3px;
+  color:@primaryColor;
+  // &:extend(.o-header--h3, .o-header.o-header--underline all);
+  &:before {
+    content:'';
+    display:block;
+    .icon-replace-fill('../images/icons/logos/mrWills.svg', '#002C50', @primaryColor);
+    background-repeat: no-repeat;
+    background-size:auto 100%;
+    width:55*@rem;
+    height:55*@rem;
+    margin:@rowSpacing / 2 auto;
+  }
+  &:after {
+    bottom:-0.2em;
+  }
+}
+// #gift-voucher-card-area h1.product-name:after { &:extend(.o-header.o-header--underline); }
+
+
+#gift-voucher-card-area .product-name b { font-weight:normal; }
+#gift-voucher-card-area .product-name,
+#gift-voucher-card-area .product-description { text-align: center; }
+#gift-voucher-card-area .product-variations { text-align:center; }
+#gift-voucher-card-area .product-variations > ul > li { 
+  flex:0 1 75%; 
+  margin-top:0;
+}
+
+#gift-voucher-card-area .product-variations select { width:100%; }
+
+#gift-voucher-card-area .product-variations > ul > button {
+  flex:1 1 180px;
+  margin-right:0;
+  white-space: nowrap;
+  align-self:flex-end;
+}
+// #gift-voucher-card-area .product-variations .size-attr { max-width:260*@rem; }
+#gift-voucher-card-area .product-variations .form-row { margin-bottom:0; }
+#gift-voucher-card-area > div { max-width:600*@rem; }
+#gift-voucher-card-area .product-col-1 { order:0; }
+#gift-voucher-card-area .product-col-1 > [class^="product-"] {
+  width:100%;
+  margin:0 auto;
+}
+
+#gift-voucher-card-area .product-col-1 .promotion { display:none; }
+
+#gift-voucher-card-area .product-col-2 {
+  order:1;
+  display:none;
+}
+#gift-voucher-card-area .product-col-2 img {
+  display: block;
+  margin:0 auto;
+  max-width:100%;
+}
+#gift-voucher-card-area input:not([type="checkbox"]),
+#gift-voucher-card-area select {
+  background-color:transparent;
+  text-transform: uppercase;
+}
+#gift-voucher-card-area .size-attr .label { 
+  // &:extend(.s-hide); 
+  display:none;
+}
+
+#gift-voucher-card-area .add-to-cart { width:auto; }
+
+.giftcards-terms-error,
+.giftcards-from-to-error {
+  clear:both;
+  font-size:@tiny;
+}
+
+.terms-conditions-gifts {
+  margin-top:30*@rem;
+  margin-left:0;
+  display: inline-block;
+  font-size:11*@rem;
+}
+
+@media (max-width:@largestMediumMobileScreen) {
+
+  #gift-voucher-card-area .product-variations > ul > button {
+    margin-top:@rowSpacing / 2;
+    width:100%;
+  }
+
+}
+
+@media (min-width:@largeMobileBreakpoint) {
+
+  #gift-voucher-card-area .product-variations > ul { display:flex; }
+  #gift-voucher-card-block,
+  #gift-voucher-card-area { padding:@spacing; }
+  #gift-voucher-card-area .product-variations .size-attr + button { margin-left:@spacing / 2; }
+
+}
+
+@media (min-width:@tabletBreakpoint) {
+
+  // #gift-voucher-card-area h1.product-name { .o-header--h2; }
+
+  #gift-voucher-card-area .product-col-2 {
+    display:flex;
+    align-items:center;
+  }
+
+}
+
+@media (min-width:@computerBreakpoint) {
+
+  #gift-voucher-card-area .product-col-1 > [class^="product-"] { width:90% }
+
+  .pt_gift-result .grid-tile {
+    width:50%;
+    padding-left:@gutter/2;
+    padding-right:@gutter/2;
+  }
+
+  .gift-result-content .product-tile.product-tile {
+    margin-bottom:@rowSpacing * 2;
+  }
+
+  .pt_gift-result .gift-content-bottom {
+    padding-top:@rowSpacing * 2;
+    border-top:1px solid @borderColor;
+  }
+
+}
+
+@media (min-width:@largeMonitorBreakpoint) {
+
+  #gift-voucher-card-area .product-col-1 > [class^="product-"] { width:70% }
+
+}

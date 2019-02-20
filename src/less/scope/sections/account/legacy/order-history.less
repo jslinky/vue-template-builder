@@ -1,0 +1,22 @@
+
+#orderlist-container {
+  .search-result-items li {
+    width:100%;
+    &:extend(.pt_giftcard .giftcard-container > div li);
+  }
+  .search-result-items {
+    margin-top: @rowSpacing;
+    // font-size:@pageFontSize;
+  }
+  .search-result-items .order-history-header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction:column;
+  }
+  .view-details-link { align-self: flex-end; }
+
+  @media (min-width:@tabletBreakpoint) {
+    .search-result-items .order-history-header { flex-direction: row; }
+  }
+    
+}

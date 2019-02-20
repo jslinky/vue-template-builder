@@ -64,26 +64,16 @@
 
 #objects {
   .masthead(element) { 
-    .output-rules(element; masthead); 
-    // #objects.masthead-variables();
-    // .output() when (@customPropFallback = false), (@local-scoped-custom-prop-fallback = false) and (@static-variables-only = false) {
-    //   #objects.masthead(element-customPropOnly-ruleset);
-    // }
-    // .output() when 
-    // (@customPropFallback = true) and (@static-variables-only = false),
-    // (@customPropFallback = false) and (@local-scoped-custom-prop-fallback = true) {
-    //   #objects.masthead(element-fallback-ruleset);
-    // }    
-    // .output() when (@static-variables-only = true) {    
-    //   #objects.masthead(element-staticVarsOnly-ruleset);
-    // }    
-    // .output();    
+    .output-rules(element; masthead);  
   }  
   .masthead(proportional) { 
     .output-rules(element-proportional; masthead);
   }   
   .masthead(proportionalBefore) { 
     .output-rules(element-proportionalBefore; masthead);
+  }     
+  .masthead(image-img) { 
+    .output-rules(image-img; masthead);
   }     
   .masthead(artwork) { 
     .output-rules(artwork; masthead);

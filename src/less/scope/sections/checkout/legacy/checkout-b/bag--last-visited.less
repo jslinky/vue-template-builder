@@ -1,0 +1,21 @@
+
+// Last visited
+.pt_cart_v2 {
+  .cart-empty ~ .last-visited {
+    border-top:0;
+    margin-top:0;
+  }
+  .last-visited {
+    width:100%;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+    // &:extend(.u-flex, .u-flex-wrap, .u-justify-around);
+  }
+  .last-visited > h2 {
+    width:100%;
+    // &:extend(.o-header--h4); // override
+  }
+  // Last visited products
+  .last-visited .product-tile { width:48.32%; }
+}

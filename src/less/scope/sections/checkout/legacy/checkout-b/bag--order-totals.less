@@ -1,0 +1,59 @@
+
+
+#checkout-process {
+  .bag() {
+    @order-total-container: {
+      border-width:0;
+      border-color: @lightBlack;
+      padding-bottom:0;
+    };
+    @order-subtotal-container: {
+      padding-top:0;
+    };
+    @order-subtotal-label: {
+      text-transform: none; // override
+    };
+    @order-total-value: {
+      font-size:@medium;
+    };
+    @order-total-label: {
+      text-transform: uppercase;
+    };
+  }
+}
+
+// Order totals
+.pt_cart_v2 {
+  .order-totals-table .order-total > .value { #checkout-process.bag(order-total-value); }
+  .cart-footer .value,
+  .shipping-price,
+  .order-totals-table .label { color:@cart-value-color-stronger; }
+  // Order total container
+  .cart-order-totals { #checkout-process.bag(order-total-container); } // override
+  // All total labels
+  // .order-totals-table .label { #checkout-process.bag(order-total-label); }
+  // Subtotal
+  .order-totals-table > .order-subtotal { #checkout-process.bag(order-subtotal-container); }
+  // Subtotal title
+  .order-totals-table .order-subtotal .label { #checkout-process.bag(order-subtotal-label); }
+  // Shipping discount
+  .order-totals-table .order-shipping { .clearfix(); }
+  .item-details .button-text a { .text-hide(); }
+  // Order total row
+  .order-total {
+    border-bottom-width:0; // override
+    margin-top:@rowSpacing;
+    padding-top:@rowSpacing;
+  }
+  .order-total > span.label { letter-spacing: @3px; }
+}
+
+
+// Imported from old checkout less files - to sort
+
+/*.cart-order-totals*/ .order-totals-table {
+  text-transform: uppercase;
+  .value {
+    float:right;
+  }
+}

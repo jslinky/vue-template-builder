@@ -1,0 +1,24 @@
+
+/*******************************
+            Divider
+*******************************/
+
+
+#objects {
+  .divider-variables() {
+    @static-variables-only                           : false; // turn off custom prop on a module level - define on a per site basis in overrides
+    @local-scoped-custom-prop-fallback               : false; // not sure this works! local scoped variable - should be moved to overrides    
+
+    @divider-spacing-top                             : large;
+    @divider-spacing-bottom                          : large;
+    @divider-spacing-top-tabletBreakpoint            : big;
+    @divider-spacing-bottom-tabletBreakpoint         : big;        
+    @divider-width                                   : 80%;
+    @divider-max-width                               : @site-max-width; // max-width var
+    @divider-height                                  : 1;
+    @divider-bgColor                                 : @grey;
+    @divider-height-unit                             : 1rem;
+    @offsetFixed                                     : false;   
+  }
+}
+

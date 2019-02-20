@@ -42,10 +42,10 @@
         height:@mh-hVal-lmb-fallback;        
      };    
      @element-largeMobileBreakpoint-customPropOnly-ruleset: {
-        // Min height        
-        --mh-minH: var(--mh-minHVal-lmb, 450); // less var as second value
+        // Min height            
+        --mh-minH: ~"calc((var(--mh-minHVal-lmb, @mh-minHVal-lmb)) * ((1 / var(--fontSizeRoot)) * 1rem))"; 
         // Max height        
-        --mh-maxH: var(--mh-maxHVal-lmb, auto); // less var as second value
+        --mh-maxH: var(--mh-maxHVal-lmb, @mh-maxHVal-lmb); // less var as second value
         // Height
         --mh-h: var(--mh-hVal-lmb);     
         // Proportional ratio
@@ -70,9 +70,9 @@
      };    
      @element-tabletBreakpoint-customPropOnly-ruleset: {
         // Min height        
-        --mh-minH: var(--mh-minHVal-tb, 600); // less var as second value
-        // Max height        
-        --mh-maxH: var(--mh-maxHVal-tb, auto); // less var as second value    
+        --mh-minH: ~"calc((var(--mh-minHVal-tb, @mh-minHVal-tb)) * ((1 / var(--fontSizeRoot)) * 1rem))"; 
+        // Max height                
+        --mh-maxH: ~"calc((var(--mh-maxHVal-tb, @mh-maxHVal-tb)) * ((1 / var(--fontSizeRoot)) * 1rem))";  
         // Height        
         --mh-h:var(--mh-hVal-tb);
         // Proportional ratio
@@ -96,10 +96,10 @@
         height: @mh-hVal-cb-fallback;
      };    
      @element-computerBreakpoint-customPropOnly-ruleset: {
-        // Min height        
-        --mh-minH: var(--mh-minHVal-cb, 600); // less var as second value
-        // Max height
-        --mh-maxH: var(--mh-maxHVal-cb, auto); // less var as second value    
+        // Min height                
+        --mh-minH: ~"calc((var(--mh-minHVal-cb, @mh-minHVal-cb)) * ((1 / var(--fontSizeRoot)) * 1rem))"; // less var as second value
+        // Max height        
+        --mh-maxH: ~"calc((var(--mh-maxHVal-cb, @mh-maxHVal-cb)) * ((1 / var(--fontSizeRoot)) * 1rem))"; // less var as second value    
         // Height        
         --mh-h:var(--mh-hVal-cb);
         // Proportional ratio

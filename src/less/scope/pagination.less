@@ -4,8 +4,14 @@
 
 // DO I need .pagination:not(.search-result-options)?
 .pagination li:not(.first-last):not(.next) { text-indent: 2.5*@rem; }
-.pagination li.first-last.previous span { .icon-replace-fill('@{icon-ui-path}chevronLeft.svg', '#222', @linkColor); }
-.pagination li.first-last.next span { .icon-replace-fill('@{icon-ui-path}chevronRight.svg', '#222', @linkColor); }
+.pagination li.first-last.previous span { 
+  // .icon-replace-fill('@{icon-ui-path}chevronLeft.svg', '#222', @linkColor); 
+  background-image:url('@{icon-ui-path}chevronLeft.svg');
+}
+.pagination li.first-last.next span { 
+  // .icon-replace-fill('@{icon-ui-path}chevronRight.svg', '#222', @linkColor); 
+  background-image:url('@{icon-ui-path}chevronRight.svg');
+}
 // .pagination li.current-page { &:extend(.o-swatch .o-swatch__item.selected); }
 .pagination li.first-last {
   display:flex;

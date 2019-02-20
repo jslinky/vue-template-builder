@@ -1,0 +1,147 @@
+
+// Grid based implementation
+
+// #components {
+//     .mega-slots() {
+//         @container: {
+//             --slot-pic-height: 100%; // change to explicit pixel value if needs be
+//             --slot-ob-fit: cover;
+//             --slot-ob-pos: center;
+//             --slot-con-maxw: auto;        
+//             display:-ms-grid;    
+//             display: grid;
+//             -ms-grid-columns:repeat(6, 1fr);
+//             grid-template-columns: repeat(6, 1fr);
+//             grid-gap: 1rem;
+//             grid-auto-flow: column;
+//             max-width:var(--slot-con-maxw);                
+//             margin-left:auto;
+//         };
+//         @slot: {
+//             // Default two equal sized slots
+//             --grid-col: ~"4 / -1";
+//             --grid-col-end: span 3;
+//         };
+//         @slot-item-image-picture: {
+//             position:relative;
+//             overflow: hidden;
+//             display: block;
+//             height:var(--slot-pic-height, 100%); 
+//         };
+//         @slot-item-image-img: {
+//             height: 100%;
+//             object-fit: var(--slot-ob-fit, cover);
+//             object-position: var(--slot-ob-pos, center);
+//         };
+//         // Two equal sized slots
+//         @slot-two-items-span3-firstChild: {
+//             grid-column: ~"4 / -1";
+//         };
+//         @slot-two-items-span3-lastChild: {
+//             grid-column-end: span 3;
+//         };  
+
+//         // Two column - 2/3 / 1/3 layout      
+//         @slot-two-items-span2-firstChild: {
+//             grid-column: ~"5 / -1";
+//         };
+//         @slot-two-items-span4-lastChild: {
+//             grid-column: span 4;
+//         };
+//         @slot-two-items-span4-onlyChild: {
+//             grid-column: ~"3 / -1";
+//         }; 
+//         // Three column - 2 / 2 / 2 layout      
+//         @slot-three-items-span2: {
+//             grid-column: span 2;
+//         };
+
+//     }
+// }
+
+// #components {
+//     .mega-slots(@item) {
+//         #components.mega-slots();
+//         @rules: @@item;
+//         @rules();
+//     }
+// }
+
+
+// .c-m-slot { #components.mega-slots(container); }
+// .c-m-slot picture { #components.mega-slots(slot-item-image-picture); }
+// .c-m-slot img { #components.mega-slots(slot-item-image-img); }
+
+// .c-m-slot__slot 
+
+// // Default slot has two equal sized slots applied
+// // First or only child slot
+// .c-m-slot__slot:nth-child(1),
+// .c-m-slot__slot:only-child { #components.mega-slots(slot-two-items-span3-firstChild); }
+// // Second slot
+// .c-m-slot__slot:nth-child(2) { #components.mega-slots(slot-two-items-span3-lastChild); }
+
+
+
+// .c-m-slot.c-m-slot--4-2 {
+
+//     .c-m-slot__slot:nth-child(1),
+//     .c-m-slot__slot:only-child { #components.mega-slots(slot-two-items-span2-firstChild); }
+    
+//     // Second slot
+//     .c-m-slot__slot:nth-child(2) { #components.mega-slots(slot-two-items-span4-lastChild); }      
+
+//     // Add modifyer class for a single slot which spans 4 cols  
+//     .c-m-slot__slot.c-m-slot__slot--span4:only-child,
+//     .c-m-slot__slot.c-m-slot__slot--span4:nth-child(1) { #components.mega-slots(slot-two-items-span4-onlyChild); }
+
+//     .c-m-slot__slot.c-m-slot__slot--span4 + .c-m-slot__slot:not(.c-m-slot__slot--span4)  { #components.mega-slots(slot-three-items-span2); }
+
+// }
+
+// .c-m-slot.c-m-slot--2-2-2 {
+//     .c-m-slot__slot { #components.mega-slots(slot-three-items-span2); }
+// }
+
+#components {
+    .mega-slots() {
+        @container: {
+            --slot-pic-height: 100%; // change to explicit pixel value if needs be
+            --slot-ob-fit: cover;
+            --slot-ob-pos: center;
+            --slot-con-maxw: auto;        
+            display: flex;
+            max-width:var(--slot-con-maxw);                
+            margin-left:auto;
+        };
+        @slot-item-image-picture: {
+            position:relative;
+            overflow: hidden;
+            display: block;
+            height:var(--slot-pic-height, 100%); 
+        };
+        @slot-item-image-img: {
+            height: 100%;
+            object-fit: var(--slot-ob-fit, cover);
+            object-position: var(--slot-ob-pos, center);
+        };
+
+
+    }
+}
+
+#components {
+    .mega-slots(@item) {
+        #components.mega-slots();
+        @rules: @@item;
+        @rules();
+    }
+}
+
+
+.c-md { #components.mega-slots(container); }
+// in absense of picture tag wrapper
+.c-md__item .o-item__image > a { #components.mega-slots(slot-item-image-picture); }
+.c-md__item img { #components.mega-slots(slot-item-image-img); }
+.c-md__item + .c-md__item { margin-left:@spacing }
+

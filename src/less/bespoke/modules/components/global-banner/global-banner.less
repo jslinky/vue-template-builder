@@ -1,8 +1,15 @@
 .c-global-banner {
     #scope.site-header-variables();
     width:100%;
-    min-height: calc(@bannerMinHeightFallback);
+    height: calc(@bannerMinHeightFallback);
     display: flex;
     justify-content: center;
     align-items: center;    
 }
+
+.c-global-banner span {
+    line-height: inherit;
+}
+
+.s-site-bannerSlot--beforeHeader__dismiss,
+.s-site-bannerSlot--beforeHeader__dismiss:hover { color:#fff; }

@@ -6,17 +6,32 @@
      @image-ruleset: {
         display: flex;
         flex:1 1 auto;
+        flex-direction:column;
      };
      @image-img-ruleset: {
-        position:absolute;
+        top:0;
         left:0;
         width:100%;
         height:100%;
-        object-fit: cover; // create var
-        object-position: center; // create var
      };
+     @image-img-fallback-ruleset: {
+        #objects.masthead(image-img-staticVarsOnly-ruleset);
+        #objects.masthead(image-img-customPropOnly-ruleset);    
+     };
+     @image-img-staticVarsOnly-ruleset: {
+        position:@mh-item-image-position;
+        object-fit: @mh-item-image-object-fit;
+        object-position: @mh-item-image-object-position;
+     };    
+     @image-img-customPropOnly-ruleset: { 
+        position:var(--mh-item-image-position);
+        object-fit: var(--mh-item-image-object-fit);
+        object-position: var(--mh-item-image-object-position);        
+     };     
      @item-card-image-element-img-ruleset: {
-        position:relative;
+        position:@mh-item-card-image-position;
      };              
   }
 }
+
+

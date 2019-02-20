@@ -1,0 +1,69 @@
+/*-------------------
+     Breakpoints
+--------------------*/
+
+
+@mobileBreakpointPixel            : 320px;
+@largeMobileBreakpointPixel       : 480px;
+@tabletBreakpointPixel            : 769px;
+@computerBreakpointPixel          : 992px;
+@largeMonitorBreakpointPixel      : 1280px;
+@widescreenMonitorBreakpointPixel : 1620px;
+@desktopNavigationBreakpointPixel : 1180px;
+// Stacked
+@notStackedBreakpointPixel        : @tabletBreakpointPixel; 
+// Site Max Width
+@site-max-widthPixel              : @largeMonitorBreakpointPixel;
+
+/* Responsive */
+@largestMediumMobileScreenPixel   : (@largeMobileBreakpointPixel - 1px);
+@largestMobileScreenPixel         : (@tabletBreakpointPixel - 1px);
+@largestTabletScreenPixel         : (@computerBreakpointPixel - 1px);
+@largestSmallMonitorPixel         : (@largeMonitorBreakpointPixel - 1px);
+@largestLargeMonitorPixel         : (@widescreenMonitorBreakpointPixel - 1px);
+@largestMobileNavigationPixel     : (@desktopNavigationBreakpointPixel - 1px);
+// Stacked
+@largestStackedScreenPixel        : (@notStackedBreakpointPixel - 1px);
+
+
+// Var defines whether px or em for breakpoints.
+@breakpoint-value: em; // em || px
+
+.breakpoint-values(px) {
+    @mobileBreakpoint                 : @mobileBreakpointPixel;
+    @largeMobileBreakpoint            : @largeMobileBreakpointPixel;
+    @tabletBreakpoint                 : @tabletBreakpointPixel;
+    @computerBreakpoint               : @computerBreakpointPixel;
+    @largeMonitorBreakpoint           : @largeMonitorBreakpointPixel;
+    @widescreenMonitorBreakpoint      : @widescreenMonitorBreakpointPixel;
+    @desktopNavigationBreakpoint      : @desktopNavigationBreakpointPixel;
+    @largestMediumMobileScreen        : @largestMediumMobileScreenPixel;
+    @largestMobileScreen              : @largestMobileScreenPixel;
+    @largestTabletScreen              : @largestTabletScreenPixel;
+    @largestSmallMonitor              : @largestSmallMonitorPixel;
+    @largestLargeMonitor              : @largestLargeMonitorPixel;
+    @largestMobileNavigation          : @largestMobileNavigationPixel;
+    // Stacked
+    @largestStackedScreen             : @largestStackedScreenPixel; 
+    @site-max-width                   : @site-max-widthPixel;
+}
+
+.breakpoint-values(em) {
+    @mobileBreakpoint                 : unit((unit(@mobileBreakpointPixel) / @fontSizeRoot), em);
+    @largeMobileBreakpoint            : unit((unit(@largeMobileBreakpointPixel) / @fontSizeRoot), em);
+    @tabletBreakpoint                 : unit((unit(@tabletBreakpointPixel) / @fontSizeRoot), em);
+    @computerBreakpoint               : unit((unit(@computerBreakpointPixel) / @fontSizeRoot), em);
+    @largeMonitorBreakpoint           : unit((unit(@largeMonitorBreakpointPixel) / @fontSizeRoot), em);
+    @widescreenMonitorBreakpoint      : unit((unit(@widescreenMonitorBreakpointPixel) / @fontSizeRoot), em);
+    @desktopNavigationBreakpoint      : unit((unit(@desktopNavigationBreakpointPixel) / @fontSizeRoot), em);
+    @largestMediumMobileScreen        : unit((unit(@largestMediumMobileScreenPixel) / @fontSizeRoot), em);
+    @largestMobileScreen              : unit((unit(@largestMobileScreenPixel) / @fontSizeRoot), em);
+    @largestTabletScreen              : unit((unit(@largestTabletScreenPixel) / @fontSizeRoot), em);
+    @largestSmallMonitor              : unit((unit(@largestSmallMonitorPixel) / @fontSizeRoot), em);
+    @largestLargeMonitor              : unit((unit(@largestLargeMonitorPixel) / @fontSizeRoot), em);
+    @largestMobileNavigation          : unit((unit(@largestMobileNavigationPixel) / @fontSizeRoot), em);
+    // Stacked
+    @largestStackedScreen             : unit((unit(@largestStackedScreenPixel) / @fontSizeRoot), em);
+    @site-max-width                   : unit((unit(@site-max-widthPixel) / @fontSizeRoot), em);
+}
+

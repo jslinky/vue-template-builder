@@ -1,0 +1,82 @@
+
+
+//*******************************
+//    DIVIDER: Custom Prop Rulesets
+//*******************************
+
+//-------------------
+//  Divider props
+//--------------------
+
+#props {
+  .divider() {
+    @default: {
+        --divider-width : @divider-width;
+        --divider-height : @divider-height;
+        --divider-bgColor : @divider-bgColor;
+        --divider-height-unit: @divider-height-unit; 
+        --divider-max-width: @divider-max-width;
+        --divider-spacing-top : ~"var(--@{divider-spacing-top})";
+        --divider-spacing-bottom : ~"var(--@{divider-spacing-bottom})";
+        --divider-spacing-top-tabletBreakpoint: ~"var(--@{divider-spacing-top-tabletBreakpoint})";
+        --divider-spacing-bottom-tabletBreakpoint: ~"var(--@{divider-spacing-bottom-tabletBreakpoint})";                    
+    };        
+    @extend-prop-classes: {
+        //*******************************
+        //   Classes used for extending properties
+        //*******************************
+        // Default
+        .o-divider-props { #props.divider(default); }
+    };
+    @extend-elements: {
+        //*******************************
+        //   Element classes that extend related properties
+        //*******************************          
+        .o-divider,
+        .o-section { &:extend(.o-divider-props); }
+
+    };
+    @output-custom-properties: {
+      #objects.divider-variables();
+      .output-custom-properties() when 
+        (@customPropFallback = false) and 
+        (@local-scoped-custom-prop-fallback = false) and 
+        (@static-variables-only = false), 
+        (@customPropFallback = true) and 
+        (@static-variables-only = false),
+        (@customPropFallback = false) and 
+        (@local-scoped-custom-prop-fallback = true) {
+        //*******************************
+        //   Classes used for extending properties
+        //*******************************
+        #props.divider(extend-prop-classes);
+        //*******************************
+        //   Element classes that extend related properties
+        //*******************************        
+        #props.divider(extend-elements);
+      }
+      .output-custom-properties();
+    };
+  }
+}   
+
+//*******************************
+//   DEFINE MIXIN
+//*******************************
+
+#props {
+  .divider(@item) {
+      #props.divider();
+      #objects.divider-variables();
+      @rules: @@item;
+      @rules();
+  }
+}
+
+//*******************************
+//   Init module custom property output
+//*******************************
+#props.divider(output-custom-properties);
+
+
+    

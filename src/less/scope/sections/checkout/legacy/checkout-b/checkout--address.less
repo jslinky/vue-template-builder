@@ -1,0 +1,233 @@
+
+#checkout-process {
+  .checkout() {
+    // Delivery section
+    @delivery-form: {
+      padding:0 (@gutterX * @gutter) (@rowSpacing * 2);
+    };
+    @delivery-form-mobileBreakpoint: {
+      padding:0 @spacing (@rowSpacing * 2);
+    };
+    // checkout-shipping
+    @delivery-form__form: {
+      margin:auto;
+    };
+    // form-row
+    @delivery-form__form-row: {
+      margin-bottom:@checkout-form-row-margin-bottom;
+    };
+    // error - move to global?
+    @error-msg: {
+      position:absolute;
+      // margin-top:-(@delivery-addess-error-margin-top);
+      margin-top:~"-1.25rem";
+    };
+    @delivery-section-containers-tabletBreakpoint: {
+      max-width:450*@rem;
+      margin:auto;
+    };
+    @delivery-customer-details: {
+      display:flex;
+      justify-content:space-between;
+      margin-bottom:(@rowSpacing*2)!important;
+    };
+    @delivery-options: {
+      max-width:530*@rem;
+      margin:(@rowSpacing * 2) auto;
+    };
+    @delivery-options__form-row: {
+      // &:extend(.u-flex);
+      display:flex;
+    };
+    @delivery-options__form-row-largestMobile: {
+      flex-wrap:wrap;
+    };
+    @delivery-options__form-row-tabletBreakpoint: {
+      align-items: center;
+      justify-content: space-around;
+    };
+    @delivery-options__radio-label: {
+      flex:1 1 auto;
+      white-space: nowrap;
+    };
+    @delivery-options__radio-label-largestMobile: {
+      width: ~"calc(100% - 3.2rem)"; // use var - width of radio + margin-right
+      align-self: center;
+    };
+    @delivery-options__radio-label-clickCollect-span: {
+      color:#aaa; //create var
+    };
+    @delivery-address__form-row-title-largeMobileBreakpoint: {
+      width:30%;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right:~"calc(2rem - 5px)";
+    };
+    @delivery-address__form-row-firstName-largeMobileBreakpoint: {
+      width:~"calc(70% - 2.05rem)";
+      display: inline-block;
+      vertical-align: middle;
+    };
+    @delivery-address__enterAddressManuallyContainer: {
+      text-align: center;
+      padding:@rowSpacing 0;
+    };
+    @delivery-address__lookup-list: {
+      height:180*@rem; // use var
+      border:1px solid @borderColor;
+      border-top:0;
+      overflow-y: scroll;
+      color:@black;
+      list-style-type: none;
+      padding-left:@spacing/2;
+      margin:0;
+    };
+    @delivery-address__lookup-listItem: {
+      padding:3*@rem 0;
+      margin:3*@rem 0;
+      #checkout-process.global(cart-font);
+      #checkout-process.global(cart-font-size);
+    };
+    @delivery-address__lookup-notFound: {
+      // &:extend(.o-form__input--text);
+      border-top:0;
+      &:hover {
+        cursor:pointer;
+      }
+    };
+    @delivery-address__form-row50pc: {
+      display:inline-block;
+      width:~"calc(50% - ((@{rowDistance} * 2) / 2))";
+    };
+    @delivery-method__heading: {
+      // &:extend(.o-header, .o-header--h6);
+      text-align: center;
+      margin-top:0;
+      padding-top: @rowSpacing;
+      border-top:1px solid @borderColor;
+    };
+    @shipment-details: {
+      // &:extend(.u-flex, .u-flex-wrap);
+      display:flex;
+      flex-wrap:wrap;
+    };
+    @shipment-details__div: {
+      flex:1 1 auto;
+      width:100%;
+      padding-left:@spacing;
+      padding-right:@spacing;
+    };
+    @shipment-details__headings: {
+      color:@textColor;
+    };
+  }
+}
+
+
+.pt_singlepagecheckout_v2 {
+  // Delivery container
+  .delivery-form { #checkout-process.checkout(delivery-form); }
+  // Delivery wrapping form element
+  .checkout-shipping { #checkout-process.checkout(delivery-form__form); }
+  // Delivery form row
+  .select-address .form-row,
+  .delivery-address .form-row { #checkout-process.checkout(delivery-form__form-row); }
+  // New error validation msg - absolute
+  span.error { #checkout-process.checkout(error-msg); }
+  // Cusomter details (logged in)
+  .checkout-shipping.address .customer-details { #checkout-process.checkout(delivery-customer-details); }
+}
+// Delivery options label
+.delivery-options .radio label { #checkout-process.checkout(delivery-options__radio-label); }
+// Click and collect span
+.delivery-options label[for="click-and-collect"] span { #checkout-process.checkout(delivery-options__radio-label-clickCollect-span); }
+
+// Enter address manaully
+.pt_cart_v2 {
+  // The selector is defined as below in checkout a
+  //.checkout-shipping.address fieldset:last-child button
+//  #enter-address-manually.link { &:extend(.o-link all); }
+}
+
+
+
+// Delivery options
+.delivery-options { #checkout-process.checkout(delivery-options); }
+.delivery-options > .form-row { #checkout-process.checkout(delivery-options__form-row); }
+
+@media (min-width:((unit(@mobileBreakpointPixel) + 10)*@em)) {
+
+  // Delivery container
+  .pt_singlepagecheckout_v2 .delivery-form { #checkout-process.checkout(delivery-form-mobileBreakpoint); }
+
+}
+
+@media (max-width:@largestMobileScreen) {
+
+  .delivery-options > .form-row { #checkout-process.checkout(delivery-options__form-row-largestMobile); }
+
+  .delivery-options .radio label { #checkout-process.checkout(delivery-options__radio-label-largestMobile); }
+
+  .delivery-options > .form-row > input:first-child ~ input,
+  .delivery-options > .form-row > label ~ label { margin-top:@rowSpacing; }
+
+}
+
+@media (min-width:@largeMobileBreakpoint) {
+
+  .pt_singlepagecheckout_v2 {
+
+    .delivery-address .form-row.field-title { #checkout-process.checkout(delivery-address__form-row-title-largeMobileBreakpoint); }
+    .delivery-address .form-row.field-firstname { #checkout-process.checkout(delivery-address__form-row-firstName-largeMobileBreakpoint); }
+
+  }
+
+}
+
+@media (min-width:@tabletBreakpoint) {
+
+  .delivery-options > .form-row { #checkout-process.checkout(delivery-options__form-row-tabletBreakpoint); }
+
+  .pt_singlepagecheckout_v2 {
+    .checkout-shipping.address {
+      width:auto!important; //override
+      .customer-details,
+      .select-address,
+      > [class^="delivery-"]:not(.delivery-options),
+      .terms-and-conditions { #checkout-process.checkout(delivery-section-containers-tabletBreakpoint); }
+    }
+  }
+
+}
+
+
+
+// Enter address manually
+.qas-options { #checkout-process.checkout(delivery-address__enterAddressManuallyContainer); }
+
+// Address lookup
+.pt_singlepagecheckout_v2 .address-lookup ul { #checkout-process.checkout(delivery-address__lookup-list); }
+.pt_singlepagecheckout_v2 .address-lookup ul li { #checkout-process.checkout(delivery-address__lookup-listItem); }
+.pt_singlepagecheckout_v2 .address-lookup ul li:hover { cursor: pointer; }
+.address-lookup .address-not-found { #checkout-process.checkout(delivery-address__lookup-notFound); }
+
+// Postcode and house number
+.pt_singlepagecheckout_v2 .field-postcode,
+.pt_singlepagecheckout_v2 .field-housenumber { #checkout-process.checkout(delivery-address__form-row50pc); }
+.pt_singlepagecheckout_v2 .field-housenumber { float:right; }
+
+// Delivery method heading
+.pt_singlepagecheckout_v2 .delivery-method-heading { #checkout-process.checkout(delivery-method__heading); }
+
+
+
+// Delivery details confirmed - stage 2
+.pt_singlepagecheckout_v2 .shipment-details { #checkout-process.checkout(shipment-details); }
+// Inactive
+.pt_singlepagecheckout_v2 .inactive + .shipment-details,
+.pt_singlepagecheckout_v2 .inactive + .shipment-details > div > .title { color:@lightTextColor; }
+.pt_singlepagecheckout_v2 .shipment-details > div { #checkout-process.checkout(shipment-details__div); }
+.pt_singlepagecheckout_v2 .shipment-details > div:last-child { padding-bottom: (@rowSpacing * 2); }
+
+// Delivery headings
+.pt_singlepagecheckout_v2 .shipment-details > div > .title { #checkout-process.checkout(shipment-details__headings); }

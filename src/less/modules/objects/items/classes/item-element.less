@@ -13,6 +13,23 @@
 }
 
 //-------------------
+//  Alignment of content
+//--------------------
+
+// Left
+/////////////////////////
+.o-item[class*="left aligned"] .o-item__content { #objects.item(element-left-aligned-relative); }
+// Right
+/////////////////////////
+.o-item[class*="right aligned"] .o-item__content { #objects.item(element-right-aligned-relative); }
+// Center 
+/////////////////////////
+.o-item[class*="center aligned"] .o-item__content { #objects.item(element-center-aligned-relative); }
+// Center Middle
+/////////////////////////
+.o-item[class*="center aligned"][class*="middle aligned"] .o-item__content[class*="--overlay"] { #objects.item(element-center-middle-aligned-relative); }
+
+//-------------------
 //  Alignment of overlayed content
 //--------------------
 // Left
@@ -36,3 +53,17 @@
 // Bottom
 /////////////////////////
 .o-item[class*="bottom aligned"] .o-item__content[class*="--overlay"] { #objects.item(element-bottom-aligned); }
+
+//-------------------
+//  Breakpoint
+//--------------------
+@media(max-width:@largestMobileScreen) {
+  .o-item.o-item .o-item__content--overlay-md.o-item__content--overlay-md {
+    position:relative;
+    transform:none;
+    left:auto;
+    right:auto;
+  } 
+}
+
+

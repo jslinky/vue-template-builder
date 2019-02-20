@@ -1,0 +1,23 @@
+
+
+.o-divider { 
+  #objects.divider(element); 
+  #objects.divider(spacing); 
+}
+
+// Top, bottom and default divider
+.o-section--divider:before,
+.o-section + .o-section:before {
+  #objects.divider(element);
+  #objects.divider(section);
+}
+
+.o-section + .o-section:before,
+.o-section--divider:before { top:0; }
+
+// No divider
+.o-section--divider-none:before { 
+  display:none!important; 
+  .u-clearfix& { display:none!important; }
+}
+
