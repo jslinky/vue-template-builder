@@ -24,11 +24,15 @@
 //  Masthead props
 //--------------------
 
+// DEMO OVERRIDES
+
 // Extend
 #props {
     .masthead(default) {
       #objects.masthead-variables();
-      // --itemHeaderOffset: ~"calc(@{itemHeaderOffset} / 2)";
-      // --itemContentOffset: ~"calc(@{itemContentOffset} / 2)";  
+        --mh-minHVal-m: inherit;
+        --mh-minHVal-lmb: inherit;
+        --mh-minHVal-tb: inherit;
+        --mh-minHVal-cb: inherit;
     }
 }

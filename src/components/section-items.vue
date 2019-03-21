@@ -1,77 +1,135 @@
 <template>
-  <div
-    class="c-section-items"
-    style="margin-bottom:5rem"
-    :class="{edit: editPanel.state}"
-  >
-    <header class="c-header-group">
-      <CustomHeader
-        bg
-        center
-        aligned        
-        @click.native.prevent="editItem(modules.itemOne.name + '-panel')"
-        class="o-link"
-      >Items</CustomHeader>      
-      <div class="c-icon-settings" :class="{'spin': !editPanel.state}">
-        <img
-          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEASURBVEhL5ZXLCQIxFEXHvR+0DAuwD/GztQPbsAB1bwUWYRMuBQU70J2fe2AGwpsXx4EJCB44m+S9G0liJvsblvJlZKwxdtIuwFgjDOVJ2gUYY64WLXmQezmXW/mUNryQOWqopYdeMqIspBdURzJc2vIqvaY6kkFWiZX0GvAsJ7KTO5ZH6dUiWSVouktbTPhAWvryIm09GWS5jORNhg388hhTGdbSS8ZH7ALufuZ0ZVhLbyVJF/C2KLqfgvsf1tIb3aLYIXNbOFALB1/rkKuuKQfKlvTkTHrhhe41Tf5Hg6RPBdjHbiMf0gtC5tby68fOo9HnOkbSDw4k/2T+Kln2Bs4A2GHKR2iEAAAAAElFTkSuQmCC"
-          class="c-icon-settings__cog"
+  <transition name="section-trans">
+    <div
+      class="c-section-items"
+      style="margin-bottom:5rem"
+      :class="{edit: editPanel.state}"
+    >
+      <header class="c-header-group">
+        <CustomHeader
+          bg
+          center
+          aligned        
+          @click.native.prevent="editItem(modules.itemOne.name + '-panel')"
+          class="o-link"
+        >Items</CustomHeader>      
+        <div class="c-icon-settings" :class="{'spin': !editPanel.state}">
+          <img
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEASURBVEhL5ZXLCQIxFEXHvR+0DAuwD/GztQPbsAB1bwUWYRMuBQU70J2fe2AGwpsXx4EJCB44m+S9G0liJvsblvJlZKwxdtIuwFgjDOVJ2gUYY64WLXmQezmXW/mUNryQOWqopYdeMqIspBdURzJc2vIqvaY6kkFWiZX0GvAsJ7KTO5ZH6dUiWSVouktbTPhAWvryIm09GWS5jORNhg388hhTGdbSS8ZH7ALufuZ0ZVhLbyVJF/C2KLqfgvsf1tIb3aLYIXNbOFALB1/rkKuuKQfKlvTkTHrhhe41Tf5Hg6RPBdjHbiMf0gtC5tby68fOo9HnOkbSDw4k/2T+Kln2Bs4A2GHKR2iEAAAAAElFTkSuQmCC"
+            class="c-icon-settings__cog"
+          >
+          <img
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACHSURBVEhL7Y5RCoAgEES9RHcs6rjdp3aohU1Ex9XADx8smuy8KUyGZZVZnisFdpGh2GUumVOGKcEOdpFBtogNlEpqdj8wQbdcyQma5UpK1E2uxMKucsWWdJeDXwusHKe9N5fEcnyn3lzkRM0ljMBdUhN0lRwyNQFbgizFJkP9zQt2kZkMRwg3JsJK5RshxGkAAAAASUVORK5CYII="
+            class="c-icon-settings__close"
+          >
+        </div>
+      </header>
+      
+      <div class="o-container">
+
+      <DebugToggle :module="modules.itemOne" class="u-fixed">
+        <input
+          type="checkbox"
+          :id="toogleInvert"
+          :checked="invert"
+          :value="invert"
+          @click="invertItem($event.target.id)"
         >
-        <img
-          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACHSURBVEhL7Y5RCoAgEES9RHcs6rjdp3aohU1Ex9XADx8smuy8KUyGZZVZnisFdpGh2GUumVOGKcEOdpFBtogNlEpqdj8wQbdcyQma5UpK1E2uxMKucsWWdJeDXwusHKe9N5fEcnyn3lzkRM0ljMBdUhN0lRwyNQFbgizFJkP9zQt2kZkMRwg3JsJK5RshxGkAAAAASUVORK5CYII="
-          class="c-icon-settings__close"
-        >
+        <label :for="toogleInvert">Inverted</label>
+      </DebugToggle>
+
+      <section :style="columnStyle" class="c-section-items__moduleContainer">
+        <div>
+          <div class="c-section-items__modulePanel">
+            <editItem :items="moduleArray" :editPanel="editPanel" ref="editItemType"></editItem>
+            <editPanel
+              :items="moduleArray"
+              :editPanel="editPanel"
+              :ref="modules.itemOne.name + '-panel'"
+            />
+          </div>
+          <div class="c-section-items__module">
+            <ModuleComponent :module="modules.itemOne" :ref="modules.itemOne.name">
+              <itemImage
+                :img="modules.itemOne.image"
+                :content="modules.itemOne.content"
+                :headerSwap="modules.itemOne.headerSwap"
+                :imageSwap="modules.itemOne.imageSwap"
+              />
+              <!-- <div class="o-item" :class="classesApplied" :id="itemInfo.id">
+                    <itemImage :img="itemInfo.image" :content="itemInfo.content" /> 
+              </div>-->
+            </ModuleComponent>
+          </div>
+        </div>
+        <div> 
+          <p class="c-module-intro" :class="{'show': moduleDetailsShow}">The item object provides a pattern for using an image with associated content. 
+            <button class="o-link" @click="moduleDetailsShow = !moduleDetailsShow">{{moduleDetailsShow ? 'Hide details': 'More details' }}</button>
+          </p>
+          <div>
+            <div>
+              <p>An <em>item</em> container uses the class of <code>o-item</code>.<br>It has two important descendants, <em>item image</em> and <em>item content</em>. 
+              These use the classes of <code>o-item__image</code> and <code>o-item__content</code> respectfully.</p>
+              <div class="o-divider"></div> 
+              <h3 class="o-hdr o-hdr--md">Types</h3>
+              <p>There are three main item types:- </p>
+              <ul>
+                <li><em>Default</em> - content sit's after the image in a column layout</li>
+                <li><em>Overlay</em> -  content positioned absolutely over the image.</li>
+                <li><em>Card</em> - content sit's in an adjacent 'column' (at a speicific breakpoint)</li>
+              </ul>
+              <p>
+              For the <em>overlay type</em>, add a modifyer class of <code>o-item_content--overlay</code>. To use only above <em>tabletBreakpoint</em> use <code>o-item_content--overlay-md</code></p>
+              <p>
+              For <em>card type</em>, add a modifyer class of <code>o-item--card</code>. You can also reverse the image | content order by adding class <code>reverse</code>.
+              </p>
+
+              <p>Examples of each of these types can be seen by using the menu in the example panel.</p>
+              <div class="o-divider"></div> 
+              <h3 class="o-hdr o-hdr--md">Justify Content</h3>
+
+              <p>Using the following classes on <code>o-item</code> and / or <code>o-item__content</code> to justify and position content.</p>
+
+              <h3 class="o-hdr o-hdr--t o-hdr--secFont">Item</h3>
+
+              <ul class="u-list">
+              <li><code class="u-p0">left aligned</code> (will position o-item__content to the left)</li>
+              <li><code class="u-p0">right aligned</code> (will position o-item__content to the right)</li>
+              <li><code class="u-p0">center aligned</code> (will position o-item__content in the center)</li>
+              <li><code class="u-p0">middle aligned</code> (will vertically center position o-item__content)*</li>
+              <li><code class="u-p0">top aligned</code> (will position o-item__content to the top)*</li>
+              <li><code class="u-p0">bottom aligned</code> (will position o-item__content to the bottom)*</li>
+              </ul>
+
+              <p>* applied to overlayed content only </p>
+
+              <h3 class="o-hdr o-hdr--t o-hdr--secFont">Item Content</h3>
+
+              <ul class="u-list">
+              <li><code class="u-p0">left aligned</code> (aligns text to left / aligns items to start)</li>
+              <li><code class="u-p0">right aligned</code> (aligns text to right / aligns items to end)</li>
+              <li><code class="u-p0">center aligned</code> (aligns text to center / aligns items to center)</li>
+              <li><code class="u-p0">middle aligned</code> (justifies to center)</li>
+              <li><code class="u-p0">top aligned</code> (justifies to start)</li>
+              <li><code class="u-p0">bottom aligned</code> (justifies to end)</li>
+              </ul>
+
+              <div class="o-divider"></div> 
+              <h3 class="o-hdr o-hdr--md">Heading's &amp; Artwork</h3>
+              <p>When using a <em>heading</em> 'object' within a <em>item</em>, use the class <code>o-item__hdr</code> in addition to <code>o-hdr</code> to apply item specific heading rules.</p>
+              <p>When a SVG heading is required, wrap the svg within a element with a class of <code>o-item__artwork</code></p>
+
+              <div class="o-divider"></div> 
+              <h3 class="o-hdr o-hdr--md">Invert Content</h3>            
+              <p>In addition to using the <code>inverted</code> class on individual elements, you can use a <em>data-theme</em> attribute with a value of <code>inverted</code> on a <code>o-item</code> element.</p>
+          </div>
+          </div>
+        </div>        
+      </section>
+
       </div>
-    </header>
-
-    <div class="o-container">
-
-    <p class="c-module-intro" :class="{'show': moduleDetailsShow}">Items are the building blocks of the site. There use is ideally suited to a image and related content. 
-      <button class="o-link" @click="moduleDetailsShow = !moduleDetailsShow">{{moduleDetailsShow ? 'Hide details': 'More details' }}</button>
-    </p>
-    <div>
-      <div>
-        <p>The container class for an item is 'o-item', in which contains a image container 'o-item__image'.</p>
-        <p>The associated content sits within a container 'o-item__content'</p>
     </div>
-    </div>
-
-    <DebugToggle :module="modules.itemOne" class="u-fixed">
-      <input
-        type="checkbox"
-        :id="toogleInvert"
-        :checked="invert"
-        :value="invert"
-        @click="invertItem($event.target.id)"
-      >
-      <label :for="toogleInvert">Inverted</label>
-    </DebugToggle>
-
-    <section class="c-section-items__moduleContainer">
-      <div class="c-section-items__modulePanel">
-        <editItem :items="moduleArray" :editPanel="editPanel" ref="editItemType"></editItem>
-        <editPanel
-          :items="moduleArray"
-          :editPanel="editPanel"
-          :ref="modules.itemOne.name + '-panel'"
-        />
-      </div>
-      <div class="c-section-items__module">
-        <ModuleComponent :module="modules.itemOne" :ref="modules.itemOne.name">
-          <itemImage
-            :img="modules.itemOne.image"
-            :content="modules.itemOne.content"
-            :headerSwap="modules.itemOne.headerSwap"
-            :imageSwap="modules.itemOne.imageSwap"
-          />
-          <!-- <div class="o-item" :class="classesApplied" :id="itemInfo.id">
-                <itemImage :img="itemInfo.image" :content="itemInfo.content" /> 
-          </div>-->
-        </ModuleComponent>
-      </div>
-    </section>
-    </div>
-  </div>
+  </transition>
 </template>
 
 
@@ -112,6 +170,8 @@ export default {
     return {
       invert: false,
       moduleDetailsShow: false,
+      isCardType: [],
+      columnWidth: '',
       editPanel: {
         state: false,
         itemIndex: 0
@@ -175,7 +235,16 @@ export default {
   computed: {
     moduleOne() {
       return this.modules.itemOne;
-    }
+    },
+    columnStyle() {      
+      return {
+        '--min-col-width': this.isCardType[2] ? '320px' : '600px',
+        '--c-section-item-position': this.isCardType[2] ? 'sticky' : 'relative',
+        '--c-section-item-top': this.isCardType[2] ? '103px' : '0',
+        '--c-section-item-height': this.isCardType[2] ? '100vh' : 'auto'
+      }
+    },
+
   },
   methods: {
     invertItem() {
@@ -296,6 +365,10 @@ export default {
     this.initSetClasses(this.modules, this.itemClass, "content");
     this.initSetClasses(this.modules, this.itemClass, "image");
     this.init = true;
+    // Set if card type is applied to isCardType
+    let cardType = this.modules.itemOne.classes.available.filter((entry, index) =>  entry.class[0] == 'o-item--100vw')
+    // this.isCardType = cardType[0].class[2]  
+    this.isCardType = cardType[0].class
   },
   mounted() {
     editBus.$on("itemTypeUpdate", (type, index) => {
@@ -307,17 +380,24 @@ export default {
         this.invert = true;
         this.modules[entry]["inverted"] = true;
         this.toggleDataTheme(this.$refs[entry].$refs[entry], true);
+        // this.modules[entry].classes.available.forEach(
+        //   element => (element.class[2] = true)
+        // );
         this.modules[entry].classes.available.forEach(
-          element => (element.class[2] = true)
-        );
+          element => (element.class.splice(2, 1, true))
+        );        
+
       } else {
         this.invert = false;
         this.modules[entry]["inverted"] = false;
         this.toggleDataTheme(this.$refs[entry].$refs[entry], false);
         if (type == "default") {
+          // this.modules[entry].classes.available.forEach(
+          //   element => (element.class[2] = true)
+          // );
           this.modules[entry].classes.available.forEach(
-            element => (element.class[2] = true)
-          );
+            element => (element.class.splice(2, 1, true))
+          );                    
         }
       }
     });
@@ -332,7 +412,8 @@ export default {
     editBus.$on("removeClass", (index, classes, action, item) => {
       classes.available.forEach((element, i) => {
         if (element.class[0].indexOf(item)) {
-          element.class[2] = true;
+          // element.class[2] = true;
+          element.class.splice(2, 1, true)
         }
       });
       if (item == "o-item--imageSwap") {
@@ -340,21 +421,32 @@ export default {
         this.modules.itemOne.imageSwap = false;
         this.$refs.editItemType.itemType = "default";
       }
-    });
+    });  
+
+    
   },
   mixins: [moduleSectionMixins, editPanelMixins]
 };
 </script>
 
 <style lang="less">
+
 .c-section-items__moduleContainer {
-  // display: grid;
-  // grid-template-columns: repeat(2, minmax(350px, 600px));
+  --min-col-width: 320px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--min-col-width), 1fr));  
+  grid-gap:0 24px;
+  margin-bottom:4rem;
 }
 
 .c-section-items > div {
   display: flex;
   flex-direction: column;
+}
+
+.c-section-items__modulePanel {
+  max-width: 445px;
+  margin: ~"calc(var(--spacing) / 2) auto var(--spacing)";  
 }
 
 .c-section-items__modulePanel > div > label:not(:first-of-type),
@@ -364,10 +456,7 @@ export default {
   display: none;
 }
 
-.c-section-items .c-editPanel {
-}
-
-.c-section-items.edit .c-editPanel {
+.edit .c-editPanel {
   transform: translate(0, 0);
 }
 
@@ -452,7 +541,7 @@ code {
 }
 
 .c-module-intro {
-  --paragraphFontSize: var(--medium);
+  --paragraphFontSize: var(--medium);  
   text-align: center;
   display:flex;
   flex-direction:column;
@@ -468,9 +557,13 @@ code {
   max-height:0;
   overflow: hidden;
   transition: max-height 200ms cubic-bezier(0.075, 0.82, 0.165, 1);  
-  background: #EFF0F2;
+  // background: #EFF0F2;
   border-radius: 3px;  
   opacity:0;  
+}
+
+.c-module-intro + div .o-hdr {
+  --headerOffsetMultiplyer: .75;
 }
 
 .c-module-intro.show + div {
@@ -479,14 +572,44 @@ code {
 }
 
 .c-module-intro + div > div {
-  padding: var(--spacing);
+  padding: ~"var(--spacing)";
+  max-width:750px;
+  margin:auto;
+  --paragraphLineHeight: 2.5;
 }
 
-.c-module-intro + div p {
-  text-align:center;
-  --paragraphSpacing: 0;
+.c-module-intro + div p,
+.c-module-intro + div ul {
+  --paragraphSpacing: var(--tiny);
   --paragraphFontSize: var(--small);
 }
 
+.c-module-intro + div ul {
+  // letter-spacing: var(--paragraphSpacing);
+  font-size:var(--paragraphFontSize);
+  list-style-type: none;
+  padding:0;
+}
 
+.c-module-intro + div li {
+  margin-top: var(--paragraphSpacing);
+}
+
+section > div:last-of-type code {
+  white-space: nowrap;
+}
+
+.u-list {
+  list-style-type: initial!important;
+  padding-left:2rem!important;
+}
+
+@media (min-width:688px) {
+  .c-section-items__moduleContainer > div:first-of-type {
+    position: var(--c-section-item-position);
+    top:var(--c-section-item-top);
+    height: var(--c-section-item-height);
+  }
+}
+ 
 </style>

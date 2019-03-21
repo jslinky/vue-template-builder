@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import axios from 'axios'
 import './framework.less'
+import Carousel from './components/carousel/carousel.js'
 
 Vue.config.productionTip = false
 // install axios to global Vue instance - access as $http
@@ -23,3 +24,6 @@ new Vue({
 // Flickr API
 // Key: 68785a52c56c90de60bdc2f382f9e13a
 // Secret: 1cd36ba902502a84
+
+
+

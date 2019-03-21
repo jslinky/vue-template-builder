@@ -5,17 +5,17 @@
       <DebugToggle :module="module"/>
     </div>
     <!-- Module component -->
-    <div v-if="el === 'div'" :ref="module.name" :class="defaultClasses" :style="debugStyles">
+    <div v-if="el === 'div'" :ref="module.name" :class="defaultClasses" :style="debugStyles || customProps">
       <slot>{{module.name}}</slot>
     </div>
-    <a v-else-if="el === 'a'" :ref="module.name" :class="defaultClasses" :style="debugStyles">
+    <a v-else-if="el === 'a'" :ref="module.name" :class="defaultClasses" :style="debugStyles  || customProps">
       <slot>{{module.name}}</slot>
     </a>
     <section
       v-else-if="el === 'section'"
       :ref="module.name"
       :class="defaultClasses"
-      :style="debugStyles"
+      :style="debugStyles || customProps"
     >
       <slot>{{module.name}}</slot>
     </section>
@@ -81,6 +81,9 @@ export default {
     el: {
       type: String,
       default: "div"
+    },
+    customProps: {
+      type: Object
     }
   },
   data() {

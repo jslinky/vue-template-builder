@@ -16,6 +16,24 @@ export const editPanelMixins = {
     }
   },
   methods: {
+    closePanel(index) {
+      editBus.$emit("editPanelState", false, index);
+    },
+    toggleSections(sectionToOpen) {
+      let obj = this.editPanelSections;
+      for (let section in obj) {
+        // if sectionToTop (string of key) is equal to key in object & it's value is false, set to true
+        if (sectionToOpen == section && obj[section] == false) {
+          this.$set(obj, section, true);
+          // if sectionToTop (string of key) is equal to key in object & it's value is true, set to false
+        } else if (sectionToOpen == section && obj[section] == true) {
+          this.$set(obj, section, false);
+          // else set to false
+        } else {
+          this.$set(obj, section, false);
+        }
+      }
+    },    
     // obj = object to set new key value, key = string of key to modify it's value, arr = array in which obj is held
     removeContent(obj, key, arr) {
       let arrLength = arr.length - 1;
@@ -122,9 +140,11 @@ export const editPanelMixins = {
       function setClassTo(bool, itemAliasObj, classToApply) {
         itemAliasObj.classesAvailable.forEach(entry => {
           if (!bool && entry.class[0].includes(classToApply)) {
-            entry.class[2] = false;
+            // entry.class[2] = false; // this isn't reative - use .splice() or $set
+            entry.class.splice(2, 1, false);
           } else if (bool && entry.class[0].includes(classToApply)) {
-            entry.class[2] = true;
+            // entry.class[2] = true; // this isn't reative - use .splice() or $set
+            entry.class.splice(2, 1, true);
           }
         });
       }

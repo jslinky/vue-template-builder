@@ -66,14 +66,15 @@
       .define-module-prop(form; font-size; inputFontSize);  
       .define-module-prop(form; transition; inputTransition);  
       .define-module-prop(form; border-radius; inputBorderRadius; @inputBorderRadius);  
-      width:100%;   
+      .define-module-prop(form; width; inputWidth);  
+      .define-module-prop(form; background; inputBackground);        
+      // width:100%;   
       -webkit-appearance:none; 
     };
     @input-text-customPropOnly-ruleset: { 
       max-width:var(--inputMaxWidth);
       padding:var(--inputPadding);
       letter-spacing:~"var(--inputLetterSpacing, @{inputLetterSpacingFallback})";
-      content:'props';
     };
     @input-text-fallback-ruleset: { 
       #collections.form(input-text-staticVarsOnly-ruleset);

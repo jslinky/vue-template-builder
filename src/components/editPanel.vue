@@ -77,6 +77,7 @@ import editItem from "./editItem.vue";
 import editImg from "./editImg.vue";
 import editItemContent from "./editItemContent.vue";
 import editItemButtons from "./editItemButtons.vue";
+import { editPanelMixins } from '../mixins/editPanel-applyClass';
 
 export default {
   // Name of this component
@@ -94,24 +95,24 @@ export default {
     editItemButtons
   },
   methods: {
-    closePanel(index) {
-      editBus.$emit("editPanelState", false, index);
-    },
-    toggleSections(sectionToOpen) {
-      let obj = this.editPanelSections;
-      for (let section in obj) {
-        // if sectionToTop (string of key) is equal to key in object & it's value is false, set to true
-        if (sectionToOpen == section && obj[section] == false) {
-          this.$set(obj, section, true);
-          // if sectionToTop (string of key) is equal to key in object & it's value is true, set to false
-        } else if (sectionToOpen == section && obj[section] == true) {
-          this.$set(obj, section, false);
-          // else set to false
-        } else {
-          this.$set(obj, section, false);
-        }
-      }
-    }
+    // closePanel(index) {
+    //   editBus.$emit("editPanelState", false, index);
+    // },
+    // toggleSections(sectionToOpen) {
+    //   let obj = this.editPanelSections;
+    //   for (let section in obj) {
+    //     // if sectionToTop (string of key) is equal to key in object & it's value is false, set to true
+    //     if (sectionToOpen == section && obj[section] == false) {
+    //       this.$set(obj, section, true);
+    //       // if sectionToTop (string of key) is equal to key in object & it's value is true, set to false
+    //     } else if (sectionToOpen == section && obj[section] == true) {
+    //       this.$set(obj, section, false);
+    //       // else set to false
+    //     } else {
+    //       this.$set(obj, section, false);
+    //     }
+    //   }
+    // }
   },
   mounted() {
     editBus.$on("editPanelState", (state, itemIndex) => {
@@ -150,7 +151,8 @@ export default {
       responsiveImage: false,
       headingType: "Please select a type"
     };
-  }
+  },
+  mixins: [editPanelMixins]
 };
 </script>
 

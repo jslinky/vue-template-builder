@@ -27,7 +27,7 @@
 <aside class="c-global-banner" style="width:100vw;height:46px;background:#101A31;">
 	<a href="/delivery/">
 		<div class="u-absolute u-height-100 column--12 u-flex u-justify-center u-items-center u-top-0 u-left-0 u-letter-spacing-1">
-			<span style="pointer-events: none;" class="o-header o-header--h7-h6 u-no-caps u-letter-spacing-1 u-my0 inverted">Free Standard Delivery<span class="u-font-family-primary-light"> on Orders Over £60.</span></span>
+			<span style="pointer-events: none;" class="o-hdr inverted u-mt0">Free Standard Delivery<span class="u-font-family-primary-light"> on Orders Over £60.</span></span>
 		</div>
 	</a>
 </aside>
@@ -54,106 +54,6 @@
 <!-- Start: NAVIGATION -->
 <nav class="s-site-header__navigation">
 <!-- branding logo - cached content asset -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
@@ -559,6 +459,17 @@ export default {
 }
 
 .s-site-bannerSlot--afterHeader { display:none; }
+
+.s-navigation__categoryMenu,
+.s-navigation__primaryMenu { visibility: hidden; }
+
+@media (max-width:768px) {
+
+	.s-navigation__logo {
+		visibility: hidden;
+	}
+
+}
 
 </style>
 

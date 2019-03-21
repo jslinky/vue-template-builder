@@ -48,7 +48,12 @@ code {
   padding:1.5rem; 
   background:#eee; 
   font:0.785rem 'Courier'; 
-  letter-spacing:0.75px  
+  letter-spacing:0.75px;  
+  word-break: break-all;
+}
+
+p code {
+  padding:0;
 }
 
 .c-debug-toggle {
