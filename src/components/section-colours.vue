@@ -4,13 +4,46 @@
       <header class="c-header-group">
       <CustomHeader bg center aligned>Colours</CustomHeader>
     </header>
-    <section class="c-colours-section">
+    <!-- Tabs -->
+    <tabSections :activeSection.sync="section" :sections="['colours', 'ultilities']" />    
+    <section v-if="section == 'colours'" class="c-colours-section u-mt2">
       <div v-for="colour in colours" :data-theme="colour.inverted ? 'inverted' : 'none'" :class="`o-item u-bg-color-${colour.class}`" :key="colour.class" :ref="colour.class">
         <div>{{colour.class}}</div>
         <div>{{colour.hex}}</div>
         <div>{{colour.rgb}}</div>
       </div>    
     </section>
+
+    <section class="c-section-ulti o-container" v-else-if="section == 'ultilities'">
+      <select v-model="ultils.active" class="u-max-width-2c u-mx-auto u-my2">
+        <option value="default">Default</option>
+        <option value="sm">sm classes</option>
+        <option value="md">md classes</option>
+        <option value="lg">lg classes</option>
+      </select>
+      <code class="u-p0">
+        <div>
+          <!-- Col 1 -->
+          <div>
+            <h4 class="o-hdr o-hdr--t o-hdr--secFont u-mt3">Color</h4>
+            <ultilityClass :collection ="ultilsColor" :active="ultils.active" :prefix="'u-color-'" />
+          </div>
+          <!-- Col 2 -->
+          <div>         
+            <h4 class="o-hdr o-hdr--t o-hdr--secFont u-mt3">Background Color</h4>
+            <ultilityClass :collection ="ultilsColor" :active="ultils.active" :prefix="'u-bg-color-'" />   
+          </div>
+          <!-- Col 3 -->
+          <div>
+            <h4 class="o-hdr o-hdr--t o-hdr--secFont u-mt3">Border Color</h4>
+            <ultilityClass :collection ="ultilsColor" :active="ultils.active" :prefix="'u-border-color-'" />
+          </div> 
+
+        </div>
+      </code>
+    </section> 
+
+
     </div>
   </transition>
 </template>
@@ -18,14 +51,25 @@
 <script>
 
 import CustomHeader from './heading'
+import tabSections from "./tabSections"
+import { moduleSectionMixins } from "../mixins/module-section"
+import ultilityClass from "./ultilityClass"
+import { colorUlt } from "./cssClasses/color"
 
 export default {
   name: 'sectionColours',
   components: {
-    CustomHeader
+    CustomHeader,
+    tabSections,
+    ultilityClass
   },
   data() {
     return {
+      section: 'colours',
+      ultils: {
+        active: 'default',
+        colorUlt
+      },      
       colours: [
         {
           class: 'jw-navy-digital',
@@ -94,10 +138,16 @@ export default {
       ]
     }
   },
+  computed: {
+    ultilsColor() {
+      return this.ultils.colorUlt.filter((item) => this.ultilGroup(item))
+    }
+  },  
   mounted() {
     let styleComp = getComputedStyle(this.$refs['jw-navy-shade5'][0])
     console.log(styleComp.getPropertyValue('background-color'))
-  }
+  },
+  mixins: [moduleSectionMixins]
 }
 </script>
 

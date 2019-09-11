@@ -51,3 +51,16 @@ code {
 .c-container-buttons .c-code {
   --container-marginX:0;
 }
+
+.c-ulti-list li {
+  margin-top:1rem;
+  &::selection {
+    background:@jw-navy-digital;
+    color:#fff;
+  }
+}
+
+.c-section-ulti code > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));  
+}
